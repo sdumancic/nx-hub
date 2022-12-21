@@ -1,0 +1,206 @@
+{
+  "address": "::1",
+  "code": "ECONNREFUSED",
+  "errno": -4078,
+  "level": "error",
+  "message": "Error during datasource initialization  connect ECONNREFUSED ::1:3456",
+  "port": 3456,
+  "stack": "Error: connect ECONNREFUSED ::1:3456\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1300:16)",
+  "syscall": "connect"
+}
+{
+  "address": "::1",
+  "code": "ECONNREFUSED",
+  "errno": -4078,
+  "level": "error",
+  "message": "Error during datasource initialization  connect ECONNREFUSED ::1:3456",
+  "port": 3456,
+  "stack": "Error: connect ECONNREFUSED ::1:3456\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1300:16)",
+  "syscall": "connect"
+}
+{
+  "address": "::1",
+  "code": "ECONNREFUSED",
+  "errno": -4078,
+  "level": "error",
+  "message": "Error during datasource initialization  connect ECONNREFUSED ::1:3456",
+  "port": 3456,
+  "stack": "Error: connect ECONNREFUSED ::1:3456\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1300:16)",
+  "syscall": "connect"
+}
+{
+  "address": "::1",
+  "code": "ECONNREFUSED",
+  "errno": -4078,
+  "level": "error",
+  "message": "Error during datasource initialization  connect ECONNREFUSED ::1:3456",
+  "port": 3456,
+  "stack": "Error: connect ECONNREFUSED ::1:3456\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1300:16)",
+  "syscall": "connect"
+}
+{
+  "address": "::1",
+  "code": "ECONNREFUSED",
+  "errno": -4078,
+  "level": "error",
+  "message": "Error during datasource initialization  connect ECONNREFUSED ::1:3456",
+  "port": 3456,
+  "stack": "Error: connect ECONNREFUSED ::1:3456\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1300:16)",
+  "syscall": "connect"
+}
+{
+  "address": "::1",
+  "code": "ECONNREFUSED",
+  "errno": -4078,
+  "level": "error",
+  "message": "Error during datasource initialization  connect ECONNREFUSED ::1:3456",
+  "port": 3456,
+  "stack": "Error: connect ECONNREFUSED ::1:3456\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1300:16)",
+  "syscall": "connect"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  cors is not defined",
+  "stack": "ReferenceError: cors is not defined\n    at setupExpress (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:12:7)\n    at D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:42:5\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  cors is not defined",
+  "stack": "ReferenceError: cors is not defined\n    at setupExpress (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:13:7)\n    at D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:43:5\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  createCategory is not defined",
+  "stack": "ReferenceError: createCategory is not defined\n    at setupExpress (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:25:37)\n    at D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:51:5\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  createCategory is not defined",
+  "stack": "ReferenceError: createCategory is not defined\n    at setupExpress (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:25:37)\n    at D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:51:5\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  createCategory is not defined",
+  "stack": "ReferenceError: createCategory is not defined\n    at setupExpress (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:25:37)\n    at D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:51:5\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  createCategory is not defined",
+  "stack": "ReferenceError: createCategory is not defined\n    at setupExpress (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:25:37)\n    at D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:51:5\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  createCategory is not defined",
+  "stack": "ReferenceError: createCategory is not defined\n    at setupExpress (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:25:37)\n    at D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:51:5\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  createCategory is not defined",
+  "stack": "ReferenceError: createCategory is not defined\n    at setupExpress (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:25:37)\n    at D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:51:5\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  createCategory is not defined",
+  "stack": "ReferenceError: createCategory is not defined\n    at setupExpress (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:25:37)\n    at D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:51:5\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "code": "23502",
+  "column": "active",
+  "detail": "Failing row contains (1, Burgers, https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixl..., 2022-12-20 21:35:17.376805, 2022-12-20 21:35:17.376805, null).",
+  "driverError": {
+    "code": "23502",
+    "column": "active",
+    "detail": "Failing row contains (1, Burgers, https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixl..., 2022-12-20 21:35:17.376805, 2022-12-20 21:35:17.376805, null).",
+    "file": "execMain.c",
+    "length": 337,
+    "line": "1883",
+    "name": "error",
+    "routine": "ExecConstraints",
+    "schema": "public",
+    "severity": "ERROR",
+    "table": "category"
+  },
+  "file": "execMain.c",
+  "length": 337,
+  "level": "error",
+  "line": "1883",
+  "parameters": [
+    "Burgers",
+    "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1998&q=80"
+  ],
+  "query": "INSERT INTO \"category\"(\"name\", \"iconUrl\", \"active\", \"createdAt\", \"modifiedAt\") VALUES ($1, $2, DEFAULT, DEFAULT, DEFAULT) RETURNING \"id\", \"createdAt\", \"modifiedAt\"",
+  "routine": "ExecConstraints",
+  "schema": "public",
+  "severity": "ERROR",
+  "table": "category"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  searchCategoryByName is not defined",
+  "stack": "ReferenceError: searchCategoryByName is not defined\n    at setupExpress (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:28:50)\n    at D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:55:5\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  searchCategoryByName is not defined",
+  "stack": "ReferenceError: searchCategoryByName is not defined\n    at setupExpress (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:28:50)\n    at D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:55:5\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  searchCategoryByName is not defined",
+  "stack": "ReferenceError: searchCategoryByName is not defined\n    at setupExpress (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:28:50)\n    at D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:55:5\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error",
+  "message": "Could not find category with name Burger"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Route.get() requires a callback function but got a [object Undefined]",
+  "stack": "Error: Route.get() requires a callback function but got a [object Undefined]\n    at Route.<computed> [as get] (D:\\dev\\nx\\hub\\node_modules\\express\\lib\\router\\route.js:211:15)\n    at setupExpress (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:28:36)\n    at D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:55:5\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Route.get() requires a callback function but got a [object Undefined]",
+  "stack": "Error: Route.get() requires a callback function but got a [object Undefined]\n    at Route.<computed> [as get] (D:\\dev\\nx\\hub\\node_modules\\express\\lib\\router\\route.js:211:15)\n    at setupExpress (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:28:36)\n    at D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:55:5\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  fetchCategoryById is not defined",
+  "stack": "ReferenceError: fetchCategoryById is not defined\n    at setupExpress (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:28:40)\n    at D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\main.ts:55:5\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "code": "22P02",
+  "driverError": {
+    "code": "22P02",
+    "file": "numutils.c",
+    "length": 141,
+    "line": "320",
+    "name": "error",
+    "routine": "pg_strtoint32",
+    "severity": "ERROR",
+    "where": "unnamed portal parameter $1 = '...'"
+  },
+  "file": "numutils.c",
+  "length": 141,
+  "level": "error",
+  "line": "320",
+  "parameters": [
+    null
+  ],
+  "query": "SELECT \"Category\".\"id\" AS \"Category_id\", \"Category\".\"name\" AS \"Category_name\", \"Category\".\"iconUrl\" AS \"Category_iconUrl\", \"Category\".\"active\" AS \"Category_active\", \"Category\".\"createdAt\" AS \"Category_createdAt\", \"Category\".\"modifiedAt\" AS \"Category_modifiedAt\" FROM \"category\" \"Category\" WHERE (\"Category\".\"id\" = $1) LIMIT 1",
+  "routine": "pg_strtoint32",
+  "severity": "ERROR",
+  "where": "unnamed portal parameter $1 = '...'"
+}
+{
+  "code": "ERR_HTTP_HEADERS_SENT",
+  "level": "error"
+}
+{
+  "level": "error",
+  "message": "Could not find category with name Burgersa"
+}
+{
+  "code": "ERR_HTTP_HEADERS_SENT",
+  "level": "error"
+}
