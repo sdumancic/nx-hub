@@ -1183,3 +1183,120 @@
   "routine": "pg_error",
   "severity": "ERROR"
 }
+{
+  "code": "42P07",
+  "driverError": {
+    "code": "42P07",
+    "file": "index.c",
+    "length": 101,
+    "line": "869",
+    "name": "error",
+    "routine": "index_create",
+    "severity": "ERROR"
+  },
+  "file": "index.c",
+  "length": 101,
+  "level": "error",
+  "line": "869",
+  "message": "Error during datasource initialization  relation \"meal-item-order-idx\" already exists",
+  "query": "CREATE INDEX \"meal-item-order-idx\" ON \"topping_order_item\" (\"order_id\") ",
+  "routine": "index_create",
+  "severity": "ERROR",
+  "stack": "QueryFailedError: relation \"meal-item-order-idx\" already exists\n    at PostgresQueryRunner.query (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:299:19)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at PostgresQueryRunner.executeQueries (D:\\dev\\nx\\hub\\src\\query-runner\\BaseQueryRunner.ts:651:13)\n    at PostgresQueryRunner.createIndex (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:2920:9)\n    at PostgresQueryRunner.createIndices (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:2952:13)\n    at RdbmsSchemaBuilder.createNewIndices (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:979:13)\n    at RdbmsSchemaBuilder.executeSchemaSyncOperationsInProperOrder (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:229:9)\n    at RdbmsSchemaBuilder.build (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:95:13)\n    at DataSource.synchronize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:318:9)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:256:43)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  mealItem is not defined",
+  "stack": "ReferenceError: mealItem is not defined\n    at RelationMetadata.givenInverseSidePropertyFactory (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\app\\entities\\order-item.ts:42:70)\n    at RelationMetadata.buildInverseSidePropertyPath (D:\\dev\\nx\\hub\\src\\metadata\\RelationMetadata.ts:628:29)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1099:26\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#mealItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#mealItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#mealItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#mealItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#mealItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#mealItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#mealItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#mealItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#mealItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#mealItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#mealItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#mealItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#orderItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#orderItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#orderItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#orderItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for MealEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for MealEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for ToppingEntity#toppings was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for ToppingEntity#toppings was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for ToppingEntity#toppings was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for ToppingEntity#toppings was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for ToppingEntity#toppings was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for ToppingEntity#toppings was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for ToppingEntity#toppings was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for ToppingEntity#toppings was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for ToppingEntity#toppings was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for ToppingEntity#toppings was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  ToppingOrderItemEntity is not defined",
+  "stack": "ReferenceError: ToppingOrderItemEntity is not defined\n    at Object.type (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\app\\entities\\order-item.ts:41:20)\n    at new RelationMetadata (D:\\dev\\nx\\hub\\src\\metadata\\RelationMetadata.ts:343:29)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:697:24\n    at Array.map (<anonymous>)\n    at EntityMetadataBuilder.computeEntityMetadataStep1 (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:676:14)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:133:22\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:132:14)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error"
+}
+{
+  "level": "error"
+}
+{
+  "level": "error"
+}
+{
+  "level": "error",
+  "message": "deliveryAddress is mandatory"
+}

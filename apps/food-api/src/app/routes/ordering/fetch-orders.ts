@@ -49,10 +49,9 @@ export async function fetchOrders(
         notes: true,
         createdAt: true,
         modifiedAt: true,
-        mealItems: true,
-        toppingItems: true,
+        orderItems: true
       },
-      relations: ['mealItems', 'toppingItems'],
+      relations: ['orderItems','orderItems.toppingsItems','orderItems.meal'],
       where: {
         status: Equal(statusValue),
         datePlaced: Between(datePlacedFromValue,datePlacedToValue)

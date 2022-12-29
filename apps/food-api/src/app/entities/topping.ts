@@ -1,15 +1,6 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  Index,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
-import { Topping } from '@hub/shared/model/food-models';
+import { Column, CreateDateColumn, Entity, Index, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Topping } from "@hub/shared/model/food-models";
 import { MealToppingEntity } from "./meal-topping";
-import { MealOrderItemEntity } from "./meal-order-item";
 import { ToppingOrderItemEntity } from "./topping-order-item";
 
 @Entity({

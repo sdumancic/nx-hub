@@ -1,6 +1,5 @@
-import { Meal } from '../meal/meal.interface';
-import { Topping } from '../toppings/topping.interface';
-import { Order } from './order.interface';
+import { Topping } from "../toppings/topping.interface";
+import { OrderItem } from "./order-item.interface";
 
 
 export interface ToppingItem {
@@ -9,7 +8,8 @@ export interface ToppingItem {
   priceNoVat: number;
   priceWithVat: number;
   topping: Topping;
-  order: Order;
+  orderItem: OrderItem;
+  //order: Order;
   createdAt: Date;
   modifiedAt: Date;
 }

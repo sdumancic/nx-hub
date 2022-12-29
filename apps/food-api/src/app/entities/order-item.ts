@@ -2,18 +2,19 @@ import {
   Column,
   CreateDateColumn,
   Entity, Index, JoinColumn,
-  ManyToOne,
+  ManyToOne, OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
-import { Meal, MealItem, Order } from "@hub/shared/model/food-models";
+import { Meal, OrderItem, Order, ToppingItem } from "@hub/shared/model/food-models";
 import { MealEntity } from "./meal";
 import { OrderEntity } from "./order";
+import { ToppingOrderItemEntity } from "./topping-order-item";
 
 @Entity({
-  name: 'meal_order_item'
+  name: 'order_item'
 })
-export class MealOrderItemEntity implements MealItem {
+export class OrderItemEntity implements OrderItem {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -24,7 +25,7 @@ export class MealOrderItemEntity implements MealItem {
   modifiedAt: Date
   @ManyToOne(() => MealEntity, (meal) => meal.meals)
   @JoinColumn({name: 'meal_id'})
-  @Index("meal-item-meal-idx")
+  @Index("order-item-meal-idx")
   meal: Meal;
   @Column({type: "decimal", precision: 10, scale: 2, default: 0, name: 'price_no_vat'})
   priceNoVat: number;
@@ -33,9 +34,12 @@ export class MealOrderItemEntity implements MealItem {
   @Column({type: "int", default: 1, name: 'quantity'})
   quantity: number;
 
-  @ManyToOne(() => OrderEntity, (order) => order.mealItems)
+  @ManyToOne(() => OrderEntity, (order) => order.orderItems)
   @JoinColumn({name: 'order_id'})
-  @Index("meal-item-order-idx")
+  @Index("order-item-order-idx")
   order: Order
+
+  @OneToMany(() => ToppingOrderItemEntity, (toppingItem) => toppingItem.orderItem)
+  toppingsItems: ToppingItem[];
 
 }

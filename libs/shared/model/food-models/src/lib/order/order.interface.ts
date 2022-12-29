@@ -1,5 +1,4 @@
-import { MealItem } from "./meal-item.interface";
-import { ToppingItem } from "./topping-item.interface";
+import { OrderItem } from "./order-item.interface";
 
 
 export interface Order {
@@ -17,6 +16,5 @@ export interface Order {
   paymentMethod: string;
   createdAt: Date;
   modifiedAt: Date;
-  mealItems: MealItem[];
-  toppingItems?: ToppingItem[];
+  orderItems: OrderItem[];
 }

@@ -1,21 +1,20 @@
 import {
   Column,
   CreateDateColumn,
-  Entity, Index,
+  Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
-import { Meal } from '@hub/shared/model/food-models';
-import { CategoryEntity } from './category';
 import { MealEntity } from "./meal";
 import { ToppingEntity } from "./topping";
 
 @Entity({
   name: 'meal_topping',
 })
-@Index(["mealId", "toppingId"], { unique: true })
+@Index(["mealId", "toppingId"], { unique: true})
 export class MealToppingEntity {
   @PrimaryGeneratedColumn()
   id: number;

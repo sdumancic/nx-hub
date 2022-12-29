@@ -1,10 +1,10 @@
-import {DataSource} from 'typeorm';
+import { DataSource } from "typeorm";
 import { CategoryEntity } from "../entities/category";
 import { MealEntity } from "../entities/meal";
 import { ToppingEntity } from "../entities/topping";
 import { MealToppingEntity } from "../entities/meal-topping";
 import { OrderEntity } from "../entities/order";
-import { MealOrderItemEntity } from "../entities/meal-order-item";
+import { OrderItemEntity } from "../entities/order-item";
 import { ToppingOrderItemEntity } from "../entities/topping-order-item";
 
 
@@ -22,6 +22,6 @@ export const AppDataSource = new DataSource({
     },
   },
   synchronize: true,
-  entities: [CategoryEntity, MealEntity, ToppingEntity,MealToppingEntity, OrderEntity, MealOrderItemEntity, ToppingOrderItemEntity],
+  entities: [CategoryEntity, MealEntity, ToppingEntity,MealToppingEntity, OrderEntity, OrderItemEntity, ToppingOrderItemEntity],
   logging: true,
 });

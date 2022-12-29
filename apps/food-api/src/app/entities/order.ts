@@ -1,7 +1,6 @@
 import { Column, CreateDateColumn, Entity, Index, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { MealItem, Order, ToppingItem } from "@hub/shared/model/food-models";
-import { MealOrderItemEntity } from "./meal-order-item";
-import { ToppingOrderItemEntity } from "./topping-order-item";
+import { OrderItem, Order } from "@hub/shared/model/food-models";
+import { OrderItemEntity } from "./order-item";
 
 @Entity({
   name: 'order'
@@ -47,10 +46,7 @@ export class OrderEntity implements Order {
   @Column({name: 'notes'})
   notes: string;
 
-  @OneToMany(() => MealOrderItemEntity, (mealItem) => mealItem.order)
-  mealItems: MealItem[]
-
-  @OneToMany(() => ToppingOrderItemEntity, (toppingItem) => toppingItem.order)
-  toppingItems: ToppingItem[]
+  @OneToMany(() => OrderItemEntity, (orderItem) => orderItem.order)
+  orderItems: OrderItem[]
 
 }

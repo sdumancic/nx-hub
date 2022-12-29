@@ -1,16 +1,18 @@
 import {
   Column,
   CreateDateColumn,
-  Entity, Index,
+  Entity,
+  Index,
   JoinColumn,
-  ManyToOne, OneToMany,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
-import { Meal } from '@hub/shared/model/food-models';
-import { CategoryEntity } from './category';
+import { Meal } from "@hub/shared/model/food-models";
+import { CategoryEntity } from "./category";
+import { OrderItemEntity } from "./order-item";
 import { MealToppingEntity } from "./meal-topping";
-import { MealOrderItemEntity } from "./meal-order-item";
 
 @Entity({
   name: 'meal',
@@ -56,6 +58,6 @@ export class MealEntity implements Meal {
   @OneToMany(() => MealToppingEntity, mealTopping => mealTopping.meal)
   public mealToppings!: MealToppingEntity[];
 
-  @OneToMany(() => MealOrderItemEntity, (orderItem) => orderItem.meal)
-  meals: MealOrderItemEntity[]
+  @OneToMany(() => OrderItemEntity, (orderItem) => orderItem.meal)
+  meals: OrderItemEntity[]
 }

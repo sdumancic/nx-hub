@@ -1,15 +1,16 @@
 import {
   Column,
   CreateDateColumn,
-  Entity, Index, JoinColumn,
+  Entity,
+  Index,
+  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
-import { Meal, MealItem, Order, Topping, ToppingItem } from "@hub/shared/model/food-models";
-import { MealEntity } from "./meal";
-import { OrderEntity } from "./order";
+import { OrderItem, Topping, ToppingItem } from "@hub/shared/model/food-models";
 import { ToppingEntity } from "./topping";
+import { OrderItemEntity } from "./order-item";
 
 @Entity({
   name: 'topping_order_item'
@@ -34,9 +35,12 @@ export class ToppingOrderItemEntity implements ToppingItem {
   @Column({type: "int", default: 1, name: 'quantity'})
   quantity: number;
 
-  @ManyToOne(() => OrderEntity, (order) => order.toppingItems)
-  @JoinColumn({name: 'order_id'})
-  @Index("topping-item-order-idx")
-  order: Order
+
+  @ManyToOne(() => OrderItemEntity, (orderItem) => orderItem.toppingsItems)
+  @JoinColumn({name: 'order_item_id'})
+  @Index("topping-item-meal-item-idx")
+  orderItem: OrderItem;
+
+
 
 }

@@ -2,10 +2,9 @@ import { NextFunction, Request, Response } from 'express';
 import { AppDataSource } from '../data-source';
 import { logger } from '../../util/logger';
 import { OrderEntity } from '../../entities/order';
-import { MealItem, ToppingItem } from '@hub/shared/model/food-models';
-import { MealOrderItemEntity } from '../../entities/meal-order-item';
+import { Order, OrderItem, ToppingItem } from "@hub/shared/model/food-models";
+import { OrderItemEntity } from '../../entities/order-item';
 import { ToppingOrderItemEntity } from '../../entities/topping-order-item';
-import { MealEntity } from "../../entities/meal";
 
 export async function placeOrder(
   request: Request,
@@ -16,8 +15,8 @@ export async function placeOrder(
   await queryRunner.connect();
   try {
     const { deliveryAddress, deliveryCity, notes, deliveryLocation } = request.body;
-    const mealItems: MealItem[] = request.body.mealItems;
-    const toppingItems: ToppingItem[] = request.body.toppingItems;
+    const orderItems: OrderItem[] = request.body.orderItems;
+
     let { paymentMethod } = request.body;
     if (!paymentMethod) {
       paymentMethod = 'cash';
@@ -28,35 +27,36 @@ export async function placeOrder(
     if (!deliveryCity) {
       throw 'deliveryCity is mandatory';
     }
-    if (!mealItems) {
-      throw 'mealItems is mandatory';
+    if (!orderItems) {
+      throw 'orderItems is mandatory';
     }
-    if (mealItems.length === 0) {
+    if (orderItems.length === 0) {
       throw 'orderItems is empty';
     }
     let orderTotalNoVat = 0;
     let orderTotalWithVat = 0;
-    logger.info(mealItems.length);
-    mealItems.forEach((item: MealItem) => {
+
+    orderItems.forEach((item: OrderItem) => {
       orderTotalNoVat =
         orderTotalNoVat + Number(item.priceNoVat) * Number(item.quantity);
       orderTotalWithVat =
         orderTotalWithVat + Number(item.priceWithVat) * Number(item.quantity);
-    });
-    logger.info(toppingItems?.length);
-    toppingItems?.forEach((item: ToppingItem) => {
-      orderTotalNoVat =
-        orderTotalNoVat + Number(item.priceNoVat) * Number(item.quantity);
-      orderTotalWithVat =
-        orderTotalWithVat + Number(item.priceWithVat) * Number(item.quantity);
+      if (item.toppingsItems && item.toppingsItems.length > 0){
+        item.toppingsItems.forEach((toppingItem: ToppingItem) => {
+          orderTotalNoVat =
+            orderTotalNoVat + Number(toppingItem.priceNoVat) * Number(toppingItem.quantity);
+          orderTotalWithVat =
+            orderTotalWithVat + Number(toppingItem.priceWithVat) * Number(toppingItem.quantity);
+        })
+      }
     });
 
     const orderRepo = AppDataSource.getRepository(OrderEntity);
-    const mealsRepo = AppDataSource.getRepository(MealOrderItemEntity);
+    const orderItemsRepo = AppDataSource.getRepository(OrderItemEntity);
     const toppingsRepo = AppDataSource.getRepository(ToppingOrderItemEntity);
 
     await queryRunner.startTransaction();
-    logger.info('1');
+
     const order = orderRepo.create({
       datePlaced: new Date(),
       dateDispatched: null,
@@ -71,10 +71,11 @@ export async function placeOrder(
       paymentMethod: paymentMethod,
     });
     await queryRunner.manager.save(order);
-    logger.info('Saved order ' + order.id);
 
-    for (const item of mealItems) {
-      const mealItemEntity = mealsRepo.create({
+
+    for (const item of orderItems) {
+
+      const orderItemEntity = orderItemsRepo.create({
         quantity: item.quantity,
         priceNoVat: item.priceNoVat,
         priceWithVat: item.priceWithVat,
@@ -85,25 +86,26 @@ export async function placeOrder(
           id: order.id,
         },
       });
-      await queryRunner.manager.save(mealItemEntity);
-    }
-
-    if (toppingItems && toppingItems.length > 0) {
-      for (const item of toppingItems) {
-        const toppingItemEntity = toppingsRepo.create({
-          quantity: item.quantity,
-          priceNoVat: item.priceNoVat,
-          priceWithVat: item.priceWithVat,
-          topping: {
-            id: item.topping.id,
-          },
-          order: {
-            id: order.id,
-          },
-        });
-        await queryRunner.manager.save(toppingItemEntity);
+      await queryRunner.manager.save(orderItemEntity);
+      if (item.toppingsItems && item.toppingsItems.length > 0){
+        for (const toppingItem of item.toppingsItems) {
+          const toppingItemEntity = toppingsRepo.create({
+            quantity: item.quantity,
+            priceNoVat: item.priceNoVat,
+            priceWithVat: item.priceWithVat,
+            topping: {
+              id: toppingItem.topping.id,
+            },
+            orderItem: {
+              id: orderItemEntity.id,
+            },
+          });
+          await queryRunner.manager.save(toppingItemEntity);
+        }
       }
     }
+
+
 
     await queryRunner.commitTransaction();
     await queryRunner.release();
@@ -114,8 +116,10 @@ export async function placeOrder(
           id: Number(order.id)
         },
         relations: {
-          mealItems: true,
-          toppingItems: true
+          orderItems: {
+            toppingsItems: true,
+            meal: true
+          }
         }
       })
 

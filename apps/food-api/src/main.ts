@@ -26,6 +26,8 @@ import { assignToppingToMeal } from "./app/routes/meal-topping/assign-topping-to
 import { removeToppingFromMeal } from "./app/routes/meal-topping/remove-topping-from-meal";
 import { placeOrder } from "./app/routes/ordering/place-order";
 import { fetchOrders } from "./app/routes/ordering/fetch-orders";
+import { dispatchOrder } from "./app/routes/ordering/dispatch-order";
+import { completeOrder } from "./app/routes/ordering/complete-order";
 const app = express();
 
 function setupExpress() {
@@ -33,6 +35,7 @@ function setupExpress() {
   app.use(cors({origin:true}))
   app.use(bodyParser.json())
   app.use('/assets', express.static(path.join(__dirname, 'assets')));
+  app.use('/public/uploads', express.static(__dirname + '/public/uploads'));
   app.get('/api', (req, res) => {
     res.send({ message: 'Welcome to food-api!' });
   });
@@ -58,7 +61,8 @@ function setupExpress() {
 
   app.route('/api/orders/place').post(placeOrder)
   app.route('/api/orders/search').get(fetchOrders)
-
+  app.route('/api/orders/:orderId/dispatch').post(dispatchOrder)
+  app.route('/api/orders/:orderId/complete').post(completeOrder)
 
 
 }
