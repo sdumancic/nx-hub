@@ -10,7 +10,7 @@ export async function createMeal(
   next: NextFunction
 ) {
   try {
-    const { calories, description,iconUrl1,iconUrl2,iconUrl3,name,price,rating, category } = request.body;
+    const { calories, description,name,price,rating, category } = request.body;
     if (!category) {
       throw 'category is mandatory';
     }
@@ -35,7 +35,7 @@ export async function createMeal(
       return;
     }
 
-    const newMeal = repository.create({ calories, description,iconUrl1,iconUrl2,iconUrl3,name,price,rating, category , active: true});
+    const newMeal = repository.create({ calories, description,name,price,rating, category , active: true});
     await AppDataSource.manager.save(newMeal);
     logger.info('new meal created');
     response.status(201).json(newMeal);

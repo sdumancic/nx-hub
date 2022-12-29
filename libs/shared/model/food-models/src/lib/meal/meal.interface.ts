@@ -4,9 +4,7 @@ export interface Meal {
   id: number;
   name: string;
   description: string;
-  iconUrl1: string;
-  iconUrl2: string;
-  iconUrl3: string;
+  imageUrl: string;
   active: boolean;
   category: Category;
   calories: number;

@@ -13,7 +13,7 @@ export async function updateMeal(
     const mealId = request.params.mealId
     const changes = request.body;
 
-    const { calories, description,iconUrl1,iconUrl2,iconUrl3,name,price,rating, category } = request.body;
+    const { calories, description,name,price,rating, category } = request.body;
     if (!category) {
       throw 'category is mandatory';
     }

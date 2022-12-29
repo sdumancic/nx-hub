@@ -28,11 +28,7 @@ export class MealEntity implements Meal {
   @Column({nullable: true})
   description: string;
   @Column({nullable: true})
-  iconUrl1: string;
-  @Column({nullable: true})
-  iconUrl2: string;
-  @Column({nullable: true})
-  iconUrl3: string;
+  imageUrl: string;
 
   @Column()
   @Index({ unique: true })

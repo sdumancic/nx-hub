@@ -23,7 +23,7 @@ export async function searchMealsByCategory(
           name: true,
           calories: true,
           description: true,
-          iconUrl1: true,
+          imageUrl: true,
           price: true,
           rating: true,
           createdAt: true,

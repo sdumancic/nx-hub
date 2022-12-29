@@ -23,5 +23,5 @@ export const AppDataSource = new DataSource({
   },
   synchronize: true,
   entities: [CategoryEntity, MealEntity, ToppingEntity,MealToppingEntity, OrderEntity, OrderItemEntity, ToppingOrderItemEntity],
-  logging: true,
+  logging: false
 });

@@ -8,6 +8,8 @@ import {isInteger} from './app/util/helper';
 
 import cors = require('cors')
 import bodyParser = require("body-parser")
+import multer = require('multer')
+import fs = require('fs');
 import { dbInfo } from "./app/routes/info";
 import { fetchAllCategories } from "./app/routes/category/fetch-all-categories";
 import { createCategory } from "./app/routes/category/create-category";
@@ -28,14 +30,46 @@ import { placeOrder } from "./app/routes/ordering/place-order";
 import { fetchOrders } from "./app/routes/ordering/fetch-orders";
 import { dispatchOrder } from "./app/routes/ordering/dispatch-order";
 import { completeOrder } from "./app/routes/ordering/complete-order";
+import { uploadMealImage } from "./app/routes/meals/upload-meal-image";
+import { findOneMeal } from "./app/routes/meals/find-one-meal";
+import { findOneOrder } from "./app/routes/ordering/find-one-order";
+const FILE_TYPE_MAP = {
+  'image/png': 'png',
+  'image/jpeg': 'jpeg',
+  'image/jpg': 'jpg'
+};
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    const isValid = FILE_TYPE_MAP[file.mimetype];
+    let uploadError = new Error('Invalid image type');
+    if (isValid) {
+      uploadError = null;
+    }
+   cb(uploadError, __dirname + '\\public\\uploads');
+
+  },
+  filename: function (req, file, cb) {
+    const fileName = file.originalname.replace(' ', '-').split('.')[0];
+
+    const extension = FILE_TYPE_MAP[file.mimetype];
+    cb(null, `${fileName}.${extension}`);
+  }
+});
+const uploadOptions = multer({ storage: storage });
 const app = express();
+
 
 function setupExpress() {
   app.use(express.json());
   app.use(cors({origin:true}))
   app.use(bodyParser.json())
   app.use('/assets', express.static(path.join(__dirname, 'assets')));
-  app.use('/public/uploads', express.static(__dirname + '/public/uploads'));
+  app.use('/public-uploads', express.static(path.join(__dirname + '/public/uploads')));
+
+  if (!fs.existsSync(path.join(__dirname + '/public/uploads'))){
+    fs.mkdirSync(path.join(__dirname + '/public/uploads'), { recursive: true });
+  }
+
   app.get('/api', (req, res) => {
     res.send({ message: 'Welcome to food-api!' });
   });
@@ -48,7 +82,10 @@ function setupExpress() {
   app.route('/api/meals').post(createMeal)
   app.route('/api/meals/:mealId').patch(updateMeal)
   app.route('/api/meals/search').get(searchMealsByCategory)
+  app.route('/api/meals/:mealId').get(findOneMeal)
   app.route('/api/meals/:mealId').delete(deactivateMeal)
+
+  app.post('/api/meals/:mealId/image-upload', uploadOptions.single('productImage'), uploadMealImage)
 
   app.route('/api/toppings').post(createTopping)
   app.route('/api/toppings').get(fetchToppings)
@@ -61,6 +98,7 @@ function setupExpress() {
 
   app.route('/api/orders/place').post(placeOrder)
   app.route('/api/orders/search').get(fetchOrders)
+  app.route('/api/orders/:orderId').get(findOneOrder)
   app.route('/api/orders/:orderId/dispatch').post(dispatchOrder)
   app.route('/api/orders/:orderId/complete').post(completeOrder)
 
