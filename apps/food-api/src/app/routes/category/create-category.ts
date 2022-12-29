@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { Category } from '../../entities/category';
+import { CategoryEntity } from '../../entities/category';
 import { AppDataSource } from "../data-source";
 import { logger } from "../../util/logger";
 
@@ -16,7 +16,7 @@ export async function createCategory(
     if (!iconUrl) {
       throw 'iconUrl is mandatory';
     }
-    const repository = AppDataSource.getRepository(Category);
+    const repository = AppDataSource.getRepository(CategoryEntity);
     const category = await repository
       .createQueryBuilder('category')
       .where('name = :name', { name })

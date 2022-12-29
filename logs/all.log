@@ -1333,3 +1333,3991 @@
   "code": "ERR_HTTP_HEADERS_SENT",
   "level": "error"
 }
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Meal is not defined",
+  "stack": "ReferenceError: Meal is not defined\n    at Object.type (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\app\\entities\\category.ts:27:20)\n    at new RelationMetadata (D:\\dev\\nx\\hub\\src\\metadata\\RelationMetadata.ts:343:29)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:697:24\n    at Array.map (<anonymous>)\n    at EntityMetadataBuilder.computeEntityMetadataStep1 (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:676:14)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:133:22\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:132:14)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for CategoryEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for CategoryEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for CategoryEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for CategoryEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for CategoryEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for CategoryEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for CategoryEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for CategoryEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for CategoryEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for CategoryEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "code": "ERR_HTTP_HEADERS_SENT",
+  "level": "error"
+}
+{
+  "code": "ERR_HTTP_HEADERS_SENT",
+  "level": "error"
+}
+{
+  "code": "ERR_HTTP_HEADERS_SENT",
+  "level": "error"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "code": "ERR_HTTP_HEADERS_SENT",
+  "level": "error"
+}
+{
+  "code": "ERR_HTTP_HEADERS_SENT",
+  "level": "error"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "code": "ERR_HTTP_HEADERS_SENT",
+  "level": "error"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "code": "ERR_HTTP_HEADERS_SENT",
+  "level": "error"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "code": "22P02",
+  "driverError": {
+    "code": "22P02",
+    "file": "numutils.c",
+    "length": 142,
+    "line": "320",
+    "name": "error",
+    "routine": "pg_strtoint32",
+    "severity": "ERROR",
+    "where": "unnamed portal parameter $8 = '...'"
+  },
+  "file": "numutils.c",
+  "length": 142,
+  "level": "error",
+  "line": "320",
+  "parameters": [
+    1,
+    500,
+    "Tomato, Cucumber, Cutlet",
+    "https://unsplash.com/photos/Fn6dPYtPUMc",
+    null,
+    null,
+    "Royal Burger",
+    7.99,
+    4.6,
+    2
+  ],
+  "query": "INSERT INTO \"meal\"(\"active\", \"calories\", \"description\", \"iconUrl1\", \"iconUrl2\", \"iconUrl3\", \"name\", \"price\", \"rating\", \"createdAt\", \"modifiedAt\", \"categoryId\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, DEFAULT, DEFAULT, $10) RETURNING \"id\", \"createdAt\", \"modifiedAt\"",
+  "routine": "pg_strtoint32",
+  "severity": "ERROR",
+  "where": "unnamed portal parameter $8 = '...'"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "code": "22P02",
+  "driverError": {
+    "code": "22P02",
+    "file": "numeric.c",
+    "length": 153,
+    "line": "6856",
+    "name": "error",
+    "routine": "set_var_from_str",
+    "severity": "ERROR",
+    "where": "unnamed portal parameter $1 = '...'"
+  },
+  "file": "numeric.c",
+  "length": 153,
+  "level": "error",
+  "line": "6856",
+  "parameters": [
+    "Royal Burger"
+  ],
+  "query": "SELECT \"meal\".\"id\" AS \"meal_id\", \"meal\".\"active\" AS \"meal_active\", \"meal\".\"calories\" AS \"meal_calories\", \"meal\".\"description\" AS \"meal_description\", \"meal\".\"iconUrl1\" AS \"meal_iconUrl1\", \"meal\".\"iconUrl2\" AS \"meal_iconUrl2\", \"meal\".\"iconUrl3\" AS \"meal_iconUrl3\", \"meal\".\"name\" AS \"meal_name\", \"meal\".\"price\" AS \"meal_price\", \"meal\".\"rating\" AS \"meal_rating\", \"meal\".\"createdAt\" AS \"meal_createdAt\", \"meal\".\"modifiedAt\" AS \"meal_modifiedAt\", \"meal\".\"categoryId\" AS \"meal_categoryId\" FROM \"meal\" \"meal\" WHERE name = $1",
+  "routine": "set_var_from_str",
+  "severity": "ERROR",
+  "where": "unnamed portal parameter $1 = '...'"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Index contains column that is missing in the entity (MealEntity): name",
+  "stack": "TypeORMError: Index contains column that is missing in the entity (MealEntity): name\n    at D:\\dev\\nx\\hub\\src\\metadata\\IndexMetadata.ts:235:27\n    at Array.map (<anonymous>)\n    at IndexMetadata.build (D:\\dev\\nx\\hub\\src\\metadata\\IndexMetadata.ts:215:18)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:364:23\n    at Array.forEach (<anonymous>)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:363:36\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:362:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Index contains column that is missing in the entity (MealEntity): name",
+  "stack": "TypeORMError: Index contains column that is missing in the entity (MealEntity): name\n    at D:\\dev\\nx\\hub\\src\\metadata\\IndexMetadata.ts:235:27\n    at Array.map (<anonymous>)\n    at IndexMetadata.build (D:\\dev\\nx\\hub\\src\\metadata\\IndexMetadata.ts:215:18)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:364:23\n    at Array.forEach (<anonymous>)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:363:36\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:362:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Index contains column that is missing in the entity (MealEntity): name",
+  "stack": "TypeORMError: Index contains column that is missing in the entity (MealEntity): name\n    at D:\\dev\\nx\\hub\\src\\metadata\\IndexMetadata.ts:235:27\n    at Array.map (<anonymous>)\n    at IndexMetadata.build (D:\\dev\\nx\\hub\\src\\metadata\\IndexMetadata.ts:215:18)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:364:23\n    at Array.forEach (<anonymous>)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:363:36\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:362:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "code": "22P02",
+  "driverError": {
+    "code": "22P02",
+    "file": "numutils.c",
+    "length": 141,
+    "line": "320",
+    "name": "error",
+    "routine": "pg_strtoint32",
+    "severity": "ERROR",
+    "where": "unnamed portal parameter $9 = '...'"
+  },
+  "file": "numutils.c",
+  "length": 141,
+  "level": "error",
+  "line": "320",
+  "parameters": [
+    1,
+    500,
+    "Tomato, Cucumber, Cutlet",
+    "https://unsplash.com/photos/Fn6dPYtPUMc",
+    null,
+    null,
+    "Royal Burger",
+    7.99,
+    4.6,
+    2
+  ],
+  "query": "INSERT INTO \"meal\"(\"active\", \"calories\", \"description\", \"iconUrl1\", \"iconUrl2\", \"iconUrl3\", \"name\", \"price\", \"rating\", \"createdAt\", \"modifiedAt\", \"categoryId\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, DEFAULT, DEFAULT, $10) RETURNING \"id\", \"price\", \"createdAt\", \"modifiedAt\"",
+  "routine": "pg_strtoint32",
+  "severity": "ERROR",
+  "where": "unnamed portal parameter $9 = '...'"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "code": "23502",
+  "column": "iconUrl2",
+  "detail": "Failing row contains (1, t, 500, Tomato, Cucumber, Cutlet, https://unsplash.com/photos/Fn6dPYtPUMc, null, null, 2022-12-26 19:05:28.313127, 2022-12-26 19:05:28.313127, 2, Royal Burger, 7.99, 4.60).",
+  "driverError": {
+    "code": "23502",
+    "column": "iconUrl2",
+    "detail": "Failing row contains (1, t, 500, Tomato, Cucumber, Cutlet, https://unsplash.com/photos/Fn6dPYtPUMc, null, null, 2022-12-26 19:05:28.313127, 2022-12-26 19:05:28.313127, 2, Royal Burger, 7.99, 4.60).",
+    "file": "execMain.c",
+    "length": 365,
+    "line": "1883",
+    "name": "error",
+    "routine": "ExecConstraints",
+    "schema": "public",
+    "severity": "ERROR",
+    "table": "meal"
+  },
+  "file": "execMain.c",
+  "length": 365,
+  "level": "error",
+  "line": "1883",
+  "parameters": [
+    1,
+    500,
+    "Tomato, Cucumber, Cutlet",
+    "https://unsplash.com/photos/Fn6dPYtPUMc",
+    null,
+    null,
+    "Royal Burger",
+    7.99,
+    4.6,
+    2
+  ],
+  "query": "INSERT INTO \"meal\"(\"active\", \"calories\", \"description\", \"iconUrl1\", \"iconUrl2\", \"iconUrl3\", \"name\", \"price\", \"rating\", \"createdAt\", \"modifiedAt\", \"categoryId\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, DEFAULT, DEFAULT, $10) RETURNING \"id\", \"price\", \"rating\", \"createdAt\", \"modifiedAt\"",
+  "routine": "ExecConstraints",
+  "schema": "public",
+  "severity": "ERROR",
+  "table": "meal"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "new meal created"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "meal updated"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "meal updated"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "meal updated"
+}
+{
+  "level": "info",
+  "message": "meal updated"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "code": "42703",
+  "driverError": {
+    "code": "42703",
+    "file": "parse_relation.c",
+    "hint": "Perhaps you meant to reference the column \"meals.categoryId\".",
+    "length": 174,
+    "line": "3601",
+    "name": "error",
+    "position": "535",
+    "routine": "errorMissingColumn",
+    "severity": "ERROR"
+  },
+  "file": "parse_relation.c",
+  "hint": "Perhaps you meant to reference the column \"meals.categoryId\".",
+  "length": 174,
+  "level": "error",
+  "line": "3601",
+  "parameters": [
+    "2"
+  ],
+  "position": "535",
+  "query": "SELECT \"meals\".\"id\" AS \"meals_id\", \"meals\".\"active\" AS \"meals_active\", \"meals\".\"calories\" AS \"meals_calories\", \"meals\".\"description\" AS \"meals_description\", \"meals\".\"iconUrl1\" AS \"meals_iconUrl1\", \"meals\".\"iconUrl2\" AS \"meals_iconUrl2\", \"meals\".\"iconUrl3\" AS \"meals_iconUrl3\", \"meals\".\"name\" AS \"meals_name\", \"meals\".\"price\" AS \"meals_price\", \"meals\".\"rating\" AS \"meals_rating\", \"meals\".\"createdAt\" AS \"meals_createdAt\", \"meals\".\"modifiedAt\" AS \"meals_modifiedAt\", \"meals\".\"categoryId\" AS \"meals_categoryId\" FROM \"meal\" \"meals\" WHERE categoryId = $1 and active = 1 ORDER BY \"meals\".\"id\" ASC",
+  "routine": "errorMissingColumn",
+  "severity": "ERROR"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "code": "42P01",
+  "driverError": {
+    "code": "42P01",
+    "file": "parse_relation.c",
+    "length": 120,
+    "line": "3553",
+    "name": "error",
+    "position": "535",
+    "routine": "errorMissingRTE",
+    "severity": "ERROR"
+  },
+  "file": "parse_relation.c",
+  "length": 120,
+  "level": "error",
+  "line": "3553",
+  "parameters": [
+    "2"
+  ],
+  "position": "535",
+  "query": "SELECT \"meals\".\"id\" AS \"meals_id\", \"meals\".\"active\" AS \"meals_active\", \"meals\".\"calories\" AS \"meals_calories\", \"meals\".\"description\" AS \"meals_description\", \"meals\".\"iconUrl1\" AS \"meals_iconUrl1\", \"meals\".\"iconUrl2\" AS \"meals_iconUrl2\", \"meals\".\"iconUrl3\" AS \"meals_iconUrl3\", \"meals\".\"name\" AS \"meals_name\", \"meals\".\"price\" AS \"meals_price\", \"meals\".\"rating\" AS \"meals_rating\", \"meals\".\"createdAt\" AS \"meals_createdAt\", \"meals\".\"modifiedAt\" AS \"meals_modifiedAt\", \"meals\".\"categoryId\" AS \"meals_categoryId\" FROM \"meal\" \"meals\" WHERE category.id = $1 and active = 1 ORDER BY \"meals\".\"id\" ASC",
+  "routine": "errorMissingRTE",
+  "severity": "ERROR"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "code": "42703",
+  "driverError": {
+    "code": "42703",
+    "file": "parse_relation.c",
+    "hint": "Perhaps you meant to reference the column \"meals.categoryId\".",
+    "length": 174,
+    "line": "3601",
+    "name": "error",
+    "position": "535",
+    "routine": "errorMissingColumn",
+    "severity": "ERROR"
+  },
+  "file": "parse_relation.c",
+  "hint": "Perhaps you meant to reference the column \"meals.categoryId\".",
+  "length": 174,
+  "level": "error",
+  "line": "3601",
+  "parameters": [
+    "2"
+  ],
+  "position": "535",
+  "query": "SELECT \"meals\".\"id\" AS \"meals_id\", \"meals\".\"active\" AS \"meals_active\", \"meals\".\"calories\" AS \"meals_calories\", \"meals\".\"description\" AS \"meals_description\", \"meals\".\"iconUrl1\" AS \"meals_iconUrl1\", \"meals\".\"iconUrl2\" AS \"meals_iconUrl2\", \"meals\".\"iconUrl3\" AS \"meals_iconUrl3\", \"meals\".\"name\" AS \"meals_name\", \"meals\".\"price\" AS \"meals_price\", \"meals\".\"rating\" AS \"meals_rating\", \"meals\".\"createdAt\" AS \"meals_createdAt\", \"meals\".\"modifiedAt\" AS \"meals_modifiedAt\", \"meals\".\"categoryId\" AS \"meals_categoryId\" FROM \"meal\" \"meals\" WHERE categoryId = $1 and active = true ORDER BY \"meals\".\"id\" ASC",
+  "routine": "errorMissingColumn",
+  "severity": "ERROR"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "new meal created"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "new meal created"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "new meal created"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "new topping created"
+}
+{
+  "level": "info",
+  "message": "new topping created"
+}
+{
+  "level": "info",
+  "message": "new topping created"
+}
+{
+  "level": "info",
+  "message": "new topping created"
+}
+{
+  "level": "info",
+  "message": "new topping created"
+}
+{
+  "level": "info",
+  "message": "new topping created"
+}
+{
+  "level": "info",
+  "message": "new topping created"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for MealEntity#mealToppings was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for MealEntity#mealToppings was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for ToppingEntity#mealToppings was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for ToppingEntity#mealToppings was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for ToppingEntity#mealToppings was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for ToppingEntity#mealToppings was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "error",
+  "message": "Could not find any entity of type \"MealToppingEntity\" matching: {\n    \"toppingId\": 1,\n    \"mealId\": 2\n}"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "meal topping assigned"
+}
+{
+  "code": "23505",
+  "constraint": "IDX_44b5128d10261fe9c03ed68e6a",
+  "detail": "Key (\"mealId\", \"toppingId\")=(2, 1) already exists.",
+  "driverError": {
+    "code": "23505",
+    "constraint": "IDX_44b5128d10261fe9c03ed68e6a",
+    "detail": "Key (\"mealId\", \"toppingId\")=(2, 1) already exists.",
+    "file": "nbtinsert.c",
+    "length": 249,
+    "line": "663",
+    "name": "error",
+    "routine": "_bt_check_unique",
+    "schema": "public",
+    "severity": "ERROR",
+    "table": "meal_topping"
+  },
+  "file": "nbtinsert.c",
+  "length": 249,
+  "level": "error",
+  "line": "663",
+  "parameters": [
+    2,
+    1,
+    1,
+    0.89
+  ],
+  "query": "INSERT INTO \"meal_topping\"(\"mealId\", \"toppingId\", \"active\", \"price\", \"createdAt\", \"modifiedAt\") VALUES ($1, $2, $3, $4, DEFAULT, DEFAULT) RETURNING \"id\", \"price\", \"createdAt\", \"modifiedAt\"",
+  "routine": "_bt_check_unique",
+  "schema": "public",
+  "severity": "ERROR",
+  "table": "meal_topping"
+}
+{
+  "code": "23505",
+  "constraint": "IDX_44b5128d10261fe9c03ed68e6a",
+  "detail": "Key (\"mealId\", \"toppingId\")=(2, 1) already exists.",
+  "driverError": {
+    "code": "23505",
+    "constraint": "IDX_44b5128d10261fe9c03ed68e6a",
+    "detail": "Key (\"mealId\", \"toppingId\")=(2, 1) already exists.",
+    "file": "nbtinsert.c",
+    "length": 249,
+    "line": "663",
+    "name": "error",
+    "routine": "_bt_check_unique",
+    "schema": "public",
+    "severity": "ERROR",
+    "table": "meal_topping"
+  },
+  "file": "nbtinsert.c",
+  "length": 249,
+  "level": "error",
+  "line": "663",
+  "parameters": [
+    2,
+    1,
+    1,
+    0.89
+  ],
+  "query": "INSERT INTO \"meal_topping\"(\"mealId\", \"toppingId\", \"active\", \"price\", \"createdAt\", \"modifiedAt\") VALUES ($1, $2, $3, $4, DEFAULT, DEFAULT) RETURNING \"id\", \"price\", \"createdAt\", \"modifiedAt\"",
+  "routine": "_bt_check_unique",
+  "schema": "public",
+  "severity": "ERROR",
+  "table": "meal_topping"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "meal topping assigned"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "error",
+  "message": "orderItems is empty"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": {
+    "dateCompleted": null,
+    "dateDispatched": null,
+    "datePlaced": "2022-12-27T21:25:18.232Z",
+    "deliveryAddress": "Vukovarska 1",
+    "deliveryCity": "Čakovec",
+    "location": null,
+    "notes": "pozvoniti",
+    "orderTotalNoVat": 30,
+    "orderTotalWithVat": 37.5,
+    "paymentMethod": "cash",
+    "status": "placed"
+  }
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "code": "23502",
+  "column": "dateDispatched",
+  "detail": "Failing row contains (1, 2022-12-27 22:33:35.355, null, null, placed, cash, 30.00, 37.50, 2022-12-27 21:33:30.682625, 2022-12-27 21:33:30.682625, Vukovarska 1, Čakovec, pozvoniti, null).",
+  "driverError": {
+    "code": "23502",
+    "column": "dateDispatched",
+    "detail": "Failing row contains (1, 2022-12-27 22:33:35.355, null, null, placed, cash, 30.00, 37.50, 2022-12-27 21:33:30.682625, 2022-12-27 21:33:30.682625, Vukovarska 1, Čakovec, pozvoniti, null).",
+    "file": "execMain.c",
+    "length": 369,
+    "line": "1883",
+    "name": "error",
+    "routine": "ExecConstraints",
+    "schema": "public",
+    "severity": "ERROR",
+    "table": "order"
+  },
+  "file": "execMain.c",
+  "length": 369,
+  "level": "error",
+  "line": "1883",
+  "parameters": [
+    "2022-12-27T21:33:35.355Z",
+    null,
+    null,
+    "placed",
+    "cash",
+    30,
+    37.5,
+    null,
+    "Vukovarska 1",
+    "Čakovec",
+    "pozvoniti"
+  ],
+  "query": "INSERT INTO \"order\"(\"datePlaced\", \"dateDispatched\", \"dateCompleted\", \"status\", \"paymentMethod\", \"orderTotalNoVat\", \"orderTotalWithVat\", \"createdAt\", \"modifiedAt\", \"location\", \"deliveryAddress\", \"deliveryCity\", \"notes\") VALUES ($1, $2, $3, $4, $5, $6, $7, DEFAULT, DEFAULT, ST_SetSRID(ST_GeomFromGeoJSON($8), 4326)::geometry, $9, $10, $11) RETURNING \"id\", \"orderTotalNoVat\", \"orderTotalWithVat\", \"createdAt\", \"modifiedAt\"",
+  "routine": "ExecConstraints",
+  "schema": "public",
+  "severity": "ERROR",
+  "table": "order"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "Saved order 2"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#orderItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#orderItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#orderItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#orderItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#orderItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#orderItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#orderItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#orderItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  OrderItemEntity is not defined",
+  "stack": "ReferenceError: OrderItemEntity is not defined\n    at Object.type (D:\\dev\\nx\\hub\\dist\\apps\\food-api\\webpack:\\hub\\apps\\food-api\\src\\app\\entities\\order.ts:47:20)\n    at new RelationMetadata (D:\\dev\\nx\\hub\\src\\metadata\\RelationMetadata.ts:343:29)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:697:24\n    at Array.map (<anonymous>)\n    at EntityMetadataBuilder.computeEntityMetadataStep1 (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:676:14)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:133:22\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:132:14)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for OrderEntity#meals was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for MealEntity#orderItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for MealEntity#orderItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "error",
+  "message": "Error during datasource initialization  Entity metadata for MealEntity#orderItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.",
+  "stack": "TypeORMError: Entity metadata for MealEntity#orderItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1089:23\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.computeInverseProperties (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:1079:34)\n    at D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:158:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataBuilder.build (D:\\dev\\nx\\hub\\src\\metadata-builder\\EntityMetadataBuilder.ts:157:25)\n    at ConnectionMetadataBuilder.buildEntityMetadatas (D:\\dev\\nx\\hub\\src\\connection\\ConnectionMetadataBuilder.ts:106:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at DataSource.buildMetadatas (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:674:13)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:242:13)"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "error",
+  "message": "orderItems is mandatory"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "error",
+  "message": "orderItems is mandatory"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "error"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": [
+    {
+      "meal": {
+        "id": 2
+      },
+      "priceNoVat": 10,
+      "priceWithVat": 12.5,
+      "quantity": 1
+    },
+    {
+      "meal": {
+        "id": 3
+      },
+      "priceNoVat": 10,
+      "priceWithVat": 12.5,
+      "quantity": 2
+    }
+  ]
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": [
+    {
+      "meal": {
+        "id": 2
+      },
+      "priceNoVat": 10,
+      "priceWithVat": 12.5,
+      "quantity": 1
+    },
+    {
+      "meal": {
+        "id": 3
+      },
+      "priceNoVat": 10,
+      "priceWithVat": 12.5,
+      "quantity": 2
+    }
+  ]
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": [
+    {
+      "meal": {
+        "id": 2
+      },
+      "priceNoVat": 10,
+      "priceWithVat": 12.5,
+      "quantity": 1
+    },
+    {
+      "meal": {
+        "id": 3
+      },
+      "priceNoVat": 10,
+      "priceWithVat": 12.5,
+      "quantity": 2
+    }
+  ]
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": 2
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": 2
+}
+{
+  "level": "info"
+}
+{
+  "level": "info",
+  "message": "1"
+}
+{
+  "level": "info",
+  "message": "Saved order 3"
+}
+{
+  "level": "error"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": 2
+}
+{
+  "level": "info"
+}
+{
+  "level": "info",
+  "message": "1"
+}
+{
+  "level": "info",
+  "message": "Saved order 4"
+}
+{
+  "level": "info",
+  "message": 2
+}
+{
+  "level": "info",
+  "message": 1
+}
+{
+  "level": "info",
+  "message": "1"
+}
+{
+  "level": "info",
+  "message": "Saved order 5"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "code": "23502",
+  "column": "date_placed",
+  "driverError": {
+    "code": "23502",
+    "column": "date_placed",
+    "file": "tablecmds.c",
+    "length": 152,
+    "line": "5874",
+    "name": "error",
+    "routine": "ATRewriteTable",
+    "schema": "public",
+    "severity": "ERROR",
+    "table": "order"
+  },
+  "file": "tablecmds.c",
+  "length": 152,
+  "level": "error",
+  "line": "5874",
+  "message": "Error during datasource initialization  column \"date_placed\" of relation \"order\" contains null values",
+  "query": "ALTER TABLE \"order\" ADD \"date_placed\" TIMESTAMP NOT NULL",
+  "routine": "ATRewriteTable",
+  "schema": "public",
+  "severity": "ERROR",
+  "stack": "QueryFailedError: column \"date_placed\" of relation \"order\" contains null values\n    at PostgresQueryRunner.query (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:299:19)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at PostgresQueryRunner.executeQueries (D:\\dev\\nx\\hub\\src\\query-runner\\BaseQueryRunner.ts:651:13)\n    at PostgresQueryRunner.addColumn (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:1115:9)\n    at PostgresQueryRunner.addColumns (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:1129:13)\n    at RdbmsSchemaBuilder.addNewColumns (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:823:13)\n    at RdbmsSchemaBuilder.executeSchemaSyncOperationsInProperOrder (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:226:9)\n    at RdbmsSchemaBuilder.build (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:95:13)\n    at DataSource.synchronize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:318:9)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:256:43)",
+  "table": "order"
+}
+{
+  "code": "23502",
+  "column": "date_placed",
+  "driverError": {
+    "code": "23502",
+    "column": "date_placed",
+    "file": "tablecmds.c",
+    "length": 152,
+    "line": "5874",
+    "name": "error",
+    "routine": "ATRewriteTable",
+    "schema": "public",
+    "severity": "ERROR",
+    "table": "order"
+  },
+  "file": "tablecmds.c",
+  "length": 152,
+  "level": "error",
+  "line": "5874",
+  "message": "Error during datasource initialization  column \"date_placed\" of relation \"order\" contains null values",
+  "query": "ALTER TABLE \"order\" ADD \"date_placed\" TIMESTAMP NOT NULL",
+  "routine": "ATRewriteTable",
+  "schema": "public",
+  "severity": "ERROR",
+  "stack": "QueryFailedError: column \"date_placed\" of relation \"order\" contains null values\n    at PostgresQueryRunner.query (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:299:19)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at PostgresQueryRunner.executeQueries (D:\\dev\\nx\\hub\\src\\query-runner\\BaseQueryRunner.ts:651:13)\n    at PostgresQueryRunner.addColumn (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:1115:9)\n    at PostgresQueryRunner.addColumns (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:1129:13)\n    at RdbmsSchemaBuilder.addNewColumns (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:823:13)\n    at RdbmsSchemaBuilder.executeSchemaSyncOperationsInProperOrder (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:226:9)\n    at RdbmsSchemaBuilder.build (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:95:13)\n    at DataSource.synchronize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:318:9)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:256:43)",
+  "table": "order"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "code": "23502",
+  "column": "icon_url",
+  "driverError": {
+    "code": "23502",
+    "column": "icon_url",
+    "file": "tablecmds.c",
+    "length": 150,
+    "line": "5874",
+    "name": "error",
+    "routine": "ATRewriteTable",
+    "schema": "public",
+    "severity": "ERROR",
+    "table": "topping"
+  },
+  "file": "tablecmds.c",
+  "length": 150,
+  "level": "error",
+  "line": "5874",
+  "message": "Error during datasource initialization  column \"icon_url\" of relation \"topping\" contains null values",
+  "query": "ALTER TABLE \"topping\" ADD \"icon_url\" character varying NOT NULL",
+  "routine": "ATRewriteTable",
+  "schema": "public",
+  "severity": "ERROR",
+  "stack": "QueryFailedError: column \"icon_url\" of relation \"topping\" contains null values\n    at PostgresQueryRunner.query (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:299:19)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at PostgresQueryRunner.executeQueries (D:\\dev\\nx\\hub\\src\\query-runner\\BaseQueryRunner.ts:651:13)\n    at PostgresQueryRunner.addColumn (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:1115:9)\n    at PostgresQueryRunner.addColumns (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:1129:13)\n    at RdbmsSchemaBuilder.addNewColumns (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:823:13)\n    at RdbmsSchemaBuilder.executeSchemaSyncOperationsInProperOrder (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:226:9)\n    at RdbmsSchemaBuilder.build (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:95:13)\n    at DataSource.synchronize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:318:9)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:256:43)",
+  "table": "topping"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "code": "23502",
+  "column": "meal_id",
+  "driverError": {
+    "code": "23502",
+    "column": "meal_id",
+    "file": "tablecmds.c",
+    "length": 158,
+    "line": "5874",
+    "name": "error",
+    "routine": "ATRewriteTable",
+    "schema": "public",
+    "severity": "ERROR",
+    "table": "meal_topping"
+  },
+  "file": "tablecmds.c",
+  "length": 158,
+  "level": "error",
+  "line": "5874",
+  "message": "Error during datasource initialization  column \"meal_id\" of relation \"meal_topping\" contains null values",
+  "query": "ALTER TABLE \"meal_topping\" ADD \"meal_id\" integer NOT NULL",
+  "routine": "ATRewriteTable",
+  "schema": "public",
+  "severity": "ERROR",
+  "stack": "QueryFailedError: column \"meal_id\" of relation \"meal_topping\" contains null values\n    at PostgresQueryRunner.query (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:299:19)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at PostgresQueryRunner.executeQueries (D:\\dev\\nx\\hub\\src\\query-runner\\BaseQueryRunner.ts:651:13)\n    at PostgresQueryRunner.addColumn (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:1115:9)\n    at PostgresQueryRunner.addColumns (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:1129:13)\n    at RdbmsSchemaBuilder.addNewColumns (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:823:13)\n    at RdbmsSchemaBuilder.executeSchemaSyncOperationsInProperOrder (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:226:9)\n    at RdbmsSchemaBuilder.build (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:95:13)\n    at DataSource.synchronize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:318:9)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:256:43)",
+  "table": "meal_topping"
+}
+{
+  "code": "23502",
+  "column": "meal_id",
+  "driverError": {
+    "code": "23502",
+    "column": "meal_id",
+    "file": "tablecmds.c",
+    "length": 158,
+    "line": "5874",
+    "name": "error",
+    "routine": "ATRewriteTable",
+    "schema": "public",
+    "severity": "ERROR",
+    "table": "meal_topping"
+  },
+  "file": "tablecmds.c",
+  "length": 158,
+  "level": "error",
+  "line": "5874",
+  "message": "Error during datasource initialization  column \"meal_id\" of relation \"meal_topping\" contains null values",
+  "query": "ALTER TABLE \"meal_topping\" ADD \"meal_id\" integer NOT NULL",
+  "routine": "ATRewriteTable",
+  "schema": "public",
+  "severity": "ERROR",
+  "stack": "QueryFailedError: column \"meal_id\" of relation \"meal_topping\" contains null values\n    at PostgresQueryRunner.query (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:299:19)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at PostgresQueryRunner.executeQueries (D:\\dev\\nx\\hub\\src\\query-runner\\BaseQueryRunner.ts:651:13)\n    at PostgresQueryRunner.addColumn (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:1115:9)\n    at PostgresQueryRunner.addColumns (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:1129:13)\n    at RdbmsSchemaBuilder.addNewColumns (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:823:13)\n    at RdbmsSchemaBuilder.executeSchemaSyncOperationsInProperOrder (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:226:9)\n    at RdbmsSchemaBuilder.build (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:95:13)\n    at DataSource.synchronize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:318:9)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:256:43)",
+  "table": "meal_topping"
+}
+{
+  "code": "23502",
+  "column": "meal_id",
+  "driverError": {
+    "code": "23502",
+    "column": "meal_id",
+    "file": "tablecmds.c",
+    "length": 158,
+    "line": "5874",
+    "name": "error",
+    "routine": "ATRewriteTable",
+    "schema": "public",
+    "severity": "ERROR",
+    "table": "meal_topping"
+  },
+  "file": "tablecmds.c",
+  "length": 158,
+  "level": "error",
+  "line": "5874",
+  "message": "Error during datasource initialization  column \"meal_id\" of relation \"meal_topping\" contains null values",
+  "query": "ALTER TABLE \"meal_topping\" ADD \"meal_id\" integer NOT NULL",
+  "routine": "ATRewriteTable",
+  "schema": "public",
+  "severity": "ERROR",
+  "stack": "QueryFailedError: column \"meal_id\" of relation \"meal_topping\" contains null values\n    at PostgresQueryRunner.query (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:299:19)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at PostgresQueryRunner.executeQueries (D:\\dev\\nx\\hub\\src\\query-runner\\BaseQueryRunner.ts:651:13)\n    at PostgresQueryRunner.addColumn (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:1115:9)\n    at PostgresQueryRunner.addColumns (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:1129:13)\n    at RdbmsSchemaBuilder.addNewColumns (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:823:13)\n    at RdbmsSchemaBuilder.executeSchemaSyncOperationsInProperOrder (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:226:9)\n    at RdbmsSchemaBuilder.build (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:95:13)\n    at DataSource.synchronize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:318:9)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:256:43)",
+  "table": "meal_topping"
+}
+{
+  "code": "23502",
+  "column": "meal_id",
+  "driverError": {
+    "code": "23502",
+    "column": "meal_id",
+    "file": "tablecmds.c",
+    "length": 158,
+    "line": "5874",
+    "name": "error",
+    "routine": "ATRewriteTable",
+    "schema": "public",
+    "severity": "ERROR",
+    "table": "meal_topping"
+  },
+  "file": "tablecmds.c",
+  "length": 158,
+  "level": "error",
+  "line": "5874",
+  "message": "Error during datasource initialization  column \"meal_id\" of relation \"meal_topping\" contains null values",
+  "query": "ALTER TABLE \"meal_topping\" ADD \"meal_id\" integer NOT NULL",
+  "routine": "ATRewriteTable",
+  "schema": "public",
+  "severity": "ERROR",
+  "stack": "QueryFailedError: column \"meal_id\" of relation \"meal_topping\" contains null values\n    at PostgresQueryRunner.query (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:299:19)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at PostgresQueryRunner.executeQueries (D:\\dev\\nx\\hub\\src\\query-runner\\BaseQueryRunner.ts:651:13)\n    at PostgresQueryRunner.addColumn (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:1115:9)\n    at PostgresQueryRunner.addColumns (D:\\dev\\nx\\hub\\src\\driver\\postgres\\PostgresQueryRunner.ts:1129:13)\n    at RdbmsSchemaBuilder.addNewColumns (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:823:13)\n    at RdbmsSchemaBuilder.executeSchemaSyncOperationsInProperOrder (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:226:9)\n    at RdbmsSchemaBuilder.build (D:\\dev\\nx\\hub\\src\\schema-builder\\RdbmsSchemaBuilder.ts:95:13)\n    at DataSource.synchronize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:318:9)\n    at DataSource.initialize (D:\\dev\\nx\\hub\\src\\data-source\\DataSource.ts:256:43)",
+  "table": "meal_topping"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": 2
+}
+{
+  "level": "info",
+  "message": 1
+}
+{
+  "level": "info",
+  "message": "1"
+}
+{
+  "level": "info",
+  "message": "Saved order 1"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": {
+    "datePlacedFrom": "2022-12-28",
+    "status": "placed"
+  }
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "{\"status\":\"placed\",\"datePlacedFrom\":\"2022-12-28\"}"
+}
+{
+  "level": "info",
+  "message": "{\"status\":\"placed\",\"datePlacedFrom\":\"2022-12-28\",\"datePlacedTo\":\"2022-12-28\"}"
+}
+{
+  "level": "info",
+  "message": "{\"status\":\"placed\",\"datePlacedFrom\":\"2022-12-28\",\"datePlacedTo\":\"2022-12-28\"}"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": 2
+}
+{
+  "level": "info",
+  "message": 1
+}
+{
+  "level": "info",
+  "message": "1"
+}
+{
+  "level": "info",
+  "message": "Saved order 2"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": 2
+}
+{
+  "level": "info",
+  "message": 1
+}
+{
+  "level": "info",
+  "message": "1"
+}
+{
+  "level": "info",
+  "message": "Saved order 3"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": 2
+}
+{
+  "level": "info",
+  "message": 1
+}
+{
+  "level": "info",
+  "message": "1"
+}
+{
+  "code": "XX000",
+  "driverError": {
+    "code": "XX000",
+    "file": "lwgeom_pg.c",
+    "length": 76,
+    "line": "340",
+    "name": "error",
+    "routine": "pg_error",
+    "severity": "ERROR"
+  },
+  "file": "lwgeom_pg.c",
+  "length": 76,
+  "level": "error",
+  "line": "340",
+  "parameters": [
+    "2022-12-28T18:20:17.036Z",
+    null,
+    null,
+    "placed",
+    "cash",
+    34,
+    42.5,
+    "\"ST_GeomFromGeoJSON('[object Object]')\"",
+    "Vukovarska 1",
+    "Čakovec",
+    "pozvoniti"
+  ],
+  "query": "INSERT INTO \"order\"(\"date_placed\", \"date_dispatched\", \"date_completed\", \"status\", \"payment_method\", \"order_total_no_vat\", \"order_total_with_vat\", \"created_at\", \"modified_at\", \"delivery_location\", \"delivery_address\", \"delivery_city\", \"notes\") VALUES ($1, $2, $3, $4, $5, $6, $7, DEFAULT, DEFAULT, ST_SetSRID(ST_GeomFromGeoJSON($8), 4326)::geometry, $9, $10, $11) RETURNING \"id\", \"order_total_no_vat\", \"order_total_with_vat\", \"created_at\", \"modified_at\"",
+  "routine": "pg_error",
+  "severity": "ERROR"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": 2
+}
+{
+  "level": "info",
+  "message": 1
+}
+{
+  "level": "info",
+  "message": "1"
+}
+{
+  "code": "XX000",
+  "driverError": {
+    "code": "XX000",
+    "file": "lwgeom_pg.c",
+    "length": 76,
+    "line": "340",
+    "name": "error",
+    "routine": "pg_error",
+    "severity": "ERROR"
+  },
+  "file": "lwgeom_pg.c",
+  "length": 76,
+  "level": "error",
+  "line": "340",
+  "parameters": [
+    "2022-12-28T18:21:17.805Z",
+    null,
+    null,
+    "placed",
+    "cash",
+    34,
+    42.5,
+    "\"ST_GeomFromGeoJSON([object Object])\"",
+    "Vukovarska 1",
+    "Čakovec",
+    "pozvoniti"
+  ],
+  "query": "INSERT INTO \"order\"(\"date_placed\", \"date_dispatched\", \"date_completed\", \"status\", \"payment_method\", \"order_total_no_vat\", \"order_total_with_vat\", \"created_at\", \"modified_at\", \"delivery_location\", \"delivery_address\", \"delivery_city\", \"notes\") VALUES ($1, $2, $3, $4, $5, $6, $7, DEFAULT, DEFAULT, ST_SetSRID(ST_GeomFromGeoJSON($8), 4326)::geometry, $9, $10, $11) RETURNING \"id\", \"order_total_no_vat\", \"order_total_with_vat\", \"created_at\", \"modified_at\"",
+  "routine": "pg_error",
+  "severity": "ERROR"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": 2
+}
+{
+  "level": "info",
+  "message": 1
+}
+{
+  "level": "info",
+  "message": "1"
+}
+{
+  "code": "XX000",
+  "driverError": {
+    "code": "XX000",
+    "file": "lwgeom_pg.c",
+    "length": 76,
+    "line": "340",
+    "name": "error",
+    "routine": "pg_error",
+    "severity": "ERROR"
+  },
+  "file": "lwgeom_pg.c",
+  "length": 76,
+  "level": "error",
+  "line": "340",
+  "parameters": [
+    "2022-12-28T18:22:20.287Z",
+    null,
+    null,
+    "placed",
+    "cash",
+    34,
+    42.5,
+    "\"ST_GeomFromGeoJSON('{ \\\"type\\\": \\\"Point\\\", \\\"coordinates\\\": [5.3, 15.0]}')\"",
+    "Vukovarska 1",
+    "Čakovec",
+    "pozvoniti"
+  ],
+  "query": "INSERT INTO \"order\"(\"date_placed\", \"date_dispatched\", \"date_completed\", \"status\", \"payment_method\", \"order_total_no_vat\", \"order_total_with_vat\", \"created_at\", \"modified_at\", \"delivery_location\", \"delivery_address\", \"delivery_city\", \"notes\") VALUES ($1, $2, $3, $4, $5, $6, $7, DEFAULT, DEFAULT, ST_SetSRID(ST_GeomFromGeoJSON($8), 4326)::geometry, $9, $10, $11) RETURNING \"id\", \"order_total_no_vat\", \"order_total_with_vat\", \"created_at\", \"modified_at\"",
+  "routine": "pg_error",
+  "severity": "ERROR"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": 2
+}
+{
+  "level": "info",
+  "message": 1
+}
+{
+  "level": "info",
+  "message": "1"
+}
+{
+  "code": "XX000",
+  "driverError": {
+    "code": "XX000",
+    "file": "lwgeom_pg.c",
+    "length": 76,
+    "line": "340",
+    "name": "error",
+    "routine": "pg_error",
+    "severity": "ERROR"
+  },
+  "file": "lwgeom_pg.c",
+  "length": 76,
+  "level": "error",
+  "line": "340",
+  "parameters": [
+    "2022-12-28T18:46:29.398Z",
+    null,
+    null,
+    "placed",
+    "cash",
+    34,
+    42.5,
+    "\"{ \\\"type\\\": \\\"Point\\\", \\\"coordinates\\\": [5.3, 15.0]}\"",
+    "Vukovarska 1",
+    "Čakovec",
+    "pozvoniti"
+  ],
+  "query": "INSERT INTO \"order\"(\"date_placed\", \"date_dispatched\", \"date_completed\", \"status\", \"payment_method\", \"order_total_no_vat\", \"order_total_with_vat\", \"created_at\", \"modified_at\", \"delivery_location\", \"delivery_address\", \"delivery_city\", \"notes\") VALUES ($1, $2, $3, $4, $5, $6, $7, DEFAULT, DEFAULT, ST_SetSRID(ST_GeomFromGeoJSON($8), 4326)::geometry, $9, $10, $11) RETURNING \"id\", \"order_total_no_vat\", \"order_total_with_vat\", \"created_at\", \"modified_at\"",
+  "routine": "pg_error",
+  "severity": "ERROR"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": 2
+}
+{
+  "level": "info",
+  "message": 1
+}
+{
+  "level": "info",
+  "message": "1"
+}
+{
+  "level": "info",
+  "message": "Saved order 4"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": 2
+}
+{
+  "level": "info",
+  "message": 1
+}
+{
+  "level": "info",
+  "message": "1"
+}
+{
+  "code": "XX000",
+  "driverError": {
+    "code": "XX000",
+    "file": "lwgeom_pg.c",
+    "length": 76,
+    "line": "340",
+    "name": "error",
+    "routine": "pg_error",
+    "severity": "ERROR"
+  },
+  "file": "lwgeom_pg.c",
+  "length": 76,
+  "level": "error",
+  "line": "340",
+  "parameters": [
+    "2022-12-28T19:06:47.509Z",
+    null,
+    null,
+    "placed",
+    "cash",
+    34,
+    42.5,
+    "\"ST_GeomFromGeoJSON( '[object Object]' )\"",
+    "Vukovarska 1",
+    "Čakovec",
+    "pozvoniti"
+  ],
+  "query": "INSERT INTO \"order\"(\"date_placed\", \"date_dispatched\", \"date_completed\", \"status\", \"payment_method\", \"order_total_no_vat\", \"order_total_with_vat\", \"created_at\", \"modified_at\", \"delivery_location\", \"delivery_address\", \"delivery_city\", \"notes\") VALUES ($1, $2, $3, $4, $5, $6, $7, DEFAULT, DEFAULT, ST_SetSRID(ST_GeomFromGeoJSON($8), 4326)::geometry, $9, $10, $11) RETURNING \"id\", \"order_total_no_vat\", \"order_total_with_vat\", \"created_at\", \"modified_at\"",
+  "routine": "pg_error",
+  "severity": "ERROR"
+}
+{
+  "level": "info",
+  "message": "The datasource has been initialized"
+}
+{
+  "level": "info",
+  "message": "Express has been initialized"
+}
+{
+  "level": "info",
+  "message": "HTTP Rest api server is running on http://localhost:8080/api"
+}
+{
+  "level": "info",
+  "message": 2
+}
+{
+  "level": "info",
+  "message": 1
+}
+{
+  "level": "info",
+  "message": "1"
+}
+{
+  "code": "XX000",
+  "driverError": {
+    "code": "XX000",
+    "file": "lwgeom_pg.c",
+    "length": 76,
+    "line": "340",
+    "name": "error",
+    "routine": "pg_error",
+    "severity": "ERROR"
+  },
+  "file": "lwgeom_pg.c",
+  "length": 76,
+  "level": "error",
+  "line": "340",
+  "parameters": [
+    "2022-12-28T19:07:37.477Z",
+    null,
+    null,
+    "placed",
+    "cash",
+    34,
+    42.5,
+    "\"ST_GeomFromGeoJSON( '{\\\"type\\\":\\\"Point\\\",\\\"coordinates\\\":[-48.23456,20.12345]}' )\"",
+    "Vukovarska 1",
+    "Čakovec",
+    "pozvoniti"
+  ],
+  "query": "INSERT INTO \"order\"(\"date_placed\", \"date_dispatched\", \"date_completed\", \"status\", \"payment_method\", \"order_total_no_vat\", \"order_total_with_vat\", \"created_at\", \"modified_at\", \"delivery_location\", \"delivery_address\", \"delivery_city\", \"notes\") VALUES ($1, $2, $3, $4, $5, $6, $7, DEFAULT, DEFAULT, ST_SetSRID(ST_GeomFromGeoJSON($8), 4326)::geometry, $9, $10, $11) RETURNING \"id\", \"order_total_no_vat\", \"order_total_with_vat\", \"created_at\", \"modified_at\"",
+  "routine": "pg_error",
+  "severity": "ERROR"
+}

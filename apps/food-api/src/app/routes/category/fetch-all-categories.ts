@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response} from "express";
 import { AppDataSource } from "../data-source";
-import { Category } from "../../entities/category";
+import { CategoryEntity } from "../../entities/category";
 import { logger } from "../../util/logger";
 
 export async function fetchAllCategories(
@@ -10,7 +10,7 @@ export async function fetchAllCategories(
 ){
   try {
     logger.debug("Called fetchAllCategories");
-    const categories = await AppDataSource.getRepository(Category)
+    const categories = await AppDataSource.getRepository(CategoryEntity)
       .createQueryBuilder("categories")
       .orderBy("categories.id")
       .getMany();

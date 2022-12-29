@@ -1,5 +1,12 @@
 import {DataSource} from 'typeorm';
-import { Category } from "../entities/category";
+import { CategoryEntity } from "../entities/category";
+import { MealEntity } from "../entities/meal";
+import { ToppingEntity } from "../entities/topping";
+import { MealToppingEntity } from "../entities/meal-topping";
+import { OrderEntity } from "../entities/order";
+import { MealOrderItemEntity } from "../entities/meal-order-item";
+import { ToppingOrderItemEntity } from "../entities/topping-order-item";
+
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -15,6 +22,6 @@ export const AppDataSource = new DataSource({
     },
   },
   synchronize: true,
-  entities: [Category],
+  entities: [CategoryEntity, MealEntity, ToppingEntity,MealToppingEntity, OrderEntity, MealOrderItemEntity, ToppingOrderItemEntity],
   logging: true,
 });

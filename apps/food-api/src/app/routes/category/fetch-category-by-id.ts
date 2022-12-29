@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response} from "express";
 import { AppDataSource } from "../data-source";
-import { Category } from "../../entities/category";
+import { CategoryEntity } from "../../entities/category";
 import { logger } from "../../util/logger";
 
 export async function fetchCategoryById(
@@ -11,7 +11,7 @@ export async function fetchCategoryById(
   try {
     logger.debug("Called fetchCategoryById");
     const id = request.params.id;
-    const category = await AppDataSource.getRepository(Category)
+    const category = await AppDataSource.getRepository(CategoryEntity)
       .findOneByOrFail({
         id: Number(id)
       })

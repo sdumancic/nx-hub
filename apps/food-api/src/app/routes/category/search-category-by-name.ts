@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response} from "express";
 import { AppDataSource } from "../data-source";
-import { Category } from "../../entities/category";
+import { CategoryEntity } from "../../entities/category";
 import { logger } from "../../util/logger";
 
 export async function searchCategoryByName(
@@ -12,7 +12,7 @@ export async function searchCategoryByName(
     logger.debug("Called searchCategoryByName");
     const categoryName = request.query.name
 
-    const category = await AppDataSource.getRepository(Category)
+    const category = await AppDataSource.getRepository(CategoryEntity)
       .findOneBy({
         name: categoryName.toString()
       })
@@ -26,7 +26,7 @@ export async function searchCategoryByName(
 
     response.status(200).json(category);
 
-    response.status(200).json(null);
+
   } catch (error) {
     logger.error(error);
     return next(error);
