@@ -18,7 +18,8 @@
       "@hub/shared/model/food-models": [
         "libs/shared/model/food-models/src/index.ts"
       ],
-      "@hub/shared/testlib": ["libs/shared/testlib/src/index.ts"]
+      "@hub/shared/testlib": ["libs/shared/testlib/src/index.ts"],
+      "@hub/shared/util/core": ["libs/shared/util/core/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

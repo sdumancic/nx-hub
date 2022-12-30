@@ -16,6 +16,21 @@
         "assets": ["apps/food-api/src/assets"]
       },
       "configurations": {
+        "dev": {
+          "fileReplacements": [
+            {
+              "replace": "apps/food-api/src/environments/environment.ts",
+              "with": "apps/food-api/src/environments/environment.dev.ts"
+            }
+          ],
+          "buildOptimizer": false,
+          "outputHashing": "all",
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        },
         "production": {
           "optimization": true,
           "extractLicenses": true,
@@ -32,13 +47,17 @@
     "serve": {
       "executor": "@nrwl/js:node",
       "options": {
-        "buildTarget": "food-api:build"
+        "buildTarget": "food-api:build:dev"
       },
       "configurations": {
         "production": {
           "buildTarget": "food-api:build:production"
+        },
+        "dev": {
+          "buildTarget": "food-api:build:dev"
         }
-      }
+      },
+      "defaultConfiguration": "dev"
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",

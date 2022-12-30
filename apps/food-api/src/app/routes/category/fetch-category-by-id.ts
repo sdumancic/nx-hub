@@ -9,7 +9,7 @@ export async function fetchCategoryById(
   next: NextFunction
 ){
   try {
-    logger.debug("Called fetchCategoryById");
+
     const id = request.params.id;
     const category = await AppDataSource.getRepository(CategoryEntity)
       .findOneByOrFail({

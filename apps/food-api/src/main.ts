@@ -35,6 +35,26 @@ import { completeOrder } from "./app/routes/ordering/complete-order";
 import { uploadMealImage } from "./app/routes/meals/upload-meal-image";
 import { findOneMeal } from "./app/routes/meals/find-one-meal";
 import { findOneOrder } from "./app/routes/ordering/find-one-order";
+import { environment } from "./environments/environment";
+import { createUser } from "./app/routes/auth/user/create-user";
+import { fetchAllUsers } from "./app/routes/auth/user/fetch-all-users";
+import { findOneUser } from "./app/routes/auth/user/find-one-user";
+import { findOneUserByEmail } from "./app/routes/auth/user/find-one-user-by-email";
+import { defaultErrorHandler } from "./app/util/default-error-handler";
+import { changePassword } from "./app/routes/auth/user/change-password";
+import { updateUser } from "./app/routes/auth/user/update-user";
+import { createRole } from "./app/routes/auth/role/create-role";
+import { fetchAllRoles } from "./app/routes/auth/role/fetch-all-roles";
+import { updateRole } from "./app/routes/auth/role/update-role";
+import { deactivateRole } from "./app/routes/auth/role/deactivate-role";
+import { updatePermission } from "./app/routes/auth/permission/update-permission";
+import { deactivatePermission } from "./app/routes/auth/permission/deactivate-permission";
+import { searchPermissions } from "./app/routes/auth/permission/search-permissions";
+import { createPermission } from "./app/routes/auth/permission/create-permission";
+import { assignPermissionToRole } from "./app/routes/auth/role-permission/assign-permission-to-role";
+import { revokePermissionFromRole } from "./app/routes/auth/role-permission/revoke-permission-from-role";
+import { assignRoleToUser } from "./app/routes/auth/role/assign-role-to-user";
+import { revokeRoleFromUser } from "./app/routes/auth/role/revoke-role-from-user";
 const FILE_TYPE_MAP = {
   'image/png': 'png',
   'image/jpeg': 'jpeg',
@@ -72,52 +92,88 @@ function setupExpress() {
   app.use('/assets', express.static(path.join(__dirname, 'assets')));
   app.use('/public-uploads', express.static(path.join(__dirname + '/public/uploads')));
 
+
   if (!fs.existsSync(path.join(__dirname + '/public/uploads'))){
     fs.mkdirSync(path.join(__dirname + '/public/uploads'), { recursive: true });
   }
+  let contextRoot = environment.contextRoot;
+  if(!contextRoot){
+    console.log('contextRoot is not set')
+    process.exit(1);
+  }
+  if (!contextRoot.startsWith('/')){
+    contextRoot = '/' + contextRoot;
+  }
 
-  app.get('/api', (req, res) => {
+  app.get(`${contextRoot}`, (req, res) => {
     res.send({ message: 'Welcome to food-api!' });
   });
-  app.route("/api/db-info").get(dbInfo)
-  app.route('/api/categories').get(fetchAllCategories)
-  app.route('/api/categories').post(createCategory)
-  app.route('/api/categories/search').get(searchCategoryByName)
-  app.route('/api/categories/:id').get(fetchCategoryById)
+  app.route(`${contextRoot}/db-info`).get(dbInfo)
+  app.route(`${contextRoot}/categories`).get(fetchAllCategories)
+  app.route(`${contextRoot}/categories`).post(createCategory)
+  app.route(`${contextRoot}/categories/search`).get(searchCategoryByName)
+  app.route(`${contextRoot}/categories/:id`).get(fetchCategoryById)
 
-  app.route('/api/meals').post(createMeal)
-  app.route('/api/meals/:mealId').patch(updateMeal)
-  app.route('/api/meals/search').get(searchMealsByCategory)
-  app.route('/api/meals/:mealId').get(findOneMeal)
-  app.route('/api/meals/:mealId').delete(deactivateMeal)
+  app.route(`${contextRoot}/meals`).post(createMeal)
+  app.route(`${contextRoot}/meals/:mealId`).patch(updateMeal)
+  app.route(`${contextRoot}/meals/search`).get(searchMealsByCategory)
+  app.route(`${contextRoot}/meals/:mealId`).get(findOneMeal)
+  app.route(`${contextRoot}/meals/:mealId`).delete(deactivateMeal)
 
-  app.post('/api/meals/:mealId/image-upload', uploadOptions.single('productImage'), uploadMealImage)
+  app.post(`${contextRoot}/meals/:mealId/image-upload`, uploadOptions.single('productImage'), uploadMealImage)
 
-  app.route('/api/toppings').post(createTopping)
-  app.route('/api/toppings').get(fetchToppings)
-  app.route('/api/toppings/:toppingId').patch(updateTopping)
-  app.route('/api/toppings/:toppingId').delete(deactivateTopping)
+  app.route(`${contextRoot}/toppings`).post(createTopping)
+  app.route(`${contextRoot}/toppings`).get(fetchToppings)
+  app.route(`${contextRoot}/toppings/:toppingId`).patch(updateTopping)
+  app.route(`${contextRoot}/toppings/:toppingId`).delete(deactivateTopping)
 
-  app.route('/api/meal-toppings/search').get(fetchToppingsByMealId)
-  app.route('/api/meal-toppings/assign').post(assignToppingToMeal)
-  app.route('/api/meal-toppings/remove').post(removeToppingFromMeal)
+  app.route(`${contextRoot}/meal-toppings/search`).get(fetchToppingsByMealId)
+  app.route(`${contextRoot}/meal-toppings/assign`).post(assignToppingToMeal)
+  app.route(`${contextRoot}/meal-toppings/remove`).post(removeToppingFromMeal)
 
-  app.route('/api/orders/place').post(placeOrder)
-  app.route('/api/orders/search').get(fetchOrders)
-  app.route('/api/orders/:orderId').get(findOneOrder)
-  app.route('/api/orders/:orderId/dispatch').post(dispatchOrder)
-  app.route('/api/orders/:orderId/complete').post(completeOrder)
+  app.route(`${contextRoot}/orders/place`).post(placeOrder)
+  app.route(`${contextRoot}/orders/search`).get(fetchOrders)
+  app.route(`${contextRoot}/orders/:orderId`).get(findOneOrder)
+  app.route(`${contextRoot}/orders/:orderId/dispatch`).post(dispatchOrder)
+  app.route(`${contextRoot}/orders/:orderId/complete`).post(completeOrder)
+
+  app.route(`${contextRoot}/users`).post(createUser)
+  app.route(`${contextRoot}/users/searchByEmail`).get(findOneUserByEmail)
+  app.route(`${contextRoot}/users/:userId/change-password`).patch(changePassword)
+  app.route(`${contextRoot}/users/:userId`).get(findOneUser)
+  app.route(`${contextRoot}/users/:userId`).patch(updateUser)
+  app.route(`${contextRoot}/users`).get(fetchAllUsers)
+
+  app.route(`${contextRoot}/roles`).post(createRole)
+  app.route(`${contextRoot}/roles`).get(fetchAllRoles)
+  app.route(`${contextRoot}/roles/:roleId`).patch(updateRole)
+  app.route(`${contextRoot}/roles/:roleId`).delete(deactivateRole)
+
+  app.route(`${contextRoot}/permissions`).post(createPermission)
+  app.route(`${contextRoot}/permissions/search`).get(searchPermissions)
+  app.route(`${contextRoot}/permissions/:permissionId`).patch(updatePermission)
+  app.route(`${contextRoot}/permissions/:permissionId`).delete(deactivatePermission)
+
+  app.route(`${contextRoot}/roles/:roleId/permissions/:permissionId`).post(assignPermissionToRole)
+  app.route(`${contextRoot}/roles/:roleId/permissions/:permissionId`).delete(revokePermissionFromRole)
+
+  app.route(`${contextRoot}/users/:userId/roles/:roleId`).post(assignRoleToUser)
+  app.route(`${contextRoot}/users/:userId/roles/:roleId`).delete(revokeRoleFromUser)
+
+  app.use(defaultErrorHandler);
 
 
 }
 
 function startServer(){
-  logger.info('process.env.PORT -->' + process.env.PORT);
-  logger.info('process.env.DB_HOST -->' + process.env.DB_HOST);
-  logger.info('process.env.DB_PORT -->' + process.env.DB_PORT);
-  logger.info('process.env.DB_NAME -->' + process.env.DB_NAME);
+
+  logger.info('contextRoot: ' + environment.contextRoot);
+  logger.info('port: ' + environment.port);
+  logger.info('db.host: ' + environment.db.host);
+  logger.info('db.name: ' + environment.db.name);
+  logger.info('db.username: ' + environment.db.username);
   let port: number|undefined;
-  const portEnv = process.env.PORT,
+  const portEnv = environment.port,
         portArg = process.argv[2]
 
   if (portEnv && isInteger(portEnv)){
@@ -128,9 +184,10 @@ function startServer(){
     port = 9000
   }
 
+  const contextRoot = environment.contextRoot
 
   const server = app.listen(port, () => {
-    logger.info(`HTTP Rest api server is running on http://localhost:${port}/api`)
+    logger.info(`HTTP Rest api server is running on http://localhost:${port}/${contextRoot}`)
   })
   server.on('error', console.error);
 }
@@ -143,10 +200,6 @@ AppDataSource.initialize()
     startServer()
   })
   .catch(err => {
-    logger.info('process.env.PORT -->' + process.env.PORT);
-    logger.info('process.env.DB_HOST -->' + process.env.DB_HOST);
-    logger.info('process.env.DB_PORT -->' + process.env.DB_PORT);
-    logger.info('process.env.DB_NAME -->' + process.env.DB_NAME);
     logger.error('Error during datasource initialization ',err)
     process.exit(1)
   })

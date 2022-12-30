@@ -6,6 +6,11 @@ import { MealToppingEntity } from "../entities/meal-topping";
 import { OrderEntity } from "../entities/order";
 import { OrderItemEntity } from "../entities/order-item";
 import { ToppingOrderItemEntity } from "../entities/topping-order-item";
+import { UserEntity } from "../entities/user";
+import { UserRoleEntity } from "../entities/user-role";
+import { RoleEntity } from "../entities/role";
+import { PermissionEntity } from "../entities/permission";
+import { RolePermissionEntity } from "../entities/role-permission";
 
 
 export const AppDataSource = new DataSource({
@@ -22,6 +27,6 @@ export const AppDataSource = new DataSource({
     },
   },
   synchronize: true,
-  entities: [CategoryEntity, MealEntity, ToppingEntity,MealToppingEntity, OrderEntity, OrderItemEntity, ToppingOrderItemEntity],
-  logging: false
+  entities: [CategoryEntity, MealEntity, ToppingEntity,MealToppingEntity, OrderEntity, OrderItemEntity, ToppingOrderItemEntity, UserEntity, UserRoleEntity, RoleEntity, PermissionEntity, RolePermissionEntity],
+  logging: true
 });

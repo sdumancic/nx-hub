@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   contextRoot: 'api',
-  port : '8080',
+  port : process.env.PORT,
   db: {
     host: process.env.DB_HOST,
     username:process.env.DB_USERNAME,
