@@ -2,6 +2,7 @@ import * as dotenv from "dotenv";
 import "reflect-metadata";
 import * as express from 'express';
 import * as path from 'path';
+const result = dotenv.config();
 import { AppDataSource } from "./app/routes/data-source";
 import { logger } from "./app/util/logger";
 import {isInteger} from './app/util/helper';
@@ -10,6 +11,7 @@ import cors = require('cors')
 import bodyParser = require("body-parser")
 import multer = require('multer')
 import fs = require('fs');
+
 import { dbInfo } from "./app/routes/info";
 import { fetchAllCategories } from "./app/routes/category/fetch-all-categories";
 import { createCategory } from "./app/routes/category/create-category";
@@ -58,6 +60,10 @@ const storage = multer.diskStorage({
 const uploadOptions = multer({ storage: storage });
 const app = express();
 
+if(result.error){
+  console.log('error loading environment variables, aborting')
+  process.exit(1)
+}
 
 function setupExpress() {
   app.use(express.json());
@@ -106,6 +112,10 @@ function setupExpress() {
 }
 
 function startServer(){
+  logger.info('process.env.PORT -->' + process.env.PORT);
+  logger.info('process.env.DB_HOST -->' + process.env.DB_HOST);
+  logger.info('process.env.DB_PORT -->' + process.env.DB_PORT);
+  logger.info('process.env.DB_NAME -->' + process.env.DB_NAME);
   let port: number|undefined;
   const portEnv = process.env.PORT,
         portArg = process.argv[2]
@@ -133,6 +143,10 @@ AppDataSource.initialize()
     startServer()
   })
   .catch(err => {
+    logger.info('process.env.PORT -->' + process.env.PORT);
+    logger.info('process.env.DB_HOST -->' + process.env.DB_HOST);
+    logger.info('process.env.DB_PORT -->' + process.env.DB_PORT);
+    logger.info('process.env.DB_NAME -->' + process.env.DB_NAME);
     logger.error('Error during datasource initialization ',err)
     process.exit(1)
   })
