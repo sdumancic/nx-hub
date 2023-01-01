@@ -12,16 +12,17 @@ export async function fetchCategoryById(
 
     const id = request.params.id;
     const category = await AppDataSource.getRepository(CategoryEntity)
-      .findOneByOrFail({
+      .findOneBy({
         id: Number(id)
       })
 
-   /* if (!category){
-      const message = 'Could not find category with name ' + categoryName
-      logger.error(message)
+   if (!category){
+      const message = {
+       message: 'Could not find category with id ' + id
+      }
       response.status(404).json(message)
       return;
-    } */
+    }
 
     response.status(200).json(category);
   } catch (error) {

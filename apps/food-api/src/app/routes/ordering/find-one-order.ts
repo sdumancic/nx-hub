@@ -38,6 +38,14 @@ export async function findOneOrder(
       },
     })
 
+    if (!order){
+      const message = {
+        message: 'Could not find order with id ' + orderId
+      }
+      response.status(404).json(message)
+      return;
+    }
+
     response.status(200).json(order);
   } catch (error) {
     logger.error(error);

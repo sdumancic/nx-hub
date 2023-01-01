@@ -13,19 +13,19 @@ export async function createUser(
   try {
     const {email, firstName, lastName, address, city, state, password, pictureUrl}  = request.body;
     if (!email) {
-      throw 'email is mandatory';
+      throw {message:'email is mandatory'};
     }
     if (!password) {
-      throw 'password is mandatory';
+      throw {message:'password is mandatory'};
     }
     if (!address) {
-      throw 'password is mandatory';
+      throw {message:'password is mandatory'};
     }
     if (!firstName) {
-      throw 'firstName is mandatory';
+      throw {message:'firstName is mandatory'};
     }
     if (!lastName) {
-      throw 'lastName is mandatory';
+      throw {message:'lastName is mandatory'};
     }
 
     const repository = AppDataSource.getRepository(UserEntity);
@@ -34,9 +34,9 @@ export async function createUser(
       .where("email = :email", { email })
       .getOne();
     if (user) {
-      const message= "User with given email already exists, aborting";
+      const message= {message:"User with given email already exists"};
       response
-        .status(500)
+        .status(400)
         .json(message);
       return;
     }

@@ -22,16 +22,16 @@ export async function placeOrder(
       paymentMethod = 'cash';
     }
     if (!deliveryAddress) {
-      throw 'deliveryAddress is mandatory';
+      throw {message:'deliveryAddress is mandatory'};
     }
     if (!deliveryCity) {
-      throw 'deliveryCity is mandatory';
+      throw {message:'deliveryCity is mandatory'};
     }
     if (!orderItems) {
-      throw 'orderItems is mandatory';
+      throw {message:'orderItems is mandatory'};
     }
     if (orderItems.length === 0) {
-      throw 'orderItems is empty';
+      throw {message:'orderItems is empty'};
     }
     let orderTotalNoVat = 0;
     let orderTotalWithVat = 0;

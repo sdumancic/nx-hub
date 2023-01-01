@@ -16,7 +16,7 @@ export async function changePassword(
 
     const {password}  = request.body;
     if (!password) {
-      throw 'password is mandatory';
+      throw {message:'password is mandatory'};
     }
 
     const repository = AppDataSource.getRepository(UserEntity);
@@ -25,9 +25,9 @@ export async function changePassword(
       .where("id = :userId", { userId })
       .getOne();
     if (!user) {
-      const message= "User with given ID does not exist";
+      const message= {message:"User with given ID does not exist"};
       response
-        .status(500)
+        .status(400)
         .json(message);
       return;
     }

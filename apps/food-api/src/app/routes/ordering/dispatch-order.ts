@@ -12,11 +12,11 @@ export async function dispatchOrder(
     const orderId = request.params.orderId;
     const foundOrder = await AppDataSource.getRepository(
       OrderEntity
-    ).findOneByOrFail({
+    ).findOneBy({
       id: Number(orderId),
     });
     if (!foundOrder) {
-      throw 'Order not found';
+      throw {message:'Order not found'};
     }
 
     await AppDataSource

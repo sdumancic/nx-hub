@@ -16,10 +16,10 @@ export async function revokeRoleFromUser(
     const roleId = request.params.roleId;
     const userId = request.params.userId;
     if (!roleId) {
-      throw 'roleId is mandatory';
+      throw {message:'roleId is mandatory'};
     }
     if (!userId) {
-      throw 'userId is mandatory';
+      throw {message:'userId is mandatory'};
     }
 
     await AppDataSource.getRepository(UserEntity).findOneOrFail({
@@ -45,8 +45,8 @@ export async function revokeRoleFromUser(
       )
       .getOne();
     if (!userRoles) {
-      const message = 'Role is not assigned to user';
-      response.status(500).json(message);
+      const message = {message:'Role is not assigned to user'};
+      response.status(400).json(message);
       return;
     }
     await repository.delete({id: userRoles.id })

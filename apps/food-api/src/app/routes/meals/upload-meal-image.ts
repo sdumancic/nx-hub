@@ -9,9 +9,9 @@ export async function uploadMealImage(
   try {
     const mealId = request.params.mealId
     const file = request['file'];
-    console.log('xxx ' + file.filename)
+
     if (!file) {
-      return response.status(400).send('Image must be provided in request');
+      return response.status(400).send({message:'Image must be provided in request'});
     }
 
     await AppDataSource

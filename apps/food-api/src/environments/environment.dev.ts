@@ -2,6 +2,7 @@ export const environment = {
   production: false,
   contextRoot: 'api',
   port : process.env.PORT,
+  jwt_secret: 'my dog is called Lady',
   db: {
     host: process.env.DB_HOST,
     username:process.env.DB_USERNAME,

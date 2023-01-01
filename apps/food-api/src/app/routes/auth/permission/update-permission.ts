@@ -19,8 +19,8 @@ export async function updatePermission(
       .where('name = :name and id != :permissionId', { name, permissionId })
       .getOne();
     if (permission) {
-      const message = 'permission with given name already exists on different ID';
-      response.status(500).json(message);
+      const message = {message: 'permission with given name already exists on different ID'};
+      response.status(400).json(message);
       return;
     }
 

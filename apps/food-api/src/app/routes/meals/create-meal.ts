@@ -12,17 +12,17 @@ export async function createMeal(
   try {
     const { calories, description,name,price,rating, category } = request.body;
     if (!category) {
-      throw 'category is mandatory';
+      throw {message:'category is mandatory'};
     }
     if (!name) {
-      throw 'name is mandatory';
+      throw {message:'name is mandatory'};
     }
     const foundCategory = await AppDataSource.getRepository(CategoryEntity)
-      .findOneByOrFail({
+      .findOneBy({
         id: Number(category.id)
       })
     if (!foundCategory){
-      throw 'Category not found';
+      throw {message:'Category not found'};
     }
     const repository = AppDataSource.getRepository(MealEntity);
     const meal = await repository
@@ -30,8 +30,8 @@ export async function createMeal(
       .where('name = :name', { name })
       .getOne();
     if (meal) {
-      const message = 'Meal with given name already exists, aborting';
-      response.status(500).json(message);
+      const message = {message:'Meal with given name already exists'};
+      response.status(400).json(message);
       return;
     }
 

@@ -12,7 +12,7 @@ export async function findOneUserByEmail(
     const email = request.query.email
 
     const repository = AppDataSource.getRepository(UserEntity);
-    const user = await repository.findOneOrFail({
+    const user = await repository.findOne({
       select: {
         id: true,
         active:true,
@@ -36,6 +36,13 @@ export async function findOneUserByEmail(
       },
     })
 
+    if (!user){
+      const message = {
+        message: 'Could not find user with email ' + email
+      }
+      response.status(404).json(message)
+      return;
+    }
 
     response.status(200).json(user);
   } catch (error) {

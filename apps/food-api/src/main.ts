@@ -55,6 +55,10 @@ import { assignPermissionToRole } from "./app/routes/auth/role-permission/assign
 import { revokePermissionFromRole } from "./app/routes/auth/role-permission/revoke-permission-from-role";
 import { assignRoleToUser } from "./app/routes/auth/role/assign-role-to-user";
 import { revokeRoleFromUser } from "./app/routes/auth/role/revoke-role-from-user";
+import { loginUser } from "./app/routes/auth/login";
+import { checkIfAuthenticated } from "./app/util/check-if-authenticated";
+import { checkIfAdmin } from "./app/util/check-if-admin";
+import { listOfRoutes } from "./app/routes/listOfRoutes";
 const FILE_TYPE_MAP = {
   'image/png': 'png',
   'image/jpeg': 'jpeg',
@@ -79,6 +83,8 @@ const storage = multer.diskStorage({
 });
 const uploadOptions = multer({ storage: storage });
 const app = express();
+import * as swaggerUi from 'swagger-ui-express';
+import * as swaggerDocument from './swagger.json'
 
 if(result.error){
   console.log('error loading environment variables, aborting')
@@ -91,6 +97,8 @@ function setupExpress() {
   app.use(bodyParser.json())
   app.use('/assets', express.static(path.join(__dirname, 'assets')));
   app.use('/public-uploads', express.static(path.join(__dirname + '/public/uploads')));
+
+  app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument, { explorer: true }));
 
 
   if (!fs.existsSync(path.join(__dirname + '/public/uploads'))){
@@ -105,60 +113,60 @@ function setupExpress() {
     contextRoot = '/' + contextRoot;
   }
 
-  app.get(`${contextRoot}`, (req, res) => {
-    res.send({ message: 'Welcome to food-api!' });
-  });
+  app.route(`${contextRoot}/`).get(listOfRoutes)
   app.route(`${contextRoot}/db-info`).get(dbInfo)
   app.route(`${contextRoot}/categories`).get(fetchAllCategories)
-  app.route(`${contextRoot}/categories`).post(createCategory)
+  app.route(`${contextRoot}/categories`).post(checkIfAuthenticated, checkIfAdmin,createCategory)
   app.route(`${contextRoot}/categories/search`).get(searchCategoryByName)
   app.route(`${contextRoot}/categories/:id`).get(fetchCategoryById)
 
-  app.route(`${contextRoot}/meals`).post(createMeal)
-  app.route(`${contextRoot}/meals/:mealId`).patch(updateMeal)
+  app.route(`${contextRoot}/meals`).post(checkIfAuthenticated, checkIfAdmin,createMeal)
+  app.route(`${contextRoot}/meals/:mealId`).patch(checkIfAuthenticated, checkIfAdmin,updateMeal)
   app.route(`${contextRoot}/meals/search`).get(searchMealsByCategory)
   app.route(`${contextRoot}/meals/:mealId`).get(findOneMeal)
-  app.route(`${contextRoot}/meals/:mealId`).delete(deactivateMeal)
+  app.route(`${contextRoot}/meals/:mealId`).delete(checkIfAuthenticated, checkIfAdmin,deactivateMeal)
 
   app.post(`${contextRoot}/meals/:mealId/image-upload`, uploadOptions.single('productImage'), uploadMealImage)
 
-  app.route(`${contextRoot}/toppings`).post(createTopping)
+  app.route(`${contextRoot}/toppings`).post(checkIfAuthenticated, checkIfAdmin,createTopping)
   app.route(`${contextRoot}/toppings`).get(fetchToppings)
-  app.route(`${contextRoot}/toppings/:toppingId`).patch(updateTopping)
-  app.route(`${contextRoot}/toppings/:toppingId`).delete(deactivateTopping)
+  app.route(`${contextRoot}/toppings/:toppingId`).patch(checkIfAuthenticated, checkIfAdmin,updateTopping)
+  app.route(`${contextRoot}/toppings/:toppingId`).delete(checkIfAuthenticated, checkIfAdmin,deactivateTopping)
 
   app.route(`${contextRoot}/meal-toppings/search`).get(fetchToppingsByMealId)
-  app.route(`${contextRoot}/meal-toppings/assign`).post(assignToppingToMeal)
-  app.route(`${contextRoot}/meal-toppings/remove`).post(removeToppingFromMeal)
+  app.route(`${contextRoot}/meal-toppings/assign`).post(checkIfAuthenticated, checkIfAdmin,assignToppingToMeal)
+  app.route(`${contextRoot}/meal-toppings/remove`).post(checkIfAuthenticated, checkIfAdmin,removeToppingFromMeal)
 
-  app.route(`${contextRoot}/orders/place`).post(placeOrder)
+  app.route(`${contextRoot}/orders/place`).post(checkIfAuthenticated,placeOrder)
   app.route(`${contextRoot}/orders/search`).get(fetchOrders)
   app.route(`${contextRoot}/orders/:orderId`).get(findOneOrder)
-  app.route(`${contextRoot}/orders/:orderId/dispatch`).post(dispatchOrder)
-  app.route(`${contextRoot}/orders/:orderId/complete`).post(completeOrder)
+  app.route(`${contextRoot}/orders/:orderId/dispatch`).post(checkIfAuthenticated, checkIfAdmin,dispatchOrder)
+  app.route(`${contextRoot}/orders/:orderId/complete`).post(checkIfAuthenticated, checkIfAdmin,completeOrder)
 
-  app.route(`${contextRoot}/users`).post(createUser)
+  app.route(`${contextRoot}/users`).post(checkIfAuthenticated, checkIfAdmin,createUser)
   app.route(`${contextRoot}/users/searchByEmail`).get(findOneUserByEmail)
   app.route(`${contextRoot}/users/:userId/change-password`).patch(changePassword)
   app.route(`${contextRoot}/users/:userId`).get(findOneUser)
-  app.route(`${contextRoot}/users/:userId`).patch(updateUser)
+  app.route(`${contextRoot}/users/:userId`).patch(checkIfAuthenticated, checkIfAdmin,updateUser)
   app.route(`${contextRoot}/users`).get(fetchAllUsers)
 
-  app.route(`${contextRoot}/roles`).post(createRole)
+  app.route(`${contextRoot}/roles`).post(checkIfAuthenticated, checkIfAdmin,createRole)
   app.route(`${contextRoot}/roles`).get(fetchAllRoles)
-  app.route(`${contextRoot}/roles/:roleId`).patch(updateRole)
-  app.route(`${contextRoot}/roles/:roleId`).delete(deactivateRole)
+  app.route(`${contextRoot}/roles/:roleId`).patch(checkIfAuthenticated, checkIfAdmin,updateRole)
+  app.route(`${contextRoot}/roles/:roleId`).delete(checkIfAuthenticated, checkIfAdmin,deactivateRole)
 
-  app.route(`${contextRoot}/permissions`).post(createPermission)
+  app.route(`${contextRoot}/permissions`).post(checkIfAuthenticated, checkIfAdmin,createPermission)
   app.route(`${contextRoot}/permissions/search`).get(searchPermissions)
-  app.route(`${contextRoot}/permissions/:permissionId`).patch(updatePermission)
-  app.route(`${contextRoot}/permissions/:permissionId`).delete(deactivatePermission)
+  app.route(`${contextRoot}/permissions/:permissionId`).patch(checkIfAuthenticated, checkIfAdmin,updatePermission)
+  app.route(`${contextRoot}/permissions/:permissionId`).delete(checkIfAuthenticated, checkIfAdmin,deactivatePermission)
 
-  app.route(`${contextRoot}/roles/:roleId/permissions/:permissionId`).post(assignPermissionToRole)
-  app.route(`${contextRoot}/roles/:roleId/permissions/:permissionId`).delete(revokePermissionFromRole)
+  app.route(`${contextRoot}/roles/:roleId/permissions/:permissionId`).post(checkIfAuthenticated, checkIfAdmin,assignPermissionToRole)
+  app.route(`${contextRoot}/roles/:roleId/permissions/:permissionId`).delete(checkIfAuthenticated, checkIfAdmin,revokePermissionFromRole)
 
-  app.route(`${contextRoot}/users/:userId/roles/:roleId`).post(assignRoleToUser)
-  app.route(`${contextRoot}/users/:userId/roles/:roleId`).delete(revokeRoleFromUser)
+  app.route(`${contextRoot}/users/:userId/roles/:roleId`).post(checkIfAuthenticated, checkIfAdmin,assignRoleToUser)
+  app.route(`${contextRoot}/users/:userId/roles/:roleId`).delete(checkIfAuthenticated, checkIfAdmin,revokeRoleFromUser)
+
+  app.route(`${contextRoot}/login`).post(loginUser)
 
   app.use(defaultErrorHandler);
 

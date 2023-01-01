@@ -12,7 +12,7 @@ export async function createTopping(
   try {
     const { name, iconUrl, description } = request.body;
     if (!name) {
-      throw 'name is mandatory';
+      throw {message:'name is mandatory'};
     }
 
     const repository = AppDataSource.getRepository(ToppingEntity);
@@ -21,8 +21,8 @@ export async function createTopping(
       .where('name = :name', { name })
       .getOne();
     if (topping) {
-      const message = 'Topping with given name already exists';
-      response.status(500).json(message);
+      const message = {message:'Topping with given name already exists'};
+      response.status(400).json(message);
       return;
     }
 

@@ -20,8 +20,8 @@ export async function updateRole(
       .where('name = :name and id != :roleId', { name, roleId })
       .getOne();
     if (role) {
-      const message = 'Role with given name already exists on different ID';
-      response.status(500).json(message);
+      const message = {message:'Role with given name already exists on different ID'};
+      response.status(400).json(message);
       return;
     }
 

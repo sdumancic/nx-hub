@@ -1,5 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
-import { CategoryEntity } from '../../entities/category';
+import { NextFunction, Request, Response } from "express";
 import { AppDataSource } from "../data-source";
 import { logger } from "../../util/logger";
 import { MealEntity } from "../../entities/meal";
@@ -13,7 +12,13 @@ export async function findOneMeal(
     const mealId = request.params.mealId
     const repository = AppDataSource.getRepository(MealEntity);
     const meal = await repository.findOneBy({id:Number(mealId)})
-
+    if (!meal){
+      const message = {
+        message: 'Could not find meal with id ' + mealId
+      }
+      response.status(404).json(message)
+      return;
+    }
     response.status(200).json(meal);
   } catch (error) {
     logger.error(error);

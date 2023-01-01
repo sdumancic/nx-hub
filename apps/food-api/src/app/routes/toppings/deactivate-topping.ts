@@ -13,7 +13,7 @@ export async function deactivateTopping(
   try {
     const toppingId = request.params.toppingId
     if (!toppingId) {
-      throw 'toppingId is mandatory';
+      throw {message:'toppingId is mandatory'};
     }
 
     const foundTopping = await AppDataSource.getRepository(ToppingEntity)
@@ -21,10 +21,9 @@ export async function deactivateTopping(
         id: Number(toppingId)
       })
     if (!foundTopping){
-      throw 'Topping not found';
+      throw {message: 'Topping not found'};
     }
 
-    const repository = AppDataSource.getRepository(ToppingEntity);
     await AppDataSource
       .createQueryBuilder()
       .update(ToppingEntity)

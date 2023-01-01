@@ -18,7 +18,9 @@ export async function searchCategoryByName(
       })
 
     if (!category){
-      const message = 'Could not find category with name ' + categoryName
+      const message = {
+        message: 'Could not find category with name ' + categoryName
+      }
       logger.error(message)
       response.status(404).json(message)
       return;

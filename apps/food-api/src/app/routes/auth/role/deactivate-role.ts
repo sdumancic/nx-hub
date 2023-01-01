@@ -11,15 +11,15 @@ export async function deactivateRole(
   try {
     const roleId = request.params.roleId
     if (!roleId) {
-      throw 'roleId not set';
+      throw {message:'roleId not set'};
     }
 
     const foundRole = await AppDataSource.getRepository(RoleEntity)
-      .findOneByOrFail({
+      .findOneBy({
         id: Number(roleId)
       })
     if (!foundRole){
-      throw 'Role not found';
+      response.status(200).json({message:'Role not found'});
     }
     foundRole.active = false;
     const repository = AppDataSource.getRepository(RoleEntity);

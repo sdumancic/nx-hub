@@ -11,10 +11,10 @@ export async function createCategory(
   try {
     const { name, iconUrl } = request.body;
     if (!name) {
-      throw 'name is mandatory';
+      throw {message:'name is mandatory'};
     }
     if (!iconUrl) {
-      throw 'iconUrl is mandatory';
+      throw {message: 'iconUrl is mandatory'};
     }
     const repository = AppDataSource.getRepository(CategoryEntity);
     const category = await repository

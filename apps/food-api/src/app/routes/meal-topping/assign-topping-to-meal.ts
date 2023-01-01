@@ -13,13 +13,13 @@ export async function assignToppingToMeal(
   try {
     const { toppingId, mealId, price } = request.body;
     if (!toppingId) {
-      throw 'toppingId is mandatory';
+      throw {message:'toppingId is mandatory'};
     }
     if (!mealId) {
-      throw 'mealId is mandatory';
+      throw {message:'mealId is mandatory'};
     }
     if (!price) {
-      throw 'price is mandatory';
+      throw {message:'price is mandatory'};
     }
     const foundAssignment = await AppDataSource.getRepository(MealToppingEntity)
       .findOneBy({

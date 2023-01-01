@@ -12,15 +12,15 @@ export async function deactivateMeal(
   try {
     const mealId = request.params.mealId
     if (!mealId) {
-      throw 'mealId is mandatory';
+      throw {message:'mealId is mandatory'};
     }
 
     const foundMeal = await AppDataSource.getRepository(MealEntity)
-      .findOneByOrFail({
+      .findOneBy({
         id: Number(mealId)
       })
     if (!foundMeal){
-      throw 'Meal not found';
+      throw {message:'Meal not found'};
     }
     foundMeal.active = false;
     const repository = AppDataSource.getRepository(MealEntity);

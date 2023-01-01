@@ -35,6 +35,13 @@ export async function findOneUser(
       },
     })
 
+    if (!user){
+      const message = {
+        message: 'Could not find user with id ' + userId
+      }
+      response.status(404).json(message)
+      return;
+    }
 
     response.status(200).json(user);
   } catch (error) {

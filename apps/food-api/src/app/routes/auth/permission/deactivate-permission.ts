@@ -12,15 +12,15 @@ export async function deactivatePermission(
   try {
     const permissionId = request.params.permissionId
     if (!permissionId) {
-      throw 'permissionId not set';
+      throw {message: 'permissionId not set'};
     }
 
     const foundPermission = await AppDataSource.getRepository(PermissionEntity)
-      .findOneByOrFail({
+      .findOneBy({
         id: Number(permissionId)
       })
     if (!foundPermission){
-      throw 'Permission not found';
+      throw {message:'Permission not found'};
     }
     foundPermission.active = false;
     const repository = AppDataSource.getRepository(PermissionEntity);

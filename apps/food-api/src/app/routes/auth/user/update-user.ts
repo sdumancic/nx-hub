@@ -20,9 +20,9 @@ export async function updateUser(
       .where("id = :userId", { userId })
       .getOne();
     if (!user) {
-      const message= "User with given ID does not exist";
+      const message= {message:"User with given ID does not exist"};
       response
-        .status(500)
+        .status(400)
         .json(message);
       return;
     }
@@ -32,8 +32,8 @@ export async function updateUser(
       const existingUser = repository.findOneBy({email: email});
       if (existingUser){
         response
-          .status(500)
-          .json('Email already registered');
+          .status(400)
+          .json({message:'Email already registered'});
         return;
       }
       changes['email'] = email;

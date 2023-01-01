@@ -14,10 +14,10 @@ export async function revokePermissionFromRole(
     const roleId = request.params.roleId;
     const permissionId = request.params.permissionId;
     if (!roleId) {
-      throw 'roleId is mandatory';
+      throw {message:'roleId is mandatory'};
     }
     if (!permissionId) {
-      throw 'permissionId is mandatory';
+      throw {message:'permissionId is mandatory'};
     }
 
     await AppDataSource.getRepository(PermissionEntity).findOneOrFail({
@@ -43,8 +43,8 @@ export async function revokePermissionFromRole(
       )
       .getOne();
     if (!rolePermission) {
-      const message = 'Permission is not assigned to role';
-      response.status(500).json(message);
+      const message = {message:'Permission is not assigned to role'};
+      response.status(400).json(message);
       return;
     }
     await repository.delete({id: rolePermission.id })

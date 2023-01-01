@@ -12,7 +12,7 @@ export async function createPermission(
   try {
     const { name, description } = request.body;
     if (!name) {
-      throw 'name is mandatory';
+      throw {message:'name is mandatory'};
     }
 
     const repository = AppDataSource.getRepository(PermissionEntity);
@@ -21,8 +21,8 @@ export async function createPermission(
       .where('name = :name', { name: name.toString().toUpperCase() })
       .getOne();
     if (permission) {
-      const message = 'Role with given name already exists';
-      response.status(500).json(message);
+      const message = {message: 'Role with given name already exists'};
+      response.status(400).json(message);
       return;
     }
 

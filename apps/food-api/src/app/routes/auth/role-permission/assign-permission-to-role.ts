@@ -14,10 +14,10 @@ export async function assignPermissionToRole(
     const roleId = request.params.roleId;
     const permissionId = request.params.permissionId;
     if (!roleId) {
-      throw 'roleId is mandatory';
+      throw {message:'roleId is mandatory'};
     }
     if (!permissionId) {
-      throw 'permissionId is mandatory';
+      throw {message:'permissionId is mandatory'};
     }
 
     await AppDataSource.getRepository(PermissionEntity).findOneOrFail({
@@ -43,8 +43,8 @@ export async function assignPermissionToRole(
       )
       .getOne();
     if (rolePermission) {
-      const message = 'Permission is already assigned to role';
-      response.status(500).json(message);
+      const message = {message:'Permission is already assigned to role'};
+      response.status(400).json(message);
       return;
     }
 
