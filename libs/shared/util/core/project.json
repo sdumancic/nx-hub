@@ -7,7 +7,9 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "libs/shared/util/core/jest.config.ts",
         "passWithNoTests": true
@@ -23,5 +25,7 @@
       }
     }
   },
-  "tags": ["util"]
+  "tags": [
+    "util"
+  ]
 }

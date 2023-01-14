@@ -4,6 +4,7 @@ import { AppDataSource } from "../data-source";
 import { logger } from "../../util/logger";
 import { MealEntity } from "../../entities/meal";
 import { getInstrumentationExcludedPaths } from "@angular-devkit/build-angular/src/webpack/utils/helpers";
+import { Like } from "typeorm";
 
 export async function searchMealsByCategory(
   request: Request,
@@ -15,38 +16,20 @@ export async function searchMealsByCategory(
     const categoryId = request.query.categoryId
     const limit= request.query.limit || 10
     const offset = request.query.offset || 0
+    const name = request.query.name ?? ''
 
     const [list,count] = await AppDataSource.getRepository(MealEntity)
-      .findAndCount({
-        select: {
-          id: true,
-          name: true,
-          calories: true,
-          description: true,
-          imageUrl: true,
-          price: true,
-          rating: true,
-          createdAt: true,
-          modifiedAt: true,
-          category: {
-            id: true,
-            name: true
-          }
-        },
-        relations: ['category'],
-        where: {
-            active: true,
-            category: {
-              id: Number(categoryId)
-            }
-        },
-        order: {
-          id: 'ASC',
-        },
-        skip: Number(offset),
-        take: Number(limit)
-      })
-
+      .createQueryBuilder("meal")
+      .innerJoinAndSelect(
+        "meal.category",
+        "category"
+      )
+      .where("meal.active = true and meal.category.id = :categoryId and (upper(meal.name) like :name or upper(meal.description) like :name)", { categoryId: categoryId, name: '%'+String(name).toUpperCase()+'%' })
+      .orderBy("meal.id", "ASC")
+      .take(Number(limit))
+      .skip(Number(offset))
+      .maxExecutionTime(3000)
+      .getManyAndCount()
 
     response.status(201).json({
       list,

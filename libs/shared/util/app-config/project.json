@@ -1,0 +1,27 @@
+{
+  "name": "shared-util-app-config",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/shared/util/app-config/src",
+  "prefix": "hub",
+  "targets": {
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/shared/util/app-config/src/test.ts",
+        "tsConfig": "libs/shared/util/app-config/tsconfig.spec.json",
+        "karmaConfig": "libs/shared/util/app-config/karma.conf.js"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/util/app-config/**/*.ts",
+          "libs/shared/util/app-config/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

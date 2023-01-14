@@ -1,0 +1,33 @@
+<div id="application-navigator">
+  <div class="navigator" [ngClass]="isClosed ? 'close' : ''">
+    <div class="logo-details">
+      <i class="bx bxl-c-plus-plus logo_icon"></i>
+      <span class="logo_name">CodingLab</span>
+      <i class="bx bx-menu expand_icon" (click)="isClosed = !isClosed"></i>
+    </div>
+    <ul class="nav-links">
+      <ng-template ngFor let-item [ngForOf]="items" let-i="index">
+        <hub-navigator-item
+          [isMenuItemOpened]="false"
+          [item]="item"
+        ></hub-navigator-item>
+      </ng-template>
+
+      <li *ngIf="showProfileDetails">
+        <div class="profile-details">
+          <div class="profile-content">
+            <img
+              src="{{avatarUrl}}"
+              alt="profileImg"
+            />
+          </div>
+          <div class="name-job">
+            <div class="profile_name">{{profileName}}</div>
+            <div class="job">{{profileJob}}</div>
+          </div>
+          <i class="bx bx-log-out" (click)="onLogout()"></i>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

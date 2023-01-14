@@ -1,0 +1,16 @@
+<li [ngClass]="isMenuItemOpened ? 'showMenu' : ''">
+  <div class="iocn-link">
+    <a routerLink="{{item?.routerLink}}">
+      <i class="bx {{item?.icon}}"></i>
+      <span class="link_name">{{item?.name}}</span>
+    </a>
+    <i *ngIf="item && item.children && item.children.length > 0" class="bx bxs-chevron-down arrow" (click)="isMenuItemOpened = !isMenuItemOpened"></i>
+  </div>
+  <ul class="sub-menu" *ngIf="item && item.children && item.children.length > 0">
+    <li><a class="link_name">{{item.name}}</a></li>
+    <li *ngFor="let child of item.children">
+      <a routerLink="{{child?.routerLink}}">
+        {{child?.name}}</a>
+    </li>
+  </ul>
+</li>

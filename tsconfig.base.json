@@ -16,10 +16,21 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@hub/feature/food-login": ["libs/feature/food-login/src/index.ts"],
+      "@hub/feature/meal-orders-overview": [
+        "libs/feature/meal-orders-overview/src/index.ts"
+      ],
+      "@hub/shared/feature/meal-search-autocomplete": [
+        "libs/shared/feature/meal-search-autocomplete/src/index.ts"
+      ],
       "@hub/shared/model/food-models": [
         "libs/shared/model/food-models/src/index.ts"
       ],
       "@hub/shared/testlib": ["libs/shared/testlib/src/index.ts"],
+      "@hub/shared/ui/navigator": ["libs/shared/ui/navigator/src/index.ts"],
+      "@hub/shared/util/app-config": [
+        "libs/shared/util/app-config/src/index.ts"
+      ],
       "@hub/shared/util/core": ["libs/shared/util/core/src/index.ts"]
     }
   },

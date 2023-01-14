@@ -1,1 +1,5 @@
-export {calculatePasswordHash} from './lib/calculatePasswordHash';
+
+export * from './lib/calculatePasswordHash';
+
+
+

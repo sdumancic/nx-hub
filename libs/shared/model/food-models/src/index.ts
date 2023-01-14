@@ -1,5 +1,6 @@
-export {Category} from './lib/category/category.interface'
+export {Category,Categories} from './lib/category/category.interface'
 export {Meal} from './lib/meal/meal.interface';
+export {PagedMeals} from './lib/meal/paged-meals.interface';
 export {Topping} from './lib/toppings/topping.interface';
 export {Order} from './lib/order/order.interface';
 export {OrderItem} from './lib/order/order-item.interface';

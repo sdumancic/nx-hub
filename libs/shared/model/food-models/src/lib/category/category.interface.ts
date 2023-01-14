@@ -6,3 +6,7 @@ export interface Category {
   createdAt: Date;
   modifiedAt: Date;
 }
+
+export interface Categories{
+  categories: Category[]
+}

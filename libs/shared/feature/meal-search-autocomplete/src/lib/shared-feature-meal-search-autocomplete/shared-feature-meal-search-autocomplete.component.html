@@ -1,0 +1,57 @@
+<div class="search-container">
+  <div class="search-container__content">
+    <h1>
+      Search meals
+    </h1>
+    <div class="search-input">
+
+      <mat-form-field appearance="outline" id="select-category"  >
+        <mat-label>Select Category</mat-label>
+        <mat-select [(ngModel)]="selectedCategoryId">
+          <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
+            {{category.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" id="search-field">
+        <input
+          type="text"
+          #autocompleteInput
+          matInput
+          placeholder="Enter meal name and press Enter to search"
+          [(ngModel)]="searchVal"
+          (keydown.enter)="searchMeal()"
+          [disabled]="(isCategoriesLoading$ | async)!"
+          [matAutocomplete]="placeAutocomplete"
+        />
+        <mat-autocomplete
+          #placeAutocomplete="matAutocomplete"
+          #matAutoComplete
+          class="meals-search-autocomplete"
+        >
+          <mat-option
+            *ngFor="let meal of mealSuggestions"
+            [value]="displayMealName(meal)"
+            [ngClass]="allowSelection(meal)"
+            (onSelectionChange)="onMealSelected(meal)"
+          >
+            <div>
+            <span>{{displayMealName(meal)}}</span>
+            </div>
+            <div>
+            <small> &nbsp; &nbsp; {{displayMealDescription(meal)}}</small>
+            </div>
+
+          </mat-option>
+        </mat-autocomplete>
+        <mat-spinner
+          *ngIf="isLoading$ | async"
+          matSuffix
+          [diameter]="17"
+        ></mat-spinner>
+      </mat-form-field>
+
+     </div>
+  </div>
+</div>
