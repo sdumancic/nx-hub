@@ -3,11 +3,11 @@
     <h1>
       Search meals
     </h1>
-    <div class="search-input">
+    <div class="search-input" [formGroup]="formGroup">
 
       <mat-form-field appearance="outline" id="select-category"  >
         <mat-label>Select Category</mat-label>
-        <mat-select [(ngModel)]="selectedCategoryId">
+        <mat-select  [formControl]="categoryControl" (selectionChange)="onCategoryChanged()">
           <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
             {{category.name}}
           </mat-option>
@@ -16,35 +16,45 @@
 
       <mat-form-field appearance="outline" id="search-field">
         <input
+          (blur)="onTouched()"
           type="text"
           #autocompleteInput
           matInput
           placeholder="Enter meal name and press Enter to search"
-          [(ngModel)]="searchVal"
-          (keydown.enter)="searchMeal()"
-          [disabled]="(isCategoriesLoading$ | async)!"
+          [readonly]="readonly"
+          [formControl]="mealControl"
           [matAutocomplete]="placeAutocomplete"
         />
+
         <mat-autocomplete
           #placeAutocomplete="matAutocomplete"
-          #matAutoComplete
+          (optionSelected)="onOptionSelected($event.option.value)"
+          [displayWith]="getOptionText"
           class="meals-search-autocomplete"
         >
-          <mat-option
-            *ngFor="let meal of mealSuggestions"
-            [value]="displayMealName(meal)"
-            [ngClass]="allowSelection(meal)"
-            (onSelectionChange)="onMealSelected(meal)"
-          >
-            <div>
-            <span>{{displayMealName(meal)}}</span>
-            </div>
-            <div>
-            <small> &nbsp; &nbsp; {{displayMealDescription(meal)}}</small>
-            </div>
+          <div
+          *ngIf="mealsSearchList$ | async as mealsList"
+          class="meal-autocomplete__options"
+        >
+            <mat-option *ngIf="!mealsList.length" [disabled]="true">
+             No meals found
+            </mat-option>
 
-          </mat-option>
+            <mat-option
+              *ngFor="let meal of mealsList"
+              [value]="meal">
+              <div class="meal-autocomplete__options__main-info">
+                {{ meal.name + ' ($' + meal.price + ')'}}
+              </div>
+
+              <div class="meal-autocomplete__options__additional-info">
+                {{ meal.description + ' (' + meal.calories + ' calories)'}}
+              </div>
+
+            </mat-option>
+          </div>
         </mat-autocomplete>
+
         <mat-spinner
           *ngIf="isLoading$ | async"
           matSuffix

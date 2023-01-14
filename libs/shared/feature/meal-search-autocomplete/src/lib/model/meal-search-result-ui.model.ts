@@ -5,4 +5,5 @@ export interface IMealSearchResultUi {
   description: string|null;
 
   calories: number|null;
+  price: number| null;
 }

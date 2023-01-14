@@ -1,4 +1,4 @@
-import { IMealSearchResultUi } from './meal-search-result-ui.model';
+import { IMealSearchResultUi } from '../model/meal-search-result-ui.model';
 import { Meal, PagedMeals } from '@hub/shared/model/food-models';
 
 export class MealSearchMapper {
@@ -10,6 +10,7 @@ export class MealSearchMapper {
           name: element.name,
           description: element.description,
           calories: element.calories,
+          price: element.price
         } as IMealSearchResultUi)
     );
   }
@@ -19,7 +20,8 @@ export class MealSearchMapper {
       id: null,
       name: null,
       description: null,
-      calories: null
+      calories: null,
+      price: null
     } as IMealSearchResultUi;
   }
 }
