@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MealOrdersDataAccess } from "../data-access/meal-orders-data-access.service";
 import { take } from "rxjs";
 import { SharedFeatureMealSearchAutocompleteComponent } from "@hub/shared/feature/meal-search-autocomplete";
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 
 @Component({
   selector: 'hub-feature-meal-orders-overview',
@@ -12,20 +12,13 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from "@angul
   templateUrl: './feature-meal-orders-overview.component.html',
   styleUrls: ['./feature-meal-orders-overview.component.scss'],
 })
-export class FeatureMealOrdersOverviewComponent implements OnInit{
+export class FeatureMealOrdersOverviewComponent{
 
   form: FormGroup
   constructor(private readonly dataAccess: MealOrdersDataAccess, private readonly formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      meal: new FormControl(null)
+      meal: new FormControl(null, [Validators.required])
     })
-  }
-
-
-
-
-  ngOnInit(): void {
-
   }
 
   setValue() {

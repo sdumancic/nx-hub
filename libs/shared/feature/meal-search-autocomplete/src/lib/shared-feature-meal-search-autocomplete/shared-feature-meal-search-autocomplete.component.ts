@@ -12,17 +12,17 @@ import {
 import { CommonModule } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
 import {
-  AbstractControl,
+  AbstractControl, AsyncValidatorFn,
   ControlValueAccessor,
   FormControl,
   FormGroup,
   FormsModule,
   NG_VALIDATORS,
-  NG_VALUE_ACCESSOR,
+  NG_VALUE_ACCESSOR, NgControl,
   ReactiveFormsModule,
   ValidationErrors,
-  Validator,
-} from '@angular/forms';
+  Validator, ValidatorFn, Validators
+} from "@angular/forms";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {
   MatAutocompleteModule,
@@ -54,6 +54,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MealSearchAutocompleteFormService } from '../form/meal-search-autocomplete-form.service';
 import { IMealSearchUi } from '../model/meal-search-ui.model';
 import { MealSearchMapper } from '../facade/meal-search.mapper';
+import { MealRequiredValidator } from "../facade/meal-required-validator";
 
 @Component({
   selector: 'hub-shared-feature-meal-search-autocomplete',
@@ -76,13 +77,14 @@ import { MealSearchMapper } from '../facade/meal-search.mapper';
   providers: [
     MealSearchFacadeService,
     MealSearchAutocompleteFormService,
-    {
+    /*{
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(
         () => SharedFeatureMealSearchAutocompleteComponent
       ),
       multi: true,
-    },
+    },*/
+    //{provide: NG_VALIDATORS, useExisting: SharedFeatureMealSearchAutocompleteComponent, multi: true}
   ],
 })
 export class SharedFeatureMealSearchAutocompleteComponent
@@ -98,14 +100,15 @@ export class SharedFeatureMealSearchAutocompleteComponent
   private readonly mealsManualList$ = new BehaviorSubject<IMealSearchUi[]>([]);
 
   constructor(
-    // @Optional() @Self()  private readonly controlDirective: NgControl,
+    @Optional() @Self()  private readonly controlDirective: NgControl,
     @Optional() @Self() @Inject(NG_VALIDATORS) validators: any[],
     private readonly cdRef: ChangeDetectorRef,
     private readonly facade: MealSearchFacadeService,
     private readonly formService: MealSearchAutocompleteFormService
   ) {
-    // this.controlDirective.valueAccessor = this;
+    this.controlDirective.valueAccessor = this;
     this.formGroup = this.formService.createFormGroup();
+
   }
 
   onChange: any = (dealer: IMealSearchUi | null) => {
@@ -117,17 +120,60 @@ export class SharedFeatureMealSearchAutocompleteComponent
   };
 
   ngOnInit() {
-    /*const validator = this.controlDirective?.control?.validator
-    if (validator){
-      this.formGroup.setValidators(validator)
-      this.formGroup.updateValueAndValidity()
-      this.controlDirective.control?.setValidators(this.validate.bind(this))
-    }*/
+    this.setControlValidation()
+
     this.fetchCategories();
     this.mealsSearchList$ = merge(
       this.mealsSearchResult$,
       this.mealsManualList$
     );
+  }
+
+  private setControlValidation(){
+    if (this.controlDirective.control?.validator){
+      this.setSyncValidator(
+        this.controlDirective.control.validator,
+        this.controlDirective.control?.hasValidator(Validators.required)
+      )
+    }
+
+    if (this.controlDirective.control?.asyncValidator) {
+      this.setAsyncValidator(this.controlDirective.control.asyncValidator)
+    }
+
+    this.controlDirective.control?.setValidators([this.validate.bind(this)])
+    this.controlDirective.control?.updateValueAndValidity({ emitEvent: false })
+  }
+
+  private setSyncValidator (validator: ValidatorFn, hasRequired: boolean): void {
+    if (!validator) {
+      return
+    }
+
+    this.formGroup.addValidators(validator)
+
+    if (hasRequired) {
+
+      this.formGroup.removeValidators(Validators.required)
+      this.formGroup.addValidators(MealRequiredValidator)
+
+      this.categoryIdControl.removeValidators(Validators.required)
+      this.categoryIdControl.addValidators(Validators.required)
+
+      this.nameControl.removeValidators(Validators.required)
+      this.nameControl.addValidators(Validators.required)
+    }
+
+    this.formGroup.updateValueAndValidity()
+  }
+
+  private setAsyncValidator (asyncValidator: AsyncValidatorFn): void {
+    if (!asyncValidator) {
+      return
+    }
+
+    this.formGroup.addAsyncValidators(asyncValidator)
+    this.formGroup.updateValueAndValidity()
   }
 
   ngAfterViewInit() {
@@ -155,7 +201,6 @@ export class SharedFeatureMealSearchAutocompleteComponent
       this.fetchOneMeal$(Number(value.id))
         .pipe(take(1))
         .subscribe((mealSearchUi) => {
-          console.log(mealSearchUi);
           this.mealsManualList$.next([mealSearchUi]);
           this.formGroup.patchValue(mealSearchUi, { emitEvent: false });
           this.nameControl.setValue(mealSearchUi);
@@ -180,16 +225,7 @@ export class SharedFeatureMealSearchAutocompleteComponent
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    const errors = {
-      ...this.formService.getFormGroupErrors(
-        this.formGroup.get('categoryIdControl') as FormGroup
-      ),
-      ...this.formService.getFormGroupErrors(
-        this.formGroup.get('mealName') as FormGroup
-      ),
-    };
-
-    return Object.keys(errors).length ? errors : null;
+    return this.formGroup.errors
   }
 
   private get mealsSearchResult$(): Observable<IMealSearchUi[] | []> {
@@ -198,12 +234,18 @@ export class SharedFeatureMealSearchAutocompleteComponent
       distinctUntilChanged(),
       filter((value: IMealSearchUi) => !value?.id),
       filter((value: IMealSearchUi) =>
-        value.name?.length ? value.name?.length > 1 : false
+        value.name?.length ? value.name?.length > 0 : false
       ),
+
       switchMap((searchValues: IMealSearchUi) => {
         return this.isValidSearchValue(searchValues)
           ? this.searchMeal$(searchValues)
           : of([]);
+      }),
+      tap((res) => {
+        if (res.length === 0) {
+          this.resetValue()
+        }
       }),
       takeUntil(this.unsubscribe$)
     );
@@ -242,7 +284,6 @@ export class SharedFeatureMealSearchAutocompleteComponent
     return this.facade.searchMeal$(searchValues).pipe(
       delay(1000),
       tap(() => (this.facade.isLoading = false)),
-
       catchError(() => {
         this.facade.isLoading = false;
         return EMPTY;
@@ -284,4 +325,5 @@ export class SharedFeatureMealSearchAutocompleteComponent
     this.mealsManualList$.next([]);
     this.readonly = false;
   }
+
 }
