@@ -14,10 +14,7 @@ export class MealSearchFacadeService implements OnDestroy {
   private readonly _isLoading = new BehaviorSubject<boolean>(false)
   private categoriesSearch$ = new Subject<void>()
   private readonly unsubscribe$ = new Subject()
-  private readonly searchResult$ = new BehaviorSubject<IMealSearchResultUi[]>([])
   private readonly categoriesSearchResult$ = new BehaviorSubject<Category[]>([])
-  public mealSuggestions$ = this.searchResult$.asObservable()
-  public searchFinished$ = new BehaviorSubject<boolean>(false)
   public categories$ = this.categoriesSearchResult$.asObservable()
 
   constructor(private dataAccess: MealSearchDataAccessService) {
@@ -31,12 +28,9 @@ export class MealSearchFacadeService implements OnDestroy {
     this._isLoading.next(value)
   }
 
-
   public fetchCategories(): void {
     this.categoriesSearch$.next()
   }
-
-
 
   public searchMeal$(
     params: IMealSearchParams

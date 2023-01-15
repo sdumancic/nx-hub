@@ -19,7 +19,7 @@ import { MealSearchFacadeService } from '../facade/meal-search-facade.service';
 import {
   BehaviorSubject,
   catchError,
-  debounceTime,
+  debounceTime, delay,
   distinctUntilChanged, EMPTY,
   filter, merge,
   Observable,
@@ -31,7 +31,6 @@ import {
 } from "rxjs";
 import { Category, Meal } from '@hub/shared/model/food-models';
 import { IMealSearchResultUi } from '../model/meal-search-result-ui.model';
-import { MealSearchMapper } from '../facade/meal-search.mapper';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
@@ -64,8 +63,6 @@ export class SharedFeatureMealSearchAutocompleteComponent
   isLoading$ = this.facade.isLoading$;
   categories$: Observable<Category[]> = this.facade.categories$;
   private readonly unsubscribe$ = new Subject();
-  //mealSuggestions: IMealSearchResultUi[] = [];
-
   mealsSearchList$: Observable<IMealSearchResultUi[] | []> | undefined
   private readonly mealsManualList$ = new BehaviorSubject<
     IMealSearchResultUi[]
@@ -94,22 +91,6 @@ export class SharedFeatureMealSearchAutocompleteComponent
           this.formService.categoryIdControl.setValue(val[0].id, {emitEvent:false}) ;
         }
       });
-    /*this.facade.mealSuggestions$
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((val) => {
-        this.mealSuggestions = val;
-        if (val?.length > 0) {
-          this.matAutoCompleteTrigger?.openPanel();
-        } else {
-          if (this.facade.searchFinished$.getValue()) {
-            this.mealSuggestions = [MealSearchMapper.emptyMealSearchResultUi()];
-            this.matAutoCompleteTrigger?.openPanel();
-          } else {
-            this.mealSuggestions = [];
-          }
-        }
-      });
-*/
 
   }
 
@@ -120,6 +101,7 @@ export class SharedFeatureMealSearchAutocompleteComponent
       debounceTime(250),
       distinctUntilChanged(),
       filter(value => !value?.mealName?.id),
+      filter(value => value?.mealName?.length > 1),
       switchMap((searchValues:IMealSearchParams) => {
         return this.isValidSearchValue(searchValues)
           ? this.searchMeal$(searchValues)
@@ -148,7 +130,9 @@ export class SharedFeatureMealSearchAutocompleteComponent
     this.facade.isLoading = true;
 
     return this.facade.searchMeal$(searchValues).pipe(
+      delay(1000),
       tap(() => ( this.facade.isLoading = false)),
+
       catchError(() => {
         this.facade.isLoading = false
         return EMPTY
@@ -166,7 +150,9 @@ export class SharedFeatureMealSearchAutocompleteComponent
     this.facade.fetchCategories();
   }
 
-  onMealSelected(meal: IMealSearchResultUi) {}
+  onMealSelected(meal: IMealSearchResultUi) {
+
+  }
 
   onOptionSelected (meal: IMealSearchResultUi): void {
     //this.readonly = true

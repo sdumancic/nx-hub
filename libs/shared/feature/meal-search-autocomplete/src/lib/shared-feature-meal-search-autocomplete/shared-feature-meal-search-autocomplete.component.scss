@@ -84,8 +84,8 @@
       padding: 0;
       gap: 13px;
 
-      .mat-spinner {
-        top: -4px;
+      #search-field mat-spinner {
+        right:10px;
       }
 
       #select-category {

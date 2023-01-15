@@ -14,14 +14,4 @@ export class MealSearchMapper {
         } as IMealSearchResultUi)
     );
   }
-
-  static emptyMealSearchResultUi(): IMealSearchResultUi {
-    return {
-      id: null,
-      name: null,
-      description: null,
-      calories: null,
-      price: null
-    } as IMealSearchResultUi;
-  }
 }
