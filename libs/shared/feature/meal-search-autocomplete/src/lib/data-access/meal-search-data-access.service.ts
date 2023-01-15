@@ -2,7 +2,7 @@ import { Inject, Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { FOOD_API_BACKEND_URL } from "@hub/shared/util/app-config";
 import { Observable } from "rxjs";
-import { Categories, PagedMeals } from "@hub/shared/model/food-models";
+import { Categories, Meal, PagedMeals } from "@hub/shared/model/food-models";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,11 @@ export class MealSearchDataAccessService {
     return this.http.get<Categories>(`${this.url}/categories`)
   }
 
-  fetchMealsForCategory(categoryId: number, name: string): Observable<PagedMeals>{
+  fetchMealsForCategory(categoryId: number, name: string|null): Observable<PagedMeals>{
     return this.http.get<PagedMeals>(`${this.url}/meals/search?categoryId=${categoryId}&name=${name}&limit=100`)
+  }
+
+  fetchOneMeal(id: number): Observable<Meal>{
+    return this.http.get<Meal>(`${this.url}/meals/${id}`)
   }
 }

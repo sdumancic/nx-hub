@@ -11,7 +11,11 @@ export async function findOneMeal(
   try {
     const mealId = request.params.mealId
     const repository = AppDataSource.getRepository(MealEntity);
-    const meal = await repository.findOneBy({id:Number(mealId)})
+    const meal = await repository.findOne({
+      where:{id:Number(mealId)},
+      relations: ['category']
+    })
+
     if (!meal){
       const message = {
         message: 'Could not find meal with id ' + mealId

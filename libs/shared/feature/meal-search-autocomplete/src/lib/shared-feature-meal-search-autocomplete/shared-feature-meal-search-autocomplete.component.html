@@ -7,7 +7,7 @@
 
       <mat-form-field appearance="outline" id="select-category"  >
         <mat-label>Select Category</mat-label>
-        <mat-select  [formControl]="categoryControl" (selectionChange)="onCategoryChanged()">
+        <mat-select  [formControl]="categoryIdControl" (selectionChange)="onCategoryChanged($event.value)">
           <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
             {{category.name}}
           </mat-option>
@@ -22,9 +22,10 @@
           matInput
           placeholder="At least 2 characters to start search..."
           [readonly]="readonly"
-          [formControl]="mealControl"
+          [formControl]="nameControl"
           [matAutocomplete]="placeAutocomplete"
         />
+        <mat-icon matSuffix (click)="resetValue()" *ngIf="nameControl.value && nameControl.enabled">close</mat-icon>
 
         <mat-autocomplete
           #placeAutocomplete="matAutocomplete"
@@ -58,7 +59,7 @@
         <mat-spinner
           *ngIf="isLoading$ | async"
           matSuffix
-          [diameter]="17"
+          [diameter]="20"
         ></mat-spinner>
       </mat-form-field>
 
