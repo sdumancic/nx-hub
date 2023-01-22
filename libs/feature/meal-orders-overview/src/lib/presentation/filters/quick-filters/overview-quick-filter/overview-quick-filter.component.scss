@@ -1,0 +1,87 @@
+@use '@angular/material' as mat;
+@import './../../../../colors.scss';
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+  padding: 0.4em 0px !important;
+}
+::ng-deep .mat-form-field-label-wrapper {
+  top: -1.5em;
+}
+
+::ng-deep
+.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float
+.mat-form-field-label {
+  transform: translateY(-1.1em) scale(0.75);
+  width: 133.33333%;
+}
+
+
+::ng-deep .ng-select.dropdown {
+  border: 1px solid green;
+}
+
+.quick-filters {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 0.75em;
+  min-height: 50px;
+  padding: 10px 0;
+  margin: 0 40px;
+
+  .brand-dropdown {
+    width: 200px;
+
+    #select-brand {
+      width: 100%;
+    }
+
+    /* Border Color */
+    #select-brand.ng-invalid.ng-touched ::ng-deep .ng-select-container {
+      border-color: red;
+    }
+    /* Arrow Color */
+    #select-brand.ng-invalid.ng-touched ::ng-deep .ng-arrow-wrapper .ng-arrow {
+      border-color: red transparent transparent;
+    }
+    /* Placeholder Color */
+    #select-brand.ng-invalid.ng-touched
+    ::ng-deep
+    .ng-select-container
+    .ng-placeholder {
+      color: red;
+    }
+  }
+
+  &__sidebar-filter-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 38px;
+    min-width: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: transparent;
+    border: 1px solid mat.get-color-from-palette($ef-ux-etc, border);
+    border-radius: 6px;
+    color: mat.get-color-from-palette($ef-ux-light-text, strong);
+
+    .mat-icon {
+      height: 18px;
+      width: 18px;
+      font-size: 18px;
+      color: mat.get-color-from-palette($ef-ui-light-icons, action);
+      margin: 5px;
+    }
+
+    &--active {
+      background-color: rgba(0, 154, 255, 0.05);
+      border-color: rgba(0, 154, 255, 0.3);
+    }
+
+    &__clear {
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+@use '@angular/material' as mat;
+@import '../../../../colors.scss';
+
+.filter-chips {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 6px;
+  margin: 0 44px 0 4px;
+  padding: 6px;
+
+  ::ng-deep .mat-chip-list-wrapper {
+    margin: -8px -4px;
+  }
+
+  &__chip {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 24px;
+    border-radius: 4px;
+    background-color: mat.get-color-from-palette($ef-ui-backgrounds, paper);
+    font-size: 12px;
+    font-weight: 500;
+    color: mat.get-color-from-palette($ef-ui-light-text, default);
+  }
+}

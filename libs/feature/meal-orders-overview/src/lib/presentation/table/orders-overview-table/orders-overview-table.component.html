@@ -1,0 +1,21 @@
+<div class="mat-elevation-z8">
+  <mat-progress-bar mode="indeterminate" *ngIf="datasource.loading$|async"></mat-progress-bar>
+  <table mat-table [dataSource]="datasource" matSort matSortActive="id" matSortDirection="asc" matSortDisableClear>
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let emprow; columns: displayedColumns"  (click)="onRowClicked(row)"></mat-row>
+  </table>
+</div>
+
+<mat-paginator
+  #paginator
+  [pageSizeOptions]="rowsPerPage"
+  [length]="facade.searchCount$|async"
+  [pageSizeOptions]="rowsPerPage"
+  showFirstLastButtons
+></mat-paginator>

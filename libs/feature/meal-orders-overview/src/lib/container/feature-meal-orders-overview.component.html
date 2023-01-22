@@ -1,0 +1,49 @@
+<div
+  [ngClass]="{ 'overview--sidebar-filters-pinned': sidebarPinned$ | async }"
+  class="overview"
+>
+  <hub-orders-overview-header></hub-orders-overview-header>
+  <div class="overview__content">
+    <mat-tab-group
+      #tabGroup
+      class="spare-parts-orders-tab-group"
+      (selectedTabChange)="tabChanged($event)"
+      [(selectedIndex)]="activeTabIndex"
+    >
+      <mat-tab
+        [attr.ef-feature-id]="'spare-parts-orders.overview.tab.all'"
+        label="first"
+      >
+        <ng-template mat-tab-label>
+          <span>Placed</span>
+        </ng-template>
+
+        <hub-orders-overview-table
+          (paginate)="onPaginateOrders($event)"
+          (sortEmitter)="onSortOrders($event)"
+          [searchCount$]="searchCount$"
+          [searchMeta]="searchMeta$ | async"
+
+        ></hub-orders-overview-table>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <span>Dispatched</span>
+        </ng-template>
+
+      </mat-tab>
+      <mat-tab disabled>
+        <ng-template mat-tab-label>
+          <hub-overview-quick-filter
+            [activeTabIndex]="activeTabIndex"
+            (openSidebarFilters)="onOpenSidebarFilters($event)"
+            (allOrdersResetEmitted)="onAllOrdersReset()"
+            (allOrdersSearchEmitted)="onSearch()"
+            (openOrdersSearchEmitted)="onSearch()"
+          ></hub-overview-quick-filter>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

@@ -10,3 +10,6 @@ export {Role} from './lib/auth/role.interface';
 export {UserRole} from './lib/auth/user-role.interface';
 export {Permission} from './lib/auth/permission.interface';
 export {RolePermission} from './lib/auth/role-permission.interface';
+export {PagedOrders} from './lib/order/paged-orders.interface';
+export {PagedToppings} from './lib/toppings/paged-toppings.interface'
+export * from './lib/order/order.interface'

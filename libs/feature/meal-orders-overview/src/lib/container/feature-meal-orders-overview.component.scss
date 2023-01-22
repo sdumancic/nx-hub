@@ -1,0 +1,68 @@
+@use '@angular/material' as mat;
+@import './../colors.scss';
+
+$filtersSidebarWidth: 350px;
+
+.overview {
+  height: 100%;
+
+  &__content {
+    background-color: mat.get-color-from-palette($ef-ui-backgrounds, 'paper');
+
+    ::ng-deep .spare-parts-orders-tab-group .mat-tab-header {
+      margin-bottom: 10px;
+      position: sticky;
+      top: 0px;
+      z-index: 10;
+      height: 57px;
+      padding: 0px 44px;
+
+      .mat-ink-bar {
+        background-color: mat.get-color-from-palette(
+            $ef-ui-backgrounds,
+            'default'
+        );
+      }
+
+      .mat-tab-label {
+        min-width: 70px;
+        height: 60px;
+        align-self: center;
+      }
+
+      .mat-tab-label:last-child {
+        width: 100%;
+        justify-content: flex-end;
+        padding-right: 0;
+      }
+
+      .mat-tab-label-active {
+        font-weight: 600;
+        color: mat.get-color-from-palette($ef-secondary, 500);
+        opacity: 1;
+      }
+    }
+  }
+
+  &--sidebar-filters-pinned {
+    width: calc(100% - #{$filtersSidebarWidth});
+  }
+
+  ::ng-deep &__sidebar-filters-dialog {
+    mat-dialog-container {
+      padding: 0 !important;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: $filtersSidebarWidth;
+      overflow: hidden;
+      border-radius: 0;
+      border: 1px solid #f0f1f4;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  &__sidebar-filters-dialog-backdrop {
+    background: none;
+  }
+}

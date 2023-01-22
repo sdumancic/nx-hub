@@ -50,7 +50,7 @@ export async function fetchOrders(
       relations: ['orderItems','orderItems.toppingsItems','orderItems.meal'],
       where: {
         status: Equal(statusValue),
-        datePlaced: Between(datePlacedFromValue,datePlacedToValue)
+        datePlaced: datePlacedFromValue ? Between(datePlacedFromValue,datePlacedToValue) : null
       },
       order: {
         id: 'ASC',

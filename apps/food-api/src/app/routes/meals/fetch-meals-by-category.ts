@@ -3,7 +3,6 @@ import { CategoryEntity } from '../../entities/category';
 import { AppDataSource } from "../data-source";
 import { logger } from "../../util/logger";
 import { MealEntity } from "../../entities/meal";
-import { getInstrumentationExcludedPaths } from "@angular-devkit/build-angular/src/webpack/utils/helpers";
 import { Like } from "typeorm";
 
 export async function searchMealsByCategory(

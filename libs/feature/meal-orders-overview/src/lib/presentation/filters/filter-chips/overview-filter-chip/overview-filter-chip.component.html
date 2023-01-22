@@ -1,0 +1,20 @@
+<div *ngIf="filterChips && filterChips.length" class="filter-chips">
+  <mat-chip-grid>
+    <ng-container *ngFor="let filterChip of filterChips">
+      <mat-chip
+        (removed)="filterChipRemoved.emit(filterChip.controlKey)"
+        [removable]="filterChip.removable"
+        class="filter-chips__chip"
+        disableRipple
+      >
+        {{ filterChip.term }} {{filterChip.value}}
+
+        <ef-icon
+          *ngIf="filterChip.removable"
+          icon="close"
+          matChipRemove
+        ></ef-icon>
+      </mat-chip>
+    </ng-container>
+  </mat-chip-grid>
+</div>

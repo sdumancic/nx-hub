@@ -1,0 +1,31 @@
+<form [formGroup]="formGroup" class="quick-filters">
+  <!--Search-->
+
+  <!--Sidebar filter button-->
+  <ng-container *ngIf="{ activeCount: activeFiltersCount$ | async } as filters">
+    <button
+      type="button"
+      (click)="openSidebarFilter()"
+      [ngClass]="{
+        'quick-filters__sidebar-filter-button--active': filters.activeCount
+      }"
+      class="quick-filters__sidebar-filter-button"
+      ef-feature-id="spare-parts-orders.overview.quick-filters.open-sidebar-filters"
+    >
+      <ef-icon icon="filter_list"></ef-icon>
+
+      <hub-overview-filter-counter
+        [activeFiltersCount]="filters.activeCount"
+      ></hub-overview-filter-counter>
+
+      <ef-icon
+        (click)="resetFilters($event)"
+        *ngIf="filters.activeCount"
+        class="quick-filters__sidebar-filter-button__clear"
+        ef-feature-id="spare-parts-orders.overview.quick-filters.button.reset-filters"
+        icon="close"
+      >
+      </ef-icon>
+    </button>
+  </ng-container>
+</form>

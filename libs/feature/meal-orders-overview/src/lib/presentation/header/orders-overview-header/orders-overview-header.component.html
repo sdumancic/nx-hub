@@ -1,0 +1,16 @@
+<div class="header">
+  <h1 class="header__title">Meal Orders
+  </h1>
+
+  <div class="header__buttons">
+    <button mat-flat-button color="primary" (click)="createNewOrder()">Create Order</button>
+
+    <button
+      (click)="actionsClick.emit()"
+      class="header__buttons--actions"
+      mat-flat-button
+          >
+      <mat-icon>more_horiz</mat-icon>
+    </button>
+  </div>
+</div>

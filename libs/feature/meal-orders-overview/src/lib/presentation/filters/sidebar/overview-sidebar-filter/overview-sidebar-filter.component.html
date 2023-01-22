@@ -1,0 +1,89 @@
+<div class="sidebar">
+  <div class="sidebar__header">
+    <mat-icon
+      (click)="closeSidebar()"
+      class="sidebar__header--close-sidebar"
+       >close
+    </mat-icon>
+
+    <hub-overview-filter-counter
+      [activeFiltersCount]="activeFiltersCount$ | async"
+      class="sidebar__header--title"
+    ></hub-overview-filter-counter>
+
+    <mat-icon
+      (click)="pinSidebar()"
+      [ngClass]="{ 'sidebar__header--pin-icon-active': sidebarPinned$ | async }"
+      class="sidebar__header--pin-icon"
+    >push_pin
+    </mat-icon>
+  </div>
+
+  <hub-overview-filter-chip
+    (filterChipRemoved)="onFilterChipRemoval($event)"
+    [filterChips]="filterChips$ | async"
+  ></hub-overview-filter-chip>
+
+  <mat-divider></mat-divider>
+
+  <form [formGroup]="formGroup" class="sidebar__filters">
+    <div class="sidebar__filters--filter">
+      <label>Categories</label>
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-select
+          formControlName="category"
+          multiple
+          placeholder="Select categories"
+        >
+          <mat-option
+            *ngFor="let category of categoryLov$ | async"
+            [value]="category.id"
+          >
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!--Date created from-->
+    <div class="sidebar__filters--filter-50-percent">
+      <label>Date created</label>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          [matDatepicker]="dateCreatedFromEl"
+          placeholder="Created from"
+          formControlName="dateCreatedFrom"
+          name="'dateCreatedFrom'"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="dateCreatedFromEl"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #dateCreatedFromEl></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="sidebar__filters--filter-50-percent">
+      <mat-form-field appearance="outline" class="margin-top-20">
+        <input
+          matInput
+          [matDatepicker]="dateCreatedToEl"
+          placeholder="Date created to"
+          formControlName="dateCreatedTo"
+          name="'dateCreatedTo'"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="dateCreatedToEl"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #dateCreatedToEl></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div class="sidebar__action-buttons">
+    <button mat-stroked-button color="primary" (click)="onReset()">Reset</button>
+    <button mat-stroked-button color="primary" (click)="onSearch()">Search</button>
+  </div>
+</div>
