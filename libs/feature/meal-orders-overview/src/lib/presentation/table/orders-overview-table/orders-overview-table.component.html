@@ -7,8 +7,54 @@
       <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="datePlaced">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Date placed</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.datePlaced }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dateDispatched">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Date dispatched</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.dateDispatched }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="paymentMethod">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Payment</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.paymentMethod }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="orderTotalNoVat">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Total (no VAT)</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.orderTotalNoVat }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="orderTotalWithVat">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Total (with VAT)</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.orderTotalWithVat }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="deliveryAddress">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Address</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.deliveryAddress }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="deliveryCity">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>City</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.deliveryCity }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="deliveryLocation">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Location</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div class="lat-long">
+          <span>  Lat: {{ element.deliveryLocationLat }} </span>
+          <span>  Lon: {{ element.deliveryLocationLon }} </span>
+        </div>
+        <i class='bx bx-map' (click)="onLocationClicked($event, element)"></i>
+      </mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let emprow; columns: displayedColumns"  (click)="onRowClicked(row)"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"  (click)="onRowClicked(row)"></mat-row>
   </table>
 </div>
 

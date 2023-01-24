@@ -29,9 +29,9 @@ export class MealOrdersOverviewMapper {
       (element) =>
         ({
           id: element.id,
-          datePlaced: element.datePlaced.toISOString(),
-          dateDispatched: element.dateDispatched.toISOString(),
-          dateCompleted: element.dateCompleted.toISOString(),
+          datePlaced: element.datePlaced ? new Date(element.datePlaced).toLocaleString('hr-HR') : null,
+          dateDispatched:  element.dateDispatched ? new Date(element.dateDispatched).toLocaleString('hr-HR') : null,
+          dateCompleted: element.dateCompleted ? new Date(element.dateCompleted).toLocaleString('hr-HR'): null,
           status: element.status,
           paymentMethod: element.paymentMethod,
           orderTotalNoVat: element.orderTotalNoVat,

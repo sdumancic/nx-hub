@@ -73,6 +73,7 @@ export class MealOrdersOverviewFacadeService implements OnDestroy{
 
   search(searchValues: IMealOrdersOverviewSearchUi): void {
     this.state.resetSearchValues(searchValues);
+    this.search$.next()
   }
 
   paginate(index: number, size: number): void {
@@ -88,13 +89,14 @@ export class MealOrdersOverviewFacadeService implements OnDestroy{
     this.state.snapshot?.searchCount > 1 && this.search$.next(undefined);
   }
 
-  getDefaultSearchValues(
+  getDefaultSearchValues(status?: string[]
   ): IMealOrdersOverviewSearchUi {
     const now = moment(new Date()).utc(true).endOf('day');
     const monthAgo = moment(new Date()).utc(true).startOf('day');
     monthAgo.subtract(1, 'M');
     return {
       ...SEARCH_VALUES_DEFAULT,
+      status: status ? status: [],
       datePlacedFrom: monthAgo.toISOString(),
       datePlacedTo: now.toISOString(),
     };

@@ -28,6 +28,7 @@ import {
 } from "../presentation/header/orders-overview-header/orders-overview-header.component";
 import { OrdersOverviewService } from "../business/orders-overview.service";
 import { MealOrdersOverviewStateService } from "../facade/state/meal-orders-overview-state.service";
+import { SharedFeatureGoogleMapsDialogComponent } from "@hub/shared/feature/google-maps-dialog";
 
 @Component({
   selector: 'hub-feature-meal-orders-overview',
@@ -55,7 +56,8 @@ export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
     private readonly matDialog: MatDialog,
     private readonly viewContainerRef: ViewContainerRef,
     private readonly ordersFormService: OrdersOverviewFormService,
-    private readonly filtersService: OrdersOverviewFiltersService
+    private readonly filtersService: OrdersOverviewFiltersService,
+    public dialog: MatDialog
   ) {}
 
   @HostListener('click') onContainerClick(): void {
@@ -63,7 +65,7 @@ export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
-    this.setDefaultValuesAndSearch();
+    this.setDefaultValuesAndSearch(['placed']);
     //this.ordersFacade.refreshMetadata();
   }
 
@@ -136,17 +138,12 @@ export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
   async tabChanged(event: MatTabChangeEvent): Promise<void> {
     this.activeTabIndex = event.index;
     this.setActiveTab(event.index);
-    this.setDefaultValuesAndSearch();
+    this.setDefaultValuesAndSearch(['placed']);
   }
 
-  private setDefaultValuesAndSearch(openOrderStatus?: string): void {
+  private setDefaultValuesAndSearch(status: string[]): void {
     this.ordersFacade.resetState();
-    let searchValues: IMealOrdersOverviewSearchUi;
-    if (openOrderStatus) {
-      searchValues = this.ordersFacade.getDefaultSearchValues();
-    } else {
-      searchValues = this.ordersFacade.getDefaultSearchValues();
-    }
+    const searchValues: IMealOrdersOverviewSearchUi = this.ordersFacade.getDefaultSearchValues(status);
     this.ordersFormService.formGroup.patchValue(searchValues, {
       emitEvent: false,
     });
@@ -157,5 +154,18 @@ export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
     this.ordersFacade.reset();
     this.ordersFormService.formGroup.reset({ emitEvent: false });
     this.onSearch();
+  }
+
+  onShowLocation(order: IOrdersOverviewSearchResultUi) {
+
+      const dialogRef = this.dialog.open(SharedFeatureGoogleMapsDialogComponent, {
+        height: '800px',
+        width: '700px',
+        data: {order},
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
   }
 }

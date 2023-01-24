@@ -20,6 +20,9 @@
       "@hub/feature/meal-orders-overview": [
         "libs/feature/meal-orders-overview/src/index.ts"
       ],
+      "@hub/shared/feature/google-maps-dialog": [
+        "libs/shared/feature/google-maps-dialog/src/index.ts"
+      ],
       "@hub/shared/feature/meal-search-autocomplete": [
         "libs/shared/feature/meal-search-autocomplete/src/index.ts"
       ],

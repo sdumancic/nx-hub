@@ -19,16 +19,16 @@ import {
 } from "../../filter-counter/overview-filter-counter/overview-filter-counter.component";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { MatButtonModule } from "@angular/material/button";
 
 
 @Component({
   selector: 'hub-overview-quick-filter',
   standalone: true,
-  imports: [CommonModule, MatIconModule, OverviewFilterCounterComponent, ReactiveFormsModule, MatFormFieldModule, MatInputModule],
+  imports: [CommonModule, MatIconModule, OverviewFilterCounterComponent, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './overview-quick-filter.component.html',
   styleUrls: ['./overview-quick-filter.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
 
 })
 export class OverviewQuickFilterComponent implements OnInit, OnDestroy{
@@ -57,6 +57,7 @@ export class OverviewQuickFilterComponent implements OnInit, OnDestroy{
   }
 
   resetFilters (event: Event): void {
+    console.log('reset filter')
     event.stopPropagation()
     if (this.activeTabIndex === 0) {
       this.allOrdersResetEmitted.emit()
@@ -89,6 +90,7 @@ export class OverviewQuickFilterComponent implements OnInit, OnDestroy{
   }
 
   openSidebarFilter (): void {
+    console.log('button click')
     this.openSidebarFilters.emit(this.activeTabIndex)
   }
 }

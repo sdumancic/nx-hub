@@ -8,33 +8,19 @@
   padding: 10px 30px 10px 40px;
   background-color: white;
 
+  &__title {
+    margin: 0;
+  }
   &__buttons {
     display: flex;
     gap: 10px;
+    align-items:center;
 
     button {
       transition: all 300ms ease;
       margin-right: 10px;
     }
 
-    &--actions {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-width: 46px;
 
-      background-color: mat.get-color-from-palette(
-          $ef-ui-backgrounds,
-          secondary-button
-      );
-
-      &:hover:not([disabled]) {
-        background-color: lighten(
-            mat.get-color-from-palette($ef-ui-backgrounds, 'secondary-button'),
-            10%
-        );
-        box-shadow: rgba(0, 0, 0, 0.04) 0 0 3px 5px;
-      }
-    }
   }
 }

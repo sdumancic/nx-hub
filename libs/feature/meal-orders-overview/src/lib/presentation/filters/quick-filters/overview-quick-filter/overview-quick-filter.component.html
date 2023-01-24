@@ -10,22 +10,20 @@
         'quick-filters__sidebar-filter-button--active': filters.activeCount
       }"
       class="quick-filters__sidebar-filter-button"
-      ef-feature-id="spare-parts-orders.overview.quick-filters.open-sidebar-filters"
     >
-      <ef-icon icon="filter_list"></ef-icon>
+      <mat-icon >filter_list</mat-icon>
 
       <hub-overview-filter-counter
         [activeFiltersCount]="filters.activeCount"
       ></hub-overview-filter-counter>
 
-      <ef-icon
+      <mat-icon
         (click)="resetFilters($event)"
         *ngIf="filters.activeCount"
         class="quick-filters__sidebar-filter-button__clear"
-        ef-feature-id="spare-parts-orders.overview.quick-filters.button.reset-filters"
-        icon="close"
-      >
-      </ef-icon>
+
+      >close
+      </mat-icon>
     </button>
   </ng-container>
 </form>

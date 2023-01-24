@@ -23,6 +23,7 @@
           (sortEmitter)="onSortOrders($event)"
           [searchCount$]="searchCount$"
           [searchMeta]="searchMeta$ | async"
+          (showLocation)="onShowLocation($event)"
 
         ></hub-orders-overview-table>
       </mat-tab>
@@ -31,6 +32,26 @@
         <ng-template mat-tab-label>
           <span>Dispatched</span>
         </ng-template>
+        <hub-orders-overview-table
+          (paginate)="onPaginateOrders($event)"
+          (sortEmitter)="onSortOrders($event)"
+          [searchCount$]="searchCount$"
+          [searchMeta]="searchMeta$ | async"
+
+        ></hub-orders-overview-table>
+
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <span>Closed</span>
+        </ng-template>
+        <hub-orders-overview-table
+          (paginate)="onPaginateOrders($event)"
+          (sortEmitter)="onSortOrders($event)"
+          [searchCount$]="searchCount$"
+          [searchMeta]="searchMeta$ | async"
+
+        ></hub-orders-overview-table>
 
       </mat-tab>
       <mat-tab disabled>

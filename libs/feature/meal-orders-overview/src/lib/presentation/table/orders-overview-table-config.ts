@@ -22,33 +22,43 @@ export const ORDERS_OVERVIEW_DISPLAYED_COLUMNS: IDataColumnConfig[] = [
     width: 50
   },
   {
-    displayed: false,
+    displayed: true,
     name: 'datePlaced',
     width: 100
   },
   {
-    displayed: false,
+    displayed: true,
     name: 'dateDispatched',
     width: 100
   },
   {
-    displayed: false,
+    displayed: true,
     name: 'paymentMethod',
     width: 100
   },
   {
-    displayed: false,
+    displayed: true,
     name: 'orderTotalNoVat',
     width: 100
   },
   {
-    displayed: false,
+    displayed: true,
     name: 'orderTotalWithVat',
     width: 150
   },
   {
-    displayed: false,
+    displayed: true,
     name: 'deliveryAddress',
     width: 150
+  },
+  {
+    displayed: true,
+    name: 'deliveryCity',
+    width: 150
+  },
+  {
+    displayed: true,
+    name: 'deliveryLocation',
+    width: 100
   }
 ]

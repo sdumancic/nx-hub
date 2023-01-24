@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from "@angular/core";
 import { Category, Topping } from "@hub/shared/model/food-models";
-import { distinctUntilChanged, mapTo, merge, Observable, Subject, takeUntil, zip } from "rxjs";
+import { combineLatest, distinctUntilChanged, mapTo, merge, Observable, Subject, takeUntil, zip } from "rxjs";
 import {
   CATEGORY_CONTROL_KEY,
   IMealOrdersOverviewSearchUi,
@@ -69,7 +69,7 @@ export class OrdersOverviewFiltersService implements OnDestroy {
   }
 
   private subscribeToMetadataChanges(): void {
-    zip(this.facade.categories$, this.facade.toppings$)
+    combineLatest(this.facade.categories$, this.facade.toppings$)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((data: [Category[], Topping[]]) => {
         const [categories, toppings] = data;

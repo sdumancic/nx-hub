@@ -26,11 +26,12 @@ import { MealOrdersOverviewMapper } from "../../../facade/meal-orders-overview.m
 import { MatTableModule } from "@angular/material/table";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MealOrdersOverviewFacadeService } from "../../../facade/meal-orders-overview-facade.service";
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
   selector: 'hub-orders-overview-table',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatPaginatorModule, MatProgressBarModule, MatSortModule],
+  imports: [CommonModule, MatTableModule, MatPaginatorModule, MatProgressBarModule, MatSortModule, MatIconModule],
   templateUrl: './orders-overview-table.component.html',
   styleUrls: ['./orders-overview-table.component.scss']
 })
@@ -48,6 +49,7 @@ export class OrdersOverviewTableComponent implements OnInit, AfterViewInit, OnDe
   @Output() selectionChange = new EventEmitter<
     IOrdersOverviewSearchResultUi[]
   >()
+  @Output() showLocation = new EventEmitter<IOrdersOverviewSearchResultUi>()
 
 
   @ViewChild('paginator') paginator: MatPaginator;
@@ -114,6 +116,14 @@ export class OrdersOverviewTableComponent implements OnInit, AfterViewInit, OnDe
 
   onRowClicked(row) {
     console.log('Row clicked: ', row);
+  }
+
+
+  onLocationClicked(event: MouseEvent, order: IOrdersOverviewSearchResultUi) {
+    event.stopPropagation();
+    this.showLocation.next(order);
+
+
   }
 
 }

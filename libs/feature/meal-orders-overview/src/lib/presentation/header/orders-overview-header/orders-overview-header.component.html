@@ -3,14 +3,12 @@
   </h1>
 
   <div class="header__buttons">
-    <button mat-flat-button color="primary" (click)="createNewOrder()">Create Order</button>
+    <button mat-flat-button color="primary" (click)="createNewOrder()"><mat-icon>add</mat-icon>Create Order</button>
 
-    <button
-      (click)="actionsClick.emit()"
-      class="header__buttons--actions"
-      mat-flat-button
-          >
-      <mat-icon>more_horiz</mat-icon>
+    <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="actionsClick.emit()">
+      <mat-icon>more_vert</mat-icon>
     </button>
+
+
   </div>
 </div>

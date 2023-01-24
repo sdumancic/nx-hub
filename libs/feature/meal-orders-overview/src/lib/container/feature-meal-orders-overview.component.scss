@@ -9,37 +9,25 @@ $filtersSidebarWidth: 350px;
   &__content {
     background-color: mat.get-color-from-palette($ef-ui-backgrounds, 'paper');
 
-    ::ng-deep .spare-parts-orders-tab-group .mat-tab-header {
-      margin-bottom: 10px;
+    ::ng-deep .spare-parts-orders-tab-group mat-tab-header {
       position: sticky;
       top: 0px;
       z-index: 10;
       height: 57px;
-      padding: 0px 44px;
+      padding: 0px 20px;
 
-      .mat-ink-bar {
-        background-color: mat.get-color-from-palette(
-            $ef-ui-backgrounds,
-            'default'
-        );
-      }
-
-      .mat-tab-label {
+      .mdc-tab {
+        flex-grow: 0;
         min-width: 70px;
         height: 60px;
         align-self: center;
       }
 
-      .mat-tab-label:last-child {
-        width: 100%;
+      .mdc-tab:last-child {
+        flex-grow: 1;
         justify-content: flex-end;
         padding-right: 0;
-      }
-
-      .mat-tab-label-active {
-        font-weight: 600;
-        color: mat.get-color-from-palette($ef-secondary, 500);
-        opacity: 1;
+        opacity:1;
       }
     }
   }

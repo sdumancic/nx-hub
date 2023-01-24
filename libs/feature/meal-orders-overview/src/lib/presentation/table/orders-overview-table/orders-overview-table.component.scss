@@ -1,0 +1,18 @@
+.mat-column-deliveryLocation{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap:12px;
+
+  .lat-long{
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    justify-content: center;
+  }
+
+  i{
+    font-size: 26px;
+  }
+}

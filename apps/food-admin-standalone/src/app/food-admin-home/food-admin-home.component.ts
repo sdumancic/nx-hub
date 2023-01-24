@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterLinkWithHref, RouterOutlet } from '@angular/router';
-import { SharedUiNavigatorComponent } from '@hub/shared/ui/navigator';
+import { Component } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { RouterLinkWithHref, RouterOutlet } from "@angular/router";
+import { SharedUiNavigatorComponent } from "@hub/shared/ui/navigator";
 import { environment } from "../../environments/environment";
 
 @Component({
@@ -18,10 +18,17 @@ import { environment } from "../../environments/environment";
   styleUrls: ['./food-admin-home.component.scss'],
 })
 export class FoodAdminHomeComponent {
-
-  url: string
+  private readonly foodApiUrl: string;
+  private readonly googleMapsApiKey: string;
   constructor() {
-    this.url = environment.foodApi
+    this.foodApiUrl = environment.foodApi;
+    this.googleMapsApiKey = environment.googleMapsApiKey;
+    console.log(
+      'this.url',
+      this.foodApiUrl,
+      ' this.googleMapsApiKey',
+      this.googleMapsApiKey
+    );
   }
   menuItems = [
     {
@@ -66,6 +73,6 @@ export class FoodAdminHomeComponent {
   ];
 
   onLogout() {
-    console.log('logout')
+    console.log('logout');
   }
 }
