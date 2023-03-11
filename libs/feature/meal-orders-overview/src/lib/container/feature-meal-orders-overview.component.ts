@@ -29,6 +29,7 @@ import {
 import { OrdersOverviewService } from "../business/orders-overview.service";
 import { MealOrdersOverviewStateService } from "../facade/state/meal-orders-overview-state.service";
 import { SharedFeatureGoogleMapsDialogComponent } from "@hub/shared/feature/google-maps-dialog";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'hub-feature-meal-orders-overview',
@@ -57,7 +58,9 @@ export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
     private readonly viewContainerRef: ViewContainerRef,
     private readonly ordersFormService: OrdersOverviewFormService,
     private readonly filtersService: OrdersOverviewFiltersService,
-    public dialog: MatDialog
+    private readonly router: Router,
+    public dialog: MatDialog,
+    private route: ActivatedRoute
   ) {}
 
   @HostListener('click') onContainerClick(): void {
@@ -65,8 +68,7 @@ export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
-    this.setDefaultValuesAndSearch(['placed']);
-    //this.ordersFacade.refreshMetadata();
+    this.setDefaultValuesAndSearch('placed');
   }
 
   ngOnDestroy(): void {
@@ -84,15 +86,6 @@ export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
 
   onOpenSidebarFilters(tabIndex: number): void {
     if (
-      tabIndex === 0 &&
-      this.matDialog.getDialogById(ORDERS_OVERVIEW_SIDEBAR_FILTERS_DIALOG) !=
-        null
-    ) {
-      return;
-    }
-
-    if (
-      tabIndex === 1 &&
       this.matDialog.getDialogById(ORDERS_OVERVIEW_SIDEBAR_FILTERS_DIALOG) !=
         null
     ) {
@@ -106,7 +99,7 @@ export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
         viewContainerRef: this.viewContainerRef,
         hasBackdrop: false,
         autoFocus: false,
-        backdropClass: 'overview__sidebar-filters-dialog-backdrop',
+        position: { right: '0px', top: '0px' },
         panelClass: 'overview__sidebar-filters-dialog',
       }
     );
@@ -116,14 +109,6 @@ export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
         takeUntil(this.sidebarDialogRef.afterClosed()),
         endWith(false)
       );
-    /*
-    this.sidebarDialogRef.componentInstance.resetAllStatusesEmitted
-      .pipe(takeUntil(this.sidebarDialogRef.afterClosed()))
-      .subscribe(() => this.onAllOrdersReset());
-
-    this.sidebarDialogRef.componentInstance.resetOpenStatusesEmitted
-      .pipe(takeUntil(this.sidebarDialogRef.afterClosed()))
-      .subscribe(() => this.onOpenOrdersReset());*/
   }
 
   onSearch(): void {
@@ -138,10 +123,17 @@ export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
   async tabChanged(event: MatTabChangeEvent): Promise<void> {
     this.activeTabIndex = event.index;
     this.setActiveTab(event.index);
-    this.setDefaultValuesAndSearch(['placed']);
+    if (this.activeTabIndex === 0) {
+      this.setDefaultValuesAndSearch('placed');
+    } else if (this.activeTabIndex === 1) {
+      this.setDefaultValuesAndSearch('dispatched');
+    } else if (this.activeTabIndex === 2) {
+      this.setDefaultValuesAndSearch('closed');
+    }
+
   }
 
-  private setDefaultValuesAndSearch(status: string[]): void {
+  private setDefaultValuesAndSearch(status: string): void {
     this.ordersFacade.resetState();
     const searchValues: IMealOrdersOverviewSearchUi = this.ordersFacade.getDefaultSearchValues(status);
     this.ordersFormService.formGroup.patchValue(searchValues, {
@@ -167,5 +159,9 @@ export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
       });
+  }
+
+  onCreateNewOrder() {
+    this.router.navigate(['shell','orders','edit','new']);
   }
 }

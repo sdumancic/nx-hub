@@ -39,10 +39,10 @@ export class MealEntity implements Meal {
   @Column({type: "decimal", precision: 10, scale: 2, default: 0, nullable: true})
   rating: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({name:'created_at'})
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({name:'modified_at', nullable:false})
   modifiedAt: Date;
 
   @ManyToOne(() => CategoryEntity, (category) => category.meals)

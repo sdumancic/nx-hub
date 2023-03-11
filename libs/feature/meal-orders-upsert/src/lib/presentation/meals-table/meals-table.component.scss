@@ -1,0 +1,110 @@
+:host {
+
+  ::ng-deep thead mat-header-row {
+    .mat-column-imageUrl {
+      flex: 0 0 150px;
+    }
+    .mat-column-name {
+      flex: 0 0 400px;
+    }
+    .mat-column-price {
+      flex: 0 0 100px;
+    }
+  }
+  ::ng-deep tbody mat-row {
+    .mat-column-imageUrl {
+      flex: 0 0 150px;
+
+      img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+      }
+
+    }
+
+    .mat-column-name {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      flex: 0 0 400px;
+
+      .name {
+        font-size: larger;
+      }
+
+      .description {
+        font-size: smaller;
+      }
+
+      .calories {
+        font-size: smaller;
+      }
+    }
+    .mat-column-price {
+      flex: 0 0 100px;
+    }
+    .mat-column-quantity {
+      display:flex;
+      flex-direction: column;
+      flex: 0 0 150px;
+      align-items: center;
+      justify-content: center;
+
+      input[type='number'] {
+        -moz-appearance:textfield;
+      }
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+
+      .qty-input{
+        height: 38px;
+        max-width: 80px;
+        font-size: 14px;
+        font-weight: 600;
+        background-color: transparent;
+        border: 1px solid rgba(#555555, 0.25);
+        //border-radius: 6px;
+        text-align: center;
+        color: #555555;
+        pointer-events: all;
+      }
+
+      .qty-btns{
+        display:flex;
+      }
+      .action-btn{
+
+          z-index: 100;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 38px;
+          min-width: 40px;
+          font-size: 14px;
+          font-weight: 600;
+          background-color: transparent;
+          border: 1px solid rgba(#555555, 0.25);
+         // border-radius: 6px;
+          color: #555555;
+          pointer-events: all;
+
+          //background-color: rgba(0, 154, 255, 0.05);
+          //border-color: rgba(0, 154, 255, 0.3);
+
+          .mat-icon {
+            height: 18px;
+            width: 18px;
+            font-size: 18px;
+            color: #051e48;
+            margin: 5px;
+          }
+
+      }
+    }
+  }
+}

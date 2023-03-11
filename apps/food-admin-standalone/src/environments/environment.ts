@@ -1,5 +1,6 @@
 export const environment = {
   production: false,
   foodApi: '',
-  googleMapsApiKey:''
+  googleMapsApiKey:'',
+  locale:''
 };

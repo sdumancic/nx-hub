@@ -58,7 +58,12 @@ export const ORDERS_OVERVIEW_DISPLAYED_COLUMNS: IDataColumnConfig[] = [
   },
   {
     displayed: true,
-    name: 'deliveryLocation',
-    width: 100
+    name: 'map',
+    width: 50
+  },
+  {
+    displayed: true,
+    name: 'actions',
+    width: 50
   }
 ]

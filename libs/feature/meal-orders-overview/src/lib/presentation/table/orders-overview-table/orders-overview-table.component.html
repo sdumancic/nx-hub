@@ -1,6 +1,6 @@
 <div class="mat-elevation-z8">
   <mat-progress-bar mode="indeterminate" *ngIf="datasource.loading$|async"></mat-progress-bar>
-  <table mat-table [dataSource]="datasource" matSort matSortActive="id" matSortDirection="asc" matSortDisableClear>
+  <table mat-table [dataSource]="datasource" matSort matSortActive="id" matSortDirection="asc" matSortDisableClear (matSortChange)="onSort($event)" >
 
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
@@ -12,9 +12,9 @@
       <mat-cell *matCellDef="let element">{{ element.datePlaced }}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="dateDispatched">
+    <ng-container matColumnDef="dateDispatched" >
       <mat-header-cell *matHeaderCellDef mat-sort-header>Date dispatched</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{ element.dateDispatched }}</mat-cell>
+      <mat-cell *matCellDef="let element">{{ element.dateDispatched }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="paymentMethod">
@@ -42,19 +42,27 @@
       <mat-cell *matCellDef="let element">{{ element.deliveryCity }}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="deliveryLocation">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Location</mat-header-cell>
+    <ng-container matColumnDef="map">
+      <mat-header-cell *matHeaderCellDef>Show map</mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <div class="lat-long">
-          <span>  Lat: {{ element.deliveryLocationLat }} </span>
-          <span>  Lon: {{ element.deliveryLocationLon }} </span>
-        </div>
-        <i class='bx bx-map' (click)="onLocationClicked($event, element)"></i>
+        <button mat-icon-button [disabled]="!element.deliveryLocationLat || !element.deliveryLocationLon ">
+          <i class='bx bx-map' (click)="onLocationClicked($event, element)"></i>
+        </button>
+
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button  [matMenuTriggerFor]="actionsMenu" [matMenuTriggerData]="{element}" aria-label="Show order actions">
+          <mat-icon>more_vert</mat-icon>
+        </button>
       </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns"  (click)="onRowClicked(row)"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"   class="example-element-row"></mat-row>
   </table>
 </div>
 
@@ -63,5 +71,24 @@
   [pageSizeOptions]="rowsPerPage"
   [length]="facade.searchCount$|async"
   [pageSizeOptions]="rowsPerPage"
+  (page)="onPageEvent($event)"
   showFirstLastButtons
 ></mat-paginator>
+
+
+<mat-menu #actionsMenu="matMenu">
+  <ng-template matMenuContent let-element="element">
+  <button mat-menu-item (click)="onClickEdit(element)">
+    <i class='bx bxs-edit'></i>
+    Edit
+  </button>
+  <button mat-menu-item>
+    <i class='bx bxs-truck'></i>
+    Dispatch
+  </button>
+  <button mat-menu-item>
+    <i class='bx bx-window-close' ></i>
+    Cancel
+  </button>
+  </ng-template>
+</mat-menu>

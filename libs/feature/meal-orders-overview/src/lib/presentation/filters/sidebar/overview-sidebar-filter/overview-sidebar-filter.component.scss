@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 @import './../../../../colors.scss';
 
-.sidebar {
+.drawer {
   width: 350px;
   margin-left: 24px;
   height: 100vh;
@@ -18,7 +18,7 @@
     background-color: #fff;
     margin-left: -16px;
 
-    &--close-sidebar {
+    &--close-drawer {
       display: flex;
       align-items: center;
       color: mat.get-color-from-palette($ef-ux-light-icons, descriptive);

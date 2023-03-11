@@ -2,7 +2,7 @@
   [ngClass]="{ 'overview--sidebar-filters-pinned': sidebarPinned$ | async }"
   class="overview"
 >
-  <hub-orders-overview-header></hub-orders-overview-header>
+  <hub-orders-overview-header (createNewOrderClick)="onCreateNewOrder()"></hub-orders-overview-header>
   <div class="overview__content">
     <mat-tab-group
       #tabGroup
@@ -11,7 +11,6 @@
       [(selectedIndex)]="activeTabIndex"
     >
       <mat-tab
-        [attr.ef-feature-id]="'spare-parts-orders.overview.tab.all'"
         label="first"
       >
         <ng-template mat-tab-label>
@@ -19,12 +18,12 @@
         </ng-template>
 
         <hub-orders-overview-table
-          (paginate)="onPaginateOrders($event)"
-          (sortEmitter)="onSortOrders($event)"
+          [sourceTab]="1"
           [searchCount$]="searchCount$"
           [searchMeta]="searchMeta$ | async"
           (showLocation)="onShowLocation($event)"
-
+          (paginate)="onPaginateOrders($event)"
+          (sortEmitter)="onSortOrders($event)"
         ></hub-orders-overview-table>
       </mat-tab>
 
@@ -33,6 +32,7 @@
           <span>Dispatched</span>
         </ng-template>
         <hub-orders-overview-table
+          [sourceTab]="2"
           (paginate)="onPaginateOrders($event)"
           (sortEmitter)="onSortOrders($event)"
           [searchCount$]="searchCount$"
@@ -46,6 +46,7 @@
           <span>Closed</span>
         </ng-template>
         <hub-orders-overview-table
+          [sourceTab]="3"
           (paginate)="onPaginateOrders($event)"
           (sortEmitter)="onSortOrders($event)"
           [searchCount$]="searchCount$"

@@ -1,0 +1,27 @@
+{
+  "name": "shared-ui-stepper",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/stepper/src",
+  "prefix": "hub",
+  "targets": {
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/shared/ui/stepper/src/test.ts",
+        "tsConfig": "libs/shared/ui/stepper/tsconfig.spec.json",
+        "karmaConfig": "libs/shared/ui/stepper/karma.conf.js"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/stepper/**/*.ts",
+          "libs/shared/ui/stepper/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

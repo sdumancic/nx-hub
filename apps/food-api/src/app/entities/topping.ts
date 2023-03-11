@@ -26,7 +26,7 @@ export class ToppingEntity implements Topping {
   @CreateDateColumn({name: 'created_at'})
   createdAt: Date;
 
-  @UpdateDateColumn({name: 'modified_at'})
+  @UpdateDateColumn({name: 'modified_at', nullable: true})
   modifiedAt: Date;
 
   @OneToMany(() => MealToppingEntity, mealTopping => mealTopping.topping)

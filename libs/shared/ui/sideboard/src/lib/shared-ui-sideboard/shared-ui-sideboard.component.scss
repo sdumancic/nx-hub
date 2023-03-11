@@ -1,0 +1,44 @@
+:host{
+  .mat-icon {
+    cursor: pointer;
+  }
+
+  .sidebar-main {
+    flex: 1 0 auto;
+    background: rgba(5, 30, 72, 0.04);
+    border-radius: 6px;
+    padding: 12px 20px 20px 20px;
+    margin-bottom: 20px;
+
+    .sidebar-widget-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      justify-items: stretch;
+      align-items: center;
+
+      ::ng-deep .left-side {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 2px;
+
+        .title {
+          font-weight: 500; color: #051E48; font-size: 15px;
+        }
+      }
+    }
+
+    .sidebar-widget-main {
+      padding-top: 15px;
+    }
+
+    .sidebar-divider {
+      height: 1px;
+      background:rgba(5, 30, 72, 0.15);
+      opacity: 0.5;
+      margin-top: 6px;
+      margin-right: -20px;
+    }
+  }
+}

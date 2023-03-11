@@ -1,0 +1,27 @@
+{
+  "name": "feature-employees-overview",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/feature/employees-overview/src",
+  "prefix": "hub",
+  "targets": {
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/feature/employees-overview/src/test.ts",
+        "tsConfig": "libs/feature/employees-overview/tsconfig.spec.json",
+        "karmaConfig": "libs/feature/employees-overview/karma.conf.js"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/feature/employees-overview/**/*.ts",
+          "libs/feature/employees-overview/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,27 @@
+{
+  "name": "shared-ui-sideboard",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/sideboard/src",
+  "prefix": "hub",
+  "targets": {
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/shared/ui/sideboard/src/test.ts",
+        "tsConfig": "libs/shared/ui/sideboard/tsconfig.spec.json",
+        "karmaConfig": "libs/shared/ui/sideboard/karma.conf.js"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/sideboard/**/*.ts",
+          "libs/shared/ui/sideboard/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

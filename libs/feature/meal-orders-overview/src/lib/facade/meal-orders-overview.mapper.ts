@@ -13,7 +13,7 @@ import {
 } from "@hub/shared/model/food-models";
 import { IOrdersOverviewSearchResultUi } from "../presentation/table/orders-overview-search-result.ui.model";
 import { OverviewFilterChipTypeEnum } from "../presentation/filters/filter-chips/overview-filter-chip.model";
-import { FILTER_KEY_REMOVABLE, FILTER_KEY_VALUE_TYPE } from "../forms/meal-orders-overview-search.ui.model";
+import { FILTER_CHIPS_DATA} from "../forms/meal-orders-overview-search.ui.model";
 import { IDatatableSortDirection } from "../presentation/table/orders-overview-table-config";
 
 enum SortDirection {
@@ -36,8 +36,8 @@ export class MealOrdersOverviewMapper {
           paymentMethod: element.paymentMethod,
           orderTotalNoVat: element.orderTotalNoVat,
           orderTotalWithVat: element.orderTotalWithVat,
-          deliveryLocationLon: element.deliveryLocation.coordinates[0],
-          deliveryLocationLat: element.deliveryLocation.coordinates[1],
+          deliveryLocationLon: element.deliveryLocation?.coordinates? element.deliveryLocation?.coordinates[0] : null,
+          deliveryLocationLat: element.deliveryLocation?.coordinates ? element.deliveryLocation.coordinates[1] : null,
           deliveryAddress: element.deliveryAddress,
           deliveryCity: element.deliveryCity,
           notes: element.notes
@@ -62,13 +62,16 @@ export class MealOrdersOverviewMapper {
   }
 
   static getFilterType(filterKey: string): OverviewFilterChipTypeEnum {
-    return FILTER_KEY_VALUE_TYPE.get(filterKey);
+    console.log(filterKey);
+    return FILTER_CHIPS_DATA.get(filterKey).type;
   }
 
   static getFilterRemovable(filterKey: string): boolean {
-    return FILTER_KEY_REMOVABLE.get(filterKey);
+    return FILTER_CHIPS_DATA.get(filterKey).removable;
   }
-
+  static getFilterLabel(filterKey: string): string {
+    return FILTER_CHIPS_DATA.get(filterKey).label;
+  }
 
   static getSortingDirection (
     direction: IDatatableSortDirection

@@ -1,0 +1,14 @@
+<div class="app-container">
+  <hub-shared-ui-navigator
+    id="navigator"
+    [items]="menuItems"
+    [showProfileDetails]="true"
+    profileJob="Programmer"
+    profileName="Sanjin Dumančić"
+    (logoutEmitter)="onLogout()"
+  ></hub-shared-ui-navigator>
+  <div id="main">
+
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,113 +1,128 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from "@angular/core";
-import { CommonModule } from '@angular/common';
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatSelectModule } from "@angular/material/select";
-import { MatDatepickerModule } from "@angular/material/datepicker";
+import { ChangeDetectionStrategy, Component, EventEmitter, Inject, OnDestroy, OnInit, Output } from "@angular/core";
+import { CommonModule } from "@angular/common";
 import { BehaviorSubject, filter, Observable, skip, Subject, takeUntil } from "rxjs";
 import { Category, Topping } from "@hub/shared/model/food-models";
-import { FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { FormGroup } from "@angular/forms";
 import { IOverviewFilterChip } from "../../filter-chips/overview-filter-chip.model";
 import { OrdersOverviewFiltersService } from "../../service/orders-overview-filters.service";
 import { MealOrdersOverviewFacadeService } from "../../../../facade/meal-orders-overview-facade.service";
 import { OrdersOverviewFormService } from "../../../../forms/orders-overview-form.service";
 import { MatDialogRef } from "@angular/material/dialog";
-import { MatDividerModule } from "@angular/material/divider";
+import { materialModules } from "../../../../material";
 import { OverviewFilterChipComponent } from "../../filter-chips/overview-filter-chip/overview-filter-chip.component";
 import {
   OverviewFilterCounterComponent
 } from "../../filter-counter/overview-filter-counter/overview-filter-counter.component";
-import { MatIconModule } from "@angular/material/icon";
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
+import {
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+  MAT_MOMENT_DATE_FORMATS,
+  MomentDateAdapter
+} from "@angular/material-moment-adapter";
+import { CUSTOM_DATE_FORMATS } from "@hub/shared/util/app-config";
 
 export const ORDERS_OVERVIEW_SIDEBAR_FILTERS_DIALOG =
-  'orders-overview-sidebar-filters-dialog'
+  'orders-overview-sidebar-filters-dialog';
 
 @Component({
   selector: 'hub-overview-sidebar-filter',
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule, MatSelectModule, MatDatepickerModule, ReactiveFormsModule, MatDividerModule, OverviewFilterChipComponent, OverviewFilterCounterComponent, MatIconModule],
+  imports: [CommonModule, ...materialModules, OverviewFilterChipComponent, OverviewFilterCounterComponent],
   templateUrl: './overview-sidebar-filter.component.html',
   styleUrls: ['./overview-sidebar-filter.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers:[
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+    },
+    {provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS},
+    {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}}
+  ]
 })
 export class OverviewSidebarFilterComponent implements OnInit, OnDestroy {
-  @Output() resetAllStatusesEmitted = new EventEmitter<void>()
-  @Output() resetOpenStatusesEmitted = new EventEmitter<void>()
-  categoryLov$: Observable<Category[]> =
-    this.ordersFacade.categories$
+  @Output() resetAllStatusesEmitted = new EventEmitter<void>();
+  @Output() resetOpenStatusesEmitted = new EventEmitter<void>();
+  categoryLov$: Observable<Category[]> = this.ordersFacade.categories$;
 
-  toppingLov$: Observable<Topping[]> =
-    this.ordersFacade.toppings$
+  toppingLov$: Observable<Topping[]> = this.ordersFacade.toppings$;
 
-  formGroup: FormGroup
-  activeFiltersCount$: Observable<number>
-  filterChips$: Observable<IOverviewFilterChip[]>
+  formGroup: FormGroup;
+  activeFiltersCount$: Observable<number>;
+  filterChips$: Observable<IOverviewFilterChip[]>;
 
-  private readonly pinned$ = new BehaviorSubject<boolean>(false)
-  private readonly unsubscribe$ = new Subject<void>()
+  private readonly pinned$ = new BehaviorSubject<boolean>(false);
+  private readonly unsubscribe$ = new Subject<void>();
 
-  constructor (
+  constructor(
     private readonly filtersService: OrdersOverviewFiltersService,
     private readonly ordersFacade: MealOrdersOverviewFacadeService,
     private readonly formService: OrdersOverviewFormService,
-    private readonly dialogRef: MatDialogRef<OverviewSidebarFilterComponent>
+    private readonly dialogRef: MatDialogRef<OverviewSidebarFilterComponent>,
+    @Inject(MAT_DATE_LOCALE) private _locale: string,
+    private _adapter: DateAdapter<any>,
+
   ) {}
 
-  ngOnInit (): void {
-    this.formGroup = this.formService.formGroup
-    this.activeFiltersCount$ = this.filtersService.activeFiltersCount$
-    this.filterChips$ = this.filtersService.appliedFilterChips$
-    this.listenContainerClick()
+  ngOnInit(): void {
+    this.formGroup = this.formService.formGroup;
+    this.activeFiltersCount$ = this.filtersService.activeFiltersCount$;
+    this.filterChips$ = this.filtersService.appliedFilterChips$;
+    this.listenContainerClick();
+    this._adapter.setLocale(this._locale);
   }
 
-  get sidebarPinned$ (): Observable<boolean> {
-    return this.pinned$.asObservable()
+  get sidebarPinned$(): Observable<boolean> {
+    return this.pinned$.asObservable();
   }
 
-  closeSidebar (): void {
-    this.pinned$.next(false)
-    this.dialogRef.close()
+  closeSidebar(): void {
+    this.pinned$.next(false);
+    this.dialogRef.close();
   }
 
-  pinSidebar (): void {
-    this.pinned$.next(!this.pinned$.value)
-    this.dialogRef.disableClose = this.pinned$.value
+  pinSidebar(): void {
+    this.pinned$.next(!this.pinned$.value);
+    this.dialogRef.disableClose = this.pinned$.value;
   }
 
-  get activeTabIndex (): number {
-    return this.ordersFacade.activeTabIndex
+  get activeTabIndex(): number {
+    return this.ordersFacade.activeTabIndex;
   }
 
-  onReset (): void {
+  onReset(): void {
     if (this.activeTabIndex === 0) {
-      this.resetAllStatusesEmitted.next()
+      this.resetAllStatusesEmitted.next();
     } else {
-      this.resetOpenStatusesEmitted.next()
+      this.resetOpenStatusesEmitted.next();
     }
   }
 
-  onSearch (): void {
-    this.ordersFacade.search(this.formService.formGroupRawValue)
+  onSearch(): void {
+    this.ordersFacade.search(this.formService.formGroupRawValue);
   }
 
-  onFilterChipRemoval (controlKey: string): void {
+  onFilterChipRemoval(controlKey: string): void {
+    console.log(controlKey);
     this.formService.formGroup
       .get(controlKey)
-      .setValue(null, { emitEvent: false })
-    this.onSearch()
+      .setValue(null, { emitEvent: false });
+    this.onSearch();
   }
 
-  private listenContainerClick (): void {
+  private listenContainerClick(): void {
     this.filtersService.containerClicks$
       .pipe(
         skip(1),
         filter(() => !this.pinned$.value),
         takeUntil(this.unsubscribe$)
       )
-      .subscribe(() => this.closeSidebar())
+      .subscribe(() => this.closeSidebar());
   }
 
-  ngOnDestroy (): void {
-    this.unsubscribe$.next()
-    this.unsubscribe$.complete()
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

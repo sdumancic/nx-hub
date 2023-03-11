@@ -1,0 +1,40 @@
+{
+  "addresses": [
+    {
+      "id": 1,
+      "buildingNo": "1A",
+      "city": "Zagreb",
+      "street": "Radnička 70A",
+      "zipCode": 10000
+    },
+    {
+      "id": 2,
+      "buildingNo": "2A",
+      "city": "Čakovec",
+      "street": "Vukovarska 1",
+      "zipCode": 10000
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "firstName": "Sanjin",
+      "lastName": "Dumančić",
+      "username": "sdumancic",
+      "primaryAddress": {
+        "id": 1,
+        "buildingNo": "1A",
+        "city": "Zagreb",
+        "street": "Radnička 70A",
+        "zipCode": 10000
+      },
+      "secondaryAddress": {
+        "id": 2,
+        "buildingNo": "2A",
+        "city": "Čakovec",
+        "street": "Vukovarska 1",
+        "zipCode": 10000
+      }
+    }
+  ]
+}

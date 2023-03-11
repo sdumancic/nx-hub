@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-10 offset-md-1 offset-lg-1 col-sm-12">
+      <div>
+        <div class="mb-5">
+          <h3>Address overview</h3>
+        </div>
+        <div class="d-flex justify-content-between mb-5">
+          <div>
+            <input type="text" class="form-control" placeholder="Search address..." autocomplete="off">
+          </div>
+          <div>
+            <a (click)="onAdd()" class="p-2">
+              <button class="btn btn-success">Add address</button>
+            </a>
+            <a (click)="onDelete()">
+              <button class="btn btn-warning">Delete address</button>
+            </a>
+          </div>
+        </div>
+
+        <div style="overflow-x:auto">
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Building #</th>
+              <th scope="col">City</th>
+              <th scope="col">Street</th>
+              <th scope="col">Zip code</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

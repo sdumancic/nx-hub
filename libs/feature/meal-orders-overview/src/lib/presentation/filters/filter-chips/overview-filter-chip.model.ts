@@ -1,6 +1,6 @@
 export class IOverviewFilterChip {
   controlKey: string
-  term?: string
+  label: string
   value: string
   type: OverviewFilterChipTypeEnum
   removable: boolean

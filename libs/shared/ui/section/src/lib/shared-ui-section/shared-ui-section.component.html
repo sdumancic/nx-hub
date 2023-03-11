@@ -1,0 +1,28 @@
+<mat-card >
+  <div class="header-container">
+    <mat-icon>{{ icon }}</mat-icon>
+    <mat-card-header>
+      <mat-card-title
+      ><ng-content select="[title]"></ng-content
+      ></mat-card-title>
+      <mat-card-subtitle
+      ><ng-content select="[sub-title]"></ng-content
+      ></mat-card-subtitle>
+      <div class="title-right">
+        <ng-content select="[title-right]"></ng-content>
+      </div>
+    </mat-card-header>
+  </div>
+  <mat-divider inset></mat-divider>
+  <mat-card-content>
+    <ng-content select="[content]"></ng-content>
+  </mat-card-content>
+  <mat-divider inset></mat-divider>
+  <mat-card-actions>
+    <ng-content select="[actions]"></ng-content>
+
+  </mat-card-actions>
+  <mat-card-footer>
+    <ng-content select="[footer]"></ng-content>
+  </mat-card-footer>
+</mat-card>

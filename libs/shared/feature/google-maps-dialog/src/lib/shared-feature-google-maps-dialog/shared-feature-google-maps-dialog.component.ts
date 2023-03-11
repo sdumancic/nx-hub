@@ -5,8 +5,6 @@ import {
   HttpClient,
   HttpClientJsonpModule,
   HttpClientModule,
-  provideHttpClient,
-  withJsonpSupport,
 } from '@angular/common/http';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { GOOGLE_MAPS_API_KEY } from '@hub/shared/util/app-config';
@@ -16,10 +14,10 @@ import {
   MatDialogRef,
   MatDialogModule,
 } from '@angular/material/dialog';
-import { IOrdersOverviewSearchResultUi } from '../../../../../../feature/meal-orders-overview/src/lib/presentation/table/orders-overview-search-result.ui.model';
 
 export interface GoogleMapsDialogData {
-  order: IOrdersOverviewSearchResultUi;
+  deliveryLocationLat: number;
+  deliveryLocationLon: number;
 }
 @Component({
   selector: 'hub-shared-feature-google-maps-dialog',
@@ -52,8 +50,8 @@ export class SharedFeatureGoogleMapsDialogComponent {
     mapDirectionsService: MapDirectionsService
   ) {
     this.center = {
-      lat: this.data.order.deliveryLocationLat,
-      lng: this.data.order.deliveryLocationLon,
+      lat: this.data.deliveryLocationLat,
+      lng: this.data.deliveryLocationLon,
     };
     this.markerPositions.push(this.center);
 
@@ -67,7 +65,7 @@ export class SharedFeatureGoogleMapsDialogComponent {
         map(() => true),
         tap((val) => {
           const request: google.maps.DirectionsRequest = {
-            destination: {lat: this.data.order.deliveryLocationLat, lng: this.data.order.deliveryLocationLon},
+            destination: {lat: this.data.deliveryLocationLat, lng: this.data.deliveryLocationLon},
             origin: {lat: 46.30828357545585, lng: 16.346560089618418},
             travelMode: google.maps.TravelMode.DRIVING
           };

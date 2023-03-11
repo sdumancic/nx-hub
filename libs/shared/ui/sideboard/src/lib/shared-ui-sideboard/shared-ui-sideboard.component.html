@@ -1,0 +1,19 @@
+<div class="sidebar-main">
+
+  <div class="sidebar-widget-header">
+    <div class="left-side">
+      <ng-content select="[title]"></ng-content>
+      <ng-content select="[sub-title]"></ng-content>
+    </div>
+    <div class="right-side">
+      <ng-content select="[title-right]"></ng-content>
+    </div>
+  </div>
+
+  <div class="sidebar-divider"></div>
+
+  <div class="sidebar-widget-main">
+    <ng-content select="[content]"></ng-content>
+  </div>
+
+</div>

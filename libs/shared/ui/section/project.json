@@ -1,0 +1,27 @@
+{
+  "name": "shared-ui-section",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/section/src",
+  "prefix": "hub",
+  "targets": {
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/shared/ui/section/src/test.ts",
+        "tsConfig": "libs/shared/ui/section/tsconfig.spec.json",
+        "karmaConfig": "libs/shared/ui/section/karma.conf.js"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/section/**/*.ts",
+          "libs/shared/ui/section/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

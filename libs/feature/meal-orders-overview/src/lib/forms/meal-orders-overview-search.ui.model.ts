@@ -1,9 +1,10 @@
 import { OverviewFilterChipTypeEnum } from "../presentation/filters/filter-chips/overview-filter-chip.model";
+import * as moment from "moment";
 
 export interface IMealOrdersOverviewSearchUi {
-  status: string[],
-  datePlacedFrom: string,
-  datePlacedTo: string,
+  status: string,
+  datePlacedFrom: moment.Moment,
+  datePlacedTo: moment.Moment,
   dateDispatchedFrom: string,
   dateDispatchedTo: string,
   dateCompletedFrom: string,
@@ -21,36 +22,23 @@ export const CATEGORY_CONTROL_KEY = 'category'
 export const TOPPING_CONTROL_KEY = 'topping'
 
 
-export const FILTER_KEY_VALUE_TYPE: Map<string, OverviewFilterChipTypeEnum> =
-  new Map<string, OverviewFilterChipTypeEnum>([
-    ['status', OverviewFilterChipTypeEnum.string],
-    ['datePlacedFrom', OverviewFilterChipTypeEnum.date],
-    ['datePlacedTo', OverviewFilterChipTypeEnum.date],
-    ['dateDispatchedFrom', OverviewFilterChipTypeEnum.date],
-    ['dateDispatchedTo', OverviewFilterChipTypeEnum.date],
-    ['dateCompletedFrom', OverviewFilterChipTypeEnum.date],
-    ['orderTotalFrom', OverviewFilterChipTypeEnum.number],
-    ['orderTotalTo', OverviewFilterChipTypeEnum.number],
-    ['dateCreatedFrom', OverviewFilterChipTypeEnum.date],
-    ['dateCreatedTo', OverviewFilterChipTypeEnum.date],
-    ['deliveryCity', OverviewFilterChipTypeEnum.string],
-    ['deliveryAddress', OverviewFilterChipTypeEnum.string]
-  ])
-
-export const FILTER_KEY_REMOVABLE: Map<string, boolean> = new Map<
-string,
-boolean
->([
-  ['status', false],
-  ['datePlacedFrom', true],
-  ['datePlacedTo', true],
-  ['dateDispatchedFrom', true],
-  ['dateDispatchedTo', true],
-  ['dateCompletedFrom', true],
-  ['orderTotalFrom', true],
-  ['orderTotalTo', true],
-  ['dateCreatedFrom', true],
-  ['dateCreatedTo', true],
-  ['deliveryCity', true],
-  ['deliveryAddress', true]
+interface ChipData{
+  removable:boolean
+  type: OverviewFilterChipTypeEnum,
+  label: string
+}
+export const FILTER_CHIPS_DATA: Map<string, ChipData> = new Map<string, ChipData>([
+  ['status', {removable: false, type: OverviewFilterChipTypeEnum.string, label: 'Status:'}],
+  ['category', {removable: true, type: OverviewFilterChipTypeEnum.string, label: 'Category:'}],
+  ['datePlacedFrom', {removable: true, type: OverviewFilterChipTypeEnum.date,label: 'Placed from:'}],
+  ['datePlacedTo', {removable: true, type: OverviewFilterChipTypeEnum.date,label: 'Placed to:'}],
+  ['dateDispatchedFrom', {removable: true, type: OverviewFilterChipTypeEnum.date,label: 'Dispatched from:'}],
+  ['dateDispatchedTo', {removable: true,type: OverviewFilterChipTypeEnum.date,label: 'Dispatched to:'}],
+  ['dateCompletedFrom', {removable: true, type: OverviewFilterChipTypeEnum.date,label: 'Completed from:'}],
+  ['orderTotalFrom', {removable: true, type: OverviewFilterChipTypeEnum.date,label: 'Order total from:'}],
+  ['orderTotalTo', {removable: true, type: OverviewFilterChipTypeEnum.number,label: 'Order total to:'}],
+  ['dateCreatedFrom', {removable: true, type: OverviewFilterChipTypeEnum.date,label: 'Created from:'}],
+  ['dateCreatedTo', {removable: true, type: OverviewFilterChipTypeEnum.date,label: 'Created to:'}],
+  ['deliveryCity', {removable: true, type: OverviewFilterChipTypeEnum.string,label: 'Delivery city:'}],
+  ['deliveryAddress', {removable: true, type: OverviewFilterChipTypeEnum.date,label: 'Delivery address:'}]
 ])

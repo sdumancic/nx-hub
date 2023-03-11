@@ -14,37 +14,37 @@ export class UserEntity implements User {
   email: string;
 
 
-  @Column()
+  @Column({name: 'first_name'})
   firstName: string;
 
-  @Column()
+  @Column({name: 'last_name'})
   lastName: string;
 
-  @Column()
+  @Column({name: 'address'})
   address: string;
 
-  @Column()
+  @Column({name: 'city'})
   city: string;
 
-  @Column()
+  @Column({name: 'state'})
   state: string;
 
-  @Column()
+  @Column({name: 'password_hash'})
   passwordHash: string;
 
-  @Column()
+  @Column({name: 'password_salt'})
   passwordSalt: string;
 
-  @Column({nullable: true})
+  @Column({nullable: true, name: 'picture_url'})
   pictureUrl: string;
 
-  @Column({default: true})
+  @Column({default: true, name:'active'})
   active: boolean;
 
-  @CreateDateColumn()
+  @CreateDateColumn({name: 'created_at'})
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({name: 'modified_at', nullable: true})
   modifiedAt: Date
 
   @OneToMany(() => UserRoleEntity, userRole => userRole.user)

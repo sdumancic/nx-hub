@@ -1,30 +1,38 @@
-import { Column, CreateDateColumn, Entity, Index, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { Category } from "@hub/shared/model/food-models";
-import { MealEntity } from "./meal";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  Index,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { Category } from '@hub/shared/model/food-models';
+import { MealEntity } from './meal';
 
 @Entity({
-  name: 'category'
+  name: 'category',
 })
 export class CategoryEntity implements Category {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ name: 'name', nullable:true })
   @Index({ unique: true })
   name: string;
 
-  @Column()
+  @Column({ name: 'icon_url', nullable: true })
   iconUrl: string;
 
-  @Column()
+  @Column({ name: 'active' })
   active: boolean;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn()
-  modifiedAt: Date
+  @UpdateDateColumn({ name: 'modified_at', nullable: true })
+  modifiedAt: Date;
 
-  @OneToMany(() => MealEntity, meal => meal.category)
-  meals: MealEntity[]
+  @OneToMany(() => MealEntity, (meal) => meal.category)
+  meals: MealEntity[];
 }

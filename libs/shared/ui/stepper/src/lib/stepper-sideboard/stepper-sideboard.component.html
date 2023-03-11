@@ -1,0 +1,55 @@
+<div class="stepper-sidebar">
+  <header class="header">
+    <div class="header__wrapper">
+      <div>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+      </div>
+      <div class="header-nav">
+        <span class="header__title">{{ title }}</span>
+        <div class="header-nav__wrapper">
+          <div
+            *ngFor="let step of steps; let i = index; let last = last"
+            class="header-step"
+          >
+            <div
+              (click)="selectStepByIndex(i)"
+              class="header-step__item"
+              [class.header-step__item--active]="selectedIndex === i"
+              [class.header-step__item--inactive]="selectedIndex !== i"
+              [class.header-step__item--completed]="step.completed"
+            >
+              <ng-container
+                *ngIf="step.stepLabel; else showLabelText"
+                [ngTemplateOutlet]="step.stepLabel.template"
+              >
+              </ng-container>
+              <ng-template #showLabelText>
+                {{ step.label }}
+              </ng-template>
+            </div>
+            <div *ngIf="!last" class="header-step__separator">•</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="main">
+    <div class="content">
+      <div></div>
+      <div>
+        <div [ngTemplateOutlet]="selected ? selected.content : null"></div>
+      </div>
+      <div></div>
+    </div>
+
+    <div class="sidebar">
+      <ng-content select="[sidebar]"></ng-content>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <ng-content select="[footer]"></ng-content>
+  </div>
+</div>

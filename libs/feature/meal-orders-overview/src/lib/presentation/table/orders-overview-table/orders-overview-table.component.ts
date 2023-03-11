@@ -23,22 +23,20 @@ import {
   ORDERS_OVERVIEW_DISPLAYED_COLUMNS
 } from "../orders-overview-table-config";
 import { MealOrdersOverviewMapper } from "../../../facade/meal-orders-overview.mapper";
-import { MatTableModule } from "@angular/material/table";
-import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MealOrdersOverviewFacadeService } from "../../../facade/meal-orders-overview-facade.service";
-import { MatIconModule } from "@angular/material/icon";
+import { materialModules } from "../../../material";
+import { Tabs } from "../../../facade/tabs";
 
 @Component({
   selector: 'hub-orders-overview-table',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatPaginatorModule, MatProgressBarModule, MatSortModule, MatIconModule],
+  imports: [CommonModule,...materialModules],
   templateUrl: './orders-overview-table.component.html',
   styleUrls: ['./orders-overview-table.component.scss']
 })
-export class OrdersOverviewTableComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges{
+export class OrdersOverviewTableComponent implements OnInit, OnDestroy, OnChanges{
 
-
-
+  @Input() sourceTab: Tabs;
   @Input() searchCount$: Observable<number>
   @Input() searchMeta: ISearchMeta
   @Input() timeFormat = 'HH:mm'
@@ -60,7 +58,12 @@ export class OrdersOverviewTableComponent implements OnInit, AfterViewInit, OnDe
 
    selection = new SelectionModel<IOrdersOverviewSearchResultUi>(true, [])
 
-  displayedColumns = ORDERS_OVERVIEW_DISPLAYED_COLUMNS.filter(el => el.displayed).map(el => el.name)
+  displayedColumns = ORDERS_OVERVIEW_DISPLAYED_COLUMNS
+    .filter(el => el.displayed)
+    .map(el => el.name)
+
+
+
   rowsPerPage = [10, 25, 50, 100]
   sortConfig: IDatatableSortEvent
 
@@ -80,25 +83,13 @@ export class OrdersOverviewTableComponent implements OnInit, AfterViewInit, OnDe
     this.emitSelectionChange()
   }
 
-  ngAfterViewInit(): void {
-    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(
-        tap(() => console.log('call facade to fetch page'))
-      )
-      .subscribe();
-  }
-
   ngOnDestroy (): void {
     this.unsubscribe$.next()
     this.unsubscribe$.complete()
   }
 
-   onSort (event: IDatatableSortEvent): void {
-    this.sortEmitter.emit({
-      direction: MealOrdersOverviewMapper.getSortingDirection(event.direction),
-      active: event.column ?? ''
-    })
+   onSort (sort: Sort): void {
+    this.sortEmitter.emit(sort)
   }
 
   private setSortConfig (searchMeta: ISearchMeta): void {
@@ -114,11 +105,6 @@ export class OrdersOverviewTableComponent implements OnInit, AfterViewInit, OnDe
       .subscribe(() => this.selectionChange.emit(this.selection.selected))
   }
 
-  onRowClicked(row) {
-    console.log('Row clicked: ', row);
-  }
-
-
   onLocationClicked(event: MouseEvent, order: IOrdersOverviewSearchResultUi) {
     event.stopPropagation();
     this.showLocation.next(order);
@@ -126,4 +112,11 @@ export class OrdersOverviewTableComponent implements OnInit, AfterViewInit, OnDe
 
   }
 
+  onClickEdit(element: any) {
+    console.log('clicked on ', element);
+  }
+
+  onPageEvent(page: PageEvent) {
+    this.paginate.emit(page);
+  }
 }

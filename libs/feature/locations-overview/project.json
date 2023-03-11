@@ -1,0 +1,27 @@
+{
+  "name": "feature-locations-overview",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/feature/locations-overview/src",
+  "prefix": "hub",
+  "targets": {
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/feature/locations-overview/src/test.ts",
+        "tsConfig": "libs/feature/locations-overview/tsconfig.spec.json",
+        "karmaConfig": "libs/feature/locations-overview/karma.conf.js"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/feature/locations-overview/**/*.ts",
+          "libs/feature/locations-overview/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

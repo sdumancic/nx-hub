@@ -1,0 +1,119 @@
+<shared-ui-stepper-sideboard #cdkStepper [title]="'This is title'">
+  <cdk-step>
+    <ng-template cdkStepLabel> Basic information</ng-template>
+    <shared-ui-section-group [title]="'Meals'">
+      <shared-ui-section [icon]="'add_shopping_cart'">
+        <ng-container title>
+
+          <div class="search-meal-container">
+            <div class="search-meal-container__category">
+              <mat-form-field appearance="outline">
+                <mat-label>Category</mat-label>
+                <mat-select [(ngModel)]="selectedCategoryId" name="category">
+                  <mat-option *ngFor="let category of categories$|async" [value]="category.id">
+                    {{ category.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="search-meal-container__search">
+              <mat-form-field appearance="outline">
+                <mat-label>Meal name</mat-label>
+                <input matInput type="text" [(ngModel)]="searchValue" (keyup)="onSearchKeyUp($event)">
+                <button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+
+            <div class="search-meal-container__btn">
+              <button mat-stroked-button color="primary" (click)="searchMeals()">Search</button>
+            </div>
+          </div>
+
+
+        </ng-container>
+
+        <ng-container content>
+          <hub-meals-table></hub-meals-table>
+        </ng-container
+        >
+        <ng-container actions>
+          <div class="actions-container">
+            <button mat-stroked-button>LIKE</button>
+            <button mat-stroked-button>SHARE</button>
+          </div>
+        </ng-container>
+        <ng-container footer>
+          <mat-progress-bar mode="determinate" value="70"></mat-progress-bar
+          >
+        </ng-container>
+      </shared-ui-section>
+
+
+    </shared-ui-section-group>
+    <!--div class="footer">
+        <div class="footer__wrapper footer__wrapper--single">
+          <button mat-stroked-button color="primary">Next</button>
+        </div>
+      </div-->
+  </cdk-step>
+  <cdk-step>
+    <ng-template cdkStepLabel> Additional information</ng-template>
+    <!-- content -->
+  </cdk-step>
+
+  <ng-container sidebar>
+    <shared-ui-sideboard>
+      <!-- Sidebar widget's title -->
+      <ng-container title>
+        <div class="title">This is sidebar title</div>
+      </ng-container>
+
+      <!-- Sidebar widget's right title -->
+      <ng-container title-right>
+        <button matButton type="secondary" [disabled]="false">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+      </ng-container>
+
+      <!-- Sidebar widget's content -->
+      <ng-container content>
+        <div class="top">
+          <div class="text-small top__title">Content small</div>
+          <div class="text-tiny secondary-color">Content tiny</div>
+        </div>
+      </ng-container>
+    </shared-ui-sideboard>
+
+    <shared-ui-sideboard>
+      <!-- Sidebar widget's title -->
+      <ng-container title>
+        <div class="title">This is sidebar title</div>
+      </ng-container>
+
+      <!-- Sidebar widget's right title -->
+      <ng-container title-right>
+        <button matButton type="secondary" [disabled]="false">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+      </ng-container>
+
+      <!-- Sidebar widget's content -->
+      <ng-container content>
+        <div class="top">
+          <div class="text-small top__title">Content</div>
+          <div class="text-tiny secondary-color">Content 2</div>
+        </div>
+      </ng-container>
+    </shared-ui-sideboard>
+  </ng-container>
+
+  <ng-container footer>
+    <div class="footer__wrapper">
+      <button mat-stroked-button color="primary">Back</button>
+      <button mat-stroked-button color="primary">Next</button>
+    </div>
+  </ng-container>
+</shared-ui-stepper-sideboard>

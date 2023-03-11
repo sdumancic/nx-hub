@@ -85,6 +85,7 @@ const uploadOptions = multer({ storage: storage });
 const app = express();
 import * as swaggerUi from 'swagger-ui-express';
 import * as swaggerDocument from './swagger.json'
+import { fetchAllMeals } from "./app/routes/meals/fetch-all-meals";
 
 if(result.error){
   console.log('error loading environment variables, aborting')
@@ -120,6 +121,8 @@ function setupExpress() {
   app.route(`${contextRoot}/categories/search`).get(searchCategoryByName)
   app.route(`${contextRoot}/categories/:id`).get(fetchCategoryById)
 
+
+  app.route(`${contextRoot}/meals`).get(fetchAllMeals)
   app.route(`${contextRoot}/meals`).post(checkIfAuthenticated, checkIfAdmin,createMeal)
   app.route(`${contextRoot}/meals/:mealId`).patch(checkIfAuthenticated, checkIfAdmin,updateMeal)
   app.route(`${contextRoot}/meals/search`).get(searchMealsByCategory)

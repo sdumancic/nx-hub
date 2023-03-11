@@ -1,0 +1,27 @@
+{
+  "name": "feature-workplace-reservations",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/feature/workplace-reservations/src",
+  "prefix": "hub",
+  "targets": {
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/feature/workplace-reservations/src/test.ts",
+        "tsConfig": "libs/feature/workplace-reservations/tsconfig.spec.json",
+        "karmaConfig": "libs/feature/workplace-reservations/karma.conf.js"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/feature/workplace-reservations/**/*.ts",
+          "libs/feature/workplace-reservations/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

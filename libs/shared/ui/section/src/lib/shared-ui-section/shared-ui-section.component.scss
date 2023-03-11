@@ -1,0 +1,46 @@
+:host {
+  display:block;
+  .header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  mat-icon {
+    margin: 10px;
+  }
+
+  mat-card-header {
+    width: 100%;
+
+    ::ng-deep .mat-card-header-text {
+      width: 100%;
+    }
+
+    mat-card-title {
+      font-weight: 500;
+      color: #051e48;
+      font-size: 17px;
+    }
+
+    mat-card-subtitle {
+      font-weight: 300;
+      color: #051e48;
+      font-size: 13px;
+    }
+
+    .title-right {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      margin-left: auto;
+    }
+  }
+
+  mat-card-content {
+    margin-top:16px;
+    font-weight: 300;
+    color: #051e48;
+    font-size: 14px;
+  }
+}

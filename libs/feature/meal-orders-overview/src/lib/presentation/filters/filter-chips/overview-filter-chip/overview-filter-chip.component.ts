@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { IOverviewFilterChip } from "../overview-filter-chip.model";
-import { MatChipsModule } from "@angular/material/chips";
+
+import { materialModules} from '../../../../material';
 
 @Component({
   selector: 'hub-overview-filter-chip',
   standalone: true,
-  imports: [CommonModule, MatChipsModule],
+  imports: [CommonModule, ...materialModules],
   templateUrl: './overview-filter-chip.component.html',
   styleUrls: ['./overview-filter-chip.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default

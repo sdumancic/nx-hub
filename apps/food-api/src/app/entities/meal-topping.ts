@@ -34,7 +34,7 @@ export class MealToppingEntity {
   @CreateDateColumn({name: 'created_at'})
   createdAt: Date;
 
-  @UpdateDateColumn({name: 'modified_at'})
+  @UpdateDateColumn({name: 'modified_at', nullable:true})
   modifiedAt: Date;
 
 

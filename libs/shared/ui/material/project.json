@@ -1,0 +1,27 @@
+{
+  "name": "shared-ui-material",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/material/src",
+  "prefix": "hub",
+  "targets": {
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/shared/ui/material/src/test.ts",
+        "tsConfig": "libs/shared/ui/material/tsconfig.spec.json",
+        "karmaConfig": "libs/shared/ui/material/karma.conf.js"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/material/**/*.ts",
+          "libs/shared/ui/material/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

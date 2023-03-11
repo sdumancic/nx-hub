@@ -90,7 +90,6 @@ export class OverviewQuickFilterComponent implements OnInit, OnDestroy{
   }
 
   openSidebarFilter (): void {
-    console.log('button click')
     this.openSidebarFilters.emit(this.activeTabIndex)
   }
 }

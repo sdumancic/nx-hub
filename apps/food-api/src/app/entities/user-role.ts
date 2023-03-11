@@ -22,9 +22,9 @@ export class UserRoleEntity implements UserRole {
   @Column({ name: 'date_assigned' })
   dateAssigned: Date;
 
-  @CreateDateColumn()
+  @CreateDateColumn({name: 'created_at'})
   createdAt: Date;
-  @UpdateDateColumn()
+  @UpdateDateColumn({name: 'modified_at', nullable: true})
   modifiedAt: Date;
 
   @ManyToOne(() => UserEntity, (user) => user.userRoles)

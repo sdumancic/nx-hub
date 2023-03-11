@@ -14,7 +14,7 @@ export interface IMealOrdersOverviewState {
 }
 
 export const SEARCH_VALUES_DEFAULT: IMealOrdersOverviewSearchUi = {
-  status: [],
+  status: null,
   datePlacedFrom: null,
   datePlacedTo: null,
   dateDispatchedFrom: null,
@@ -49,3 +49,4 @@ export const EMPTY_RESPONSE = {
     pageSize: 10
   }
 }
+

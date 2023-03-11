@@ -38,12 +38,10 @@ $filtersSidebarWidth: 350px;
 
   ::ng-deep &__sidebar-filters-dialog {
     mat-dialog-container {
-      padding: 0 !important;
-      position: absolute;
+      padding: 0;
       top: 0;
       right: 0;
       width: $filtersSidebarWidth;
-      overflow: hidden;
       border-radius: 0;
       border: 1px solid #f0f1f4;
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);

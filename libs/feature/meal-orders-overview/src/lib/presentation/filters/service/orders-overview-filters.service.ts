@@ -1,6 +1,6 @@
-import { Injectable, OnDestroy } from "@angular/core";
+import { Inject, Injectable, LOCALE_ID, OnDestroy } from "@angular/core";
 import { Category, Topping } from "@hub/shared/model/food-models";
-import { combineLatest, distinctUntilChanged, mapTo, merge, Observable, Subject, takeUntil, zip } from "rxjs";
+import { combineLatest, distinctUntilChanged, mapTo, merge, Observable, Subject, takeUntil, tap, zip } from "rxjs";
 import {
   CATEGORY_CONTROL_KEY,
   IMealOrdersOverviewSearchUi,
@@ -22,7 +22,7 @@ export class OrdersOverviewFiltersService implements OnDestroy {
   private readonly filterChipsRefresh$ =
     new Subject<IMealOrdersOverviewSearchUi>();
   private readonly unsubscribe$ = new Subject<void>();
-  private readonly momentDateFormat: string = 'dd/MM/yyyy';
+  private readonly momentDateFormat: string = 'DD/MM/yyyy';
 
   get activeFiltersCount$(): Observable<number> {
     return this.facade.searchValues$.pipe(
@@ -39,7 +39,8 @@ export class OrdersOverviewFiltersService implements OnDestroy {
 
   get appliedFilterChips$(): Observable<IOverviewFilterChip[]> {
     return merge(this.facade.searchValues$, this.filterChipsRefresh$).pipe(
-      map(this.getFilterChips)
+      map(this.getFilterChips),
+      tap(val => console.log(val))
     );
   }
 
@@ -49,7 +50,9 @@ export class OrdersOverviewFiltersService implements OnDestroy {
 
   constructor(
     private readonly facade: MealOrdersOverviewFacadeService,
-    private readonly formService: OrdersOverviewFormService
+    private readonly formService: OrdersOverviewFormService,
+    @Inject(LOCALE_ID) private locale: string
+
   ) {
     this.subscribeToMetadataChanges();
   }
@@ -111,6 +114,7 @@ export class OrdersOverviewFiltersService implements OnDestroy {
       MealOrdersOverviewMapper.getFilterType(key);
     return {
       controlKey: key,
+      label: this.getChipLabel(key),
       value: this.getFilterValue(key, value, valueType),
       type: valueType,
       removable: this.isChipRemovable(key),
@@ -119,6 +123,10 @@ export class OrdersOverviewFiltersService implements OnDestroy {
 
   private isChipRemovable(key) {
     return MealOrdersOverviewMapper.getFilterRemovable(key);
+  }
+
+  private getChipLabel(key) {
+    return MealOrdersOverviewMapper.getFilterLabel(key);
   }
 
   private readonly getFilterValue = (
@@ -139,13 +147,12 @@ export class OrdersOverviewFiltersService implements OnDestroy {
     if (type === OverviewFilterChipTypeEnum.boolean) {
       return '';
     }
-
     if (
       type === OverviewFilterChipTypeEnum.date &&
       !isNaN(Date.parse(value)) &&
       !isNaN(moment(value).toDate().getDate())
     ) {
-      return moment(value).format(this.momentDateFormat);
+      return moment(value).locale(this.locale).format('L')
     }
 
     if (typeof value === 'string') {

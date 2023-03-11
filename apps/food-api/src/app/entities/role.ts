@@ -23,11 +23,11 @@ export class RoleEntity implements Role {
 
   @Column()
   active: boolean;
-  @CreateDateColumn()
+  @CreateDateColumn({name:'created_at'})
   createdAt: Date;
-  @Column()
+  @Column({name:'description'})
   description: string;
-  @UpdateDateColumn()
+  @UpdateDateColumn({name:'modified_at', nullable: true})
   modifiedAt: Date;
 
   @OneToMany(() => UserRoleEntity, userRole => userRole.role)

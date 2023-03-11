@@ -16,9 +16,9 @@ export class PermissionEntity implements Permission {
 
   @Column()
   active: boolean;
-  @CreateDateColumn()
+  @CreateDateColumn({name: 'created_at'})
   createdAt: Date;
-  @UpdateDateColumn()
+  @UpdateDateColumn({name: 'modified_at', nullable:true})
   modifiedAt: Date;
 
   @OneToMany(() => RolePermissionEntity, rolePermission => rolePermission.permission)

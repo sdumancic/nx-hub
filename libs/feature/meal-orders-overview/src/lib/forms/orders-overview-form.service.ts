@@ -31,6 +31,7 @@ export class OrdersOverviewFormService {
       search: new FormControl(null, { updateOn: 'blur' }),
       category: new FormControl(null, { updateOn: 'blur' }),
       topping: new FormControl(null, { updateOn: 'blur' }),
+      status: new FormControl(null, { updateOn: 'blur' }),
       datePlacedFrom: new FormControl(null, { updateOn: 'blur' }),
       datePlacedTo: new FormControl(null, { updateOn: 'blur' }),
       dateDispatchedFrom: new FormControl(null, { updateOn: 'blur' }),

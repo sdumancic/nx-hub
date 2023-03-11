@@ -89,16 +89,16 @@ export class MealOrdersOverviewFacadeService implements OnDestroy{
     this.state.snapshot?.searchCount > 1 && this.search$.next(undefined);
   }
 
-  getDefaultSearchValues(status?: string[]
+  getDefaultSearchValues(status?: string
   ): IMealOrdersOverviewSearchUi {
-    const now = moment(new Date()).utc(true).endOf('day');
-    const monthAgo = moment(new Date()).utc(true).startOf('day');
+    const now = moment().utc(true).endOf('day');
+    const monthAgo = moment().utc(true).startOf('day');
     monthAgo.subtract(1, 'M');
     return {
       ...SEARCH_VALUES_DEFAULT,
-      status: status ? status: [],
-      datePlacedFrom: monthAgo.toISOString(),
-      datePlacedTo: now.toISOString(),
+      status: status ? status: null,
+      datePlacedFrom: monthAgo,
+      datePlacedTo: now,
     };
   }
 
