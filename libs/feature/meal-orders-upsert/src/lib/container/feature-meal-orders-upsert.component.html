@@ -60,26 +60,112 @@
         <ng-container content>
           <div class="delivery-container">
 
-            <div class="delivery-container-customer">
-              <div class="row">
-                <mat-form-field appearance="outline">
-                  <mat-label>First name</mat-label>
-                  <input matInput type="text" [(ngModel)]="firstName" >
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                  <mat-label>Last name</mat-label>
-                  <input matInput type="text" [(ngModel)]="lastName" >
+            <div class="delivery-container-customer" [formGroup]="form">
+              <div>
+                <mat-form-field appearance="outline" id="customer-search-field">
+                  <mat-icon matPrefix>search</mat-icon>
+                  <mat-icon
+                    (click)="resetValue()"
+                    *ngIf="searchTermControl.value && searchTermControl.enabled"
+                    matSuffix
+                  >close
+                  </mat-icon>
+                  <input
+                    type="text"
+                    #autocompleteInput="matAutocompleteTrigger"
+                    matInput
+                    placeholder="Search by name, surname or address..."
+                    [formControl]="searchTermControl"
+                    [matAutocomplete]="placeAutocomplete"
+                    [readonly]="readonly"
+                  />
+                  <mat-autocomplete
+                    #placeAutocomplete="matAutocomplete"
+                    [displayWith]="getOptionText"
+                    (optionSelected)="onOptionSelected($event.option.value)"
+                    class="customer-search-autocomplete"
+                  >
+                    <div
+                      *ngIf="customerSearchList$ | async as customerList"
+                      class="customer-autocomplete__options"
+                    >
+                      <mat-option
+                        *ngIf="!customerList.length && (showNoDataFound$ | async)"
+                        [disabled]="true"
+                      > Nothing found
+                      </mat-option>
+
+                      <mat-option *ngFor="let customer of customerList" [value]="customer">
+                        <div class="customer-autocomplete__options__main-info">
+                          {{ customer.firstName }} {{ customer.lastName }}
+                        </div>
+
+                        <div class="customer-autocomplete__options__additional-info">
+                          {{ customer.address }} {{ customer.city }}
+                        </div>
+                      </mat-option>
+                    </div>
+                  </mat-autocomplete>
+                  <mat-spinner
+                    *ngIf="isLoading$ | async"
+                    matSuffix
+                    [diameter]="17"
+                  ></mat-spinner>
                 </mat-form-field>
               </div>
-              <div class="row">
+
+              <div>
+                <mat-form-field appearance="outline">
+                  <mat-label>First name</mat-label>
+                  <input matInput type="text" formControlName="firstName">
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="outline">
+                  <mat-label>Last name</mat-label>
+                  <input matInput type="text" formControlName="lastName">
+                </mat-form-field>
+              </div>
+              <div>
                 <mat-form-field appearance="outline">
                   <mat-label>City</mat-label>
-                  <input matInput type="text" [(ngModel)]="city" >
+                  <input matInput type="text" formControlName="city">
                 </mat-form-field>
+              </div>
+              <div>
                 <mat-form-field appearance="outline">
                   <mat-label>Address</mat-label>
-                  <input matInput type="text" [(ngModel)]="address" >
+                  <input matInput type="text" formControlName="address">
                 </mat-form-field>
+              </div>
+            </div>
+            <div class="delivery-container-location" [formGroup]="form">
+
+              <div>
+                <mat-form-field appearance="outline">
+                  <mat-label>First name</mat-label>
+                  <input matInput type="text" formControlName="firstName">
+                </mat-form-field>
+              </div>
+
+              <div *ngIf="apiLoaded | async">
+                <google-map height="400px"
+                            width="500px"
+                            [center]="center"
+                            [zoom]="zoom"
+                            (mapClick)="moveMap($event)"
+                            (mapMousemove)="move($event)">
+                  <map-marker  #marker="mapMarker"
+                               *ngFor="let markerPosition of markerPositions"
+                               [position]="markerPosition"
+                               [options]="markerOptions"
+                               (mapClick)="openInfoWindow(marker)"
+                  ></map-marker>
+                  <map-info-window>Info Window content</map-info-window>
+                  <map-traffic-layer [autoRefresh]="false"></map-traffic-layer>
+                </google-map>
+                <div>Latitude: {{display?.lat}}</div>
+                <div>Longitude: {{display?.lng}}</div>
               </div>
             </div>
 

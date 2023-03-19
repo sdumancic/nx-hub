@@ -1,16 +1,19 @@
 import { Injectable, OnDestroy } from "@angular/core";
-import { catchError, Observable, of, ReplaySubject, Subject, switchMap, takeUntil, tap } from "rxjs";
-import { CartItem, Category, EMPTY_PAGED_MEALS, PagedMeals, Topping } from "@hub/shared/model/food-models";
+import { catchError, map, Observable, of, ReplaySubject, Subject, switchMap, takeUntil, tap } from "rxjs";
+import { CartItem, Category, Customer, EMPTY_PAGED_MEALS, PagedMeals, Topping } from "@hub/shared/model/food-models";
 import { MealUpsertDataAccessService } from "../data-access/meal-upsert-data-access.service";
 import { IMealsSearchResultUi } from "../presentation/meals-table/meals-search-result.ui.model";
 import { MealOrdersUpsertMapper } from "./meal-orders-upsert.mapper";
 import { CartInMemoryService } from "../data-access/cart-in-memory.service";
+import { CustomerSearchUi } from "../model/customer-search-ui.interface";
+import { CustomerSearchResultUi } from "../model/customer-search-result-ui.interface";
 
 
 export interface MealSearchRequest{
   categoryId: number
   searchValue: string
 }
+
 @Injectable()
 export class MealOrdersUpsertFacadeService implements OnDestroy{
   private search$ = new Subject<MealSearchRequest>();
@@ -23,6 +26,7 @@ export class MealOrdersUpsertFacadeService implements OnDestroy{
   cartItems$: Observable<CartItem[]> = this.cartService.getCartItems$();
 
   toppings$: Observable<Topping[]> = this.dataService.toppings$;
+
 
   constructor(
     private readonly dataService: MealUpsertDataAccessService,
@@ -80,4 +84,28 @@ export class MealOrdersUpsertFacadeService implements OnDestroy{
   setCartItems(items: CartItem[]) {
     this.cartService.setCartItems(items);
   }
+
+  searchCustomer$(searchTerm: string):  Observable<CustomerSearchResultUi[]>{
+    return this.dataService.searchCustomers$(searchTerm).pipe(
+      map((results:Customer[]) => this.mapCustomerArrayToCustomerSearchResultUi(results))
+    )
+  }
+
+  private mapCustomerArrayToCustomerSearchResultUi(results: Customer[]): CustomerSearchResultUi[] {
+
+    return results.map(res => {
+
+      return <CustomerSearchResultUi>{
+        id: res.id,
+        lastName: res.lastName,
+        firstName: res.firstName,
+        city: res.city,
+        address: res.address,
+        customerLocation: res.customerLocation,
+        longitude: res.customerLocation['type'] === 'Point' ? res.customerLocation['coordinates'][0] : null,
+        latitude: res.customerLocation['type'] === 'Point' ? res.customerLocation['coordinates'][1] : null,
+      }
+    })
+  }
+
 }

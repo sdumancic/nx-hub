@@ -90,6 +90,7 @@ import { createCustomer } from "./app/routes/customer/create-customer";
 import { fetchAllCustomers } from "./app/routes/customer/fetch-all-customers";
 import { updateCustomer } from "./app/routes/customer/update-customer";
 import { updateOrder } from "./app/routes/ordering/update-order";
+import { searchCustomers } from "./app/routes/customer/search-customers";
 
 if(result.error){
   console.log('error loading environment variables, aborting')
@@ -180,7 +181,9 @@ function setupExpress() {
 
   app.route(`${contextRoot}/customers`).post(checkIfAuthenticated, checkIfAdmin,createCustomer)
   app.route(`${contextRoot}/customers`).get(fetchAllCustomers)
+  app.route(`${contextRoot}/customers/search`).get(searchCustomers)
   app.route(`${contextRoot}/customers/:customerId`).patch(checkIfAuthenticated, checkIfAdmin,updateCustomer)
+
 
   app.use(defaultErrorHandler);
 

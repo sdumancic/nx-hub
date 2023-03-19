@@ -16,6 +16,8 @@ import { MatDividerModule } from "@angular/material/divider";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatCardModule } from "@angular/material/card";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 export const materialModules = [
   MatTabsModule,
@@ -30,5 +32,7 @@ export const materialModules = [
   MatTableModule, MatPaginatorModule, MatProgressBarModule, MatSortModule, MatIconModule, MatButtonModule, MatMenuModule,
   MatFormFieldModule, MatSelectModule, MatDatepickerModule, ReactiveFormsModule, MatDividerModule, MatIconModule,
   MatNativeDateModule,MatChipsModule,
-  MatCardModule
+  MatCardModule,
+  MatAutocompleteModule,
+  MatProgressSpinnerModule
 ];

@@ -26,36 +26,13 @@ export async function updateOrder(
       orderItems,
       customer
     } = request.body;
-    const foundOrder = await AppDataSource.getRepository(
-      OrderEntity
-    ).findOneBy({
-      id: Number(orderId)
-    });
-    if (!foundOrder) {
-      throw { message: "Order not found" };
-    }
-    if (foundOrder.status !== "placed") {
-      throw { message: "Only orders with status \"placed\" can be updated" };
-    }
+    await checkOrderExists(orderId);
+    await checkCustomerExists(customer);
 
-    if (customer != null) {
-      const foundCustomer = await AppDataSource.getRepository(
-        CustomerEntity
-      ).findOneBy({
-        id: Number(customer.id)
-      });
-      if (!foundCustomer) {
-        throw { message: "Customer not found" };
-      }
-    }
     const { orderTotalNoVat, orderTotalWithVat } = calculateOrderTotal(orderItems);
-    const orderRepo = AppDataSource.getRepository(OrderEntity);
-    const orderItemsRepo = AppDataSource.getRepository(OrderItemEntity);
-    const toppingsRepo = AppDataSource.getRepository(ToppingOrderItemEntity);
-
     await AppDataSource.manager.transaction(async (transactionalEntityManager) => {
 
-      await AppDataSource
+      await transactionalEntityManager
         .createQueryBuilder()
         .update(OrderEntity)
         .set({
@@ -72,19 +49,18 @@ export async function updateOrder(
         .execute();
 
       if (orderItems) {
-        const existingOrderItems = await orderItemsRepo.find({
+        const existingOrderItems = await transactionalEntityManager.find(OrderItemEntity,{
           where: { order: { id: Number(orderId) } }
         });
 
         existingOrderItems.forEach(orderItem => {
-          console.log('deleting order item ', orderItem.id);
-          toppingsRepo.delete({ orderItem: { id: Number(orderItem.id) } });
-          orderItemsRepo.delete({id: orderItem.id});
+          transactionalEntityManager.delete(ToppingOrderItemEntity,{ orderItem: { id: Number(orderItem.id) } });
+          transactionalEntityManager.delete(OrderItemEntity,{id: orderItem.id});
+
         });
 
         for (const item of orderItems) {
-          console.log('creating order item ', item);
-          const orderItemEntity = orderItemsRepo.create({
+          const orderItemEntity = transactionalEntityManager.create(OrderItemEntity,{
             quantity: item.quantity,
             priceNoVat: item.priceNoVat,
             priceWithVat: item.priceWithVat,
@@ -95,9 +71,10 @@ export async function updateOrder(
               id: Number(orderId)
             }
           });
+          await queryRunner.manager.save(orderItemEntity);
           if (item.toppingsItems && item.toppingsItems.length > 0) {
             for (const toppingItem of item.toppingsItems) {
-              const toppingItemEntity = toppingsRepo.create({
+              const toppingItemEntity = transactionalEntityManager.create(ToppingOrderItemEntity,{
                 quantity: item.quantity,
                 priceNoVat: item.priceNoVat,
                 priceWithVat: item.priceWithVat,
@@ -113,7 +90,7 @@ export async function updateOrder(
           }
         }
       }
-      const fetchedOrder = await AppDataSource.getRepository(OrderEntity)
+      const fetchedOrder = await transactionalEntityManager.getRepository(OrderEntity)
         .find({
           where: {
             id: Number(orderId)
@@ -129,11 +106,36 @@ export async function updateOrder(
       response.status(201).json(fetchedOrder);
     });
 
-
-
   } catch (error) {
     logger.error(error);
     return next(error);
   }
 }
 
+
+async function checkOrderExists(orderId: string){
+  const foundOrder = await AppDataSource.getRepository(
+    OrderEntity
+  ).findOneBy({
+    id: Number(orderId)
+  });
+  if (!foundOrder) {
+    throw { message: "Order not found" };
+  }
+  if (foundOrder.status !== "placed") {
+    throw { message: "Only orders with status \"placed\" can be updated" };
+  }
+}
+
+async function checkCustomerExists(customer){
+  if (customer != null) {
+    const foundCustomer = await AppDataSource.getRepository(
+      CustomerEntity
+    ).findOneBy({
+      id: Number(customer.id)
+    });
+    if (!foundCustomer) {
+      throw { message: "Customer not found" };
+    }
+  }
+}

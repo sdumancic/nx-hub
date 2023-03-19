@@ -11,7 +11,7 @@ import {
 
 import {
   Categories,
-  Category, IMealOrdersMetadata,
+  Category, Customer, IMealOrdersMetadata,
   PagedMeals,
   PagedOrders, PagedToppings,
   Topping
@@ -73,5 +73,9 @@ export class MealUpsertDataAccessService {
 
   get toppings$(): Observable<Topping[]> {
     return this.metadata$.pipe(map((metadata) => metadata.toppings));
+  }
+
+  searchCustomers$(searchTerm: string): Observable<Customer[]> {
+    return this.http.get<Customer[]>(`${this.url}/customers/search?term=${searchTerm}`);
   }
 }
