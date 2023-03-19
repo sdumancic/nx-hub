@@ -16,6 +16,9 @@ import {
   MomentDateAdapter,
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
 } from '@angular/material-moment-adapter';
+import { registerLocaleData } from '@angular/common';
+import localeHr from '@angular/common/locales/hr';
+registerLocaleData(localeHr);
 
 
 bootstrapApplication(AppComponent, {

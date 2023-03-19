@@ -26,6 +26,9 @@
       "@hub/feature/locations-overview": [
         "libs/feature/locations-overview/src/index.ts"
       ],
+      "@hub/feature/meal-order-cart": [
+        "libs/feature/meal-order-cart/src/index.ts"
+      ],
       "@hub/feature/meal-orders-overview": [
         "libs/feature/meal-orders-overview/src/index.ts"
       ],

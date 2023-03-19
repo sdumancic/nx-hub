@@ -1,4 +1,4 @@
-import { PagedMeals } from "@hub/shared/model/food-models";
+import { CartItem, Category, Meal, PagedMeals, Topping } from "@hub/shared/model/food-models";
 import { IMealsSearchResultUi } from "../presentation/meals-table/meals-search-result.ui.model";
 
 export class MealOrdersUpsertMapper {
@@ -30,4 +30,28 @@ export class MealOrdersUpsertMapper {
     );
   }
 
+  static mapMealSearchResultToMeal(mealUi: IMealsSearchResultUi): Meal{
+    return {
+      id: mealUi.id,
+      name: mealUi.name,
+      description: mealUi.description,
+      imageUrl: mealUi.imageUrl,
+      active: true,
+      category: mealUi.category,
+      calories: mealUi.calories,
+      rating: mealUi.rating,
+      price: mealUi.price,
+      createdAt: mealUi.createdAt,
+      modifiedAt: mealUi.modifiedAt
+    }
+  }
+
+  static createCartItem(mealUi: IMealsSearchResultUi): CartItem {
+    return {
+      meal: MealOrdersUpsertMapper.mapMealSearchResultToMeal(mealUi),
+      quantity: mealUi.quantity,
+      totalPriceNoVat: mealUi.price * mealUi.quantity,
+      totalPriceWithVat: mealUi.price * mealUi.quantity,
+    }
+  }
 }

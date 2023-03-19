@@ -1,0 +1,30 @@
+:host{
+  .cart-item-container{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+
+    &--description{
+      display:flex;
+      width:100%;
+      flex-direction: column;
+      .meal-name{
+        font-weight: 400;
+
+      }
+      .meal-price{
+        font-weight: 100;
+        font-size: smaller;
+      }
+    }
+    &--action{
+      width: 40px;
+      display: flex;
+      justify-content: end;
+      margin: 0 auto;
+    }
+  }
+  .cart-item-footer{
+    margin-top:20px;
+  }
+}

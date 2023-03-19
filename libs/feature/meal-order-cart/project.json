@@ -1,0 +1,27 @@
+{
+  "name": "feature-meal-order-cart",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/feature/meal-order-cart/src",
+  "prefix": "hub",
+  "targets": {
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/feature/meal-order-cart/src/test.ts",
+        "tsConfig": "libs/feature/meal-order-cart/tsconfig.spec.json",
+        "karmaConfig": "libs/feature/meal-order-cart/karma.conf.js"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/feature/meal-order-cart/**/*.ts",
+          "libs/feature/meal-order-cart/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

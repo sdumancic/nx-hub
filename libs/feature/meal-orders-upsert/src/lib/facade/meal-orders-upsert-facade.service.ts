@@ -1,9 +1,10 @@
 import { Injectable, OnDestroy } from "@angular/core";
 import { catchError, Observable, of, ReplaySubject, Subject, switchMap, takeUntil, tap } from "rxjs";
-import { Category, EMPTY_PAGED_MEALS, PagedMeals, Topping } from "@hub/shared/model/food-models";
+import { CartItem, Category, EMPTY_PAGED_MEALS, PagedMeals, Topping } from "@hub/shared/model/food-models";
 import { MealUpsertDataAccessService } from "../data-access/meal-upsert-data-access.service";
 import { IMealsSearchResultUi } from "../presentation/meals-table/meals-search-result.ui.model";
 import { MealOrdersUpsertMapper } from "./meal-orders-upsert.mapper";
+import { CartInMemoryService } from "../data-access/cart-in-memory.service";
 
 
 export interface MealSearchRequest{
@@ -19,11 +20,13 @@ export class MealOrdersUpsertFacadeService implements OnDestroy{
   searchResult$: Subject<IMealsSearchResultUi[]> = new Subject<IMealsSearchResultUi[]>()
 
   categories$: Observable<Category[]> = this.dataService.categories$;
+  cartItems$: Observable<CartItem[]> = this.cartService.getCartItems$();
 
   toppings$: Observable<Topping[]> = this.dataService.toppings$;
 
   constructor(
-    private readonly dataService: MealUpsertDataAccessService
+    private readonly dataService: MealUpsertDataAccessService,
+    private readonly cartService: CartInMemoryService
   ) {
     this.subscribeToSearch();
 
@@ -69,4 +72,12 @@ export class MealOrdersUpsertFacadeService implements OnDestroy{
   };
 
 
+  addToCart(meal: IMealsSearchResultUi) {
+    const cartItem: CartItem = MealOrdersUpsertMapper.createCartItem(meal);
+    this.cartService.addOrUpdateCartItem(cartItem)
+  }
+
+  setCartItems(items: CartItem[]) {
+    this.cartService.setCartItems(items);
+  }
 }

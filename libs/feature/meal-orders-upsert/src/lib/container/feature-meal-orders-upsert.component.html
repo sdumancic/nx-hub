@@ -1,6 +1,6 @@
 <shared-ui-stepper-sideboard #cdkStepper [title]="'This is title'">
   <cdk-step>
-    <ng-template cdkStepLabel> Basic information</ng-template>
+    <ng-template cdkStepLabel> Meals</ng-template>
     <shared-ui-section-group [title]="'Meals'">
       <shared-ui-section [icon]="'add_shopping_cart'">
         <ng-container title>
@@ -36,71 +36,99 @@
         </ng-container>
 
         <ng-container content>
-          <hub-meals-table></hub-meals-table>
+          <div class="table-host-container">
+            <hub-meals-table (addToCartEmitter)="onAddToCart($event)"></hub-meals-table>
+          </div>
         </ng-container
         >
-        <ng-container actions>
-          <div class="actions-container">
-            <button mat-stroked-button>LIKE</button>
-            <button mat-stroked-button>SHARE</button>
-          </div>
-        </ng-container>
+
         <ng-container footer>
-          <mat-progress-bar mode="determinate" value="70"></mat-progress-bar
-          >
+
         </ng-container>
       </shared-ui-section>
 
-
     </shared-ui-section-group>
-    <!--div class="footer">
-        <div class="footer__wrapper footer__wrapper--single">
-          <button mat-stroked-button color="primary">Next</button>
-        </div>
-      </div-->
   </cdk-step>
   <cdk-step>
-    <ng-template cdkStepLabel> Additional information</ng-template>
-    <!-- content -->
+    <ng-template cdkStepLabel> Delivery information</ng-template>
+    <shared-ui-section-group [title]="'Customer'">
+      <shared-ui-section [icon]="'perm_identity'">
+        <ng-container title>
+          <p>Customer search</p>
+        </ng-container>
+
+        <ng-container content>
+          <div class="delivery-container">
+
+            <div class="delivery-container-customer">
+              <div class="row">
+                <mat-form-field appearance="outline">
+                  <mat-label>First name</mat-label>
+                  <input matInput type="text" [(ngModel)]="firstName" >
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Last name</mat-label>
+                  <input matInput type="text" [(ngModel)]="lastName" >
+                </mat-form-field>
+              </div>
+              <div class="row">
+                <mat-form-field appearance="outline">
+                  <mat-label>City</mat-label>
+                  <input matInput type="text" [(ngModel)]="city" >
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Address</mat-label>
+                  <input matInput type="text" [(ngModel)]="address" >
+                </mat-form-field>
+              </div>
+            </div>
+
+          </div>
+
+        </ng-container>
+
+        <ng-container footer>
+
+        </ng-container>
+      </shared-ui-section>
+
+    </shared-ui-section-group>
+
   </cdk-step>
 
   <ng-container sidebar>
     <shared-ui-sideboard>
-      <!-- Sidebar widget's title -->
       <ng-container title>
-        <div class="title">This is sidebar title</div>
+        <div class="title">Cart</div>
       </ng-container>
 
-      <!-- Sidebar widget's right title -->
       <ng-container title-right>
-        <button matButton type="secondary" [disabled]="false">
-          <mat-icon>more_horiz</mat-icon>
+        <button mat-icon-button [disabled]="false" (click)="emptyCart()">
+          <mat-icon>delete_forever</mat-icon>
         </button>
       </ng-container>
 
-      <!-- Sidebar widget's content -->
       <ng-container content>
-        <div class="top">
-          <div class="text-small top__title">Content small</div>
-          <div class="text-tiny secondary-color">Content tiny</div>
-        </div>
+        <meal-order-cart-small
+          [items]="cartItems$|async"
+          (itemsChanged)="onItemsChanged($event)"
+        >
+
+        </meal-order-cart-small>
       </ng-container>
     </shared-ui-sideboard>
 
     <shared-ui-sideboard>
-      <!-- Sidebar widget's title -->
       <ng-container title>
-        <div class="title">This is sidebar title</div>
+        <div class="title">Toppings</div>
       </ng-container>
 
-      <!-- Sidebar widget's right title -->
       <ng-container title-right>
-        <button matButton type="secondary" [disabled]="false">
-          <mat-icon>more_horiz</mat-icon>
+        <button mat-icon-button type="secondary" [disabled]="false">
+          <mat-icon>delete_forever</mat-icon>
         </button>
       </ng-container>
 
-      <!-- Sidebar widget's content -->
       <ng-container content>
         <div class="top">
           <div class="text-small top__title">Content</div>

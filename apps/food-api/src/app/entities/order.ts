@@ -2,13 +2,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  Index,
+  Index, JoinColumn, ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
-import { OrderItem, Order } from '@hub/shared/model/food-models';
+  UpdateDateColumn
+} from "typeorm";
+import { OrderItem, Order, Customer } from "@hub/shared/model/food-models";
 import { OrderItemEntity } from './order-item';
+import { CustomerEntity } from "./customer";
 
 @Entity({
   name: 'order',
@@ -70,4 +71,9 @@ export class OrderEntity implements Order {
 
   @OneToMany(() => OrderItemEntity, (orderItem) => orderItem.order)
   orderItems: OrderItem[];
+
+  @ManyToOne(() => CustomerEntity)
+  @JoinColumn({name: 'customer_id', referencedColumnName: 'id' })
+  @Index("order-customer-idx")
+  customer: Customer
 }

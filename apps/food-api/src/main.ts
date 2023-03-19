@@ -86,6 +86,10 @@ const app = express();
 import * as swaggerUi from 'swagger-ui-express';
 import * as swaggerDocument from './swagger.json'
 import { fetchAllMeals } from "./app/routes/meals/fetch-all-meals";
+import { createCustomer } from "./app/routes/customer/create-customer";
+import { fetchAllCustomers } from "./app/routes/customer/fetch-all-customers";
+import { updateCustomer } from "./app/routes/customer/update-customer";
+import { updateOrder } from "./app/routes/ordering/update-order";
 
 if(result.error){
   console.log('error loading environment variables, aborting')
@@ -141,12 +145,15 @@ function setupExpress() {
   app.route(`${contextRoot}/meal-toppings/remove`).post(checkIfAuthenticated, checkIfAdmin,removeToppingFromMeal)
 
   app.route(`${contextRoot}/orders/place`).post(checkIfAuthenticated,placeOrder)
+
+  updateOrder
   app.route(`${contextRoot}/orders/search`).get(fetchOrders)
   app.route(`${contextRoot}/orders/:orderId`).get(findOneOrder)
+  app.route(`${contextRoot}/orders/:orderId`).patch(checkIfAuthenticated,updateOrder)
   app.route(`${contextRoot}/orders/:orderId/dispatch`).post(checkIfAuthenticated, checkIfAdmin,dispatchOrder)
   app.route(`${contextRoot}/orders/:orderId/complete`).post(checkIfAuthenticated, checkIfAdmin,completeOrder)
 
-  app.route(`${contextRoot}/users`).post(checkIfAuthenticated, checkIfAdmin,createUser)
+  app.route(`${contextRoot}/users`).post(createUser)
   app.route(`${contextRoot}/users/searchByEmail`).get(findOneUserByEmail)
   app.route(`${contextRoot}/users/:userId/change-password`).patch(changePassword)
   app.route(`${contextRoot}/users/:userId`).get(findOneUser)
@@ -170,6 +177,10 @@ function setupExpress() {
   app.route(`${contextRoot}/users/:userId/roles/:roleId`).delete(checkIfAuthenticated, checkIfAdmin,revokeRoleFromUser)
 
   app.route(`${contextRoot}/login`).post(loginUser)
+
+  app.route(`${contextRoot}/customers`).post(checkIfAuthenticated, checkIfAdmin,createCustomer)
+  app.route(`${contextRoot}/customers`).get(fetchAllCustomers)
+  app.route(`${contextRoot}/customers/:customerId`).patch(checkIfAuthenticated, checkIfAdmin,updateCustomer)
 
   app.use(defaultErrorHandler);
 

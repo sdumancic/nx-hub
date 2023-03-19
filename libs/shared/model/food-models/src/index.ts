@@ -14,3 +14,5 @@ export {PagedOrders} from './lib/order/paged-orders.interface';
 export {PagedToppings} from './lib/toppings/paged-toppings.interface'
 export * from './lib/order/order.interface'
 export {IMealOrdersMetadata,} from './lib/meal-order/meal-order-metadata.interface';
+export {CartItem} from './lib/cart/cart-item.model';
+export {Customer} from './lib/customer/customer.interface';

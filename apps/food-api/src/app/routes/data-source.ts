@@ -11,6 +11,7 @@ import { UserRoleEntity } from "../entities/user-role";
 import { RoleEntity } from "../entities/role";
 import { PermissionEntity } from "../entities/permission";
 import { RolePermissionEntity } from "../entities/role-permission";
+import { CustomerEntity } from "../entities/customer";
 
 
 export const AppDataSource = new DataSource({
@@ -23,10 +24,11 @@ export const AppDataSource = new DataSource({
   ssl: true,
   extra: {
     ssl: {
-      rejectUnauthorized: false,
-    },
+      rejectUnauthorized: false
+    }
   },
   synchronize: true,
-  entities: [CategoryEntity, MealEntity, ToppingEntity,MealToppingEntity, OrderEntity, OrderItemEntity, ToppingOrderItemEntity, UserEntity, UserRoleEntity, RoleEntity, PermissionEntity, RolePermissionEntity],
+  entities: [CategoryEntity, MealEntity, ToppingEntity, MealToppingEntity, OrderEntity, OrderItemEntity, ToppingOrderItemEntity,
+             UserEntity, UserRoleEntity, RoleEntity, PermissionEntity, RolePermissionEntity, CustomerEntity],
   logging: true
 });

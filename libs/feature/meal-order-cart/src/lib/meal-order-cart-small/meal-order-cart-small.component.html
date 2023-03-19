@@ -1,0 +1,20 @@
+<div>
+  <div *ngFor="let item of items">
+    <div class="cart-item-container">
+      <div class="cart-item-container--description">
+        <span class="meal-name">{{item.meal.name}}</span>
+        <span class="meal-price">{{item.quantity}} x {{item.meal.price| currency:'EUR'}} = <strong>{{item.totalPriceNoVat| currency: 'EUR'}}</strong></span>
+      </div>
+      <div class="cart-item-container--action">
+        <button mat-icon-button (click)="deleteCartItem(item)">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="cart-item-footer">
+
+    <span>Subtotal: <strong>{{orderSubtotal() |currency:'EUR'}}</strong></span>
+  </div>
+</div>

@@ -1,9 +1,10 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Subject } from "rxjs";
 import { MealsDataSource } from "./meals-data-source";
 import { MealOrdersUpsertFacadeService } from "../../facade/meal-orders-upsert-facade.service";
 import { materialModules } from "@hub/shared/ui/material";
+import { IMealsSearchResultUi } from "./meals-search-result.ui.model";
 
 @Component({
   selector: 'hub-meals-table',
@@ -16,6 +17,7 @@ export class MealsTableComponent implements OnInit, OnDestroy{
 
   @Input() timeFormat = 'HH:mm'
   @Input() dateFormat = 'dd/MM/yyyy'
+  @Output() addToCartEmitter = new EventEmitter<IMealsSearchResultUi>();
   datasource: MealsDataSource
   displayedColumns = ['imageUrl','name','price','quantity','actions']
   constructor(public facade: MealOrdersUpsertFacadeService) {
@@ -33,10 +35,17 @@ export class MealsTableComponent implements OnInit, OnDestroy{
   }
 
   addQuantity(element) {
-    console.log('add ',element);
+    element.quantity++;
   }
 
   removeQuantity(element) {
-    console.log('remove ',element);
+    if (element.quantity > 1){
+      element.quantity--;
+    }
+
+  }
+
+  addToCart(element) {
+    this.addToCartEmitter.emit(element);
   }
 }

@@ -63,7 +63,7 @@ export async function fetchAllMeals(
       })
 
 
-    response.status(201).json({
+    response.status(200).json({
       list,
       count,
       limit,

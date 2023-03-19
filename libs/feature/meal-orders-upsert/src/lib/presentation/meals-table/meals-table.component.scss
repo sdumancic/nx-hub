@@ -1,20 +1,44 @@
 :host {
+  height:100%;
+  display:block;
+  .table-container{
+    flex: 1;
+    min-height: 0;
+    overflow-y: overlay;
+    height:100%;
+  }
+
+  input[type='number'] {
+    -moz-appearance:textfield;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
 
   ::ng-deep thead mat-header-row {
     .mat-column-imageUrl {
       flex: 0 0 150px;
     }
     .mat-column-name {
-      flex: 0 0 400px;
+      flex: 0 0 300px;
     }
     .mat-column-price {
       flex: 0 0 100px;
     }
+    .mat-column-quantity {
+      flex: 0 0 150px;
+    }
+    .mat-column-actions {
+      flex: 0 0 200px;
+    }
   }
+
   ::ng-deep tbody mat-row {
     .mat-column-imageUrl {
       flex: 0 0 150px;
-
+      height:120px;
       img {
         width: 100px;
         height: 100px;
@@ -28,38 +52,34 @@
       justify-content: center;
       align-items: flex-start;
       flex-direction: column;
-      flex: 0 0 400px;
+      flex: 0 0 300px;
 
       .name {
         font-size: larger;
+        font-weight: 600;
       }
 
       .description {
         font-size: smaller;
+        font-weight: 100;
       }
 
       .calories {
         font-size: smaller;
+        font-weight: 100;
       }
     }
+
     .mat-column-price {
       flex: 0 0 100px;
     }
+
     .mat-column-quantity {
       display:flex;
       flex-direction: column;
       flex: 0 0 150px;
       align-items: center;
       justify-content: center;
-
-      input[type='number'] {
-        -moz-appearance:textfield;
-      }
-
-      input::-webkit-outer-spin-button,
-      input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-      }
 
       .qty-input{
         height: 38px;
@@ -68,43 +88,68 @@
         font-weight: 600;
         background-color: transparent;
         border: 1px solid rgba(#555555, 0.25);
-        //border-radius: 6px;
         text-align: center;
         color: #555555;
         pointer-events: all;
       }
 
-      .qty-btns{
+      .qty-buttons{
         display:flex;
       }
       .action-btn{
+        z-index: 100;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 38px;
+        min-width: 40px;
+        font-size: 14px;
+        font-weight: 600;
+        //background-color: transparent;
+        border: 1px solid rgba(#555555, 0.25);
+        color: #555555;
+        pointer-events: all;
 
-          z-index: 100;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 38px;
-          min-width: 40px;
-          font-size: 14px;
-          font-weight: 600;
-          background-color: transparent;
-          border: 1px solid rgba(#555555, 0.25);
-         // border-radius: 6px;
-          color: #555555;
-          pointer-events: all;
-
-          //background-color: rgba(0, 154, 255, 0.05);
-          //border-color: rgba(0, 154, 255, 0.3);
-
-          .mat-icon {
-            height: 18px;
-            width: 18px;
-            font-size: 18px;
-            color: #051e48;
-            margin: 5px;
-          }
 
       }
+
+      .action-btn:hover{
+        background-color: rgba(0, 154, 255, 0.05);
+        border-color: rgba(0, 154, 255, 0.3);
+      }
     }
+
+    .mat-column-actions {
+      flex: 0 0 200px;
+    }
+  }
+
+  .add-to-cart-button {
+    z-index: 100;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 38px;
+    min-width: 120px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: rgba(0, 154, 255, 0.05);
+    border: 1px solid rgba(0, 154, 255, 0.3);
+    border-radius: 6px;
+    color: #555555;
+    pointer-events: all;
+
+    .mat-icon {
+      height: 18px;
+      width: 18px;
+      font-size: 18px;
+      color: #051e48;
+      margin: 5px;
+    }
+
+  }
+  .add-to-cart-button:active{
+    background-color: rgba(0, 154, 255, 0.15);
   }
 }
