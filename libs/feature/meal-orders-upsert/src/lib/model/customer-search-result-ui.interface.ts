@@ -5,7 +5,6 @@ export interface CustomerSearchResultUi {
   lastName: string;
   city: string;
   address: string;
-  customerLocation: string;
   latitude?: number;
   longitude?: number;
 }

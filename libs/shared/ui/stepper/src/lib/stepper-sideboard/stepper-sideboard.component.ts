@@ -1,5 +1,5 @@
-import { Component, Input } from "@angular/core";
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { CommonModule } from "@angular/common";
 import { CdkStepper } from "@angular/cdk/stepper";
 import { materialModules } from "../material";
 
@@ -10,7 +10,8 @@ import { materialModules } from "../material";
   imports: [CommonModule,materialModules],
   templateUrl: './stepper-sideboard.component.html',
   styleUrls: ['./stepper-sideboard.component.scss'],
-  providers: [{ provide: CdkStepper, useExisting: StepperSideboardComponent }]
+  providers: [{ provide: CdkStepper, useExisting: StepperSideboardComponent }],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StepperSideboardComponent extends CdkStepper {
   @Input() title: string | undefined

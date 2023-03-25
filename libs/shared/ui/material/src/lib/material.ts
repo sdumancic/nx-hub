@@ -18,6 +18,7 @@ import { MatChipsModule } from "@angular/material/chips";
 import { MatCardModule } from "@angular/material/card";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 export const materialModules = [
   MatTabsModule,
@@ -34,5 +35,6 @@ export const materialModules = [
   MatNativeDateModule,MatChipsModule,
   MatCardModule,
   MatAutocompleteModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatSnackBarModule
 ];

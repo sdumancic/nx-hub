@@ -1,3 +1,8 @@
+export interface CustomerLocation{
+    type: string,
+    coordinates: [number, number]
+
+}
 
 export interface Customer {
   id: number;
@@ -5,7 +10,7 @@ export interface Customer {
   lastName: string;
   city: string;
   address: string;
-  customerLocation: string;
+  customerLocation: CustomerLocation;
   createdAt: Date;
   modifiedAt: Date;
 

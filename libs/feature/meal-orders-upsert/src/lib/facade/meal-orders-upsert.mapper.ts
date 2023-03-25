@@ -1,5 +1,7 @@
-import { CartItem, Category, Meal, PagedMeals, Topping } from "@hub/shared/model/food-models";
+import { CartItem, Customer, Meal, PagedMeals } from "@hub/shared/model/food-models";
 import { IMealsSearchResultUi } from "../presentation/meals-table/meals-search-result.ui.model";
+import { CustomerFormUi } from "../forms/customer-form-ui.interface";
+import { CustomerSearchResultUi } from "../model/customer-search-result-ui.interface";
 
 export class MealOrdersUpsertMapper {
   static fromResourceCollectionToSearchResultUi(
@@ -9,7 +11,7 @@ export class MealOrdersUpsertMapper {
       (element) =>
         ({
           id: element.id,
-          calories : element.calories,
+          calories: element.calories,
           category: {
             id: element.category.id,
             name: element.category.name,
@@ -22,7 +24,7 @@ export class MealOrdersUpsertMapper {
           description: element.description,
           modifiedAt: element.modifiedAt,
           name: element.name,
-          price:element.price,
+          price: element.price,
           rating: element.rating,
           imageUrl: element.imageUrl,
           quantity: 1
@@ -30,7 +32,7 @@ export class MealOrdersUpsertMapper {
     );
   }
 
-  static mapMealSearchResultToMeal(mealUi: IMealsSearchResultUi): Meal{
+  static mapMealSearchResultToMeal(mealUi: IMealsSearchResultUi): Meal {
     return {
       id: mealUi.id,
       name: mealUi.name,
@@ -43,7 +45,7 @@ export class MealOrdersUpsertMapper {
       price: mealUi.price,
       createdAt: mealUi.createdAt,
       modifiedAt: mealUi.modifiedAt
-    }
+    };
   }
 
   static createCartItem(mealUi: IMealsSearchResultUi): CartItem {
@@ -51,7 +53,36 @@ export class MealOrdersUpsertMapper {
       meal: MealOrdersUpsertMapper.mapMealSearchResultToMeal(mealUi),
       quantity: mealUi.quantity,
       totalPriceNoVat: mealUi.price * mealUi.quantity,
-      totalPriceWithVat: mealUi.price * mealUi.quantity,
-    }
+      totalPriceWithVat: mealUi.price * mealUi.quantity
+    };
+  }
+
+  static fromCustomerUiToCustomer(customerUi: CustomerFormUi): Partial<Customer> {
+    return {
+      id: customerUi.id ? customerUi.id: null,
+      firstName: customerUi.firstName,
+      lastName: customerUi.lastName,
+      city: customerUi.city,
+      address: customerUi.address,
+      customerLocation: {
+        type: "Point",
+        coordinates: [
+          customerUi.longitude,
+          customerUi.latitude,
+        ]
+      }
+    } as Customer;
+  }
+
+  static fromCustomerSearchResultUiToForm(value: CustomerSearchResultUi): CustomerFormUi {
+    return {
+      id: value.id,
+      firstName: value.firstName,
+      lastName: value.lastName,
+      address: value.address,
+      city: value.city,
+      longitude: value.longitude,
+      latitude: value.latitude
+    } as CustomerFormUi;
   }
 }

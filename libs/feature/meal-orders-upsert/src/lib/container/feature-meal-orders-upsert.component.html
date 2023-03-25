@@ -56,6 +56,15 @@
         <ng-container title>
           <p>Customer search</p>
         </ng-container>
+        <ng-container title-right>
+          <div *ngIf="mode === 0">
+            <button mat-flat-button color="primary" (click)="createNewCustomer()"><mat-icon>add</mat-icon>New customer</button>
+          </div>
+          <div *ngIf="mode === 1" class="edit-buttons">
+            <button mat-flat-button color="primary" (click)="saveCustomer()"><mat-icon>save</mat-icon>Save</button>
+            <button mat-flat-button color="accent" (click)="cancelEdit()"><mat-icon>cancel</mat-icon>Cancel</button>
+          </div>
+        </ng-container>
 
         <ng-container content>
           <div class="delivery-container">
@@ -65,7 +74,7 @@
                 <mat-form-field appearance="outline" id="customer-search-field">
                   <mat-icon matPrefix>search</mat-icon>
                   <mat-icon
-                    (click)="resetValue()"
+                    (click)="resetCustomerValue()"
                     *ngIf="searchTermControl.value && searchTermControl.enabled"
                     matSuffix
                   >close
@@ -77,12 +86,12 @@
                     placeholder="Search by name, surname or address..."
                     [formControl]="searchTermControl"
                     [matAutocomplete]="placeAutocomplete"
-                    [readonly]="readonly"
+                    [readonly]="!!selectedCustomer"
                   />
                   <mat-autocomplete
                     #placeAutocomplete="matAutocomplete"
                     [displayWith]="getOptionText"
-                    (optionSelected)="onOptionSelected($event.option.value)"
+                    (optionSelected)="onCustomerSelected($event.option.value)"
                     class="customer-search-autocomplete"
                   >
                     <div
@@ -117,7 +126,7 @@
               <div>
                 <mat-form-field appearance="outline">
                   <mat-label>First name</mat-label>
-                  <input matInput type="text" formControlName="firstName">
+                  <input matInput type="text" formControlName="firstName" >
                 </mat-form-field>
               </div>
               <div>
@@ -138,19 +147,51 @@
                   <input matInput type="text" formControlName="address">
                 </mat-form-field>
               </div>
-            </div>
-            <div class="delivery-container-location" [formGroup]="form">
-
-              <div>
-                <mat-form-field appearance="outline">
-                  <mat-label>First name</mat-label>
-                  <input matInput type="text" formControlName="firstName">
+              <div class="lat-lng-container">
+                <mat-form-field appearance="outline" class="disabled">
+                  <mat-label>Latitude</mat-label>
+                  <input matInput type="text" formControlName="latitude" [readonly]="true">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="disabled">
+                  <mat-label>Longitude</mat-label>
+                  <input matInput type="text" formControlName="longitude" [readonly]="true">
                 </mat-form-field>
               </div>
 
+              <div class="update-buttons">
+                <button *ngIf="selectedCustomer && mode === 0" mat-flat-button color="primary" (click)="onUpdateCustomer()">Update</button>
+                <button *ngIf="selectedCustomer && mode === 2" mat-flat-button color="primary" (click)="onUpdateCustomerSave()">Save</button>
+                <button *ngIf="selectedCustomer && mode === 2" mat-flat-button color="accent" (click)="onCancelEdit()">Cancel</button>
+              </div>
+
+            </div>
+            <div class="delivery-container-location" [formGroup]="form">
+
+              <mat-form-field appearance="outline" id="location-search-field">
+                <mat-icon matPrefix>search</mat-icon>
+                <mat-icon
+                  (click)="resetLocationValue()"
+                  *ngIf="searchLocationControl.value && searchLocationControl.enabled"
+                  matSuffix
+                >close
+                </mat-icon>
+                <input type="text" placeholder="Search location..." aria-label="Location"
+                       matInput [formControl]="searchLocationControl" [matAutocomplete]="autoLocation"
+                       [readonly]="selectedLocation">
+                <mat-autocomplete #autoLocation="matAutocomplete"
+                                  (optionSelected)="onLocationSelected($event.option.value)"
+                                  [displayWith]="getLocationText"
+                >
+                  <mat-option *ngFor="let option of filteredLocations | async" [value]="option">
+                    {{option.formatted_address}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+
+
               <div *ngIf="apiLoaded | async">
                 <google-map height="400px"
-                            width="500px"
+                            width="100%"
                             [center]="center"
                             [zoom]="zoom"
                             (mapClick)="moveMap($event)"
@@ -162,10 +203,7 @@
                                (mapClick)="openInfoWindow(marker)"
                   ></map-marker>
                   <map-info-window>Info Window content</map-info-window>
-                  <map-traffic-layer [autoRefresh]="false"></map-traffic-layer>
                 </google-map>
-                <div>Latitude: {{display?.lat}}</div>
-                <div>Longitude: {{display?.lng}}</div>
               </div>
             </div>
 

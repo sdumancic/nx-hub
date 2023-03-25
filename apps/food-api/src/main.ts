@@ -179,10 +179,10 @@ function setupExpress() {
 
   app.route(`${contextRoot}/login`).post(loginUser)
 
-  app.route(`${contextRoot}/customers`).post(checkIfAuthenticated, checkIfAdmin,createCustomer)
+  app.route(`${contextRoot}/customers`).post(createCustomer)
   app.route(`${contextRoot}/customers`).get(fetchAllCustomers)
   app.route(`${contextRoot}/customers/search`).get(searchCustomers)
-  app.route(`${contextRoot}/customers/:customerId`).patch(checkIfAuthenticated, checkIfAdmin,updateCustomer)
+  app.route(`${contextRoot}/customers/:customerId`).patch(updateCustomer)
 
 
   app.use(defaultErrorHandler);

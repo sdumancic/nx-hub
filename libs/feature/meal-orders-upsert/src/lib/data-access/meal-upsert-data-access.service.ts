@@ -78,4 +78,12 @@ export class MealUpsertDataAccessService {
   searchCustomers$(searchTerm: string): Observable<Customer[]> {
     return this.http.get<Customer[]>(`${this.url}/customers/search?term=${searchTerm}`);
   }
+
+  saveCustomer$(customer: Partial<Customer>): Observable<Customer> {
+    if (customer.id != null){
+      return this.http.patch<Customer>(`${this.url}/customers/${customer.id}`, customer);
+    } else {
+      return this.http.post<Customer>(`${this.url}/customers`, customer);
+    }
+  }
 }

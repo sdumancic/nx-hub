@@ -15,14 +15,14 @@ export class CustomerSearchFormService{
 
   public createFormGroup(): FormGroup {
     this.form = new FormGroup<ControlsOf<CustomerFormUi>>({
+      id: new FormControl<number>(null, ),
       firstName: new FormControl<string>('', {validators:[Validators.required]}),
       lastName: new FormControl<string>('',{validators:[Validators.required]}),
       city: new FormControl<string>('',{validators:[Validators.required]}),
       address: new FormControl<string>('',{validators:[Validators.required]}),
-      latitude: new FormControl<number>(null, {updateOn: 'blur'}),
-      longitude: new FormControl<number>(null, {updateOn: 'blur'})
+      latitude: new FormControl<number>(null, {updateOn: 'blur',validators:[Validators.required]}),
+      longitude: new FormControl<number>(null, {updateOn: 'blur',validators:[Validators.required]})
     });
-
     return this.form;
   }
 
@@ -31,14 +31,18 @@ export class CustomerSearchFormService{
     this.lastNameControl.disable();
     this.addressControl.disable();
     this.cityControl.disable();
+    this.latitudeControl.disable();
+    this.longitudeControl.disable();
   }
   public enableFormControls() {
     this.firstNameControl.enable();
     this.lastNameControl.enable();
     this.addressControl.enable();
     this.cityControl.enable();
+    this.latitudeControl.enable();
+    this.longitudeControl.enable();
   }
-  public setValue(value: CustomerFormUi){
+  public setValue(value: Partial<CustomerFormUi>){
     this.form.patchValue(value);
   }
   public resetValue(){
@@ -68,6 +72,10 @@ export class CustomerSearchFormService{
   get longitudeControl(): FormControl {
     return this.form.get('longitude') as FormControl;
   }
+  get idControl(): FormControl {
+    return this.form.get('id') as FormControl;
+  }
 
 }
+
 

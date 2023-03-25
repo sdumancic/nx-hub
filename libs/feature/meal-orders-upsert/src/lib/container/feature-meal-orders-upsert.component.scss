@@ -1,4 +1,19 @@
 :host{
+
+  .disabled{
+    pointer-events: none;
+  }
+  ::ng-deep input + span {
+    background-color: red;
+    display:none !important;
+  }
+
+  ::ng-deep .header-container ::ng-deep .edit-buttons {
+      display: flex;
+      column-gap: 10px;
+  }
+
+
   .table-host-container{
     display: flex;
     flex-direction: column;
@@ -47,13 +62,33 @@
     .delivery-container-customer{
       display:flex;
       flex-direction: column;
-      flex: 1 0 calc(40% - 25px);
+      flex: 1 1 40%;
+       .lat-lng-container{
+          display:flex;
+          align-items: center;
+          column-gap: 10px;
+          mat-form-field {
+            flex: 1 0 calc(50% - 5px);
+          }
+
+      }
+
+      .update-buttons{
+        display:flex;
+        flex-direction: row;
+        justify-content: space-between;
+        button{
+          width: 200px;
+        }
+      }
     }
     .delivery-container-location{
       display:flex;
       flex-direction: column;
-      flex: 1 0 calc(60% - 25px);
+      flex: 1 1 60%;
     }
+
+
   }
 
 }

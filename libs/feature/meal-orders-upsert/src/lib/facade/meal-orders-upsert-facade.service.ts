@@ -7,6 +7,7 @@ import { MealOrdersUpsertMapper } from "./meal-orders-upsert.mapper";
 import { CartInMemoryService } from "../data-access/cart-in-memory.service";
 import { CustomerSearchUi } from "../model/customer-search-ui.interface";
 import { CustomerSearchResultUi } from "../model/customer-search-result-ui.interface";
+import { CustomerFormUi } from "../forms/customer-form-ui.interface";
 
 
 export interface MealSearchRequest{
@@ -108,4 +109,8 @@ export class MealOrdersUpsertFacadeService implements OnDestroy{
     })
   }
 
+
+  saveCustomer$(formGroupRawValue: CustomerFormUi): Observable<Customer> {
+    return this.dataService.saveCustomer$(MealOrdersUpsertMapper.fromCustomerUiToCustomer(formGroupRawValue));
+  }
 }
