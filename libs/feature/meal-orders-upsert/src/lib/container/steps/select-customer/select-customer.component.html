@@ -1,0 +1,144 @@
+<div class="delivery-container">
+  <div class="delivery-container-customer" [formGroup]="form">
+    <div>
+      <mat-form-field appearance="outline" id="customer-search-field">
+        <mat-icon matPrefix>search</mat-icon>
+        <mat-icon
+          (click)="resetCustomerValue()"
+          *ngIf="searchTermControl.value && searchTermControl.enabled"
+          matSuffix
+        >close
+        </mat-icon>
+        <input
+          type="text"
+          #autocompleteInput="matAutocompleteTrigger"
+          matInput
+          placeholder="Search by name, surname or address..."
+          [formControl]="searchTermControl"
+          [matAutocomplete]="placeAutocomplete"
+          [readonly]="!!selectedCustomer"
+        />
+        <mat-autocomplete
+          #placeAutocomplete="matAutocomplete"
+          [displayWith]="getOptionText"
+          (optionSelected)="onCustomerSelected($event.option.value)"
+          class="customer-search-autocomplete"
+        >
+          <div
+            *ngIf="customerSearchList$ | async as customerList"
+            class="customer-autocomplete__options"
+          >
+            <mat-option
+              *ngIf="!customerList.length && (showNoDataFound$ | async)"
+              [disabled]="true"
+            > Nothing found
+            </mat-option>
+
+            <mat-option *ngFor="let customer of customerList" [value]="customer">
+              <div class="customer-autocomplete__options__main-info">
+                {{ customer.firstName }} {{ customer.lastName }}
+              </div>
+
+              <div class="customer-autocomplete__options__additional-info">
+                {{ customer.address }} {{ customer.city }}
+              </div>
+            </mat-option>
+          </div>
+        </mat-autocomplete>
+        <mat-spinner
+          *ngIf="isLoading$ | async"
+          matSuffix
+          [diameter]="17"
+        ></mat-spinner>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>First name</mat-label>
+        <input matInput type="text" formControlName="firstName">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Last name</mat-label>
+        <input matInput type="text" formControlName="lastName">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>City</mat-label>
+        <input matInput type="text" formControlName="city">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Address</mat-label>
+        <input matInput type="text" formControlName="address">
+      </mat-form-field>
+    </div>
+    <div class="lat-lng-container">
+      <mat-form-field appearance="outline" class="disabled">
+        <mat-label>Latitude</mat-label>
+        <input matInput type="text" formControlName="latitude" [readonly]="true">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="disabled">
+        <mat-label>Longitude</mat-label>
+        <input matInput type="text" formControlName="longitude" [readonly]="true">
+      </mat-form-field>
+    </div>
+
+    <div class="update-buttons">
+      <button *ngIf="selectedCustomer && facade.customerFormMode === 0" mat-flat-button color="primary"
+              (click)="onUpdateCustomer()">Update
+      </button>
+      <button *ngIf="selectedCustomer && facade.customerFormMode === 2" mat-flat-button color="primary"
+              (click)="onUpdateCustomerSave()">Save
+      </button>
+      <button *ngIf="selectedCustomer && facade.customerFormMode === 2" mat-flat-button color="accent" (click)="onCancelEdit()">
+        Cancel
+      </button>
+    </div>
+
+  </div>
+  <div class="delivery-container-location" [formGroup]="form">
+
+    <mat-form-field appearance="outline" id="location-search-field">
+      <mat-icon matPrefix>search</mat-icon>
+      <mat-icon
+        (click)="resetLocationValue()"
+        *ngIf="searchLocationControl.value && searchLocationControl.enabled"
+        matSuffix
+      >close
+      </mat-icon>
+      <input type="text" placeholder="Search location..." aria-label="Location"
+             matInput [formControl]="searchLocationControl" [matAutocomplete]="autoLocation"
+             [readonly]="selectedLocation">
+      <mat-autocomplete #autoLocation="matAutocomplete"
+                        (optionSelected)="onLocationSelected($event.option.value)"
+                        [displayWith]="getLocationText"
+      >
+        <mat-option *ngFor="let option of filteredLocations | async" [value]="option">
+          {{option.formatted_address}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+
+    <div *ngIf="apiLoaded | async">
+      <google-map height="400px"
+                  width="100%"
+                  [center]="center"
+                  [zoom]="zoom"
+                  (mapClick)="moveMap($event)"
+                  (mapMousemove)="move($event)">
+        <map-marker #marker="mapMarker"
+                    *ngFor="let markerPosition of markerPositions"
+                    [position]="markerPosition"
+                    [options]="markerOptions"
+        ></map-marker>
+        <map-info-window>Info Window content</map-info-window>
+      </google-map>
+    </div>
+  </div>
+</div>

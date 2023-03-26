@@ -12,7 +12,7 @@ import {
 import {
   Categories,
   Category, Customer, IMealOrdersMetadata,
-  PagedMeals,
+  PagedMeals, PagedMealToppings,
   PagedOrders, PagedToppings,
   Topping
 } from "@hub/shared/model/food-models";
@@ -85,5 +85,9 @@ export class MealUpsertDataAccessService {
     } else {
       return this.http.post<Customer>(`${this.url}/customers`, customer);
     }
+  }
+
+  fetchToppingsForMeal$(mealId: number): Observable<PagedMealToppings>{
+    return this.http.get<PagedMealToppings>(`${this.url}/meal-toppings/search?mealId=${mealId}&limit=30`);
   }
 }

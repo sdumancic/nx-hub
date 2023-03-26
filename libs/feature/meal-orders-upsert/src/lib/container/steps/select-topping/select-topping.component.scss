@@ -1,0 +1,98 @@
+:host {
+  .table-container{
+    flex: 1;
+    min-height: 0;
+    height:100%;
+  }
+
+  input[type='number'] {
+    -moz-appearance:textfield;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  ::ng-deep thead mat-header-row {
+    .mat-column-imageUrl {
+      flex: 0 0 150px;
+    }
+    .mat-column-meal {
+      flex: 0 0 300px;
+    }
+    .mat-column-quantity {
+      flex: 0 0 75px;
+    }
+    .mat-column-price {
+      flex: 0 0 150px;
+    }
+  }
+
+  ::ng-deep tbody mat-row {
+    .mat-column-imageUrl {
+      flex: 0 0 150px;
+      height:120px;
+      img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+      }
+
+    }
+
+    .mat-column-meal {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      flex: 0 0 300px;
+
+      .name {
+        font-size: larger;
+        font-weight: 600;
+      }
+
+      .description {
+        font-size: smaller;
+        font-weight: 100;
+      }
+
+      .calories {
+        font-size: smaller;
+        font-weight: 100;
+      }
+    }
+
+    .mat-column-quantity {
+      flex: 0 0 75px;
+    }
+    .mat-column-price {
+      flex: 0 0 150px;
+    }
+
+  }
+
+
+  .example-detail-row {
+   min-height: 0;
+  }
+
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+
+  .example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+
+
+
+
+}

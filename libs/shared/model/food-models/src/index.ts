@@ -11,8 +11,10 @@ export {UserRole} from './lib/auth/user-role.interface';
 export {Permission} from './lib/auth/permission.interface';
 export {RolePermission} from './lib/auth/role-permission.interface';
 export {PagedOrders} from './lib/order/paged-orders.interface';
+export {PagedMealToppings} from './lib/toppings/paged-meal-toppings.interface'
 export {PagedToppings} from './lib/toppings/paged-toppings.interface'
 export * from './lib/order/order.interface'
 export {IMealOrdersMetadata,} from './lib/meal-order/meal-order-metadata.interface';
 export {CartItem} from './lib/cart/cart-item.model';
 export {Customer} from './lib/customer/customer.interface';
+export {MealTopping} from './lib/toppings/meal-topping.interface';

@@ -1,0 +1,66 @@
+<div class="mat-elevation-z2 table-container">
+
+  <table mat-table [dataSource]="cartItems$|async" multiTemplateDataRows>
+
+    <ng-container matColumnDef="imageUrl">
+      <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <img src="{{element.meal.imageUrl}}" />
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="meal">
+      <mat-header-cell *matHeaderCellDef>Meal</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div class="name">{{ element.meal.name }}</div>
+        <div class="description">{{ element.meal.description }}</div>
+        <div class="calories">Calories: {{ element.meal.calories }}</div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <mat-header-cell *matHeaderCellDef>Quantity</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.quantity }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef>Total Price</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.totalPriceWithVat | currency: 'EUR'}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+          <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+          <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+      <mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+        <div class="example-element-detail"
+             [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
+          <div class="example-element-diagram">
+             <div *ngFor="let mealTopping of toppingsForMeal(element.meal.id)">
+               {{mealTopping.price}}
+               {{mealTopping.topping.id}}
+               {{mealTopping.topping.name}}
+             </div>
+          </div>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let element; columns: displayedColumns"
+             class="example-element-row"
+             [class.example-expanded-row]="expandedElement === element"
+             (click)="expandedElement = expandedElement === element ? null : element"
+    ></mat-row>
+    <mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></mat-row>
+
+  </table>
+</div>

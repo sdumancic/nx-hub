@@ -85,4 +85,19 @@ export class MealOrdersUpsertMapper {
       latitude: value.latitude
     } as CustomerFormUi;
   }
+
+  static mapCustomerArrayToCustomerSearchResultUi(results: Customer[]): CustomerSearchResultUi[] {
+    return results.map(res => {
+      return <CustomerSearchResultUi>{
+        id: res.id,
+        lastName: res.lastName,
+        firstName: res.firstName,
+        city: res.city,
+        address: res.address,
+        customerLocation: res.customerLocation,
+        longitude: res.customerLocation['type'] === 'Point' ? res.customerLocation['coordinates'][0] : null,
+        latitude: res.customerLocation['type'] === 'Point' ? res.customerLocation['coordinates'][1] : null,
+      }
+    })
+  }
 }
