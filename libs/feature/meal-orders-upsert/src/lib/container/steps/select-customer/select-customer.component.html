@@ -16,7 +16,7 @@
           placeholder="Search by name, surname or address..."
           [formControl]="searchTermControl"
           [matAutocomplete]="placeAutocomplete"
-          [readonly]="!!selectedCustomer"
+          [readonly]="!!facade.getSelectedCustomer()"
         />
         <mat-autocomplete
           #placeAutocomplete="matAutocomplete"
@@ -89,13 +89,13 @@
     </div>
 
     <div class="update-buttons">
-      <button *ngIf="selectedCustomer && facade.customerFormMode === 0" mat-flat-button color="primary"
+      <button *ngIf="facade.getSelectedCustomer() && facade.customerFormMode === 0" mat-stroked-button
               (click)="onUpdateCustomer()">Update
       </button>
-      <button *ngIf="selectedCustomer && facade.customerFormMode === 2" mat-flat-button color="primary"
+      <button *ngIf="facade.getSelectedCustomer() && facade.customerFormMode === 2" mat-stroked-button color="primary"
               (click)="onUpdateCustomerSave()">Save
       </button>
-      <button *ngIf="selectedCustomer && facade.customerFormMode === 2" mat-flat-button color="accent" (click)="onCancelEdit()">
+      <button *ngIf="facade.getSelectedCustomer() && facade.customerFormMode === 2" mat-stroked-button color="accent" (click)="onCancelEdit()">
         Cancel
       </button>
     </div>

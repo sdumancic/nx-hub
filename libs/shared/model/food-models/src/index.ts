@@ -18,3 +18,4 @@ export {IMealOrdersMetadata,} from './lib/meal-order/meal-order-metadata.interfa
 export {CartItem} from './lib/cart/cart-item.model';
 export {Customer} from './lib/customer/customer.interface';
 export {MealTopping} from './lib/toppings/meal-topping.interface';
+export {ToppingCartItem} from './lib/cart/topping-cart-item.interface';

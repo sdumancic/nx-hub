@@ -19,6 +19,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatSliderModule } from "@angular/material/slider";
 
 export const materialModules = [
   MatTabsModule,
@@ -36,5 +37,6 @@ export const materialModules = [
   MatCardModule,
   MatAutocompleteModule,
   MatProgressSpinnerModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSliderModule
 ];

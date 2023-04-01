@@ -1,10 +1,10 @@
 import { Meal } from "../meal/meal.interface";
-import { Topping } from "../toppings/topping.interface";
+import { ToppingCartItem } from "./topping-cart-item.interface";
 
 
 export interface CartItem{
   meal: Meal;
-  toppings?: Topping[]
+  toppings?: ToppingCartItem[]
   quantity: number;
   totalPriceNoVat: number;
   totalPriceWithVat: number;

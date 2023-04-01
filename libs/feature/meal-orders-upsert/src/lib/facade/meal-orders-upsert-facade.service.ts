@@ -17,6 +17,8 @@ import { CustomerSearchResultUi } from "../model/customer-search-result-ui.inter
 import { CustomerFormUi } from "../forms/customer-form-ui.interface";
 import { MealSearchRequest } from "../model/meal-search-request.interface";
 import { FormMode } from "../model/form-mode.enum";
+import { MealToppingTableItem } from "../presentation/meal-toppings-table/meal-toppings-table.component";
+import { MealToppingChange } from "../model/meal-topping-change.interface";
 
 
 @Injectable()
@@ -30,6 +32,7 @@ export class MealOrdersUpsertFacadeService implements OnDestroy{
   categories$: Observable<Category[]> = this.dataService.categories$;
   cartItems$: Observable<CartItem[]> = this.cartService.getCartItems$();
   toppings$: Observable<Topping[]> = this.dataService.toppings$;
+  private selectedCustomer: CustomerSearchResultUi;
   constructor(
     private readonly dataService: MealUpsertDataAccessService,
     private readonly cartService: CartInMemoryService
@@ -41,6 +44,12 @@ export class MealOrdersUpsertFacadeService implements OnDestroy{
     this.search$.next({categoryId,searchValue});
   }
 
+  public selectCustomer(customer: CustomerSearchResultUi){
+    this.selectedCustomer = customer;
+  }
+  public getSelectedCustomer(){
+    return this.selectedCustomer;
+  }
   private subscribeToSearch(): void {
     this.search$
       .pipe(
@@ -99,5 +108,9 @@ export class MealOrdersUpsertFacadeService implements OnDestroy{
 
   fetchToppingsForMeal(mealId: number): Observable<PagedMealToppings> {
     return this.dataService.fetchToppingsForMeal$(mealId)
+  }
+
+  changeCartItemTopping(mealToppingChange: MealToppingChange) {
+    this.cartService.addOrUpdateToppingForCartItem(mealToppingChange)
   }
 }

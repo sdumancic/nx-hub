@@ -43,7 +43,9 @@ export async function fetchAllCustomers(
           lastName: true,
           city: true,
           address: true,
-          customerLocation: true,
+          customerLocation: {
+            coordinates: true
+          },
           createdAt: true,
           modifiedAt: true,
         },

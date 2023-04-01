@@ -1,9 +1,6 @@
-import { NextFunction, Request, Response } from 'express';
-import { CategoryEntity } from '../../entities/category';
+import { NextFunction, Request, Response } from "express";
 import { AppDataSource } from "../data-source";
 import { logger } from "../../util/logger";
-import { MealEntity } from "../../entities/meal";
-import { getInstrumentationExcludedPaths } from "@angular-devkit/build-angular/src/webpack/utils/helpers";
 import { MealToppingEntity } from "../../entities/meal-topping";
 
 export async function fetchToppingsByMealId(

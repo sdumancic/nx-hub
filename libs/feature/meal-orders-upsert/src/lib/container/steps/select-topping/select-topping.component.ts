@@ -1,15 +1,20 @@
-import { Component, Inject, Input, LOCALE_ID, OnDestroy, OnInit } from "@angular/core";
+import { Component, EventEmitter, Inject, Input, LOCALE_ID, OnDestroy, OnInit, Output } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Observable, Subject, takeUntil } from "rxjs";
 import { CartItem, MealTopping, Topping } from "@hub/shared/model/food-models";
 import { materialModules } from "@hub/shared/ui/material";
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {
+  MealToppingsTableComponent,
+  MealToppingTableItem
+} from "../../../presentation/meal-toppings-table/meal-toppings-table.component";
+import { MealToppingChange } from "../../../model/meal-topping-change.interface";
 
 
 @Component({
   selector: "hub-select-topping",
   standalone: true,
-  imports: [CommonModule, ...materialModules],
+  imports: [CommonModule, ...materialModules, MealToppingsTableComponent],
   templateUrl: "./select-topping.component.html",
   styleUrls: ["./select-topping.component.scss"],
   animations: [
@@ -23,6 +28,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 export class SelectToppingComponent implements OnInit, OnDestroy {
   @Input() cartItems$: Observable<CartItem[]>;
   @Input() mealToppingsMap$:  Observable<Map<number, MealTopping[]>>;
+  @Output() mealToppingChanged = new EventEmitter<MealToppingChange>();
   private mealToppingsMap:  Map<number, MealTopping[]> = new Map<number, MealTopping[]>();
   cartItems: CartItem[] = [];
   expandedElement: CartItem | null;
@@ -47,5 +53,9 @@ export class SelectToppingComponent implements OnInit, OnDestroy {
 
   toppingsForMeal(id:number): MealTopping[] {
     return this.mealToppingsMap.get(id);
+  }
+
+  onCartItemToppingChanged(item: MealToppingChange) {
+    this.mealToppingChanged.next(item);
   }
 }

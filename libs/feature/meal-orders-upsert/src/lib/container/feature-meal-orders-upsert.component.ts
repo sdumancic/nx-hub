@@ -9,35 +9,28 @@ import { SharedUiSideboardComponent } from "@hub/shared/ui/sideboard";
 import { MealOrdersUpsertFacadeService } from "../facade/meal-orders-upsert-facade.service";
 import { MealsTableComponent } from "../presentation/meals-table/meals-table.component";
 import { IMealsSearchResultUi } from "../presentation/meals-table/meals-search-result.ui.model";
-import { GoogleMapsModule, MapInfoWindow } from "@angular/google-maps";
-import {
-  concatMap,
-  flatMap, forkJoin,
-  map, merge,
-  mergeAll,
-  mergeMap,
-  Observable,
-  Subject,
-  switchMap,
-  take,
-  takeUntil,
-  tap, toArray
-} from "rxjs";
-import { CartItem, Topping } from "@hub/shared/model/food-models";
+import { GoogleMapsModule } from "@angular/google-maps";
+import { concatMap, count, forkJoin, map, Observable, Subject, take, takeUntil, tap } from "rxjs";
+import { CartItem, MealTopping } from "@hub/shared/model/food-models";
 import { MealOrderCartSmallComponent } from "@hub/feature/meal-order-cart";
 import { CartInMemoryService } from "../data-access/cart-in-memory.service";
 import { FormGroup } from "@angular/forms";
 import { CustomerSearchFormService } from "../forms/customer-search-form.service";
 import { SelectCustomerComponent } from "./steps/select-customer/select-customer.component";
 import { SelectToppingComponent } from "./steps/select-topping/select-topping.component";
-import { MealTopping } from "../../../../../shared/model/food-models/src/lib/toppings/meal-topping.interface";
+import {
+  MealToppingsTableComponent,
+  MealToppingTableItem
+} from "../presentation/meal-toppings-table/meal-toppings-table.component";
+import { MealToppingChange } from "../model/meal-topping-change.interface";
 
 
 @Component({
   selector: "hub-feature-meal-orders-upsert",
   standalone: true,
   imports: [CommonModule, ...materialModules, CdkStepperModule, StepperSideboardComponent, SharedUiSectionGroupComponent,
-    SharedUiSectionComponent, SharedUiSideboardComponent, MealsTableComponent, MealOrderCartSmallComponent, GoogleMapsModule, SelectCustomerComponent, SelectToppingComponent],
+    SharedUiSectionComponent, SharedUiSideboardComponent, MealsTableComponent, MealOrderCartSmallComponent, GoogleMapsModule, SelectCustomerComponent, SelectToppingComponent,
+    MealToppingsTableComponent],
   templateUrl: "./feature-meal-orders-upsert.component.html",
   styleUrls: ["./feature-meal-orders-upsert.component.scss"],
   providers: [
@@ -47,25 +40,28 @@ import { MealTopping } from "../../../../../shared/model/food-models/src/lib/top
   ]
 })
 export class FeatureMealOrdersUpsertComponent implements OnInit, OnDestroy, AfterViewInit {
-  @ViewChild('cdkStepper') stepper: StepperSideboardComponent;
+  @ViewChild("cdkStepper") stepper: StepperSideboardComponent;
 
   categories$ = this.facade.categories$;
   cartItems$: Observable<CartItem[]> = this.facade.cartItems$;
   orderId: number;
   searchValue: string = null;
   selectedCategoryId = 3;
+  selectedStep = 0;
   form!: FormGroup;
-  private readonly unsubscribe$ = new Subject<void>();
-
   protected createNewCustomer$ = new Subject<void>();
   protected cancelCreateNewCustomer$ = new Subject<boolean>();
   protected saveNewCustomer$ = new Subject<boolean>();
-  protected mealToppingsMap$ = new Subject< Map<number, MealTopping[]>>();
+  protected mealToppingsMap$ = new Subject<Map<number, MealTopping[]>>();
+  private readonly unsubscribe$ = new Subject<void>();
+  protected nextButtonText = 'Edit toppings';
+  protected previousButtonText: string;
 
   constructor(
     private route: ActivatedRoute,
-    protected facade: MealOrdersUpsertFacadeService,
-  ) {}
+    protected facade: MealOrdersUpsertFacadeService
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.params.pipe(takeUntil(this.unsubscribe$)).subscribe(params => {
@@ -78,8 +74,15 @@ export class FeatureMealOrdersUpsertComponent implements OnInit, OnDestroy, Afte
   ngAfterViewInit() {
     this.stepper.selectionChange.asObservable()
       .subscribe(val => {
-        if (val.selectedIndex === 1){
+        this.selectedStep = val.selectedIndex;
+        if (val.selectedIndex == 0){
+          this.setNextButtonText('Edit toppings');
+        } else if (val.selectedIndex === 1) {
           this.fetchToppingsForOrderItems();
+          this.setPreviousButtonText('Back to meals');
+          this.setNextButtonText('Delivery information');
+        } else if (val.selectedIndex == 2){
+          this.setPreviousButtonText('Edit toppings');
         }
       });
   }
@@ -102,11 +105,6 @@ export class FeatureMealOrdersUpsertComponent implements OnInit, OnDestroy, Afte
     this.facade.setCartItems([]);
   }
 
-  protected searchMeals(): void {
-    this.facade.executeSearch(this.selectedCategoryId, this.searchValue);
-  }
-
-
   onCreateNewCustomer() {
     this.createNewCustomer$.next();
 
@@ -120,10 +118,13 @@ export class FeatureMealOrdersUpsertComponent implements OnInit, OnDestroy, Afte
     this.saveNewCustomer$.next(true);
   }
 
-
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+  }
+
+  protected searchMeals(): void {
+    this.facade.executeSearch(this.selectedCategoryId, this.searchValue);
   }
 
   private fetchToppingsForOrderItems() {
@@ -132,14 +133,34 @@ export class FeatureMealOrdersUpsertComponent implements OnInit, OnDestroy, Afte
       take(1),
       concatMap(array => {
         const observables = array.map(item => this.facade.fetchToppingsForMeal(item.meal.id).pipe(map(toppings => {
-          return {mealId: item.meal.id, mealToppings: toppings.list }
+          return { mealId: item.meal.id, mealToppings: toppings.list };
         })));
         return forkJoin([...observables]);
-      }),
+      })
     ).subscribe(val => {
-      val.forEach(item => mealToppings.set(item.mealId, item.mealToppings))
-      this.mealToppingsMap$.next(mealToppings)
-    })
+      val.forEach(item => mealToppings.set(item.mealId, item.mealToppings));
+      this.mealToppingsMap$.next(mealToppings);
+    });
+  }
+
+  onMealToppingChanged(toppingCartItem: MealToppingChange): void {
+    this.facade.changeCartItemTopping(toppingCartItem)
+  }
+
+  cartItemsCount$(){
+    return this.facade.cartItems$.pipe(map(val => val.length));
+  }
+
+  private setNextButtonText(editToppings: string) {
+    this.nextButtonText = editToppings;
+  }
+
+  private setPreviousButtonText(editToppings: string) {
+    this.previousButtonText = editToppings;
+  }
+
+  placeOrder() {
+
   }
 }
 

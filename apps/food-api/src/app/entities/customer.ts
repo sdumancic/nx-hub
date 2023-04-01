@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, Index, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Customer } from "@hub/shared/model/food-models";
+import { CustomerLocation } from "../../../../../libs/shared/model/food-models/src/lib/customer/customer.interface";
 
 
 @Entity({
@@ -36,5 +37,5 @@ export class CustomerEntity implements Customer {
     spatialFeatureType: 'Point',
     name: 'delivery_location',
   })
-  customerLocation: string;
+  customerLocation: CustomerLocation;
 }

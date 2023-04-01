@@ -28,7 +28,8 @@
             </div>
 
             <div class="search-meal-container__btn">
-              <button mat-stroked-button color="primary" (click)="searchMeals()">Search</button>
+              <button mat-stroked-button color="primary" (click)="searchMeals()">
+                <mat-icon>search</mat-icon>Search</button>
             </div>
           </div>
 
@@ -57,7 +58,11 @@
           <p>Add toppings</p>
         </ng-container>
         <ng-container content>
-          <hub-select-topping [cartItems$]="cartItems$" [mealToppingsMap$]="mealToppingsMap$.asObservable()"></hub-select-topping>
+          <hub-select-topping
+            [cartItems$]="cartItems$"
+            [mealToppingsMap$]="mealToppingsMap$.asObservable()"
+            (mealToppingChanged)="onMealToppingChanged($event)"
+          ></hub-select-topping>
         </ng-container>
         <ng-container footer>
           Footer
@@ -129,36 +134,32 @@
           [items]="cartItems$|async"
           (itemsChanged)="onItemsChanged($event)"
         >
-
         </meal-order-cart-small>
-      </ng-container>
-    </shared-ui-sideboard>
-
-    <shared-ui-sideboard>
-      <ng-container title>
-        <div class="title">Toppings</div>
-      </ng-container>
-
-      <ng-container title-right>
-        <button mat-icon-button type="secondary" [disabled]="false">
-          <mat-icon>delete_forever</mat-icon>
-
+        <button mat-flat-button
+                color="primary"
+                class="place-order-btn"
+                (click)="placeOrder()"
+                *ngIf="(cartItemsCount$()|async) > 0 && !!facade.getSelectedCustomer() "
+        >Place Order
+          <mat-icon>assignment</mat-icon>
         </button>
       </ng-container>
 
-      <ng-container content>
-        <div class="top">
-          <div class="text-small top__title">Content</div>
-          <div class="text-tiny secondary-color">Content 2</div>
-        </div>
-      </ng-container>
     </shared-ui-sideboard>
+
   </ng-container>
 
   <ng-container footer>
     <div class="footer__wrapper">
-      <button mat-stroked-button color="primary">Back</button>
-      <button mat-stroked-button color="primary">Next</button>
+      <div><button *ngIf="selectedStep >0" mat-flat-button  (click)="stepper.previous()">
+        <mat-icon>keyboard_backspace</mat-icon>{{previousButtonText}}</button></div>
+      <div>
+        <button *ngIf="selectedStep < 2" mat-flat-button color="primary"  [disabled]="(cartItemsCount$()|async) === 0" (click)="stepper.next()">
+          <div class="footer-button-container">{{nextButtonText}}
+            <mat-icon >arrow_right_alt</mat-icon>
+          </div>
+
+        </button></div>
     </div>
   </ng-container>
 </shared-ui-stepper-sideboard>

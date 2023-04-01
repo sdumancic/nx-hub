@@ -1,0 +1,105 @@
+.full-width-table {
+  width: 100%;
+}
+
+:host {
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  .mat-mdc-table .mdc-data-table__header-row {
+    height: 36px;
+  }
+
+  .mat-mdc-table .mdc-data-table__row {
+    height: 36px;
+  }
+
+  ::ng-deep thead mat-header-row {
+    .mat-column-toppingId {
+      flex: 0 0 15%;
+    }
+
+    .mat-column-toppingName {
+      flex: 0 0 40%;
+    }
+
+    .mat-column-toppingPrice {
+      flex: 0 0 15%;
+    }
+
+    .mat-column-quantity {
+      flex: 0 0 30%;
+      justify-content: center;
+    }
+  }
+
+  ::ng-deep tbody mat-row {
+
+    .mat-column-toppingId {
+      display: flex;
+      flex: 0 0 15%;
+      align-items: center;
+    }
+
+    .mat-column-toppingName {
+      display: flex;
+      flex: 0 0 40%;
+      align-items: center;
+    }
+
+    .mat-column-toppingPrice {
+      display: flex;
+      flex: 0 0 15%;
+      align-items: center;
+    }
+
+    .mat-column-quantity {
+      display: flex;
+      flex-direction: row;
+      flex: 0 0 30%;
+      align-items: center;
+      justify-content: center;
+
+      .qty-input {
+        height: 38px;
+        max-width: 80px;
+        font-size: 14px;
+        font-weight: 600;
+        background-color: transparent;
+        border: 1px solid rgba(#555555, 0.25);
+        text-align: center;
+        color: #555555;
+        pointer-events: all;
+      }
+
+      .action-btn {
+        z-index: 100;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 38px;
+        min-width: 40px;
+        font-size: 14px;
+        font-weight: 600;
+        //background-color: transparent;
+        border: 1px solid rgba(#555555, 0.25);
+        color: #555555;
+        pointer-events: all;
+
+
+      }
+
+      .action-btn:hover {
+        background-color: rgba(0, 154, 255, 0.05);
+        border-color: rgba(0, 154, 255, 0.3);
+      }
+    }
+  }
+
+}

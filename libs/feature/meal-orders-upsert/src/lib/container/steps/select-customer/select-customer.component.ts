@@ -50,7 +50,6 @@ export class SelectCustomerComponent implements OnInit, OnDestroy {
   isLoading$: Observable<boolean>;
   showNoDataFound$ = new BehaviorSubject<boolean>(false);
   selectedLocation: google.maps.GeocoderResult;
-  selectedCustomer: CustomerSearchResultUi;
   center: google.maps.LatLngLiteral = { lat: 24, lng: 12 };
   apiLoaded: Observable<boolean>;
   zoom = 13;
@@ -136,7 +135,7 @@ export class SelectCustomerComponent implements OnInit, OnDestroy {
   resetCustomerValue() {
     this.resetReadonlyAndList();
     this.searchTermControl.setValue(null);
-    this.selectedCustomer = null;
+    this.facade.selectCustomer(null);
     this.selectedLocation = null;
     this.customerFormService.resetValue();
     this.markerPositions = [];
@@ -150,7 +149,7 @@ export class SelectCustomerComponent implements OnInit, OnDestroy {
       lng: value.longitude
     };
     this.markerPositions = [];
-    this.selectedCustomer = value;
+    this.facade.selectCustomer(value);
     this.markerPositions.push(this.center);
   }
 
@@ -246,7 +245,7 @@ export class SelectCustomerComponent implements OnInit, OnDestroy {
 
   onCancelEdit() {
     this.facade.customerFormMode = FormMode.Initial;
-    this.customerFormService.setValue(this.selectedCustomer)
+    this.customerFormService.setValue(this.facade.getSelectedCustomer())
     this.disableForm();
   }
 

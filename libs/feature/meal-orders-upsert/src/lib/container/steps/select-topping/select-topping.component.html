@@ -31,9 +31,10 @@
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+         <button *ngIf="toppingsForMeal(element.meal.id)?.length > 0" type="button" class="edit-toppings-btn" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
           <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
           <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+          Edit toppings
         </button>
       </mat-cell>
     </ng-container>
@@ -44,11 +45,12 @@
         <div class="example-element-detail"
              [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
           <div class="example-element-diagram">
-             <div *ngFor="let mealTopping of toppingsForMeal(element.meal.id)">
-               {{mealTopping.price}}
-               {{mealTopping.topping.id}}
-               {{mealTopping.topping.name}}
-             </div>
+            <hub-meal-toppings-table
+              [cartItem]="element"
+              [mealId]="element.meal.id"
+              [mealToppings]="toppingsForMeal(element.meal.id)"
+              (cartItemToppingChanged)="onCartItemToppingChanged($event)"
+            ></hub-meal-toppings-table>
           </div>
         </div>
       </mat-cell>

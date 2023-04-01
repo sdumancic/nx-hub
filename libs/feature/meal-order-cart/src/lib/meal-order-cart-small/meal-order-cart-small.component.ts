@@ -25,6 +25,9 @@ export class MealOrderCartSmallComponent {
     let total = 0;
     this.items.forEach( i => {
       total = total + (i.meal.price * i.quantity)
+      for(const topping of i.toppings){
+        total = total + +topping.totalPrice
+      }
     })
     return total;
   }

@@ -81,17 +81,47 @@
   .example-element-detail {
     overflow: hidden;
     display: flex;
+    width:100%;
   }
 
   .example-element-diagram {
-    min-width: 80px;
-    border: 2px solid black;
+    width:100%;
+    min-width: 180px;
     padding: 8px;
     font-weight: lighter;
     margin: 8px 0;
-    height: 104px;
+    height: 100%;
   }
 
+
+  .edit-toppings-btn {
+    z-index: 100;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 38px;
+    min-width: 120px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: rgba(0, 154, 255, 0.05);
+    border: 1px solid rgba(0, 154, 255, 0.3);
+    border-radius: 6px;
+    color: #555555;
+    pointer-events: all;
+
+    .mat-icon {
+      height: 18px;
+      width: 18px;
+      font-size: 18px;
+      color: #051e48;
+      margin: 5px;
+    }
+
+  }
+  .edit-toppings-btn:active{
+    background-color: rgba(0, 154, 255, 0.15);
+  }
 
 
 

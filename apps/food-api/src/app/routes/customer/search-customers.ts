@@ -21,7 +21,9 @@ export async function searchCustomers(
           lastName: true,
           city: true,
           address: true,
-          customerLocation: true,
+          customerLocation: {
+            coordinates: true
+          },
           createdAt: false,
           modifiedAt: false,
         },

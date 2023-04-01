@@ -1,7 +1,8 @@
-import { CartItem, Customer, Meal, PagedMeals } from "@hub/shared/model/food-models";
+import { CartItem, Customer, Meal, MealTopping, PagedMeals } from "@hub/shared/model/food-models";
 import { IMealsSearchResultUi } from "../presentation/meals-table/meals-search-result.ui.model";
 import { CustomerFormUi } from "../forms/customer-form-ui.interface";
 import { CustomerSearchResultUi } from "../model/customer-search-result-ui.interface";
+import { MealToppingTableItem } from "../presentation/meal-toppings-table/meal-toppings-table.component";
 
 export class MealOrdersUpsertMapper {
   static fromResourceCollectionToSearchResultUi(
@@ -53,7 +54,8 @@ export class MealOrdersUpsertMapper {
       meal: MealOrdersUpsertMapper.mapMealSearchResultToMeal(mealUi),
       quantity: mealUi.quantity,
       totalPriceNoVat: mealUi.price * mealUi.quantity,
-      totalPriceWithVat: mealUi.price * mealUi.quantity
+      totalPriceWithVat: mealUi.price * mealUi.quantity,
+      toppings:[]
     };
   }
 
@@ -99,5 +101,17 @@ export class MealOrdersUpsertMapper {
         latitude: res.customerLocation['type'] === 'Point' ? res.customerLocation['coordinates'][1] : null,
       }
     })
+  }
+
+  static mealToppingsToMealToppingTableItems(mealToppings: MealTopping[]): MealToppingTableItem[] {
+    return mealToppings.map(mealTopping => {
+      return {
+        toppingId: mealTopping.topping.id,
+        toppingName: mealTopping.topping.name,
+        toppingPrice: mealTopping.price,
+        toppingDesc: mealTopping.topping.description,
+        quantity: 0
+      } as MealToppingTableItem
+    });
   }
 }

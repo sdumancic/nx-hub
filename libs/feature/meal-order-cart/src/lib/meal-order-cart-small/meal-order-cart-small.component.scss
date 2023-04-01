@@ -2,17 +2,32 @@
   .cart-item-container{
     display:flex;
     flex-direction: row;
-    align-items: center;
+    margin-bottom: 10px;
 
+    .toppings-container{
+      margin-left: 20px;
+
+      .topping-item{
+        display:flex;
+        flex-direction: column;
+      }
+    }
     &--description{
       display:flex;
       width:100%;
       flex-direction: column;
       .meal-name{
         font-weight: 400;
-
       }
       .meal-price{
+        font-weight: 100;
+        font-size: smaller;
+      }
+      .topping-name{
+        font-weight: 100;
+        font-size: smaller;
+      }
+      .topping-price{
         font-weight: 100;
         font-size: smaller;
       }
@@ -20,7 +35,7 @@
     &--action{
       width: 40px;
       display: flex;
-      justify-content: flex-end;
+
       margin: 0 auto;
     }
   }
