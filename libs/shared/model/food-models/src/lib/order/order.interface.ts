@@ -1,5 +1,5 @@
 import { OrderItem } from "./order-item.interface";
-
+import { Customer } from "../customer/customer.interface";
 
 export const ORDER_ID = 'id'
 export const DATE_PLACED = 'datePlaced'
@@ -29,7 +29,8 @@ export interface Order {
   deliveryCity: string;
   deliveryLocation: any;
   paymentMethod: string;
-  createdAt: Date;
-  modifiedAt: Date;
+  createdAt?: Date;
+  modifiedAt?: Date;
   orderItems: OrderItem[];
+  customer: Customer;
 }

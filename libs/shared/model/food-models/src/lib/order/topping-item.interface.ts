@@ -7,9 +7,9 @@ export interface ToppingItem {
   quantity: number;
   priceNoVat: number;
   priceWithVat: number;
-  topping: Topping;
+  topping: Partial<Topping>;
+  toppingPriceForMeal: number;
   orderItem: OrderItem;
-  //order: Order;
-  createdAt: Date;
-  modifiedAt: Date;
+  createdAt?: Date;
+  modifiedAt?: Date;
 }

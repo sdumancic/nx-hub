@@ -15,23 +15,14 @@ import { IMealsSearchResultUi } from "./meals-search-result.ui.model";
 })
 export class MealsTableComponent implements OnInit, OnDestroy{
 
-  @Input() timeFormat = 'HH:mm'
-  @Input() dateFormat = 'dd/MM/yyyy'
   @Output() addToCartEmitter = new EventEmitter<IMealsSearchResultUi>();
   datasource: MealsDataSource
   displayedColumns = ['imageUrl','name','price','quantity','actions']
-  constructor(public facade: MealOrdersUpsertFacadeService) {
-  }
-
   private readonly unsubscribe$ = new Subject<void>()
+  constructor(public facade: MealOrdersUpsertFacadeService) {}
 
   ngOnInit (): void {
     this.datasource = new MealsDataSource(this.facade)
-  }
-
-  ngOnDestroy (): void {
-    this.unsubscribe$.next()
-    this.unsubscribe$.complete()
   }
 
   addQuantity(element) {
@@ -42,10 +33,15 @@ export class MealsTableComponent implements OnInit, OnDestroy{
     if (element.quantity > 1){
       element.quantity--;
     }
-
   }
 
   addToCart(element) {
     this.addToCartEmitter.emit(element);
   }
+
+  ngOnDestroy (): void {
+    this.unsubscribe$.next()
+    this.unsubscribe$.complete()
+  }
+
 }

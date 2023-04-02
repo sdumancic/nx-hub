@@ -7,21 +7,18 @@ export function calculateOrderTotal(orderItems: OrderItem[]):  {orderTotalNoVat:
       orderTotalWithVat: null
     }
   }
-  let orderTotalNoVat = 0;
   let orderTotalWithVat = 0;
   orderItems.forEach((item: OrderItem) => {
-    orderTotalNoVat =
-      orderTotalNoVat + Number(item.priceNoVat) * Number(item.quantity);
     orderTotalWithVat =
-      orderTotalWithVat + Number(item.priceWithVat) * Number(item.quantity);
+      orderTotalWithVat + Number(item.meal.price) * Number(item.quantity);
     if (item.toppingsItems && item.toppingsItems.length > 0) {
       item.toppingsItems.forEach((toppingItem: ToppingItem) => {
-        orderTotalNoVat =
-          orderTotalNoVat + Number(toppingItem.priceNoVat) * Number(toppingItem.quantity);
         orderTotalWithVat =
-          orderTotalWithVat + Number(toppingItem.priceWithVat) * Number(toppingItem.quantity);
+          orderTotalWithVat + Number(toppingItem.toppingPriceForMeal) * Number(toppingItem.quantity);
       });
     }
   });
+  const orderTotalNoVat = orderTotalWithVat / (1 + 25/100);
   return { orderTotalNoVat, orderTotalWithVat };
 }
+

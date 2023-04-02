@@ -145,14 +145,13 @@ function setupExpress() {
   app.route(`${contextRoot}/meal-toppings/assign`).post(checkIfAuthenticated, checkIfAdmin,assignToppingToMeal)
   app.route(`${contextRoot}/meal-toppings/remove`).post(checkIfAuthenticated, checkIfAdmin,removeToppingFromMeal)
 
-  app.route(`${contextRoot}/orders/place`).post(checkIfAuthenticated,placeOrder)
+  app.route(`${contextRoot}/orders/place`).post(placeOrder)
 
-  updateOrder
   app.route(`${contextRoot}/orders/search`).get(fetchOrders)
   app.route(`${contextRoot}/orders/:orderId`).get(findOneOrder)
-  app.route(`${contextRoot}/orders/:orderId`).patch(checkIfAuthenticated,updateOrder)
-  app.route(`${contextRoot}/orders/:orderId/dispatch`).post(checkIfAuthenticated, checkIfAdmin,dispatchOrder)
-  app.route(`${contextRoot}/orders/:orderId/complete`).post(checkIfAuthenticated, checkIfAdmin,completeOrder)
+  app.route(`${contextRoot}/orders/:orderId`).patch(updateOrder)
+  app.route(`${contextRoot}/orders/:orderId/dispatch`).post(dispatchOrder)
+  app.route(`${contextRoot}/orders/:orderId/complete`).post(completeOrder)
 
   app.route(`${contextRoot}/users`).post(createUser)
   app.route(`${contextRoot}/users/searchByEmail`).get(findOneUserByEmail)

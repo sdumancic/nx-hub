@@ -1,4 +1,13 @@
-import { CartItem, Customer, Meal, MealTopping, PagedMeals } from "@hub/shared/model/food-models";
+import {
+  CartItem,
+  Customer,
+  Meal,
+  MealTopping,
+  Order,
+  OrderItem,
+  PagedMeals, Topping, ToppingCartItem,
+  ToppingItem
+} from "@hub/shared/model/food-models";
 import { IMealsSearchResultUi } from "../presentation/meals-table/meals-search-result.ui.model";
 import { CustomerFormUi } from "../forms/customer-form-ui.interface";
 import { CustomerSearchResultUi } from "../model/customer-search-result-ui.interface";
@@ -55,13 +64,13 @@ export class MealOrdersUpsertMapper {
       quantity: mealUi.quantity,
       totalPriceNoVat: mealUi.price * mealUi.quantity,
       totalPriceWithVat: mealUi.price * mealUi.quantity,
-      toppings:[]
+      toppings: []
     };
   }
 
   static fromCustomerUiToCustomer(customerUi: CustomerFormUi): Partial<Customer> {
     return {
-      id: customerUi.id ? customerUi.id: null,
+      id: customerUi.id ? customerUi.id : null,
       firstName: customerUi.firstName,
       lastName: customerUi.lastName,
       city: customerUi.city,
@@ -70,7 +79,7 @@ export class MealOrdersUpsertMapper {
         type: "Point",
         coordinates: [
           customerUi.longitude,
-          customerUi.latitude,
+          customerUi.latitude
         ]
       }
     } as Customer;
@@ -97,10 +106,10 @@ export class MealOrdersUpsertMapper {
         city: res.city,
         address: res.address,
         customerLocation: res.customerLocation,
-        longitude: res.customerLocation['type'] === 'Point' ? res.customerLocation['coordinates'][0] : null,
-        latitude: res.customerLocation['type'] === 'Point' ? res.customerLocation['coordinates'][1] : null,
-      }
-    })
+        longitude: res.customerLocation["type"] === "Point" ? res.customerLocation["coordinates"][0] : null,
+        latitude: res.customerLocation["type"] === "Point" ? res.customerLocation["coordinates"][1] : null
+      };
+    });
   }
 
   static mealToppingsToMealToppingTableItems(mealToppings: MealTopping[]): MealToppingTableItem[] {
@@ -111,7 +120,58 @@ export class MealOrdersUpsertMapper {
         toppingPrice: mealTopping.price,
         toppingDesc: mealTopping.topping.description,
         quantity: 0
-      } as MealToppingTableItem
+      } as MealToppingTableItem;
     });
+  }
+
+  static toNewOrder(cartItems: CartItem[], customer: CustomerSearchResultUi): Partial<Order> {
+    return {
+      id: null,
+      notes: null,
+      deliveryAddress: customer.address,
+      deliveryCity: customer.city,
+      deliveryLocation: {
+        type: "Point",
+        coordinates: [
+          customer.latitude,
+          customer.longitude
+        ]
+      },
+      paymentMethod: 'CASH',
+      orderItems: MealOrdersUpsertMapper.cartItemsToOrderItems(cartItems),
+      customer: {
+        id: customer.id
+      }
+    } as Partial<Order>;
+  }
+
+  static cartItemsToOrderItems(cartItems: CartItem[]): OrderItem[]{
+    return cartItems.map(item => {
+      return {
+        id: null,
+        quantity: item.quantity,
+        priceNoVat: item.totalPriceNoVat,
+        priceWithVat: item.totalPriceWithVat,
+        order: null,
+        meal: item.meal,
+        toppingsItems: MealOrdersUpsertMapper.toppingCartItemsToToppingItems(item.toppings)
+      } as OrderItem
+    })
+  }
+
+  private static toppingCartItemsToToppingItems(toppingCartItems: ToppingCartItem[]): ToppingItem[] {
+    return toppingCartItems.map(toppingCartItem => {
+      return {
+        id: null,
+        quantity: toppingCartItem.quantity,
+        priceNoVat: toppingCartItem.totalPrice,
+        priceWithVat: toppingCartItem.totalPrice,
+        topping: {
+          id: toppingCartItem.toppingId
+        },
+        toppingPriceForMeal: toppingCartItem.toppingPrice,
+        orderItem: null,
+      }
+    })
   }
 }

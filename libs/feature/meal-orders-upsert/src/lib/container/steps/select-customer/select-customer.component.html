@@ -13,7 +13,7 @@
           type="text"
           #autocompleteInput="matAutocompleteTrigger"
           matInput
-          placeholder="Search by name, surname or address..."
+          placeholder="At least 3 letters to search by name, surname or address..."
           [formControl]="searchTermControl"
           [matAutocomplete]="placeAutocomplete"
           [readonly]="!!facade.getSelectedCustomer()"
@@ -95,7 +95,8 @@
       <button *ngIf="facade.getSelectedCustomer() && facade.customerFormMode === 2" mat-stroked-button color="primary"
               (click)="onUpdateCustomerSave()">Save
       </button>
-      <button *ngIf="facade.getSelectedCustomer() && facade.customerFormMode === 2" mat-stroked-button color="accent" (click)="onCancelEdit()">
+      <button *ngIf="facade.getSelectedCustomer() && facade.customerFormMode === 2" mat-stroked-button color="accent"
+              (click)="onCancelEdit()">
         Cancel
       </button>
     </div>
@@ -113,7 +114,7 @@
       </mat-icon>
       <input type="text" placeholder="Search location..." aria-label="Location"
              matInput [formControl]="searchLocationControl" [matAutocomplete]="autoLocation"
-             [readonly]="selectedLocation">
+             [readonly]="googleMapsFacade.getSelectedLocation()">
       <mat-autocomplete #autoLocation="matAutocomplete"
                         (optionSelected)="onLocationSelected($event.option.value)"
                         [displayWith]="getLocationText"
@@ -128,12 +129,12 @@
     <div *ngIf="apiLoaded | async">
       <google-map height="400px"
                   width="100%"
-                  [center]="center"
-                  [zoom]="zoom"
-                  (mapClick)="moveMap($event)"
-                  (mapMousemove)="move($event)">
+                  [center]="googleMapsFacade.getCenter()"
+                  [zoom]="googleMapsFacade.getZoom()"
+                  (mapClick)="googleMapsFacade.moveMap($event)"
+                  (mapMousemove)="googleMapsFacade.move($event)">
         <map-marker #marker="mapMarker"
-                    *ngFor="let markerPosition of markerPositions"
+                    *ngFor="let markerPosition of googleMapsFacade.getMarkerPositions()"
                     [position]="markerPosition"
                     [options]="markerOptions"
         ></map-marker>

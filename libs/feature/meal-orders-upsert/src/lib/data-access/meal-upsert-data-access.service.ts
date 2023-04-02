@@ -1,26 +1,21 @@
-import { Inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import {
-  BehaviorSubject,
-  forkJoin,
-  map,
-  Observable,
-  shareReplay,
-  switchMap,
-} from 'rxjs';
+import { Inject, Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { BehaviorSubject, forkJoin, map, Observable, shareReplay, switchMap } from "rxjs";
 
 import {
   Categories,
-  Category, Customer, IMealOrdersMetadata,
-  PagedMeals, PagedMealToppings,
-  PagedOrders, PagedToppings,
+  Category,
+  Customer,
+  IMealOrdersMetadata, Order,
+  PagedMeals,
+  PagedMealToppings,
+  PagedToppings,
   Topping
 } from "@hub/shared/model/food-models";
-import { FOOD_API_BACKEND_URL } from '@hub/shared/util/app-config';
-
+import { FOOD_API_BACKEND_URL } from "@hub/shared/util/app-config";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root"
 })
 export class MealUpsertDataAccessService {
   private readonly metadataRefresh$ = new BehaviorSubject<void>(null);
@@ -30,7 +25,7 @@ export class MealUpsertDataAccessService {
       map((el) => {
         return {
           categories: el[0].categories,
-          toppings: el[1].list,
+          toppings: el[1].list
         };
       }),
       shareReplay(1)
@@ -39,7 +34,16 @@ export class MealUpsertDataAccessService {
   constructor(
     @Inject(FOOD_API_BACKEND_URL) private url: string,
     private readonly http: HttpClient
-  ) {}
+  ) {
+  }
+
+  get categories$(): Observable<Category[]> {
+    return this.metadata$.pipe(map((metadata) => metadata.categories));
+  }
+
+  get toppings$(): Observable<Topping[]> {
+    return this.metadata$.pipe(map((metadata) => metadata.toppings));
+  }
 
   fetchCategories(): Observable<Categories> {
     return this.http.get<Categories>(`${this.url}/categories`);
@@ -53,26 +57,18 @@ export class MealUpsertDataAccessService {
     categoryId: number,
     name: string | null
   ): Observable<PagedMeals> {
-    if (name == null){
+    if (name == null) {
       return this.http.get<PagedMeals>(
         `${this.url}/meals?page[number]=0&page[size]=100&sort=-rating,id&filter[categoryId]=${categoryId}`
       );
     }
     return this.http.get<PagedMeals>(
-        `${this.url}/meals?page[number]=0&page[size]=100&filter[name]=${name}&sort=-rating,id&filter[categoryId]=${categoryId}`
+      `${this.url}/meals?page[number]=0&page[size]=100&filter[name]=${name}&sort=-rating,id&filter[categoryId]=${categoryId}`
     );
   }
 
-  refreshMetadata$(): void {
+  public refreshMetadata$(): void {
     this.metadataRefresh$.next();
-  }
-
-  get categories$(): Observable<Category[]> {
-    return this.metadata$.pipe(map((metadata) => metadata.categories));
-  }
-
-  get toppings$(): Observable<Topping[]> {
-    return this.metadata$.pipe(map((metadata) => metadata.toppings));
   }
 
   searchCustomers$(searchTerm: string): Observable<Customer[]> {
@@ -80,14 +76,19 @@ export class MealUpsertDataAccessService {
   }
 
   saveCustomer$(customer: Partial<Customer>): Observable<Customer> {
-    if (customer.id != null){
+    if (customer.id != null) {
       return this.http.patch<Customer>(`${this.url}/customers/${customer.id}`, customer);
     } else {
       return this.http.post<Customer>(`${this.url}/customers`, customer);
     }
   }
 
-  fetchToppingsForMeal$(mealId: number): Observable<PagedMealToppings>{
+  fetchToppingsForMeal$(mealId: number): Observable<PagedMealToppings> {
     return this.http.get<PagedMealToppings>(`${this.url}/meal-toppings/search?mealId=${mealId}&limit=30`);
+  }
+
+  placeOrder$(order: Partial<Order>):  Observable<Order> {
+    console.log(order)
+    return this.http.post<Order>(`${this.url}/orders/place`, order);
   }
 }

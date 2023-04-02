@@ -1,15 +1,11 @@
-import { Component, EventEmitter, Inject, Input, LOCALE_ID, OnDestroy, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Observable, Subject, takeUntil } from "rxjs";
-import { CartItem, MealTopping, Topping } from "@hub/shared/model/food-models";
+import { CartItem, MealTopping } from "@hub/shared/model/food-models";
 import { materialModules } from "@hub/shared/ui/material";
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import {
-  MealToppingsTableComponent,
-  MealToppingTableItem
-} from "../../../presentation/meal-toppings-table/meal-toppings-table.component";
+import { animate, state, style, transition, trigger } from "@angular/animations";
+import { MealToppingsTableComponent } from "../../../presentation/meal-toppings-table/meal-toppings-table.component";
 import { MealToppingChange } from "../../../model/meal-topping-change.interface";
-
 
 @Component({
   selector: "hub-select-topping",
@@ -29,26 +25,15 @@ export class SelectToppingComponent implements OnInit, OnDestroy {
   @Input() cartItems$: Observable<CartItem[]>;
   @Input() mealToppingsMap$:  Observable<Map<number, MealTopping[]>>;
   @Output() mealToppingChanged = new EventEmitter<MealToppingChange>();
-  private mealToppingsMap:  Map<number, MealTopping[]> = new Map<number, MealTopping[]>();
-  cartItems: CartItem[] = [];
   expandedElement: CartItem | null;
 
-
   displayedColumns: string[] = ["imageUrl","meal", "quantity","price","actions"];
+  private mealToppingsMap:  Map<number, MealTopping[]> = new Map<number, MealTopping[]>();
   private readonly unsubscribe$ = new Subject<void>();
 
   ngOnInit(): void {
-    this.cartItems$.pipe(takeUntil(this.unsubscribe$))
-      .subscribe(meals => this.cartItems = meals);
     this.mealToppingsMap$.pipe(takeUntil(this.unsubscribe$))
       .subscribe(mealToppingsMap => this.mealToppingsMap = mealToppingsMap);
-
-  }
-
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
   }
 
   toppingsForMeal(id:number): MealTopping[] {
@@ -57,5 +42,10 @@ export class SelectToppingComponent implements OnInit, OnDestroy {
 
   onCartItemToppingChanged(item: MealToppingChange) {
     this.mealToppingChanged.next(item);
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

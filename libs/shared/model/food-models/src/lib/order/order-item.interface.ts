@@ -8,8 +8,8 @@ export interface OrderItem {
   priceNoVat: number;
   priceWithVat: number;
   meal: Meal;
-  order: Order;
+  order?: Order;
   toppingsItems: ToppingItem[];
-  createdAt: Date;
-  modifiedAt: Date;
+  createdAt?: Date;
+  modifiedAt?: Date;
 }

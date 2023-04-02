@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Form, FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { CustomerFormUi } from "./customer-form-ui.interface";
 
 
@@ -71,9 +71,6 @@ export class CustomerSearchFormService{
   }
   get longitudeControl(): FormControl {
     return this.form.get('longitude') as FormControl;
-  }
-  get idControl(): FormControl {
-    return this.form.get('id') as FormControl;
   }
 
 }

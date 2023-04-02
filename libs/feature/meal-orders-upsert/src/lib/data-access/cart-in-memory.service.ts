@@ -1,25 +1,13 @@
 import { Inject, Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject, find, Observable } from "rxjs";
-import { FOOD_API_BACKEND_URL } from "@hub/shared/util/app-config";
+import { BehaviorSubject, Observable } from "rxjs";
 import { CartItem, ToppingCartItem } from "@hub/shared/model/food-models";
 import { MealToppingChange } from "../model/meal-topping-change.interface";
-
-
-
 @Injectable()
 export class CartInMemoryService {
 
-  private readonly cartItems$: BehaviorSubject<CartItem[]>;
+  private readonly cartItems$: BehaviorSubject<CartItem[]> = new BehaviorSubject<CartItem[]>([]);
 
-  constructor(
-    @Inject(FOOD_API_BACKEND_URL) private url: string,
-    private readonly http: HttpClient
-  ) {
-    this.cartItems$ = new BehaviorSubject<CartItem[]>([]);
-  }
-
-  addCartItem(cartItem: CartItem){
+  public addCartItem(cartItem: CartItem): void{
     this.cartItems$.next([...this.cartItems$.value, cartItem])
   }
 
@@ -37,7 +25,6 @@ export class CartInMemoryService {
     } else {
       this.addCartItem(cartItem);
     }
-
   }
 
   getCartItems$():Observable<CartItem[]>{

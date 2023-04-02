@@ -1,4 +1,4 @@
-<shared-ui-stepper-sideboard #cdkStepper [title]="'This is title'">
+<shared-ui-stepper-sideboard #cdkStepper [title]="'Food ordering'">
   <cdk-step>
     <ng-template cdkStepLabel> Meals</ng-template>
     <shared-ui-section-group [title]="'Meals'">
@@ -32,8 +32,6 @@
                 <mat-icon>search</mat-icon>Search</button>
             </div>
           </div>
-
-
         </ng-container>
 
         <ng-container content>
@@ -42,10 +40,6 @@
           </div>
         </ng-container
         >
-
-        <ng-container footer>
-
-        </ng-container>
       </shared-ui-section>
 
     </shared-ui-section-group>
@@ -63,9 +57,6 @@
             [mealToppingsMap$]="mealToppingsMap$.asObservable()"
             (mealToppingChanged)="onMealToppingChanged($event)"
           ></hub-select-topping>
-        </ng-container>
-        <ng-container footer>
-          Footer
         </ng-container>
       </shared-ui-section>
 
