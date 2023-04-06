@@ -1,6 +1,6 @@
 <div class="mat-elevation-z8">
   <mat-progress-bar mode="indeterminate" *ngIf="datasource.loading$|async"></mat-progress-bar>
-  <table mat-table [dataSource]="datasource" matSort matSortActive="id" matSortDirection="asc" matSortDisableClear (matSortChange)="onSort($event)" >
+  <table mat-table [dataSource]="datasource" matSort [matSortActive]="matSortActive" [matSortDirection]="matSortDirection" matSortDisableClear (matSortChange)="onSort($event)" >
 
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
@@ -45,8 +45,8 @@
     <ng-container matColumnDef="map">
       <mat-header-cell *matHeaderCellDef>Show map</mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <button mat-icon-button [disabled]="!element.deliveryLocationLat || !element.deliveryLocationLon ">
-          <i class='bx bx-map' (click)="onLocationClicked($event, element)"></i>
+        <button mat-icon-button [disabled]="!element.deliveryLocationLat || !element.deliveryLocationLon" (click)="onLocationClicked($event, element)">
+          <i class='bx bx-map'></i>
         </button>
 
       </mat-cell>
@@ -82,11 +82,11 @@
     <i class='bx bxs-edit'></i>
     Edit
   </button>
-  <button mat-menu-item>
+  <button mat-menu-item (click)="onClickDispatch(element)">
     <i class='bx bxs-truck'></i>
     Dispatch
   </button>
-  <button mat-menu-item>
+  <button mat-menu-item (click)="onClickCancel(element)">
     <i class='bx bx-window-close' ></i>
     Cancel
   </button>

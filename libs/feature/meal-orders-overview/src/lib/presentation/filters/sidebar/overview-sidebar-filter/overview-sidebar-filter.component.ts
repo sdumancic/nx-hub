@@ -8,7 +8,6 @@ import { OrdersOverviewFiltersService } from "../../service/orders-overview-filt
 import { MealOrdersOverviewFacadeService } from "../../../../facade/meal-orders-overview-facade.service";
 import { OrdersOverviewFormService } from "../../../../forms/orders-overview-form.service";
 import { MatDialogRef } from "@angular/material/dialog";
-import { materialModules } from "../../../../material";
 import { OverviewFilterChipComponent } from "../../filter-chips/overview-filter-chip/overview-filter-chip.component";
 import {
   OverviewFilterCounterComponent
@@ -20,6 +19,7 @@ import {
   MomentDateAdapter
 } from "@angular/material-moment-adapter";
 import { CUSTOM_DATE_FORMATS } from "@hub/shared/util/app-config";
+import { materialModules } from "@hub/shared/ui/material";
 
 export const ORDERS_OVERVIEW_SIDEBAR_FILTERS_DIALOG =
   'orders-overview-sidebar-filters-dialog';

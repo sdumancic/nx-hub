@@ -76,4 +76,16 @@ export class MealOrdersDataAccess {
   get toppings$(): Observable<Topping[]> {
     return this.metadata$.pipe(map((metadata) => metadata.toppings));
   }
+
+  cancelOrder$(orderId: number) {
+    return this.http.post(`${this.url}/orders/${orderId}/cancel`,{});
+  }
+
+  dispatchOrder$(orderId: number) {
+    return this.http.post(`${this.url}/orders/${orderId}/dispatch`,{});
+  }
+
+  completeOrder$(orderId: number) {
+    return this.http.post(`${this.url}/orders/${orderId}/complete`,{});
+  }
 }

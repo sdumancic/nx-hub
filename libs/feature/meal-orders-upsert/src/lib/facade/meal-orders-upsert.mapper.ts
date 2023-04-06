@@ -133,8 +133,8 @@ export class MealOrdersUpsertMapper {
       deliveryLocation: {
         type: "Point",
         coordinates: [
+          customer.longitude,
           customer.latitude,
-          customer.longitude
         ]
       },
       paymentMethod: 'CASH',
@@ -173,5 +173,47 @@ export class MealOrdersUpsertMapper {
         orderItem: null,
       }
     })
+  }
+
+ static orderItemsToCartItems(orderItems: OrderItem[]): CartItem[]{
+    return orderItems.map(item => {
+      return {
+        meal: item.meal,
+        toppings: MealOrdersUpsertMapper.toppingItemsToToppingCartItems(item.toppingsItems),
+        quantity: item.quantity,
+        totalPriceNoVat: item.priceNoVat,
+        totalPriceWithVat: item.priceWithVat
+      } as CartItem
+    })
+  }
+
+  static toppingItemsToToppingCartItems(toppingItems: ToppingItem[]): ToppingCartItem[]{
+    if (!toppingItems){
+      return []
+    };
+    if (toppingItems.length === 0){
+      return []
+    };
+    return toppingItems.map(item => {
+      return {
+        toppingId: item.topping.id,
+        toppingName: item.topping.name,
+        toppingPrice: item.priceWithVat,
+        quantity: item.quantity,
+        totalPrice: item.priceWithVat
+      } as ToppingCartItem
+    })
+  }
+
+  static orderToCustomerSearchResult(order: Order): CustomerSearchResultUi {
+    return {
+      id: order.customer.id,
+      firstName: order.customer.firstName,
+      lastName: order.customer.lastName,
+      city: order.deliveryCity,
+      address: order.deliveryAddress,
+      latitude: order.deliveryLocation.coordinates[1],
+      longitude: order.deliveryLocation.coordinates[0]
+    }
   }
 }

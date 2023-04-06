@@ -91,6 +91,7 @@ import { fetchAllCustomers } from "./app/routes/customer/fetch-all-customers";
 import { updateCustomer } from "./app/routes/customer/update-customer";
 import { updateOrder } from "./app/routes/ordering/update-order";
 import { searchCustomers } from "./app/routes/customer/search-customers";
+import { cancelOrder } from "./app/routes/ordering/cancel-order";
 
 if(result.error){
   console.log('error loading environment variables, aborting')
@@ -152,6 +153,7 @@ function setupExpress() {
   app.route(`${contextRoot}/orders/:orderId`).patch(updateOrder)
   app.route(`${contextRoot}/orders/:orderId/dispatch`).post(dispatchOrder)
   app.route(`${contextRoot}/orders/:orderId/complete`).post(completeOrder)
+  app.route(`${contextRoot}/orders/:orderId/cancel`).post(cancelOrder)
 
   app.route(`${contextRoot}/users`).post(createUser)
   app.route(`${contextRoot}/users/searchByEmail`).get(findOneUserByEmail)

@@ -40,7 +40,6 @@ export class OrdersOverviewFiltersService implements OnDestroy {
   get appliedFilterChips$(): Observable<IOverviewFilterChip[]> {
     return merge(this.facade.searchValues$, this.filterChipsRefresh$).pipe(
       map(this.getFilterChips),
-      tap(val => console.log(val))
     );
   }
 

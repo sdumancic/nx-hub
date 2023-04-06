@@ -5,6 +5,8 @@ import { logger } from "../../util/logger";
 import { MealEntity } from "../../entities/meal";
 import { OrderEntity } from "../../entities/order";
 import { Between, Equal } from "typeorm";
+import { getInstrumentationExcludedPaths } from "@angular-devkit/build-angular/src/webpack/utils/helpers";
+import { Meal, Order, Topping, ToppingItem } from "@hub/shared/model/food-models";
 
 export async function findOneOrder(
   request: Request,
@@ -14,7 +16,7 @@ export async function findOneOrder(
   try {
     const orderId = request.params.orderId
     const repository = AppDataSource.getRepository(OrderEntity);
-    const order = await repository.find({
+    const order = await repository.findOne({
       select: {
         id: true,
         datePlaced: true,
@@ -30,9 +32,29 @@ export async function findOneOrder(
         notes: true,
         createdAt: true,
         modifiedAt: true,
-        orderItems: true
+        customer: {
+          id: true,
+          firstName: true,
+          lastName: true
+        },
+        orderItems: {
+          id: true,
+          priceNoVat: true,
+          priceWithVat: true,
+          quantity: true,
+          toppingsItems: {
+            id: true,
+            quantity: true,
+            priceNoVat: true,
+            priceWithVat: true,
+            topping: {
+              id: true,
+              name: true
+            }
+          }
+        }
       },
-      relations: ['orderItems','orderItems.toppingsItems','orderItems.meal'],
+      relations: ['customer','orderItems','orderItems.toppingsItems','orderItems.meal','orderItems.toppingsItems.topping'],
       where: {
         id: Equal(Number(orderId))
       },

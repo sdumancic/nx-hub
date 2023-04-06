@@ -15,7 +15,7 @@ export async function placeOrder(
   const queryRunner = AppDataSource.createQueryRunner();
   await queryRunner.connect();
   try {
-    const { deliveryAddress, deliveryCity, notes, deliveryLocation } = request.body;
+    const { deliveryAddress, deliveryCity, notes, deliveryLocation, customer } = request.body;
     const orderItems: OrderItem[] = request.body.orderItems;
 
     let { paymentMethod } = request.body;
@@ -54,9 +54,9 @@ export async function placeOrder(
       deliveryCity: deliveryCity,
       deliveryLocation: deliveryLocation ?  deliveryLocation : null,
       paymentMethod: paymentMethod,
+      customer: customer
     });
     await queryRunner.manager.save(order);
-
 
     for (const item of orderItems) {
 
@@ -75,9 +75,9 @@ export async function placeOrder(
       if (item.toppingsItems && item.toppingsItems.length > 0){
         for (const toppingItem of item.toppingsItems) {
           const toppingItemEntity = toppingsRepo.create({
-            quantity: item.quantity,
-            priceNoVat: item.priceNoVat,
-            priceWithVat: item.priceWithVat,
+            quantity: toppingItem.quantity,
+            priceNoVat: toppingItem.priceNoVat,
+            priceWithVat: toppingItem.priceWithVat,
             topping: {
               id: toppingItem.topping.id,
             },
@@ -89,8 +89,6 @@ export async function placeOrder(
         }
       }
     }
-
-
 
     await queryRunner.commitTransaction();
     await queryRunner.release();

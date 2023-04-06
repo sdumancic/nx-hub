@@ -45,6 +45,7 @@ export class MealOrdersOverviewStateService {
   }
 
   reset (): void {
+
     this.set({
       searchValues: { ...SEARCH_VALUES_DEFAULT },
       searchResult: [],

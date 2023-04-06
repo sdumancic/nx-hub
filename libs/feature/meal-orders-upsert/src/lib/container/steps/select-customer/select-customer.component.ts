@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnDestroy, OnInit } from "@angular/core";
+import { Component, Inject, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormControl, FormGroup } from "@angular/forms";
 import { materialModules } from "@hub/shared/ui/material";
@@ -37,11 +37,12 @@ import { GoogleMapsFacadeService } from "../../../facade/google-maps-facade.serv
   styleUrls: ["./select-customer.component.scss"],
   providers: [GoogleMapsFacadeService]
 })
-export class SelectCustomerComponent implements OnInit, OnDestroy {
+export class SelectCustomerComponent implements OnInit, OnDestroy, OnChanges {
   @Input() orderId: number;
   @Input() createNewCustomer$: Observable<void>;
   @Input() saveNewCustomer$: Observable<void>;
   @Input() cancelCreateNewCustomer$: Observable<void>;
+  @Input() selectedCustomer: CustomerSearchResultUi;
 
   form: FormGroup;
   searchTermControl = new FormControl<string>(null);
@@ -66,6 +67,16 @@ export class SelectCustomerComponent implements OnInit, OnDestroy {
     this.form = this.customerFormService.createFormGroup();
     this.disableForm();
     this.apiLoaded = this.googleMapsFacade.loadGoogleMaps$();
+
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes && changes['selectedCustomer']){
+      if (this.selectedCustomer  !== undefined){
+        this.onCustomerSelected(this.selectedCustomer)
+      }
+    }
+
   }
 
   private get customerSearchResult$(): Observable<CustomerSearchResultUi[] | []> {
@@ -156,14 +167,14 @@ export class SelectCustomerComponent implements OnInit, OnDestroy {
     this.googleMapsFacade.setMarkerPositions([]);
   }
 
-  protected onCustomerSelected(value: CustomerSearchResultUi): void {
+  protected onCustomerSelected(customer: CustomerSearchResultUi): void {
     this.facade.customerFormMode = FormMode.Initial;
-    this.customerFormService.setValue(MealOrdersUpsertMapper.fromCustomerSearchResultUiToForm(value));
+    this.customerFormService.setValue(MealOrdersUpsertMapper.fromCustomerSearchResultUiToForm(customer));
     this.googleMapsFacade.setCenter({
-      lat: value.latitude,
-      lng: value.longitude
+      lat: customer.latitude,
+      lng: customer.longitude
     });
-    this.facade.selectCustomer(value);
+    this.facade.selectCustomer(customer);
     this.googleMapsFacade.setMarkerPosition(this.googleMapsFacade.getCenter());
   }
 

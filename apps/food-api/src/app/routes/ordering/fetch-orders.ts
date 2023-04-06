@@ -13,6 +13,11 @@ export async function fetchOrders(
     const { status, datePlacedFrom, datePlacedTo } = request.query;
     const limit = request.query.limit || 10;
     const offset = request.query.offset || 0;
+    let {sort, sortOrder} = request.query;
+    if (!sort){
+      sort = 'id'
+      sortOrder = 'ASC'
+    }
 
     let statusValue = null;
     let datePlacedFromValue = null;
@@ -53,13 +58,13 @@ export async function fetchOrders(
         datePlaced: datePlacedFromValue ? Between(datePlacedFromValue,datePlacedToValue) : null
       },
       order: {
-        id: 'ASC',
+        [sort.toString()]: sortOrder.toString().toLowerCase() === "desc" ? 'DESC' : 'ASC'
       },
       skip: Number(offset),
       take: Number(limit),
     });
 
-    response.status(201).json({
+    response.status(200).json({
       list,
       count,
       limit,

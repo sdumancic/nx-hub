@@ -14,6 +14,7 @@ import {
   MatDialogRef,
   MatDialogModule,
 } from '@angular/material/dialog';
+import { materialModules } from "@hub/shared/ui/material";
 
 export interface GoogleMapsDialogData {
   deliveryLocationLat: number;
@@ -28,6 +29,7 @@ export interface GoogleMapsDialogData {
     MatDialogModule,
     HttpClientModule,
     HttpClientJsonpModule,
+    ...materialModules
   ],
   templateUrl: './shared-feature-google-maps-dialog.component.html',
   styleUrls: ['./shared-feature-google-maps-dialog.component.scss'],
@@ -35,9 +37,8 @@ export interface GoogleMapsDialogData {
 export class SharedFeatureGoogleMapsDialogComponent {
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow;
   apiLoaded: Observable<boolean>;
-
   center: google.maps.LatLngLiteral = { lat: 24, lng: 12 };
-  zoom = 14;
+  zoom = 13;
   display: google.maps.LatLngLiteral
   markerOptions: google.maps.MarkerOptions = {draggable: false};
   markerPositions: google.maps.LatLngLiteral[] = [];
@@ -55,7 +56,6 @@ export class SharedFeatureGoogleMapsDialogComponent {
     };
     this.markerPositions.push(this.center);
 
-
     this.apiLoaded = httpClient
       .jsonp(
         `https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}`,
@@ -63,14 +63,6 @@ export class SharedFeatureGoogleMapsDialogComponent {
       )
       .pipe(
         map(() => true),
-        tap((val) => {
-          const request: google.maps.DirectionsRequest = {
-            destination: {lat: this.data.deliveryLocationLat, lng: this.data.deliveryLocationLon},
-            origin: {lat: 46.30828357545585, lng: 16.346560089618418},
-            travelMode: google.maps.TravelMode.DRIVING
-          };
-          this.directionsResults$ = mapDirectionsService.route(request).pipe(map(response => response.result));
-        }),
         catchError((err) => {
           console.log(err);
           return of(false);

@@ -40,6 +40,7 @@ export class ToppingOrderItemEntity implements ToppingItem {
   @JoinColumn({name: 'order_item_id'})
   @Index("topping-item-meal-item-idx")
   orderItem: OrderItem;
+  toppingPriceForMeal: number;
 
 
 

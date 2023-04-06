@@ -5,6 +5,7 @@ import { MealOrdersDataAccess } from "../data-access/meal-orders-data-access.ser
 import { IMealOrdersOverviewSearchUi } from "../forms/meal-orders-overview-search.ui.model";
 import { Category, PagedOrders, Topping } from "@hub/shared/model/food-models";
 import { ISearchMeta } from "../facade/state/meal-orders-overview-state.model";
+import { IOrdersOverviewSearchResultUi } from "../presentation/table/orders-overview-search-result.ui.model";
 
 @Injectable()
 export class OrdersOverviewService {
@@ -27,5 +28,17 @@ export class OrdersOverviewService {
     return this.dataAccessService.searchOrders$(
       OrdersOverviewQuery.buildQuery(searchValues, searchMeta)
     );
+  }
+
+  cancelOrder$(orderId: number) {
+    return this.dataAccessService.cancelOrder$(orderId);
+  }
+
+  dispatchOrder$(orderId: number) {
+    return this.dataAccessService.dispatchOrder$(orderId);
+  }
+
+  completeOrder$(orderId: number) {
+    return this.dataAccessService.completeOrder$(orderId);
   }
 }

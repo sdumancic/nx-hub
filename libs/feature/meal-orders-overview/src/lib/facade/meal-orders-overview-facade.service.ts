@@ -51,10 +51,6 @@ export class MealOrdersOverviewFacadeService implements OnDestroy{
     return this.state.searchCount$;
   }
 
-  get searchingErrors$(): Observable<void> {
-    return this.searchError$.asObservable();
-  }
-
   constructor(
     private readonly dataService: OrdersOverviewService,
     private readonly state: MealOrdersOverviewStateService
@@ -152,5 +148,17 @@ export class MealOrdersOverviewFacadeService implements OnDestroy{
 
   reset() {
     this.state.reset();
+  }
+
+  cancelOrder$(order: IOrdersOverviewSearchResultUi) {
+    return this.dataService.cancelOrder$(order.id);
+  }
+
+  dispatchOrder$(order: IOrdersOverviewSearchResultUi) {
+    return this.dataService.dispatchOrder$(order.id);
+  }
+
+  completeOrder$(order: IOrdersOverviewSearchResultUi) {
+    return this.dataService.completeOrder$(order.id);
   }
 }

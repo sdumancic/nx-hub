@@ -85,6 +85,7 @@ export class MealOrdersUpsertFacadeService implements OnDestroy {
 
   placeOrder(): Observable<Order> {
     const order: Partial<Order> = MealOrdersUpsertMapper.toNewOrder(this.cartService.getCartItems(), this.selectedCustomer)
+    console.log(order)
     return this.dataService.placeOrder$(order);
   }
 
@@ -118,4 +119,14 @@ export class MealOrdersUpsertFacadeService implements OnDestroy {
     this.search$ = new Subject<MealSearchRequest>();
     this.subscribeToSearch();
   };
+
+  fetchOrder$(orderId: number): Observable<Order> {
+    if (orderId) {
+      return this.dataService.fetchOrder$(orderId).pipe(catchError(() => {
+        return of(null)
+      }));
+    } else {
+      return of(null);
+    }
+  }
 }

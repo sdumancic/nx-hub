@@ -9,8 +9,20 @@ import { SharedUiSideboardComponent } from "@hub/shared/ui/sideboard";
 import { MealOrdersUpsertFacadeService } from "../facade/meal-orders-upsert-facade.service";
 import { MealsTableComponent } from "../presentation/meals-table/meals-table.component";
 import { IMealsSearchResultUi } from "../presentation/meals-table/meals-search-result.ui.model";
-import { catchError, concatMap, EMPTY, forkJoin, map, Observable, of, Subject, take, takeUntil } from "rxjs";
-import { CartItem, EMPTY_PAGED_MEALS, MealTopping } from "@hub/shared/model/food-models";
+import {
+  catchError,
+  concatMap,
+  EMPTY,
+  forkJoin,
+  map,
+  Observable,
+  Subject,
+  switchMap,
+  take,
+  takeUntil,
+  tap
+} from "rxjs";
+import { CartItem, MealTopping, Order } from "@hub/shared/model/food-models";
 import { MealOrderCartSmallComponent } from "@hub/feature/meal-order-cart";
 import { CartInMemoryService } from "../data-access/cart-in-memory.service";
 import { CustomerSearchFormService } from "../forms/customer-search-form.service";
@@ -19,7 +31,8 @@ import { SelectToppingComponent } from "./steps/select-topping/select-topping.co
 import { MealToppingsTableComponent } from "../presentation/meal-toppings-table/meal-toppings-table.component";
 import { MealToppingChange } from "../model/meal-topping-change.interface";
 import { MatSnackBar } from "@angular/material/snack-bar";
-
+import { MealOrdersUpsertMapper } from "../facade/meal-orders-upsert.mapper";
+import { CustomerSearchResultUi } from "../model/customer-search-result-ui.interface";
 
 @Component({
   selector: "hub-feature-meal-orders-upsert",
@@ -49,8 +62,8 @@ export class FeatureMealOrdersUpsertComponent implements OnInit, OnDestroy, Afte
   protected mealToppingsMap$ = new Subject<Map<number, MealTopping[]>>();
   protected nextButtonText = "Edit toppings";
   protected previousButtonText: string;
-
   private readonly unsubscribe$ = new Subject<void>();
+  protected selectedCustomer: CustomerSearchResultUi;
 
   constructor(
     private route: ActivatedRoute,
@@ -61,9 +74,15 @@ export class FeatureMealOrdersUpsertComponent implements OnInit, OnDestroy, Afte
   }
 
   ngOnInit(): void {
-    this.route.params.pipe(takeUntil(this.unsubscribe$)).subscribe(params => {
-      if (params) {
-        this.orderId = +params;
+    this.route.params.pipe(
+      takeUntil(this.unsubscribe$),
+      tap(params => params[1] !== undefined ? this.orderId = +params[1] : null),
+      switchMap(() =>  this.facade.fetchOrder$(this.orderId))
+    ).subscribe((order: Order) => {
+      if (order){
+        this.facade.setCartItems(MealOrdersUpsertMapper.orderItemsToCartItems(order.orderItems));
+        this.selectedCustomer = MealOrdersUpsertMapper.orderToCustomerSearchResult(order);
+        this.stepper.next();
       }
     });
   }

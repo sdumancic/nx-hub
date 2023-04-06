@@ -31,7 +31,7 @@ export const SEARCH_VALUES_DEFAULT: IMealOrdersOverviewSearchUi = {
 
 export const SEARCH_META_DEFAULT: ISearchMeta = {
   pagination: { index: 0, size: 10 },
-  sorting: { attribute: 'id', order: 'asc' }
+  sorting: { attribute: 'id', order: 'desc' }
 }
 
 export const ORDERS_OVERVIEW_INITIAL_STATE: IMealOrdersOverviewState = {

@@ -88,7 +88,10 @@ export class MealUpsertDataAccessService {
   }
 
   placeOrder$(order: Partial<Order>):  Observable<Order> {
-    console.log(order)
     return this.http.post<Order>(`${this.url}/orders/place`, order);
+  }
+
+  fetchOrder$(orderId: number): Observable<Order>{
+    return this.http.get<Order>(`${this.url}/orders/${orderId}`);
   }
 }

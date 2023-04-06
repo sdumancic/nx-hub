@@ -38,7 +38,6 @@ export class MealToppingsTableComponent implements OnChanges {
   displayedColumns = ["toppingId", "toppingName", "toppingPrice", "quantity"];
 
   displayTable(): void {
-    console.log("cartItem", this.cartItem.toppings);
     this.dataSource = new MealToppingsTableDataSource(MealOrdersUpsertMapper.mealToppingsToMealToppingTableItems([...this.mealToppings]));
     this.updateQuantityWhenReturning(this.dataSource);
     this.dataSource.sort = this.sort;

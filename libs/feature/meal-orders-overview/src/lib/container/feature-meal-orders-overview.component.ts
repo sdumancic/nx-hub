@@ -1,10 +1,9 @@
 import { Component, HostListener, OnDestroy, OnInit, ViewContainerRef } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
-import { materialModules } from "../material";
 import { MealOrdersOverviewFacadeService } from "../facade/meal-orders-overview-facade.service";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
-import { endWith, Observable, Subject, takeUntil } from "rxjs";
+import { endWith, Observable, Subject, take, takeUntil } from "rxjs";
 import { Sort } from "@angular/material/sort";
 import { PageEvent } from "@angular/material/paginator";
 import { PartOrdersOverviewTabs } from "../presentation/order-overview-tabs";
@@ -29,15 +28,16 @@ import {
 import { OrdersOverviewService } from "../business/orders-overview.service";
 import { MealOrdersOverviewStateService } from "../facade/state/meal-orders-overview-state.service";
 import { SharedFeatureGoogleMapsDialogComponent } from "@hub/shared/feature/google-maps-dialog";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
+import { materialModules } from "@hub/shared/ui/material";
 
 @Component({
-  selector: 'hub-feature-meal-orders-overview',
+  selector: "hub-feature-meal-orders-overview",
   standalone: true,
   imports: [...materialModules, CommonModule, ReactiveFormsModule, OrdersOverviewTableComponent, OverviewQuickFilterComponent, OrdersOverviewHeaderComponent],
-  templateUrl: './feature-meal-orders-overview.component.html',
-  styleUrls: ['./feature-meal-orders-overview.component.scss'],
-  providers: [MealOrdersOverviewFacadeService,OrdersOverviewService,MealOrdersOverviewStateService, OrdersOverviewFormService,OrdersOverviewFiltersService]
+  templateUrl: "./feature-meal-orders-overview.component.html",
+  styleUrls: ["./feature-meal-orders-overview.component.scss"],
+  providers: [MealOrdersOverviewFacadeService, OrdersOverviewService, MealOrdersOverviewStateService, OrdersOverviewFormService, OrdersOverviewFiltersService]
 })
 export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
   searchCount$ = this.ordersFacade.searchCount$;
@@ -45,12 +45,9 @@ export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
   searchResult$: Observable<IOrdersOverviewSearchResultUi[]> =
     this.ordersFacade.searchResult$;
   sidebarPinned$: Observable<boolean>;
-
-  private readonly unsubscribe$ = new Subject<void>();
-
   activeTabIndex = PartOrdersOverviewTabs.StatusPlaced;
-
   sidebarDialogRef: MatDialogRef<any>;
+  private readonly unsubscribe$ = new Subject<void>();
 
   constructor(
     private readonly ordersFacade: MealOrdersOverviewFacadeService,
@@ -59,16 +56,16 @@ export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
     private readonly ordersFormService: OrdersOverviewFormService,
     private readonly filtersService: OrdersOverviewFiltersService,
     private readonly router: Router,
-    public dialog: MatDialog,
-    private route: ActivatedRoute
-  ) {}
+    public dialog: MatDialog
+  ) {
+  }
 
-  @HostListener('click') onContainerClick(): void {
+  @HostListener("click") onContainerClick(): void {
     this.filtersService.nextContainerClick();
   }
 
   ngOnInit(): void {
-    this.setDefaultValuesAndSearch('placed');
+    this.setDefaultValuesAndSearch("placed");
   }
 
   ngOnDestroy(): void {
@@ -87,7 +84,7 @@ export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
   onOpenSidebarFilters(tabIndex: number): void {
     if (
       this.matDialog.getDialogById(ORDERS_OVERVIEW_SIDEBAR_FILTERS_DIALOG) !=
-        null
+      null
     ) {
       return;
     }
@@ -99,8 +96,8 @@ export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
         viewContainerRef: this.viewContainerRef,
         hasBackdrop: false,
         autoFocus: false,
-        position: { right: '0px', top: '0px' },
-        panelClass: 'overview__sidebar-filters-dialog',
+        position: { right: "0px", top: "0px" },
+        panelClass: "overview__sidebar-filters-dialog"
       }
     );
 
@@ -115,31 +112,17 @@ export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
     this.ordersFacade.search(this.ordersFormService.formGroupRawValue);
   }
 
-  private setActiveTab(ind: PartOrdersOverviewTabs): void {
-    this.activeTabIndex = ind;
-    this.ordersFacade.setActiveTab(ind);
-  }
-
   async tabChanged(event: MatTabChangeEvent): Promise<void> {
     this.activeTabIndex = event.index;
     this.setActiveTab(event.index);
     if (this.activeTabIndex === 0) {
-      this.setDefaultValuesAndSearch('placed');
+      this.setDefaultValuesAndSearch("placed");
     } else if (this.activeTabIndex === 1) {
-      this.setDefaultValuesAndSearch('dispatched');
+      this.setDefaultValuesAndSearch("dispatched");
     } else if (this.activeTabIndex === 2) {
-      this.setDefaultValuesAndSearch('closed');
+      this.setDefaultValuesAndSearch("closed");
     }
 
-  }
-
-  private setDefaultValuesAndSearch(status: string): void {
-    this.ordersFacade.resetState();
-    const searchValues: IMealOrdersOverviewSearchUi = this.ordersFacade.getDefaultSearchValues(status);
-    this.ordersFormService.formGroup.patchValue(searchValues, {
-      emitEvent: false,
-    });
-    this.ordersFacade.search(searchValues);
   }
 
   onAllOrdersReset(): void {
@@ -149,19 +132,43 @@ export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
   }
 
   onShowLocation(order: IOrdersOverviewSearchResultUi) {
-
-      const dialogRef = this.dialog.open(SharedFeatureGoogleMapsDialogComponent, {
-        height: '800px',
-        width: '700px',
-        data: {order},
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-      });
+    const dialogRef = this.dialog.open(SharedFeatureGoogleMapsDialogComponent, {
+      width: "550px",
+      height: "530px",
+      data: {
+        deliveryLocationLat: order.deliveryLocationLat,
+        deliveryLocationLon: order.deliveryLocationLon
+      }
+    });
   }
 
   onCreateNewOrder() {
-    this.router.navigate(['shell','orders','edit','new']);
+    this.router.navigate(["shell", "orders", "edit", "new"]);
+  }
+
+  private setActiveTab(ind: PartOrdersOverviewTabs): void {
+    this.activeTabIndex = ind;
+    this.ordersFacade.setActiveTab(ind);
+  }
+
+  private setDefaultValuesAndSearch(status: string): void {
+    this.ordersFacade.resetState();
+    const searchValues: IMealOrdersOverviewSearchUi = this.ordersFacade.getDefaultSearchValues(status);
+    this.ordersFormService.formGroup.patchValue(searchValues, {
+      emitEvent: false
+    });
+    this.ordersFacade.search(searchValues);
+  }
+
+  onEditOrder(order: IOrdersOverviewSearchResultUi) {
+    this.router.navigate(["shell", "orders", "edit", order.id]);
+  }
+
+  onCancelOrder(order: IOrdersOverviewSearchResultUi) {
+    this.ordersFacade.cancelOrder$(order).pipe(take(1)).subscribe(() => this.onSearch());
+  }
+
+  onDispatchOrder(order: IOrdersOverviewSearchResultUi) {
+    this.ordersFacade.dispatchOrder$(order).pipe(take(1)).subscribe(() => this.onSearch());
   }
 }

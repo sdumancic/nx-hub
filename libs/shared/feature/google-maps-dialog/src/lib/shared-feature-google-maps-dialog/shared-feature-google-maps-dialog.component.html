@@ -1,9 +1,6 @@
-<h1 mat-dialog-title>Location</h1>
 <div mat-dialog-content>
   <div *ngIf="apiLoaded | async">
-    <google-map height="500px"
-                width="650px"
-                [center]="center"
+    <google-map [center]="center"
                 [zoom]="zoom"
                 (mapClick)="moveMap($event)"
                 (mapMousemove)="move($event)">
@@ -18,12 +15,7 @@
                                [directions]="directionsResults"></map-directions-renderer>
       <map-traffic-layer [autoRefresh]="false"></map-traffic-layer>
     </google-map>
-    <div>Latitude: {{display?.lat}}</div>
-    <div>Longitude: {{display?.lng}}</div>
 
   </div>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Close</button>
-  <button mat-button [mat-dialog-close] cdkFocusInitial>Ok</button>
-</div>
+

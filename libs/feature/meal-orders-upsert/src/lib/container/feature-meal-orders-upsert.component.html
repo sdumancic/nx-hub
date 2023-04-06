@@ -90,6 +90,7 @@
 
         <ng-container content>
           <hub-select-customer
+            [selectedCustomer]="selectedCustomer"
             [orderId]="orderId"
             [createNewCustomer$]="createNewCustomer$.asObservable()"
             [cancelCreateNewCustomer$]="cancelCreateNewCustomer$.asObservable()"
@@ -131,7 +132,7 @@
                 class="place-order-btn"
                 (click)="placeOrder()"
                 *ngIf="(cartItemsCount$()|async) > 0 && !!facade.getSelectedCustomer() "
-        >Place Order
+        >{{!!orderId ? 'Update order' : 'Place Order'}}
           <mat-icon>assignment</mat-icon>
         </button>
       </ng-container>
