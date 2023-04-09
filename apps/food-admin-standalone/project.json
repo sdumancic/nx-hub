@@ -17,7 +17,12 @@
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/food-admin-standalone/src/favicon.ico",
-          "apps/food-admin-standalone/src/assets"
+          "apps/food-admin-standalone/src/assets",
+          {
+            "input": "libs/shared/feature/auth/src/assets",
+            "glob": "**/*",
+            "output": "assets/shared/feature/auth"
+          }
         ],
         "styles": [
           "@angular/material/prebuilt-themes/indigo-pink.css",

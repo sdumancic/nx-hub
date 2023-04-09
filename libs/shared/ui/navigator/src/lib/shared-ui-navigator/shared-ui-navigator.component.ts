@@ -17,7 +17,7 @@ export class SharedUiNavigatorComponent {
 
   @Input() items: MenuItem[] = []
   @Input() showProfileDetails = false
-  @Input() avatarUrl = 'https://avatars.githubusercontent.com/u/6890336?v=4'
+  @Input() avatarUrl: string | undefined
   @Input() profileName: string | undefined
   @Input() profileJob: string | undefined
   @Output() logoutEmitter = new EventEmitter<void>()

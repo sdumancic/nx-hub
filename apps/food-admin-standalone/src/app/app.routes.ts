@@ -1,6 +1,5 @@
 import { Route } from '@angular/router';
 import { FoodAdminHomeComponent } from './food-admin-home/food-admin-home.component';
-import * as path from "path";
 
 export const APP_ROUTES: Route[] = [
   { path: '', pathMatch: 'full', redirectTo: 'shell' },
@@ -9,16 +8,24 @@ export const APP_ROUTES: Route[] = [
     component: FoodAdminHomeComponent,
     children: [
       {
+        path: 'login',
+        loadComponent: () => import('@hub/shared/feature/auth').then(mod => mod.LoginComponent)
+      },
+      {
         path: 'dashboard',
         loadChildren: () =>
           import('@hub/shared/testlib').then((mod) => mod.sharedTestlibRoutes),
       },
       {
         path: 'orders/overview',
+        canLoad: ['regularUserAuthGuard'],
+        canActivate: ['regularUserAuthGuard'],
         loadChildren: () => import('@hub/feature/meal-orders-overview').then((mod) => mod.mealOverviewRoutes),
       },
       {
         path: 'orders/edit',
+        canLoad: ['adminUserAuthGuard'],
+        canActivate: ['adminUserAuthGuard'],
         loadChildren: () => import('@hub/feature/meal-orders-upsert').then((mod) => mod.mealOrderUpsertRoutes),
       },
       {
@@ -31,7 +38,7 @@ export const APP_ROUTES: Route[] = [
   },
   {
     path: 'login',
-    loadComponent: () => import('@hub/feature/food-login').then(mod => mod.FeatureFoodLoginComponent)
+    loadComponent: () => import('@hub/shared/feature/auth').then(mod => mod.LoginComponent)
   },
   {
     path: 'testlib',

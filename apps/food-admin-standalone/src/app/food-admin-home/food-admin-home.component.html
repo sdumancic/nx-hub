@@ -3,12 +3,12 @@
     id="navigator"
     [items]="menuItems"
     [showProfileDetails]="true"
-    profileJob="Programmer"
-    profileName="Sanjin Dumančić"
+    [profileJob]="(profileDisplayJob$|async)"
+    [profileName]="(profileDisplayName$ | async)"
+    [avatarUrl]="(profileAvatarUrl$|async)"
     (logoutEmitter)="onLogout()"
   ></hub-shared-ui-navigator>
   <div id="main">
-
     <router-outlet></router-outlet>
   </div>
 </div>

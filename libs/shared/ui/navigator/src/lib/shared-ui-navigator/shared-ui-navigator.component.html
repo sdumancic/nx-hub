@@ -17,6 +17,7 @@
         <div class="profile-details">
           <div class="profile-content">
             <img
+              *ngIf="avatarUrl"
               src="{{avatarUrl}}"
               alt="profileImg"
             />
@@ -25,7 +26,7 @@
             <div class="profile_name">{{profileName}}</div>
             <div class="job">{{profileJob}}</div>
           </div>
-          <i class="bx bx-log-out" (click)="onLogout()"></i>
+          <i class="bx bx-log-out" *ngIf=profileName (click)="onLogout()"></i>
         </div>
       </li>
     </ul>

@@ -5,6 +5,7 @@ import { UserEntity } from "../../entities/user";
 import { calculatePasswordHash } from "@hub/shared/util/core";
 import jwt = require('jsonwebtoken')
 import { environment } from "../../../environments/environment";
+import { LoginResponse } from "../../../../../../libs/shared/feature/auth/src/lib/data-access/login-response.interface";
 const JWT_SECRET = environment.jwt_secret
 
 export async function loginUser(
@@ -30,7 +31,8 @@ export async function loginUser(
         email: true,
         userRoles: true,
         passwordSalt: true,
-        passwordHash: true
+        passwordHash: true,
+        pictureUrl: true
       },
       relations: ['userRoles', 'userRoles.role'],
       where: {
@@ -54,10 +56,18 @@ export async function loginUser(
       return;
     }
 
-    const authJwt = {
+    const authJwt: LoginResponse = {
       userId: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
       email: user.email,
-      userRoles: user.userRoles,
+      avatarUrl: user.pictureUrl,
+      userRoles: user.userRoles.map(userRole => {
+        return {
+          roleId: userRole.role.id,
+          roleName: userRole.role.name
+        }
+      }),
       isAdmin: user.userRoles.find(userRole => userRole.role.id === 1) ? true: false
     }
 
@@ -68,18 +78,20 @@ export async function loginUser(
     );
 
     response.status(200).json({
-      user: {
-        email,
-        isAdmin: user.userRoles.find(userRole => userRole.role.id === 1) ? true: false,
-        userRoles: user.userRoles.map(userRole => {
-          return {
-            roleId: userRole.role.id,
-            roleName: userRole.role.name
-          }
-        })
-      },
+      userId: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      avatarUrl: user.pictureUrl,
+      isAdmin: user.userRoles.find(userRole => userRole.role.id === 1) ? true: false,
+      userRoles: user.userRoles.map(userRole => {
+        return {
+          roleId: userRole.role.id,
+          roleName: userRole.role.name
+        }
+      }),
       token
-    })
+    } as LoginResponse)
 
   } catch (error) {
   logger.error(error);

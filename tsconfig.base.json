@@ -41,6 +41,7 @@
       "@hub/feature/workplace-reservations": [
         "libs/feature/workplace-reservations/src/index.ts"
       ],
+      "@hub/shared/feature/auth": ["libs/shared/feature/auth/src/index.ts"],
       "@hub/shared/feature/google-maps-dialog": [
         "libs/shared/feature/google-maps-dialog/src/index.ts"
       ],

@@ -1,8 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { RouterLinkWithHref, RouterOutlet } from "@angular/router";
+import { Router, RouterLinkWithHref, RouterOutlet } from "@angular/router";
 import { SharedUiNavigatorComponent } from "@hub/shared/ui/navigator";
 import { environment } from "../../environments/environment";
+import { AuthService } from "@hub/shared/feature/auth";
+import { map } from "rxjs";
 
 @Component({
   selector: 'hub-food-admin-home',
@@ -20,15 +22,11 @@ import { environment } from "../../environments/environment";
 export class FoodAdminHomeComponent {
   private readonly foodApiUrl: string;
   private readonly googleMapsApiKey: string;
+  authService = inject(AuthService);
+  router = inject(Router);
   constructor() {
     this.foodApiUrl = environment.foodApi;
     this.googleMapsApiKey = environment.googleMapsApiKey;
-    console.log(
-      'this.url',
-      this.foodApiUrl,
-      ' this.googleMapsApiKey',
-      this.googleMapsApiKey
-    );
   }
   menuItems = [
     {
@@ -73,6 +71,20 @@ export class FoodAdminHomeComponent {
   ];
 
   onLogout() {
-    console.log('logout');
+    this.authService.logout()
+    this.router.navigate(["shell","dashboard"]);
   }
+
+  get profileDisplayName$() {
+    return this.authService.displayUsername$;
+  }
+
+  get profileDisplayJob$() {
+    return this.authService.isAdmin$.pipe(map(val => val ? "ADMIN" : null) );
+  }
+  get profileAvatarUrl$() {
+    return this.authService.userAvatarUrl$;
+  }
+
+
 }

@@ -148,12 +148,12 @@ function setupExpress() {
 
   app.route(`${contextRoot}/orders/place`).post(placeOrder)
 
-  app.route(`${contextRoot}/orders/search`).get(fetchOrders)
+  app.route(`${contextRoot}/orders/search`).get(checkIfAuthenticated,fetchOrders)
   app.route(`${contextRoot}/orders/:orderId`).get(findOneOrder)
-  app.route(`${contextRoot}/orders/:orderId`).patch(updateOrder)
-  app.route(`${contextRoot}/orders/:orderId/dispatch`).post(dispatchOrder)
-  app.route(`${contextRoot}/orders/:orderId/complete`).post(completeOrder)
-  app.route(`${contextRoot}/orders/:orderId/cancel`).post(cancelOrder)
+  app.route(`${contextRoot}/orders/:orderId`).patch(checkIfAuthenticated,updateOrder)
+  app.route(`${contextRoot}/orders/:orderId/dispatch`).post(checkIfAuthenticated,dispatchOrder)
+  app.route(`${contextRoot}/orders/:orderId/complete`).post(checkIfAuthenticated,completeOrder)
+  app.route(`${contextRoot}/orders/:orderId/cancel`).post(checkIfAuthenticated,cancelOrder)
 
   app.route(`${contextRoot}/users`).post(createUser)
   app.route(`${contextRoot}/users/searchByEmail`).get(findOneUserByEmail)
