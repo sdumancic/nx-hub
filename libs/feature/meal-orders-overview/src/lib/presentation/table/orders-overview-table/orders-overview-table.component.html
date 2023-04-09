@@ -78,15 +78,19 @@
 
 <mat-menu #actionsMenu="matMenu">
   <ng-template matMenuContent let-element="element">
-  <button mat-menu-item (click)="onClickEdit(element)">
+  <button mat-menu-item (click)="onClickEdit(element)" *ngIf="sourceTab === 1">
     <i class='bx bxs-edit'></i>
     Edit
   </button>
-  <button mat-menu-item (click)="onClickDispatch(element)">
+  <button mat-menu-item (click)="onClickDispatch(element)" *ngIf="sourceTab === 1">
     <i class='bx bxs-truck'></i>
     Dispatch
   </button>
-  <button mat-menu-item (click)="onClickCancel(element)">
+    <button mat-menu-item (click)="onClickComplete(element)" *ngIf="sourceTab === 2">
+      <i class='bx bx-check'></i>
+      Complete
+    </button>
+  <button mat-menu-item (click)="onClickCancel(element)" *ngIf="sourceTab === 1 || sourceTab === 2">
     <i class='bx bx-window-close' ></i>
     Cancel
   </button>

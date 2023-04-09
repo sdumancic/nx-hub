@@ -27,6 +27,7 @@
           (editOrder)="onEditOrder($event)"
           (cancelOrder)="onCancelOrder($event)"
           (dispatchOrder)="onDispatchOrder($event)"
+          (completeOrder)="onCompleteOrder($event)"
         ></hub-orders-overview-table>
       </mat-tab>
 
@@ -46,7 +47,7 @@
       </mat-tab>
       <mat-tab>
         <ng-template mat-tab-label>
-          <span>Closed</span>
+          <span>Completed</span>
         </ng-template>
         <hub-orders-overview-table
           [sourceTab]="3"

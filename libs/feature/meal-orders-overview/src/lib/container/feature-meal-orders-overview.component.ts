@@ -171,4 +171,8 @@ export class FeatureMealOrdersOverviewComponent implements OnDestroy, OnInit {
   onDispatchOrder(order: IOrdersOverviewSearchResultUi) {
     this.ordersFacade.dispatchOrder$(order).pipe(take(1)).subscribe(() => this.onSearch());
   }
+
+  onCompleteOrder(order: IOrdersOverviewSearchResultUi) {
+    this.ordersFacade.completeOrder$(order).pipe(take(1)).subscribe(() => this.onSearch());
+  }
 }

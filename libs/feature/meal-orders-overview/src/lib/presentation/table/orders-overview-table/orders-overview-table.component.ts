@@ -51,6 +51,7 @@ export class OrdersOverviewTableComponent implements OnInit, OnDestroy, OnChange
   @Output() editOrder = new EventEmitter<IOrdersOverviewSearchResultUi>()
   @Output() dispatchOrder = new EventEmitter<IOrdersOverviewSearchResultUi>()
   @Output() cancelOrder = new EventEmitter<IOrdersOverviewSearchResultUi>()
+  @Output() completeOrder = new EventEmitter<IOrdersOverviewSearchResultUi>()
 
   @ViewChild('paginator') paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -65,8 +66,6 @@ export class OrdersOverviewTableComponent implements OnInit, OnDestroy, OnChange
   displayedColumns = ORDERS_OVERVIEW_DISPLAYED_COLUMNS
     .filter(el => el.displayed)
     .map(el => el.name)
-
-
 
   rowsPerPage = [10, 25, 50, 100]
   sortConfig: IDatatableSortEvent
@@ -84,6 +83,9 @@ export class OrdersOverviewTableComponent implements OnInit, OnDestroy, OnChange
 
   ngOnInit (): void {
     this.datasource = new OrdersOverviewDataSource(this.facade)
+    this.displayedColumns = ORDERS_OVERVIEW_DISPLAYED_COLUMNS
+      .filter(el => el.displayed && el.displayOnTab.filter(tab => tab === this.sourceTab).length > 0)
+      .map(el => {console.log(el); return el.name})
     this.emitSelectionChange()
   }
 
@@ -103,7 +105,6 @@ export class OrdersOverviewTableComponent implements OnInit, OnDestroy, OnChange
     }
     this.matSortActive = this.sortConfig.column;
     this.matSortDirection = this.sortConfig.direction
-
   }
 
   private emitSelectionChange (): void {
@@ -131,5 +132,9 @@ export class OrdersOverviewTableComponent implements OnInit, OnDestroy, OnChange
 
   onClickDispatch(order: IOrdersOverviewSearchResultUi) {
     this.dispatchOrder.emit(order);
+  }
+
+  onClickComplete(order: IOrdersOverviewSearchResultUi) {
+    this.completeOrder.emit(order);
   }
 }
