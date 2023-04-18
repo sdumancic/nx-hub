@@ -11,7 +11,10 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -22,7 +25,9 @@
       "@hub/feature/employees-overview": [
         "libs/feature/employees-overview/src/index.ts"
       ],
-      "@hub/feature/food-login": ["libs/feature/food-login/src/index.ts"],
+      "@hub/feature/food-login": [
+        "libs/feature/food-login/src/index.ts"
+      ],
       "@hub/feature/locations-overview": [
         "libs/feature/locations-overview/src/index.ts"
       ],
@@ -41,7 +46,9 @@
       "@hub/feature/workplace-reservations": [
         "libs/feature/workplace-reservations/src/index.ts"
       ],
-      "@hub/shared/feature/auth": ["libs/shared/feature/auth/src/index.ts"],
+      "@hub/shared/feature/auth": [
+        "libs/shared/feature/auth/src/index.ts"
+      ],
       "@hub/shared/feature/google-maps-dialog": [
         "libs/shared/feature/google-maps-dialog/src/index.ts"
       ],
@@ -51,17 +58,34 @@
       "@hub/shared/model/food-models": [
         "libs/shared/model/food-models/src/index.ts"
       ],
-      "@hub/shared/testlib": ["libs/shared/testlib/src/index.ts"],
-      "@hub/shared/ui/material": ["libs/shared/ui/material/src/index.ts"],
-      "@hub/shared/ui/navigator": ["libs/shared/ui/navigator/src/index.ts"],
-      "@hub/shared/ui/section": ["libs/shared/ui/section/src/index.ts"],
-      "@hub/shared/ui/sideboard": ["libs/shared/ui/sideboard/src/index.ts"],
-      "@hub/shared/ui/stepper": ["libs/shared/ui/stepper/src/index.ts"],
+      "@hub/shared/testlib": [
+        "libs/shared/testlib/src/index.ts"
+      ],
+      "@hub/shared/ui/material": [
+        "libs/shared/ui/material/src/index.ts"
+      ],
+      "@hub/shared/ui/navigator": [
+        "libs/shared/ui/navigator/src/index.ts"
+      ],
+      "@hub/shared/ui/section": [
+        "libs/shared/ui/section/src/index.ts"
+      ],
+      "@hub/shared/ui/sideboard": [
+        "libs/shared/ui/sideboard/src/index.ts"
+      ],
+      "@hub/shared/ui/stepper": [
+        "libs/shared/ui/stepper/src/index.ts"
+      ],
       "@hub/shared/util/app-config": [
         "libs/shared/util/app-config/src/index.ts"
       ],
-      "@hub/shared/util/core": ["libs/shared/util/core/src/index.ts"]
+      "@hub/shared/util/core": [
+        "libs/shared/util/core/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

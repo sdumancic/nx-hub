@@ -4,6 +4,10 @@
   "sourceRoot": "apps/food-api/src",
   "projectType": "application",
   "targets": {
+    "docker-build": {
+      "dependsOn": ["build"],
+      "command": "docker build -f apps/food-api/Dockerfile . -t food-api"
+    },
     "build": {
       "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],
@@ -13,7 +17,8 @@
         "outputPath": "dist/apps/food-api",
         "main": "apps/food-api/src/main.ts",
         "tsConfig": "apps/food-api/tsconfig.app.json",
-        "assets": ["apps/food-api/src/assets"]
+        "assets": ["apps/food-api/src/assets"],
+        "generatePackageJson": true
       },
       "configurations": {
         "dev": {

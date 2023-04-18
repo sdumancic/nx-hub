@@ -3,6 +3,7 @@ import "reflect-metadata";
 import * as express from 'express';
 import * as path from 'path';
 const result = dotenv.config();
+
 import { AppDataSource } from "./app/routes/data-source";
 import { logger } from "./app/util/logger";
 import {isInteger} from './app/util/helper';
@@ -93,9 +94,10 @@ import { updateOrder } from "./app/routes/ordering/update-order";
 import { searchCustomers } from "./app/routes/customer/search-customers";
 import { cancelOrder } from "./app/routes/ordering/cancel-order";
 
+
 if(result.error){
-  console.log('error loading environment variables, aborting')
-  process.exit(1)
+  console.log('error loading environment variables from .env file')
+  //process.exit(1)
 }
 
 function setupExpress() {
@@ -192,7 +194,7 @@ function setupExpress() {
 }
 
 function startServer(){
-
+  logger.info("Starting the server...");
   logger.info('contextRoot: ' + environment.contextRoot);
   logger.info('port: ' + environment.port);
   logger.info('db.host: ' + environment.db.host);

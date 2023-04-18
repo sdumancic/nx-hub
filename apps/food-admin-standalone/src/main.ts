@@ -9,7 +9,6 @@ import { CUSTOM_DATE_FORMATS, FOOD_API_BACKEND_URL, GOOGLE_MAPS_API_KEY } from "
 import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
-  withInterceptors,
   withInterceptorsFromDi,
   withJsonpSupport
 } from "@angular/common/http";
