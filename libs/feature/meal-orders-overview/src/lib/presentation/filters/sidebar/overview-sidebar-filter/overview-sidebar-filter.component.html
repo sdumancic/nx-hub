@@ -36,7 +36,7 @@
           placeholder="Select categories"
         >
           <mat-option
-            *ngFor="let category of categoryLov$ | async"
+            *ngFor="let category of categoryLov$ | async; trackBy: identifyCategoryById"
             [value]="category.id"
           >
             {{ category.name }}

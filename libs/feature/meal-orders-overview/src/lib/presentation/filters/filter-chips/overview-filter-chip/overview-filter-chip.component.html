@@ -1,6 +1,6 @@
 <div *ngIf="filterChips && filterChips.length" class="filter-chips">
   <mat-chip-listbox>
-    <ng-container *ngFor="let filterChip of filterChips">
+    <ng-container *ngFor="let filterChip of filterChips; trackBy: identifyChipById">
       <mat-chip
         (removed)="filterChipRemoved.emit(filterChip.controlKey)"
         [removable]="filterChip.removable"

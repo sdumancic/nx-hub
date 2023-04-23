@@ -85,7 +85,7 @@ export class OrdersOverviewTableComponent implements OnInit, OnDestroy, OnChange
     this.datasource = new OrdersOverviewDataSource(this.facade)
     this.displayedColumns = ORDERS_OVERVIEW_DISPLAYED_COLUMNS
       .filter(el => el.displayed && el.displayOnTab.filter(tab => tab === this.sourceTab).length > 0)
-      .map(el => {console.log(el); return el.name})
+      .map(el => {return el.name})
     this.emitSelectionChange()
   }
 

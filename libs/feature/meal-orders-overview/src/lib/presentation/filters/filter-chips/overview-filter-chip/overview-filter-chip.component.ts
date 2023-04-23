@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { CommonModule } from '@angular/common';
 import { IOverviewFilterChip } from "../overview-filter-chip.model";
 import { materialModules } from "@hub/shared/ui/material";
+import { CartItem } from "@hub/shared/model/food-models";
 
 
 @Component({
@@ -15,4 +16,8 @@ import { materialModules } from "@hub/shared/ui/material";
 export class OverviewFilterChipComponent {
   @Input() filterChips: IOverviewFilterChip[]
   @Output() filterChipRemoved = new EventEmitter<string>()
+
+  identifyChipById(index: number, item: IOverviewFilterChip): string {
+    return item.controlKey;
+  }
 }

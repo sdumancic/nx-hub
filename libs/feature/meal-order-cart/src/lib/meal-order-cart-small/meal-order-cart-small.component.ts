@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { materialModules } from "@hub/shared/ui/material";
-import { CartItem } from "@hub/shared/model/food-models";
+import { CartItem, Topping, ToppingCartItem } from "@hub/shared/model/food-models";
 
 @Component({
   selector: 'meal-order-cart-small',
@@ -32,4 +32,11 @@ export class MealOrderCartSmallComponent {
     return total;
   }
 
+  identifyCartItemById(index: number, item: CartItem): number {
+    return item.meal.id;
+  }
+
+  identifyToppingById(index: number, item: ToppingCartItem): number {
+    return item.toppingId;
+  }
 }

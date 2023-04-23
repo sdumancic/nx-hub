@@ -21,7 +21,8 @@
     "test": "nx test",
     "docker-build food-api": "nx run food-api:docker-build",
     "build-food-admin-stats:wba": "nx build food-admin-standalone --c production --stats-json && webpack-bundle-analyzer dist/apps/food-admin-standalone/stats.json",
-    "wba-food-admin": "webpack-bundle-analyzer dist/apps/food-admin-standalone/stats.json"
+    "wba-food-admin": "webpack-bundle-analyzer dist/apps/food-admin-standalone/stats.json",
+    "lint-all": "nx run-many --all --target=lint"
   },
   "private": true,
   "dependencies": {

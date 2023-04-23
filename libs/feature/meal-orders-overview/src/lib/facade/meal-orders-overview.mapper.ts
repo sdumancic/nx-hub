@@ -62,7 +62,6 @@ export class MealOrdersOverviewMapper {
   }
 
   static getFilterType(filterKey: string): OverviewFilterChipTypeEnum {
-    console.log(filterKey);
     return FILTER_CHIPS_DATA.get(filterKey).type;
   }
 

@@ -1,12 +1,12 @@
 <div>
-  <div *ngFor="let item of items">
+  <div *ngFor="let item of items; trackBy: identifyCartItemById">
     <div class="cart-item-container">
       <div class="cart-item-container--description">
         <span class="meal-name">{{item.meal.name}}</span>
         <span class="meal-price">{{item.quantity}} x {{item.meal.price| currency:'EUR'}} = <strong>{{item.totalPriceNoVat| currency: 'EUR'}}</strong></span>
         <div class="toppings-container">
           <ul>
-            <li *ngFor="let topping of item.toppings">
+            <li *ngFor="let topping of item.toppings; trackBy: identifyToppingById">
               <div class="topping-item">
                 <span class="topping-name">{{topping.toppingName}}</span>
                 <span class="topping-price">{{topping.quantity}} x {{topping.toppingPrice| currency:'EUR'}} = <strong>{{topping.totalPrice| currency: 'EUR'}}</strong></span>

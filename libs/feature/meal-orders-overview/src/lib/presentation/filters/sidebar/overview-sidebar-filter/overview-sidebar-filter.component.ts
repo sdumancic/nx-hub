@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Inject, OnDestroy, OnInit, Output } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { BehaviorSubject, filter, Observable, skip, Subject, takeUntil } from "rxjs";
-import { Category, Topping } from "@hub/shared/model/food-models";
+import { CartItem, Category, Topping } from "@hub/shared/model/food-models";
 import { FormGroup } from "@angular/forms";
 import { IOverviewFilterChip } from "../../filter-chips/overview-filter-chip.model";
 import { OrdersOverviewFiltersService } from "../../service/orders-overview-filters.service";
@@ -46,7 +46,6 @@ export class OverviewSidebarFilterComponent implements OnInit, OnDestroy {
   @Output() resetOpenStatusesEmitted = new EventEmitter<void>();
   categoryLov$: Observable<Category[]> = this.ordersFacade.categories$;
 
-  toppingLov$: Observable<Topping[]> = this.ordersFacade.toppings$;
 
   formGroup: FormGroup;
   activeFiltersCount$: Observable<number>;
@@ -121,6 +120,9 @@ export class OverviewSidebarFilterComponent implements OnInit, OnDestroy {
       .subscribe(() => this.closeSidebar());
   }
 
+  identifyCategoryById(index: number, item: Category): number {
+    return item.id;
+  }
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();

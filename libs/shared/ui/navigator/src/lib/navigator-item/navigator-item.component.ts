@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { CommonModule } from '@angular/common';
-import { MenuItem } from "../model/menu-item.model";
+import { MenuItem, SubmenuItem } from "../model/menu-item.model";
 import { RouterModule } from "@angular/router";
 
 @Component({
@@ -11,9 +11,10 @@ import { RouterModule } from "@angular/router";
   styleUrls: ['./navigator-item.component.scss'],
 })
 export class NavigatorItemComponent {
-
-  @Input() isMenuItemOpened: boolean = false;
+  @Input() isMenuItemOpened = false;
   @Input() item: MenuItem| undefined;
 
-
+  identifyItemById(index: number, item: SubmenuItem): string {
+    return item.name;
+  }
 }
