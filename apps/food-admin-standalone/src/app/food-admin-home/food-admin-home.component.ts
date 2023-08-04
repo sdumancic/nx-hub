@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { Router, RouterLinkWithHref, RouterOutlet } from "@angular/router";
 import { SharedUiNavigatorComponent } from "@hub/shared/ui/navigator";
 import { environment } from "../../environments/environment";
-import { AuthService } from "@hub/shared/feature/auth";
+import { AuthService} from "@hub/shared/feature/auth";
 import { map } from "rxjs";
 
 @Component({
@@ -13,7 +13,7 @@ import { map } from "rxjs";
     CommonModule,
     RouterOutlet,
     RouterLinkWithHref,
-    SharedUiNavigatorComponent,
+    SharedUiNavigatorComponent
   ],
 
   templateUrl: './food-admin-home.component.html',

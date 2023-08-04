@@ -1,19 +1,11 @@
 import { inject, Injectable } from "@angular/core";
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  CanLoad,
-  Route, Router,
-  RouterStateSnapshot,
-  UrlSegment,
-  UrlTree
-} from "@angular/router";
+import { ActivatedRouteSnapshot, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from "@angular/router";
 import { Observable, tap } from "rxjs";
 import { AuthService } from "../../services/auth-service/auth-service.service";
 import { LocalStorageService } from "../../services/local-storage/local-storage.service";
 
 @Injectable()
-export class AuthGuard implements CanLoad, CanActivate {
+export class AuthGuard  {
 
   localStorageService = inject(LocalStorageService);
 

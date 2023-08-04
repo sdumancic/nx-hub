@@ -8,10 +8,6 @@ export const APP_ROUTES: Route[] = [
     component: FoodAdminHomeComponent,
     children: [
       {
-        path: 'login',
-        loadComponent: () => import('@hub/shared/feature/auth').then(mod => mod.LoginComponent)
-      },
-      {
         path: 'dashboard',
         loadChildren: () =>
           import('@hub/shared/testlib').then((mod) => mod.sharedTestlibRoutes),
@@ -38,6 +34,10 @@ export const APP_ROUTES: Route[] = [
   },
   {
     path: 'login',
+    loadComponent: () => import('@hub/shared/feature/auth').then(mod => mod.LoginComponent)
+  },
+  {
+    path: 'shell/login',
     loadComponent: () => import('@hub/shared/feature/auth').then(mod => mod.LoginComponent)
   },
   {
