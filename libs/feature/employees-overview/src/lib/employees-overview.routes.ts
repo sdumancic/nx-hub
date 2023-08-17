@@ -1,7 +1,7 @@
 import { Route } from '@angular/router';
-import { FeatureEmployeesOverviewComponent } from "./feature-employees-overview/feature-employees-overview.component";
+import { EmployeesOverviewContainerComponent } from "./container/employees-overview/employees-overview-container.component";
 
 
 export const employeesOverviewRoutes: Route[] = [
-  { path: 'overview', component: FeatureEmployeesOverviewComponent },
+  { path: 'overview', component: EmployeesOverviewContainerComponent },
 ];

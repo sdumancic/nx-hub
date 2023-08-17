@@ -5,3 +5,4 @@ export {LoginComponent} from './lib/components/login/login.component';
 export {RegisterComponent} from './lib/components/register/register.component';
 export {LocalStorageService} from './lib/services/local-storage/local-storage.service';
 export {JwtInterceptor} from './lib/interceptors/jwt.interceptor';
+export {LoginResponse} from './lib/data-access/login-response.interface'

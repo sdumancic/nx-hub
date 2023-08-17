@@ -1,5 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
-import { environment } from '..environmentsenvironment';
+import { environment } from '../environments/environment';
 import { provideHttpClient, withJsonpSupport } from '@angular/common/http';
 import {
   provideRouter,
@@ -8,6 +8,7 @@ import {
 import { APP_ROUTES } from './app.routes';
 import { importProvidersFrom } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GOOGLE_MAPS_API_KEY, WORKPLACE_RESERVATION_API_BACKEND_URL } from "@hub/shared/util/app-config";
 export const appConfig: ApplicationConfig = {
   providers: [
     {

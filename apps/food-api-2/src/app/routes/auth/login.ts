@@ -5,7 +5,7 @@ import { UserEntity } from "../../entities/user";
 import { calculatePasswordHash } from "@hub/shared/util/core";
 import jwt = require('jsonwebtoken')
 import { environment } from "../../../environments/environment";
-import { LoginResponse } from "../../../../../../libs/shared/feature/auth/src/lib/data-access/login-response.interface";
+import { LoginResponse } from "@hub/shared/feature/auth";
 const JWT_SECRET = environment.jwt_secret
 
 export async function loginUser(
