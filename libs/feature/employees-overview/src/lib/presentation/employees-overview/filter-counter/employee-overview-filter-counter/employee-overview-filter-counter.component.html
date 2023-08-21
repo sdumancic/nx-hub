@@ -1,0 +1,15 @@
+<ng-container
+  *ngIf="
+    (activeFiltersCount$ | async) > 1;
+    else singleFilterSelected
+  "
+>
+  <ng-container *ngIf="(activeFiltersCount$ | async) > 1">{{
+    (activeFiltersCount$ | async)
+    }}</ng-container>
+  Filters
+</ng-container>
+
+<ng-template #singleFilterSelected>
+  Filter
+</ng-template>

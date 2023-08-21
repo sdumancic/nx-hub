@@ -1,11 +1,11 @@
-import { SearchMeta } from "../../data-access/standard.model";
-import { EmployeesOverviewSearch } from "./employees-overview-search.model";
+import { isBlank, isNotBlank, SearchMeta } from "../../data-access/standard.model";
+import { EmployeeOverviewSearch } from "./employees-overview-search.model";
 import {
   EMPLOYEE_ADDRESS_CITY,
   EMPLOYEE_ADDRESS_STATE,
   EMPLOYEE_ADDRESS_STREET,
   EMPLOYEE_ADDRESS_ZIP,
-  EMPLOYEE_DEPARTMENT,
+  EMPLOYEE_DEPARTMENT, EMPLOYEE_DOB,
   EMPLOYEE_EMAIL,
   EMPLOYEE_GENDER, EMPLOYEE_HIRED_ON, EMPLOYEE_NAME_FIRST, EMPLOYEE_NAME_LAST,
   EMPLOYEE_ROLES, EMPLOYEE_SSN,
@@ -14,28 +14,29 @@ import {
 } from "../../data-access/employees-overview/employee-overview.model";
 import {OverviewQuery} from './../../business/employees-overview/overview.query'
 import { Injectable } from "@angular/core";
+import { EmployeeOverviewMapper } from "../../facade/employees-overview/employee-overview.mapper";
 
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class EmployeesOverviewQuery extends OverviewQuery{
-
+  public static AMPERSAND = '&';
+  public static QUESTIONMARK = '?';
+  public static EMPTY_STRING = '';
   build (
-    searchValues: Partial<EmployeesOverviewSearch>,
+    searchValues: Partial<EmployeeOverviewSearch>,
     searchMeta: SearchMeta
   ): string {
     const filter = this.buildFilter(searchValues)
     const pagination = this.buildPagination(searchMeta);
     const sort = this.buildSort(searchMeta);
     const elements:string[] = [];
-    if (filter != null){
+    if (isNotBlank(filter)){
       elements.push(filter);
     }
-    if (pagination != null){
+    if (isNotBlank(pagination)){
       elements.push(pagination);
     }
-    if (sort != null){
+    if (isNotBlank(sort)){
       elements.push(sort);
     }
     if (elements.length> 0){
@@ -46,7 +47,7 @@ export class EmployeesOverviewQuery extends OverviewQuery{
 
   }
 
-  buildFilter(searchValues: Partial<EmployeesOverviewSearch>):string {
+  buildFilter(searchValues: Partial<EmployeeOverviewSearch>):string {
     let filterString = EmployeesOverviewQuery.EMPTY_STRING;
     if (searchValues.username){
       filterString = filterString.concat(EmployeesOverviewQuery.AMPERSAND).concat(EMPLOYEE_USERNAME).concat("=").concat(searchValues.username)
@@ -61,10 +62,16 @@ export class EmployeesOverviewQuery extends OverviewQuery{
       filterString = filterString.concat(EmployeesOverviewQuery.AMPERSAND).concat(EMPLOYEE_SSN).concat("=").concat(searchValues.ssn)
     }
     if (searchValues.dobFrom){
-      filterString = filterString.concat(EmployeesOverviewQuery.AMPERSAND).concat(EMPLOYEE_HIRED_ON).concat("_gte=").concat(searchValues.dobFrom)
+      filterString = filterString.concat(EmployeesOverviewQuery.AMPERSAND).concat(EMPLOYEE_DOB).concat("_gte=").concat(searchValues.dobFrom)
     }
     if (searchValues.dobUntil){
-      filterString = filterString.concat(EmployeesOverviewQuery.AMPERSAND).concat(EMPLOYEE_HIRED_ON).concat("_lte=").concat(searchValues.dobUntil)
+      filterString = filterString.concat(EmployeesOverviewQuery.AMPERSAND).concat(EMPLOYEE_DOB).concat("_lte=").concat(searchValues.dobUntil)
+    }
+    if (searchValues.hiredOnFrom){
+      filterString = filterString.concat(EmployeesOverviewQuery.AMPERSAND).concat(EMPLOYEE_HIRED_ON).concat("_gte=").concat(searchValues.hiredOnFrom)
+    }
+    if (searchValues.hiredOnUntil){
+      filterString = filterString.concat(EmployeesOverviewQuery.AMPERSAND).concat(EMPLOYEE_HIRED_ON).concat("_lte=").concat(searchValues.hiredOnUntil)
     }
     if (searchValues.terminatedOnFrom){
       filterString = filterString.concat(EmployeesOverviewQuery.AMPERSAND).concat(EMPLOYEE_TERMINATED_ON).concat("_gte=").concat(searchValues.terminatedOnFrom)
@@ -122,7 +129,8 @@ export class EmployeesOverviewQuery extends OverviewQuery{
     if (searchMeta.sorting.attribute == null){
       return sorting;
     }
-    sorting = sorting.concat('_sort=').concat(searchMeta.sorting.attribute).concat(EmployeesOverviewQuery.AMPERSAND).concat('_order=').concat(searchMeta.sorting.order);
+    const apiColumn = EmployeeOverviewMapper.getSortingAttributeKey(searchMeta.sorting.attribute);
+    sorting = sorting.concat('_sort=').concat(apiColumn).concat(EmployeesOverviewQuery.AMPERSAND).concat('_order=').concat(searchMeta.sorting.order);
     return sorting;
   }
 }

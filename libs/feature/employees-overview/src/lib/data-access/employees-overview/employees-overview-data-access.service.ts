@@ -5,11 +5,12 @@ import {
   forkJoin,
   map,
   Observable,
-  shareReplay,
-  switchMap,
-} from 'rxjs';
+  shareReplay, Subject,
+  switchMap
+} from "rxjs";
 import { WORKPLACE_RESERVATION_API_BACKEND_URL } from '@hub/shared/util/app-config';
 import { EmployeeOverview, EmployeeOverviewMetadata, EmployeeResourceCollection } from "./employee-overview.model";
+import { tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +35,6 @@ export class EmployeesOverviewDataAccess {
     @Inject(WORKPLACE_RESERVATION_API_BACKEND_URL) private url: string,
     private readonly http: HttpClient
   ) {
-    console.log('xxx ' +url + " yyy")
   }
 
   public fetchEmployees$(
@@ -67,7 +67,7 @@ export class EmployeesOverviewDataAccess {
     return this.http.get<string[]>(`${this.url}/states`);
   }
 
-  refreshMetadata$(): void {
+  refreshMetadata(): void {
     this.metadataRefresh$.next();
   }
 

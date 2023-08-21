@@ -1,0 +1,281 @@
+$ef-primary: (
+  50: #e0f3ff,
+  100: #b3e1ff,
+  200: #80cdff,
+  300: #4db8ff,
+  400: #26a9ff,
+  500: #009aff,
+  600: #0092ff,
+  700: #0088ff,
+  800: #007eff,
+  900: #006cff,
+  A100: #ffffff,
+  A200: #f2f7ff,
+  A400: #bfd7ff,
+  A700: #a6c6ff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$ef-secondary: (
+  50: #e1e4e9,
+  100: #b4bcc8,
+  200: #828fa4,
+  300: #50627f,
+  400: #2b4063,
+  500: #051e48,
+  600: #041a41,
+  700: #041638,
+  800: #031230,
+  900: #010a21,
+  A100: #5d76ff,
+  A200: #2a4aff,
+  A400: #0025f6,
+  A700: #0021dd,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #ffffff,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+$ef-accent-red: (
+  50: #f7e1e1,
+  100: #ecb3b3,
+  200: #df8080,
+  300: #d24d4d,
+  400: #c92727,
+  500: #bf0101,
+  600: #b90101,
+  700: #b10101,
+  800: #a90101,
+  900: #9b0000,
+  A100: #ffc6c6,
+  A200: #ff9393,
+  A400: #ff6060,
+  A700: #ff4747,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #ffffff,
+  ),
+);
+
+$ef-accent-orange: (
+  50: #fdf1e6,
+  100: #f9dcc1,
+  200: #f6c598,
+  300: #f2ad6e,
+  400: #ef9c4f,
+  500: #ec8a30,
+  600: #ea822b,
+  700: #e77724,
+  800: #e46d1e,
+  900: #df5a13,
+  A100: #ffffff,
+  A200: #ffe6da,
+  A400: #ffc3a7,
+  A700: #ffb18e,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$ef-accent-green: (
+  50: #e8f6e5,
+  100: #c6e8bd,
+  200: #a0d892,
+  300: #79c866,
+  400: #5dbd45,
+  500: #40b124,
+  600: #3aaa20,
+  700: #32a11b,
+  800: #2a9816,
+  900: #1c880d,
+  A100: #bfffb8,
+  A200: #91ff85,
+  A400: #63ff52,
+  A700: #4cff39,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$mat-ef-dark: (
+  50: #ebebeb,
+  100: #cccccc,
+  200: #aaaaaa,
+  300: #888888,
+  400: #6f6f6f,
+  500: #555555,
+  600: #4e4e4e,
+  700: #444444,
+  800: #3b3b3b,
+  900: #2a2a2a,
+  A100: #f28989,
+  A200: #ed5b5b,
+  A400: #ff1616,
+  A700: #fc0000,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+$ef-ui-backgrounds: (
+  white: #ffffff,
+  paper: #f1f2f5,
+  dark: #051e48,
+  black: #000000,
+  primary-button: #009aff,
+  secondary-button: rgba(#051e48, 0.06),
+);
+
+$ef-ui-light-text: (
+  default: rgba(#051e48, 0.8),
+  strong: #051e48,
+  placeholder: rgba(#051e48, 0.3),
+);
+
+$ef-ui-light-icons: (
+  action: #051e48,
+  descriptive: rgba(#051e48, 0.4),
+);
+
+$ef-ui-etc: (
+  divider: rgba(#051e48, 0.06),
+  border: rgba(#051e48, 0.25),
+  selected: #051e48,
+  dotted-link: rgba(#009aff, 0.5),
+);
+
+$ef-status: (
+  red: #bf0101,
+  orange: #ec8a30,
+  green: #40b124,
+);
+
+$ef-ui-dark-text: (
+  default: rgba(#ffffff, 0.7),
+  strong: #ffffff,
+);
+
+$ef-ui-disabled-text: (
+  default: rgba(#000000, 0.3),
+);
+
+$ef-ui-dark-icons: (
+  action: #ffffff,
+  descriptive: rgba(#ffffff, 0.4),
+);
+
+$ef-ux-backgrounds: (
+  white: #ffffff,
+  paper: #f6f6f6,
+  dark: #555555,
+  primary-button: #555555,
+  secondary-button: rgba(#555555, 0.1),
+  overlay: rgba(#555555, 0.1),
+);
+
+$ef-ux-light-text: (
+  default: rgba(#555555, 0.7),
+  strong: #555555,
+  placeholder: rgba(#555555, 0.3),
+);
+
+$ef-ux-light-icons: (
+  action: #555555,
+  descriptive: rgba(#555555, 0.5),
+);
+
+$ef-ux-etc: (
+  divider: rgba(#555555, 0.08),
+  border: rgba(#555555, 0.25),
+  selected: #555555,
+  dotted-link: rgba(#555555, 0.6),
+);
+
+$ef-ux-dark-text: (
+  default: rgba(#ffffff, 0.7),
+  strong: #ffffff,
+);
+
+$ef-ux-dark-icons: (
+  action: #ffffff,
+  descriptive: rgba(#ffffff, 0.4),
+);

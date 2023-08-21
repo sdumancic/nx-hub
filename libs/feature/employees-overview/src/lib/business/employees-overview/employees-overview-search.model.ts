@@ -1,4 +1,4 @@
-export interface EmployeesOverviewSearch {
+export interface EmployeeOverviewSearch {
   username: string
   firstName: string
   lastName: string

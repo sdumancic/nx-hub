@@ -1,0 +1,175 @@
+<div class="drawer">
+  <div class="drawer__header">
+    <mat-icon
+      (click)="closeSidebar()"
+      class="drawer__header--close-drawer"
+    >close
+    </mat-icon>
+
+    <hub-employee-overview-filter-counter
+      class="drawer__header--title"
+    ></hub-employee-overview-filter-counter>
+
+    <mat-icon
+      (click)="pinSidebar()"
+      [ngClass]="{ 'drawer__header--pin-icon-active': sidebarPinned$ | async }"
+      class="drawer__header--pin-icon"
+    >push_pin
+    </mat-icon>
+  </div>
+
+  <hub-employee-overview-filter-chips
+    (filterChipRemoved)="onFilterChipRemoval($event)"
+    [filterChips]="filterChips$ | async"
+  ></hub-employee-overview-filter-chips>
+
+  <mat-divider></mat-divider>
+
+  <form [formGroup]="formGroup" class="drawer__filters">
+    <div class="drawer__filters--filter">
+      <label>Roles</label>
+      <mat-form-field appearance="outline" floatLabel="always" class="small-form-field">
+        <mat-select
+          formControlName="roles"
+          multiple
+          placeholder="Select roles"
+        >
+          <mat-option
+            *ngFor="let role of rolesLov$ | async;"
+            [value]="role.code"
+          >
+            {{ role.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="drawer__filters--filter">
+      <label>Departments</label>
+      <mat-form-field appearance="outline" floatLabel="always" class="small-form-field">
+        <mat-select
+          formControlName="department"
+          multiple
+          placeholder="Select departments"
+        >
+          <mat-option
+            *ngFor="let department of departmentsLov$ | async;"
+            [value]="department.code"
+          >
+            {{ department.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="drawer__filters--filter">
+      <label>States</label>
+      <mat-form-field appearance="outline" floatLabel="always" class="small-form-field">
+        <mat-select
+          formControlName="state"
+          multiple
+          placeholder="Select states"
+        >
+          <mat-option
+            *ngFor="let state of statesLov$ | async;"
+            [value]="state.code"
+          >
+            {{ state.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="drawer__filters--filter">
+      <label>Genders</label>
+      <mat-form-field appearance="outline" floatLabel="always" class="small-form-field">
+        <mat-select
+          formControlName="gender"
+          multiple
+          placeholder="Select gender"
+        >
+          <mat-option
+            *ngFor="let gender of gendersLov$ | async;"
+            [value]="gender.code"
+          >
+            {{ gender.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="drawer__filters--filter">
+      <label>DOB from</label>
+      <mat-form-field appearance="outline" class="small-form-field">
+        <input
+          matInput
+          [matDatepicker]="dobFromEl"
+          placeholder="DOB from"
+          formControlName="dobFrom"
+          name="dobFrom"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="dobFromEl"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #dobFromEl></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="drawer__filters--filter">
+      <label>DOB until</label>
+      <mat-form-field appearance="outline" class="small-form-field">
+        <input
+          matInput
+          [matDatepicker]="dobUntilEl"
+          placeholder="DOB until"
+          formControlName="dobUntil"
+          name="dobUntil"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="dobUntilEl"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #dobUntilEl></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="drawer__filters--filter">
+      <label>HiredOn from</label>
+      <mat-form-field appearance="outline" class="small-form-field">
+        <input
+          matInput
+          [matDatepicker]="hiredOnFromEl"
+          placeholder="HiredOn from"
+          formControlName="hiredOnFrom"
+          name="hiredOnFrom"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="hiredOnFromEl"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #hiredOnFromEl></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="drawer__filters--filter">
+      <label>HiredOn until</label>
+      <mat-form-field appearance="outline" class="small-form-field">
+        <input
+          matInput
+          [matDatepicker]="hiredOnUntilEl"
+          placeholder="HiredOn until"
+          formControlName="hiredOnUntil"
+          name="hiredOnUntil"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="hiredOnUntilEl"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #hiredOnUntilEl></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+  </form>
+
+  <div class="drawer__action-buttons">
+    <button mat-stroked-button color="primary" (click)="onReset()">Reset</button>
+    <button mat-stroked-button color="primary" (click)="onSearch()">Search</button>
+  </div>
+</div>

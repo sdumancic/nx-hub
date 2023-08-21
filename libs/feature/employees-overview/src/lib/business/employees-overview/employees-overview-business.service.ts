@@ -1,33 +1,28 @@
-import { Injectable } from '@angular/core'
+import { Injectable } from "@angular/core";
 
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import {
   EmployeesOverviewDataAccess
 } from "../../data-access/employees-overview/employees-overview-data-access.service";
-import { EmployeesOverviewSearch } from "./employees-overview-search.model";
+import { EmployeeOverviewSearch } from "./employees-overview-search.model";
 import { LovItem, SearchMeta } from "../../data-access/standard.model";
 import { EmployeeResourceCollection } from "../../data-access/employees-overview/employee-overview.model";
-import { EmployeesOverviewQuery } from "./employees-overview.query";
 import { OverviewQuery } from "./overview.query";
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class EmployeesOverviewBusiness {
   constructor (
     private readonly daoService: EmployeesOverviewDataAccess,
-    private readonly overviewQuery: EmployeesOverviewQuery
+    private overviewQuery: OverviewQuery
   ) {}
 
   searchEmployees$ (
-    searchValues: Partial<EmployeesOverviewSearch>,
+    searchValues: Partial<EmployeeOverviewSearch>,
     searchMeta: SearchMeta
   ): Observable<EmployeeResourceCollection> {
-    //const query: OverviewQuery = new EmployeesOverviewQuery();
     const queryParamsText = this.overviewQuery.build(searchValues, searchMeta)
-
     return this.daoService.fetchEmployees$(queryParamsText)
      .pipe(map(res => {
        return {
@@ -41,8 +36,8 @@ export class EmployeesOverviewBusiness {
      } ))
   }
 
-  refreshMetadata$ = (): void => {
-    this.daoService.refreshMetadata$()
+  refreshMetadata = (): void => {
+    this.daoService.refreshMetadata()
   }
 
   get rolesLov$ (): Observable<LovItem[]> {

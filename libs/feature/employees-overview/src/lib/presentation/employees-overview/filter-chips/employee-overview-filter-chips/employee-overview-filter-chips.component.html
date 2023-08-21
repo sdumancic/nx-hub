@@ -1,0 +1,19 @@
+<div *ngIf="filterChips && filterChips.length" class="filter-chips">
+  <mat-chip-listbox>
+    <ng-container *ngFor="let filterChip of filterChips; trackBy: identifyChipById">
+      <mat-chip
+        (removed)="filterChipRemoved.emit(filterChip.controlKey)"
+        [removable]="filterChip.removable"
+        class="filter-chips__chip"
+        disableRipple
+      >
+        {{ filterChip.label }} {{filterChip.value}}
+
+        <mat-icon
+          *ngIf="filterChip.removable"
+          matChipRemove
+        >close</mat-icon>
+      </mat-chip>
+    </ng-container>
+  </mat-chip-listbox>
+</div>

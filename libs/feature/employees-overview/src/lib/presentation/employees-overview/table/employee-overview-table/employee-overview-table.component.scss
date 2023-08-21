@@ -1,0 +1,63 @@
+$totalWidth: 200px;
+
+.mat-column-username {
+  flex: 0 0 calc(100% * (150 / var($totalWidth)));
+}
+
+.mat-column-firstName {
+  flex: 0 0 calc(100% * (100 / var($totalWidth)));
+}
+
+.mat-column-lastName {
+  flex: 0 0 calc(100% * (100 / var($totalWidth)));
+}
+
+.mat-column-gender {
+  flex: 0 0 calc(100% * (50 / var($totalWidth)));
+}
+
+.mat-column-ssn {
+  flex: 0 0 calc(100% * (100 / var($totalWidth)));
+}
+
+.mat-column-department {
+  flex: 0 0 calc(100% * (100 / var($totalWidth)));
+}
+
+.mat-column-dob {
+  flex: 0 0 calc(100% * (50 / var($totalWidth)));
+}
+
+.mat-column-hiredOn {
+  flex: 0 0 calc(100% * (50 / var($totalWidth)));
+}
+
+.mat-column-terminatedOn {
+  flex: 0 0 calc(100% * (50 / var($totalWidth)));
+}
+
+.mat-column-street {
+  flex: 0 0 calc(100% * (50 / var($totalWidth)));
+}
+
+.mat-column-city {
+  flex: 0 0 calc(100% * (50 / var($totalWidth)));
+}
+
+.mat-column-state {
+  flex: 0 0 calc(100% * (50 / var($totalWidth)));
+}
+
+.mat-column-zip {
+  flex: 0 0 calc(100% * (50 / var($totalWidth)));
+}
+
+.mat-column-actions {
+  flex: 0 0 calc(100% * (50 / var($totalWidth)));
+}
+
+
+mat-row.example-element-row:not(.example-expanded-row):hover {
+  background-color: rgba(0, 154, 255, 0.05);
+  border-color: rgba(0, 154, 255, 0.3);
+}

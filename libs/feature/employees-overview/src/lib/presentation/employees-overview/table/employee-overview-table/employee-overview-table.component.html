@@ -1,0 +1,113 @@
+<div class="employee-overview-table-container">
+  <mat-progress-bar mode="indeterminate" *ngIf="datasource.loading$|async"></mat-progress-bar>
+  <table mat-table [dataSource]="datasource"
+         matSort [matSortActive]="matSortActive"
+         [matSortDirection]="matSortDirection"
+         matSortDisableClear
+         (matSortChange)="onSort($event)" >
+
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>USERNAME</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.username }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>FIRSTNAME</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.firstName }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header>LASTNAME</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.lastName }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="gender">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>GENDER</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.gender }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ssn">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>SSN</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.ssn }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="department">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>DEPARTMENT</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.department }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dob">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>DOB</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.dob | date:dateFormat }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="hiredOn">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>HIREDON</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.hiredOn | date:dateFormat}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="terminatedOn">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>TERMINATEDON</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.terminatedOn| date:dateFormat }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="street">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>STREET</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.street }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="city">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>CITY</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.city }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="state">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>STATE</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.state }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="zip">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ZIP</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.zip }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>ACTIONS</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button  [matMenuTriggerFor]="actionsMenu" [matMenuTriggerData]="{element}" aria-label="Actions">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"   class="example-element-row"></mat-row>
+  </table>
+</div>
+
+<mat-paginator
+  #paginator
+  [pageSizeOptions]="rowsPerPage"
+  [length]="facade.searchCount$|async"
+  [pageSizeOptions]="rowsPerPage"
+  (page)="onPageEvent($event)"
+  showFirstLastButtons
+></mat-paginator>
+
+
+<mat-menu #actionsMenu="matMenu">
+  <ng-template matMenuContent let-element="element">
+    <button mat-menu-item (click)="onClickAction1(element)">
+      <i class='bx bxs-edit'></i>
+      Edit
+    </button>
+    <button mat-menu-item (click)="onClickAction2(element)">
+      <i class='bx bxs-truck'></i>
+      Dispatch
+    </button>
+    <button mat-menu-item (click)="onClickAction3(element)">
+      <i class='bx bx-check'></i>
+      Complete
+    </button>
+  </ng-template>
+</mat-menu>

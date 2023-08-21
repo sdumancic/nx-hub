@@ -1,1 +1,79 @@
-<p>feature-employees-overview works!</p>
+<div
+  [ngClass]="{ 'overview--sidebar-filters-pinned': sidebarPinned$ | async }"
+  class="overview"
+>
+  <hub-employee-overview-header></hub-employee-overview-header>
+  <div class="overview__content">
+    <hub-employee-overview-quick-filter
+      (openSidebarFilters)="onOpenSidebarFilters($event)"
+      (searchEmitter)="onSearch()"
+      (resetEmitter)="onReset()"
+    >
+
+    </hub-employee-overview-quick-filter>
+    <mat-tab-group
+      #tabGroup
+      class="spare-parts-orders-tab-group"
+      (selectedTabChange)="tabChanged($event)"
+      [(selectedIndex)]="activeTabIndex"
+    >
+      <mat-tab
+        [attr.ef-feature-id]="'employees.overview.tab'"
+        label="first"
+      >
+        <ng-template mat-tab-label>
+          <span>{{
+            'employees.overview.tab.label'
+            }}</span>
+        </ng-template>
+
+        <hub-employee-overview-table
+          (paginate)="onPaginate($event)"
+          (selectionChange)="onSelectionChange($event)"
+          (sortEmitter)="onSort($event)"
+          [searchCount$]="searchCount$"
+          [searchMeta]="searchMeta$ | async"
+          dateFormat="dd/MM/yyyy"
+          timeFormat='HH:mm'
+          currency="EUR"
+        ></hub-employee-overview-table>
+          <!--(paginate)="onPaginateOrders($event)"
+          (selectionChange)="onSelectionChange($event)"
+          (sort)="onSortOrders($event)"
+          [datasource]="datasource"
+          [searchCount$]="ordersSearchCount$"
+          [searchMeta]="ordersSearchMeta$ | async"
+          [dateFormat]="localeConfig.dateFormat"
+          [timeFormat]="localeConfig.timeFormat"
+          [currency]="localeConfig.currencyConf"
+          [lcid]="localeConfig.lcid"
+          (deliveryAvisEmitted)="onDeliveryAvis($event)"
+          (confirmOrderEmitted)="onConfirmOrder($event)"-->
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <span>{{
+            'checkins.overview.tab.label'
+            }}</span>
+        </ng-template>
+      </mat-tab>
+      <mat-tab disabled>
+        <ng-template mat-tab-label>
+          <hub-employee-overview-quick-filter
+            (openSidebarFilters)="onOpenSidebarFilters($event)"
+          ></hub-employee-overview-quick-filter>
+            <!--[brandsLov]="brandsLov"
+            [activeTabIndex]="activeTabIndex"
+            (openSidebarFilters)="onOpenSidebarFilters($event)"
+            (openOrdersResetEmitted)="onOpenOrdersReset()"
+            (allOrdersResetEmitted)="onAllOrdersReset()"
+            (allOrdersSearchEmitted)="onSearch()"
+            (openOrdersSearchEmitted)="onSearch()"
+          ></hub-employee-overview-quick-filter-->
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+
+  </div>
+</div>

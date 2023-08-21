@@ -1,3 +1,4 @@
+
 export interface LovItem {
   code: string
   value: string
@@ -17,3 +18,18 @@ export interface ResourceCollection {
   metadata: ResourceCollectionMetadata
 }
 
+export function isBlank(val: string){
+  if (val == null || val.length === 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+export function isNotBlank(val: string){
+  return !isBlank(val);
+}
+
+export function isStringEmpty(value: string) {
+  return !value?.trim().length
+}

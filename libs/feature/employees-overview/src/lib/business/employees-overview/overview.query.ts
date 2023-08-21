@@ -1,13 +1,10 @@
 import { SearchMeta } from "../../data-access/standard.model";
-import { Injectable } from "@angular/core";
+import { forwardRef, Injectable } from "@angular/core";
+import { EmployeesOverviewQuery } from "./employees-overview.query";
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export abstract class OverviewQuery {
-  public static AMPERSAND = '&';
-  public static QUESTIONMARK = '?';
-  public static EMPTY_STRING = '';
+
   abstract build (
     searchValues: any,
     searchMeta: SearchMeta
