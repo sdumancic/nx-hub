@@ -36,6 +36,9 @@ import {
   EmployeeOverviewSearchResultUi
 } from "../../presentation/employees-overview/table/employee-overview-table/employee-overview-search-result.ui.model";
 import { SearchMeta } from "../../data-access/standard.model";
+import {
+  EmployeesOverviewDataAccess
+} from "../../data-access/employees-overview/employees-overview-data-access.service";
 
 @Component({
   selector: "hub-feature-employees-overview",
@@ -71,6 +74,7 @@ export class EmployeesOverviewContainerComponent implements OnInit, OnDestroy {
     private employeeOverviewFacade: EmployeeOverviewFacade,
     private filtersService: EmployeeOverviewFiltersService,
     private readonly cdRef: ChangeDetectorRef,
+    private readonly dao: EmployeesOverviewDataAccess
   ) {
     this.searchCount$ = this.employeeOverviewFacade.searchCount$;
     this.searchMeta$ = this.employeeOverviewFacade.searchMeta$
@@ -82,12 +86,15 @@ export class EmployeesOverviewContainerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const queryParamsMap: ParamMap = this.route.snapshot.queryParamMap;
-    if (queryParamsMap.keys.length == 0) {
-      this.setDefaultFilterValuesAndSearch();
-    } else {
-      this.setFilterValuesAndSearch(this.route.snapshot.queryParamMap);
-    }
-    this.subscribeToQueryParamChanges();
+    this.employeeOverviewFacade.refreshMetadata$().pipe(take(1)).subscribe(() => {
+      if (queryParamsMap.keys.length == 0) {
+        this.setDefaultFilterValuesAndSearch();
+      } else {
+        this.setFilterValuesAndSearch(this.route.snapshot.queryParamMap);
+      }
+      this.subscribeToQueryParamChanges();
+    })
+
   }
 
   async tabChanged(event: MatTabChangeEvent): Promise<void> {
@@ -192,5 +199,11 @@ export class EmployeesOverviewContainerComponent implements OnInit, OnDestroy {
 
   private setActiveTab(ind: number): void {
     this.activeTabIndex = ind;
+  }
+
+  onCreateNewEmployee() {
+    console.log('Refreshing metadata...', new Date())
+    this.employeeOverviewFacade.refreshMetadata$().pipe(take(1)).subscribe(val => console.log('Metadata refreshed', new Date()))
+
   }
 }

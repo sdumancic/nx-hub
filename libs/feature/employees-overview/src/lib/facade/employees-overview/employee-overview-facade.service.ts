@@ -255,8 +255,8 @@ export class EmployeeOverviewFacade implements OnDestroy {
     return this.activeTabInd
   }
 
-  refreshMetadata (): void {
-    this.employeesOverviewBusiness.refreshMetadata()
+  refreshMetadata$ () {
+    return this.employeesOverviewBusiness.refreshMetadata$()
   }
 
 

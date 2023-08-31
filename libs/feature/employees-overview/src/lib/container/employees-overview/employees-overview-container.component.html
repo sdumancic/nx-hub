@@ -2,7 +2,7 @@
   [ngClass]="{ 'overview--sidebar-filters-pinned': sidebarPinned$ | async }"
   class="overview"
 >
-  <hub-employee-overview-header></hub-employee-overview-header>
+  <hub-employee-overview-header (createNewEmployeeClick)="onCreateNewEmployee()"></hub-employee-overview-header>
   <div class="overview__content">
     <hub-employee-overview-quick-filter
       (openSidebarFilters)="onOpenSidebarFilters($event)"

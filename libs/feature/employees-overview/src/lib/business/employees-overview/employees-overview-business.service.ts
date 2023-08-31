@@ -36,8 +36,8 @@ export class EmployeesOverviewBusiness {
      } ))
   }
 
-  refreshMetadata = (): void => {
-    this.daoService.refreshMetadata()
+  refreshMetadata$ = ()  => {
+    return this.daoService.refreshMetadata$()
   }
 
   get rolesLov$ (): Observable<LovItem[]> {
