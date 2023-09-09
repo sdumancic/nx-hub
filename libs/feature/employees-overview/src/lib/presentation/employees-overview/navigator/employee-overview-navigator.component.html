@@ -1,0 +1,36 @@
+<nav mat-tab-nav-bar [tabPanel]="tabPanel">
+  <li class="tab-wrapper" fxLayout fxLayoutAlign="_ center" fxLayoutGap="16px">
+    <a
+      mat-tab-link
+      routerLinkActive="mdc-tab-indicator--active"
+      #link1="routerLinkActive"
+      [routerLink]="'../employees'"
+      [active]="link1.isActive"
+      [disabled]="false"
+    >
+      {{ 'Employees' }}
+    </a>
+  </li>
+  <li class="tab-wrapper" fxLayout fxLayoutAlign="_ center" fxLayoutGap="16px">
+    <a
+      mat-tab-link
+      routerLinkActive="mdc-tab-indicator--active"
+      #link2="routerLinkActive"
+      [routerLink]="'../checkins'"
+      [active]="link2.isActive"
+      [disabled]="false"
+    >
+      {{ 'Checkins' }}
+    </a>
+  </li>
+  <li class="tab-wrapper" fxLayout fxLayoutAlign="_ center" fxLayoutGap="16px">
+    <hub-employee-overview-quick-filter
+      [activeTab]="activeTab"
+      [activeFiltersCount$]="activeFiltersCount$"
+      (searchEmitter)="onSearchFromQuickFilters($event)"
+      (resetEmitter)="onResetFromSidebarFilters($event)"
+      (openSidebarFilters)="onOpenSidebarFilters($event)"
+    ></hub-employee-overview-quick-filter>
+  </li>
+</nav>
+<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>

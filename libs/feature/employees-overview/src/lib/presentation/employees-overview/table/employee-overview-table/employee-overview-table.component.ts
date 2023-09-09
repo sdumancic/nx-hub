@@ -53,7 +53,7 @@ export class EmployeeOverviewTableComponent implements OnInit, OnDestroy, OnChan
   @ViewChild(MatSort) sort: MatSort;
 
   matSortActive = 'username';
-  matSortDirection = 'asc'
+  matSortDirection = "'asc'"
 
   datasource: EmployeeOverviewDataSource
 
@@ -91,12 +91,14 @@ export class EmployeeOverviewTableComponent implements OnInit, OnDestroy, OnChan
   }
   ngOnChanges (changes: SimpleChanges): void {
     if (changes['searchMeta']) {
+      if (this.paginator) {
+        this.paginator.pageIndex = changes['searchMeta'].currentValue.pagination.index -1
+      }
       this.setSortConfig(this.searchMeta)
     }
   }
 
   onSort (sort: Sort): void {
-    console.log("emitting sort", sort);
     this.sortEmitter.emit(sort)
   }
 
@@ -115,15 +117,13 @@ export class EmployeeOverviewTableComponent implements OnInit, OnDestroy, OnChan
   }
 
   private setSortConfig (searchMeta: SearchMeta): void {
-    console.log('setSortConfig', searchMeta)
     this.sortConfig = {
       column: searchMeta.sorting.attribute ?? '',
       direction: searchMeta.sorting.order === 'asc' ? DatatableSortDirection.ASCENDING :
-        searchMeta.sorting.order === 'desc' ? DatatableSortDirection.DESCENDING : DatatableSortDirection.INITIAL
+        searchMeta.sorting.order === 'desc' ? DatatableSortDirection.DESCENDING : DatatableSortDirection.ASCENDING
     }
     this.matSortActive = this.sortConfig.column;
     this.matSortDirection = this.sortConfig.direction
-    console.log('setSortConfig', this.matSortActive, this.matSortDirection)
   }
 
   private emitSelectionChange (): void {

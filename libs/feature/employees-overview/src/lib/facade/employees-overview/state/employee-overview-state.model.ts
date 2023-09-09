@@ -5,12 +5,14 @@ import {
   EmployeeOverviewSearchUi
 } from "../../../presentation/employees-overview/form/employee-overview-search.ui.model";
 import { SearchMeta } from "../../../data-access/standard.model";
+import { EmployeeOverviewMetadata } from "../../../data-access/employees-overview/employee-overview.model";
 
 export interface EmployeeOverviewState {
   searchResult: EmployeeOverviewSearchResultUi[]
   searchValues: EmployeeOverviewSearchUi
   searchMeta: SearchMeta
   searchCount: number
+  metadata: EmployeeOverviewMetadata
 }
 
 export const SEARCH_VALUES_DEFAULT: EmployeeOverviewSearchUi = {
@@ -33,16 +35,30 @@ export const SEARCH_VALUES_DEFAULT: EmployeeOverviewSearchUi = {
   gender:null,
 }
 
+export const ZERO_PAGE_INDEX = 1;
 export const SEARCH_META_DEFAULT: SearchMeta = {
-  pagination: { index: 0, size: 10 },
+  pagination: { index: 1, size: 10 },
   sorting: { attribute: 'orderNumber', order: 'asc' }
+}
+export const METADATA_DEFAULT: EmployeeOverviewMetadata = {
+  roles: [],
+  departments: [],
+  genders: [],
+  states: []
 }
 
 export const EMPLOYEE_OVERVIEW_INITIAL_STATE: EmployeeOverviewState = {
   searchResult: [],
   searchValues: SEARCH_VALUES_DEFAULT,
   searchMeta: SEARCH_META_DEFAULT,
-  searchCount: 0
+  searchCount: 0,
+  metadata: {
+    roles: [],
+    departments: [],
+    genders: [],
+    states: []
+  }
+
 }
 
 export const EMPTY_RESPONSE = {

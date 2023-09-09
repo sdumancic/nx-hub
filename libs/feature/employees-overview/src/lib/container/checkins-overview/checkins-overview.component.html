@@ -1,0 +1,11 @@
+<div
+  [ngClass]="{ 'overview--sidebar-filters-pinned': sidebarPinned$ | async }"
+  class="overview"
+>
+  <div class="overview__content">
+    <hub-employee-overview-navigator
+      (openSideBarFilters)="onOpenSidebarFilters($event)"
+      (search)="onSearchFromQuickFilters($event)"
+    ></hub-employee-overview-navigator>
+  </div>
+</div>

@@ -20,7 +20,8 @@ import { EmployeeOverviewUrlQueryParams } from "./url-params/employee-overview-u
 import {
   OverviewFilterChipTypeEnum
 } from "../../presentation/employees-overview/filter-chips/overview-filter-chip.model";
-import { ParamMap } from "@angular/router";
+import { ParamMap, Params } from "@angular/router";
+import { ZERO_PAGE_INDEX } from "./state/employee-overview-state.model";
 
 enum SortDirection {
   ASC = 'asc',
@@ -169,7 +170,7 @@ export class EmployeeOverviewMapper {
       gender:searchValues.gender?.length
         ? searchValues.gender.join(',')
         : null,
-      currentPage: (searchMeta.pagination.index + 1).toString(10),
+      currentPage: (searchMeta.pagination.index).toString(10),
       pageSize: searchMeta.pagination.size.toString(10),
       sortColumn: searchMeta.sorting.attribute || null,
       sortDirection: searchMeta.sorting.attribute
@@ -230,7 +231,7 @@ export class EmployeeOverviewMapper {
   static queryParamsToSearchMeta (
     queryParams: Partial<EmployeeOverviewUrlQueryParams>
   ): SearchMeta {
-    console.log('queryParamsToSearchMeta ', queryParams)
+    console.log(queryParams)
     return {
       sorting: {
         order: queryParams.sortDirection ?? 'initial',
@@ -239,26 +240,21 @@ export class EmployeeOverviewMapper {
       pagination: {
         size: queryParams.pageSize ? parseInt(queryParams.pageSize, 10) : 10,
         index: queryParams.currentPage
-          ? parseInt(queryParams.currentPage, 10) - 1
-          : 0
+          ? parseInt(queryParams.currentPage, 10)
+          : ZERO_PAGE_INDEX
       }
     }
   }
 
-  static getSortingDirection (
-    direction: string
-  ): SortDirection {
-    const sortingDirectionAttributesMap: Map<string, string> = new Map([
-      ['asc', SortDirection.ASC],
-      ['desc', SortDirection.DESC],
-      ['initial', '']
-    ])
-    return sortingDirectionAttributesMap.get(direction) as SortDirection
-  }
 
-  static fromQueryMapToOverviewQueryParams(queryParamMap: ParamMap): Partial<EmployeeOverviewUrlQueryParams> {
+  static fromQueryParamsToOverviewUrlQueryParams(queryParams: Params): Partial<EmployeeOverviewUrlQueryParams> {
     const response: Partial<EmployeeOverviewUrlQueryParams> ={} ;
-    queryParamMap.keys.forEach(key => response[key]=queryParamMap.get(key))
+    for (const [key, value] of Object.entries(queryParams)) {
+      response[key] = value;
+
+    }
+
     return response;
   }
+
 }

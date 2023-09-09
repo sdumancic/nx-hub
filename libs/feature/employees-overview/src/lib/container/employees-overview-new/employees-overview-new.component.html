@@ -1,0 +1,25 @@
+<div
+  [ngClass]="{ 'overview--sidebar-filters-pinned': sidebarPinned$ | async }"
+  class="overview"
+>
+  <div class="overview__content">
+    <hub-employee-overview-navigator
+      [activeTab]="activeTab"
+      [activeFiltersCount$]="activeFiltersCount$"
+      (openSideBarFilters)="onOpenSidebarFilters($event)"
+      (search)="onSearchFromQuickFilters($event)"
+      (resetFilter)="onReset($event)"
+    ></hub-employee-overview-navigator>
+
+    <hub-employee-overview-table
+      (paginate)="onPaginate($event)"
+      (selectionChange)="onSelectionChange($event)"
+      (sortEmitter)="onSort($event)"
+      [searchCount$]="searchCount$"
+      [searchMeta]="searchMeta$ | async"
+      dateFormat="dd/MM/yyyy"
+      timeFormat="HH:mm"
+      currency="EUR"
+    ></hub-employee-overview-table>
+  </div>
+</div>

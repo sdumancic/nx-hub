@@ -4,7 +4,27 @@ import { EmployeeOverviewSearchUi } from './employee-overview-search.ui.model'
 
 @Injectable()
 export class EmployeeOverviewForm {
-  private form: FormGroup
+  private form: FormGroup  = new FormGroup({
+    username: new FormControl('', { updateOn: 'blur' }),
+    firstName: new FormControl('', { updateOn: 'blur' }),
+    lastName: new FormControl('', { updateOn: 'blur' }),
+    email: new FormControl('', { updateOn: 'blur' }),
+    street: new FormControl('', { updateOn: 'blur' }),
+    city: new FormControl('', { updateOn: 'blur' }),
+    state: new FormControl('', {
+      updateOn: 'blur'
+    }),
+    zip: new FormControl('', { updateOn: 'blur' }),
+    roles: new FormControl(null, { updateOn: 'blur' }),
+    department: new FormControl(null, { updateOn: 'blur' }),
+    gender: new FormControl(null, { updateOn: 'blur' }),
+    dobFrom: new FormControl('', { updateOn: 'blur' }),
+    dobUntil: new FormControl('', { updateOn: 'blur' }),
+    hiredOnFrom: new FormControl('', { updateOn: 'blur' }),
+    hiredOnUntil: new FormControl('', { updateOn: 'blur' }),
+    terminatedOnFrom: new FormControl('', { updateOn: 'blur' }),
+    terminatedOnUntil: new FormControl('', { updateOn: 'blur' })
+  })
 
   get formGroup (): FormGroup {
     return this.form
@@ -12,38 +32,6 @@ export class EmployeeOverviewForm {
 
   get formGroupRawValue (): EmployeeOverviewSearchUi {
     return { ...(this.form.getRawValue() as EmployeeOverviewSearchUi) }
-  }
-
-  constructor () {
-    this.createFormGroup()
-  }
-
-  resetValue (value: EmployeeOverviewSearchUi): void {
-    this.form.reset(value, { emitEvent: false }) // we do not want to emit this event because we do not want quick filters to detect valueChanges
-  }
-
-  private createFormGroup (): void {
-    this.form = new FormGroup({
-      username: new FormControl(null, { updateOn: 'blur' }),
-      firstName: new FormControl(null, { updateOn: 'blur' }),
-      lastName: new FormControl(null, { updateOn: 'blur' }),
-      email: new FormControl(null, { updateOn: 'blur' }),
-      street: new FormControl(null, { updateOn: 'blur' }),
-      city: new FormControl(null, { updateOn: 'blur' }),
-      state: new FormControl(null, {
-        updateOn: 'blur'
-      }),
-      zip: new FormControl(null, { updateOn: 'blur' }),
-      roles: new FormControl(null, { updateOn: 'blur' }),
-      department: new FormControl(null, { updateOn: 'blur' }),
-      gender: new FormControl(null, { updateOn: 'blur' }),
-      dobFrom: new FormControl(null, { updateOn: 'blur' }),
-      dobUntil: new FormControl(null, { updateOn: 'blur' }),
-      hiredOnFrom: new FormControl(null, { updateOn: 'blur' }),
-      hiredOnUntil: new FormControl(null, { updateOn: 'blur' }),
-      terminatedOnFrom: new FormControl(null, { updateOn: 'blur' }),
-      terminatedOnUntil: new FormControl(null, { updateOn: 'blur' })
-    })
   }
 
   get usernameControl (): FormControl {

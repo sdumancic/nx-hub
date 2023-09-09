@@ -1,0 +1,32 @@
+@use '@angular/material' as mat;
+
+.mdc-tab {
+  display: inline-flex;
+  margin: auto;
+  min-width: unset;
+
+}
+
+.tab-wrapper {
+  margin-left: 32px;
+  list-style-type: none;
+
+  &:last-child {
+    margin-left: auto;
+  }
+}
+
+.mat-mdc-tab-link {
+  padding: 12px 0px;
+  min-width: unset;
+  height: unset;
+  font-size: 13px;
+  line-height: 130%;
+  min-height: unset;
+}
+
+.mdc-tab-indicator--active {
+  font-weight: 600;
+  color: mat.get-color-from-palette(mat.$blue-palette, 9000);
+  opacity: 1;
+}

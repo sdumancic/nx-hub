@@ -2,42 +2,24 @@
 
 $filtersSidebarWidth: 350px;
 
+:host {
+  display: block;
+}
+
+
 .overview {
   height: 100%;
+  width: 100%;
+  //  margin: 0 auto;
 
   &__content {
     background-color: #f1f2f5;
 
-    ::ng-deep .spare-parts-orders-tab-group .mat-mdc-tab-header {
-      margin-bottom: 10px;
-      position: sticky;
-      top: 0px;
-      z-index: 10;
-      height: 57px;
-      padding: 0px 44px;
-
-      .mat-mdc-ink-bar {
-        background-color: #009aff;
-      }
-
-      .mat-mdc-tab {
-        min-width: 70px;
-        height: 60px;
-        align-self: center;
-      }
-
-      .mat-mdc-tab:last-child {
-        width: calc(100% - 600px);
-        justify-content: flex-start;
-        padding-right: 0;
-      }
-
-      .mat-mdc-tab-active {
-        font-weight: 600;
-        color:#051e48;
-        opacity: 1;
-      }
+    .tab-container {
+      display: flex
     }
+
+
   }
 
   &--sidebar-filters-pinned {

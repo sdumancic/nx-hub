@@ -1,86 +1,87 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { materialModules } from "@hub/shared/ui/material";
-import {
-  EmployeeOverviewFilterCounterComponent
-} from "../../filter-counter/employee-overview-filter-counter/employee-overview-filter-counter.component";
-import { Observable, Subject } from "rxjs";
-import { EmployeeOverviewForm } from "../../form/employee-overview-form.service";
-import { FormGroup } from "@angular/forms";
-import { BrowserModule } from "@angular/platform-browser";
-import { EmployeeOverviewFiltersService } from "../../../../facade/employee-overview-filters.service";
-import { takeUntil } from "rxjs/operators";
+import { materialModules } from '@hub/shared/ui/material';
+import { EmployeeOverviewFilterCounterComponent } from '../../filter-counter/employee-overview-filter-counter/employee-overview-filter-counter.component';
+import { Observable, Subject } from 'rxjs';
+import { FormControl, FormGroup } from '@angular/forms';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { Tabs } from '../../../../facade/tabs.enum';
+
+export interface EmployeeOverviewQuickFilter {
+  username: string;
+  firstName: string;
+  lastName: string;
+}
 
 @Component({
   selector: 'hub-employee-overview-quick-filter',
   standalone: true,
-  imports: [CommonModule,  ...materialModules, EmployeeOverviewFilterCounterComponent],
+  imports: [
+    CommonModule,
+    ...materialModules,
+    EmployeeOverviewFilterCounterComponent,
+  ],
   templateUrl: './employee-overview-quick-filter.component.html',
   styleUrls: ['./employee-overview-quick-filter.component.scss'],
 })
 export class EmployeeOverviewQuickFilterComponent {
-  @Output() openSidebarFilters = new EventEmitter<number>()
-  @Output() searchEmitter = new EventEmitter<number>()
-  @Output() resetEmitter = new EventEmitter<number>()
-  formGroup: FormGroup
-  activeFiltersCount$: Observable<number>
-  private readonly unsubscribe$ = new Subject<void>()
+  @Input() activeFiltersCount$: Observable<number>;
+  @Input() activeTab: Tabs;
+  @Output() openSidebarFilters = new EventEmitter<Tabs>();
+  @Output() searchEmitter = new EventEmitter<EmployeeOverviewQuickFilter>();
+  @Output() resetEmitter = new EventEmitter<Tabs>();
+  formGroup: FormGroup = new FormGroup({
+    username: new FormControl('', { updateOn: 'blur' }),
+    firstName: new FormControl('', { updateOn: 'blur' }),
+    lastName: new FormControl('', { updateOn: 'blur' }),
+  });
+  private readonly unsubscribe$ = new Subject<void>();
 
-  constructor (
-    private readonly formService: EmployeeOverviewForm,
-    private readonly filtersService: EmployeeOverviewFiltersService
-  ) {}
-
-  ngOnInit (): void {
-    this.formGroup = this.formService.formGroup
-    this.activeFiltersCount$ = this.filtersService.activeFiltersCount$
-    this.listenQuickFilterValueChanges()
+  ngOnInit(): void {
+    this.listenQuickFilterValueChanges();
   }
 
-  private listenQuickFilterValueChanges (): void {
-    this.filtersService.quickFiltersValueChange$
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(() =>
-        this.searchEmitter.emit()
-     )
+  private listenQuickFilterValueChanges(): void {
+    this.formGroup.valueChanges
+      .pipe(takeUntil(this.unsubscribe$), distinctUntilChanged())
+      .subscribe(() => this.searchEmitter.emit(this.formGroup.getRawValue()));
   }
 
-  clearUsername (): void {
-    this.formService.usernameControl.reset()
+  clearUsername(): void {
+    this.formGroup.get('username').reset();
   }
 
-
-  ngOnDestroy (): void {
-    this.unsubscribe$.next()
-    this.unsubscribe$.complete()
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   onUsernameEnter(element: HTMLInputElement) {
-    element.blur()
+    element.blur();
   }
 
   openSidebarFilter() {
-    this.openSidebarFilters.emit(1)
+    this.openSidebarFilters.emit(this.activeTab);
   }
 
-  resetFilters (event: Event): void {
-    event.stopPropagation()
-    this.resetEmitter.emit()
+  resetFilters(event: Event): void {
+    event.stopPropagation();
+    this.resetEmitter.emit(this.activeTab);
   }
 
   onFirstnameEnter(element: HTMLInputElement) {
-    element.blur()
+    element.blur();
   }
 
   clearFirstname() {
-    this.formService.firstNameControl.reset()
+    this.formGroup.get('firstName').reset();
   }
 
   onLastnameEnter(element: HTMLInputElement) {
-    element.blur()
+    element.blur();
   }
 
   clearLastname() {
-    this.formService.lastNameControl.reset()
+    this.formGroup.get('lastName').reset();
   }
 }

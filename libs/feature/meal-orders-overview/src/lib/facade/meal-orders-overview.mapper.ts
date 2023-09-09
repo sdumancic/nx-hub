@@ -78,7 +78,7 @@ export class MealOrdersOverviewMapper {
     const sortingDirectionAttributesMap: Map<string, string> = new Map([
       [IDatatableSortDirection.ASCENDING, SortDirection.ASC],
       [IDatatableSortDirection.DESCENDING, SortDirection.DESC],
-      [IDatatableSortDirection.INITIAL, '']
+      [IDatatableSortDirection.INITIAL, SortDirection.ASC]
     ])
     return sortingDirectionAttributesMap.get(direction) as SortDirection
   }

@@ -116,7 +116,7 @@ export class EmployeesOverviewQuery extends OverviewQuery{
     }
     const start = searchMeta.pagination.index * searchMeta.pagination.size;
     const end = start + searchMeta.pagination.size - 1;
-    pagination = pagination.concat('_limit=').concat(searchMeta.pagination.size.toString()).concat('_page=').concat((searchMeta.pagination.index + 1).toString());
+    pagination = pagination.concat('_limit=').concat(searchMeta.pagination.size.toString()).concat('&_page=').concat((searchMeta.pagination.index).toString());
     return pagination;
 
   }
