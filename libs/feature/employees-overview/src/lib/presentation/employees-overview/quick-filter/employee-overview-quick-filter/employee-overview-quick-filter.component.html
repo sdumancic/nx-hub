@@ -1,37 +1,39 @@
 <form [formGroup]="formGroup" class="quick-filters">
-    <mat-form-field appearance="outline" floatLabel="never" class="small-form-field">
-
-      <input
-        matInput
-        type="text"
-        formControlName="username"
-        #username
-        (keydown.enter)="onUsernameEnter(username)"
-        placeholder="{{
-          'Username'
-        }}"
-      />
-      <button
-        matSuffix
-        mat-icon-button
-        aria-label="Clear"
-        type="button"
-        (click)="clearUsername()"
-      >
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-  <mat-form-field appearance="outline" floatLabel="never" class="small-form-field">
-
+  <mat-form-field
+    appearance="outline"
+    floatLabel="never"
+    class="small-form-field"
+  >
+    <input
+      matInput
+      type="text"
+      formControlName="username"
+      #username
+      (keydown.enter)="onUsernameEnter(username)"
+      placeholder="{{ 'Username' }}"
+    />
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      type="button"
+      (click)="clearUsername()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-form-field
+    appearance="outline"
+    floatLabel="never"
+    class="small-form-field"
+  >
     <input
       matInput
       type="text"
       formControlName="firstName"
       #firstName
       (keydown.enter)="onFirstnameEnter(firstName)"
-      placeholder="{{
-          'First name'
-        }}"
+      placeholder="{{ 'First name' }}"
     />
     <button
       matSuffix
@@ -44,17 +46,18 @@
     </button>
   </mat-form-field>
 
-  <mat-form-field appearance="outline" floatLabel="never" class="small-form-field">
-
+  <mat-form-field
+    appearance="outline"
+    floatLabel="never"
+    class="small-form-field"
+  >
     <input
       matInput
       type="text"
       formControlName="lastName"
       #lastName
       (keydown.enter)="onLastnameEnter(lastName)"
-      placeholder="{{
-          'Last Name'
-        }}"
+      placeholder="{{ 'Last Name' }}"
     />
     <button
       matSuffix
@@ -78,16 +81,16 @@
       class="quick-filters__sidebar-filter-button"
     >
       <mat-icon>filter_list</mat-icon>
-      <hub-employee-overview-filter-counter>
+      <hub-employee-overview-filter-counter
         [activeFiltersCount$]="activeFiltersCount$"
-      ></hub-employee-overview-filter-counter>
+      >
+      </hub-employee-overview-filter-counter>
 
       <mat-icon
         (click)="resetFilters($event)"
         *ngIf="filters.activeCount"
         class="quick-filters__sidebar-filter-button__clear"
-
-      >close
+        >close
       </mat-icon>
     </button>
   </ng-container>

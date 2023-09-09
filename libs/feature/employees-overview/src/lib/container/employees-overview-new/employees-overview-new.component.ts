@@ -10,10 +10,7 @@ import { CommonModule } from '@angular/common';
 import { materialModules } from '@hub/shared/ui/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EmployeeOverviewTableComponent } from '../../presentation/employees-overview/table/employee-overview-table/employee-overview-table.component';
-import {
-  EmployeeOverviewQuickFilter,
-  EmployeeOverviewQuickFilterComponent,
-} from '../../presentation/employees-overview/quick-filter/employee-overview-quick-filter/employee-overview-quick-filter.component';
+import { EmployeeOverviewQuickFilterComponent } from '../../presentation/employees-overview/quick-filter/employee-overview-quick-filter/employee-overview-quick-filter.component';
 import { EmployeeOverviewHeaderComponent } from '../../presentation/employees-overview/header/employee-overview-header/employee-overview-header.component';
 import { OverviewQuery } from '../../business/employees-overview/overview.query';
 import { EmployeesOverviewQuery } from '../../business/employees-overview/employees-overview.query';
@@ -43,6 +40,10 @@ import { EmployeeOverviewSearchResultUi } from '../../presentation/employees-ove
 import { EmployeeOverviewSearchUi } from '../../presentation/employees-overview/form/employee-overview-search.ui.model';
 import { EmployeeOverviewNavigatorComponent } from '../../presentation/employees-overview/navigator/employee-overview-navigator.component';
 import { Tabs } from '../../facade/tabs.enum';
+import {
+  EmployeeOverviewQuickFilter,
+  EmployeeOverviewQuickFilterForm,
+} from '../../presentation/employees-overview/quick-filter/employee-overview-quick-filter/employee-overview-quick-filter-form.service';
 
 @Component({
   selector: 'hub-employees-overview-new',
@@ -68,6 +69,7 @@ import { Tabs } from '../../facade/tabs.enum';
     EmployeeOverviewStateService,
     EmployeeOverviewFiltersService,
     OverviewUrlParamsService,
+    EmployeeOverviewQuickFilterForm,
   ],
 })
 export class EmployeesOverviewNewComponent implements OnInit, OnDestroy {
@@ -87,7 +89,8 @@ export class EmployeesOverviewNewComponent implements OnInit, OnDestroy {
     private employeeOverviewForm: EmployeeOverviewForm,
     private employeeOverviewFacade: EmployeeOverviewFacade,
     private filtersService: EmployeeOverviewFiltersService,
-    private readonly cdRef: ChangeDetectorRef
+    private readonly cdRef: ChangeDetectorRef,
+    private readonly quickFilterForm: EmployeeOverviewQuickFilterForm
   ) {
     this.searchCount$ = this.employeeOverviewFacade.searchCount$;
     this.searchMeta$ = this.employeeOverviewFacade.searchMeta$;
@@ -199,6 +202,9 @@ export class EmployeesOverviewNewComponent implements OnInit, OnDestroy {
     this.employeeOverviewForm.formGroup.patchValue(searchValues, {
       emitEvent: false,
     });
+    this.quickFilterForm.setFormValue(
+      this.employeeOverviewFacade.extractQuickFilterPart(searchValues)
+    );
   }
 
   private async initDefaultStateAndSearch(): Promise<void> {
@@ -231,6 +237,7 @@ export class EmployeesOverviewNewComponent implements OnInit, OnDestroy {
   }
 
   onSearchFromQuickFilters(value: EmployeeOverviewQuickFilter) {
-    console.log('search from quick filters', value);
+    this.employeeOverviewForm.formGroup.patchValue(value);
+    this.onSearch(false);
   }
 }

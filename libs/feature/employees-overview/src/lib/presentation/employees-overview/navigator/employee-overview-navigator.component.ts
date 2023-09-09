@@ -1,13 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  EmployeeOverviewQuickFilter,
-  EmployeeOverviewQuickFilterComponent,
-} from '../quick-filter/employee-overview-quick-filter/employee-overview-quick-filter.component';
+import { EmployeeOverviewQuickFilterComponent } from '../quick-filter/employee-overview-quick-filter/employee-overview-quick-filter.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Tabs } from '../../../facade/tabs.enum';
+import { EmployeeOverviewQuickFilter } from '../quick-filter/employee-overview-quick-filter/employee-overview-quick-filter-form.service';
 
 @Component({
   selector: 'hub-employee-overview-navigator',

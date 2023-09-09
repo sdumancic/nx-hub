@@ -1,20 +1,19 @@
 <div class="drawer">
   <div class="drawer__header">
-    <mat-icon
-      (click)="closeSidebar()"
-      class="drawer__header--close-drawer"
-    >close
+    <mat-icon (click)="closeSidebar()" class="drawer__header--close-drawer"
+      >close
     </mat-icon>
 
     <hub-employee-overview-filter-counter
       class="drawer__header--title"
+      [activeFiltersCount$]="activeFiltersCount$"
     ></hub-employee-overview-filter-counter>
 
     <mat-icon
       (click)="pinSidebar()"
       [ngClass]="{ 'drawer__header--pin-icon-active': sidebarPinned$ | async }"
       class="drawer__header--pin-icon"
-    >push_pin
+      >push_pin
     </mat-icon>
   </div>
 
@@ -28,68 +27,80 @@
   <form [formGroup]="formGroup" class="drawer__filters">
     <div class="drawer__filters--filter">
       <label>Roles</label>
-      <mat-form-field appearance="outline" floatLabel="always" class="small-form-field">
-        <mat-select
-          formControlName="roles"
-          multiple
-          placeholder="Select roles"
-        >
+      <mat-form-field
+        appearance="outline"
+        floatLabel="always"
+        class="small-form-field"
+      >
+        <mat-select formControlName="roles" multiple placeholder="Select roles">
           <mat-option
-            *ngFor="let role of rolesLov$ | async;"
+            *ngFor="let role of rolesLov$ | async"
             [value]="role.code"
           >
-            {{ role.value}}
+            {{ role.value }}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
     <div class="drawer__filters--filter">
       <label>Departments</label>
-      <mat-form-field appearance="outline" floatLabel="always" class="small-form-field">
+      <mat-form-field
+        appearance="outline"
+        floatLabel="always"
+        class="small-form-field"
+      >
         <mat-select
           formControlName="department"
           multiple
           placeholder="Select departments"
         >
           <mat-option
-            *ngFor="let department of departmentsLov$ | async;"
+            *ngFor="let department of departmentsLov$ | async"
             [value]="department.code"
           >
-            {{ department.value}}
+            {{ department.value }}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
     <div class="drawer__filters--filter">
       <label>States</label>
-      <mat-form-field appearance="outline" floatLabel="always" class="small-form-field">
+      <mat-form-field
+        appearance="outline"
+        floatLabel="always"
+        class="small-form-field"
+      >
         <mat-select
           formControlName="state"
           multiple
           placeholder="Select states"
         >
           <mat-option
-            *ngFor="let state of statesLov$ | async;"
+            *ngFor="let state of statesLov$ | async"
             [value]="state.code"
           >
-            {{ state.value}}
+            {{ state.value }}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
     <div class="drawer__filters--filter">
       <label>Genders</label>
-      <mat-form-field appearance="outline" floatLabel="always" class="small-form-field">
+      <mat-form-field
+        appearance="outline"
+        floatLabel="always"
+        class="small-form-field"
+      >
         <mat-select
           formControlName="gender"
           multiple
           placeholder="Select gender"
         >
           <mat-option
-            *ngFor="let gender of gendersLov$ | async;"
+            *ngFor="let gender of gendersLov$ | async"
             [value]="gender.code"
           >
-            {{ gender.value}}
+            {{ gender.value }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -165,11 +176,14 @@
         <mat-datepicker #hiredOnUntilEl></mat-datepicker>
       </mat-form-field>
     </div>
-
   </form>
 
   <div class="drawer__action-buttons">
-    <button mat-stroked-button color="primary" (click)="onReset()">Reset</button>
-    <button mat-stroked-button color="primary" (click)="onSearch()">Search</button>
+    <button mat-stroked-button color="primary" (click)="onReset()">
+      Reset
+    </button>
+    <button mat-stroked-button color="primary" (click)="onSearch()">
+      Search
+    </button>
   </div>
 </div>

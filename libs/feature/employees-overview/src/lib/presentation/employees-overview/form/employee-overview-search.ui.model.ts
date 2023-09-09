@@ -1,36 +1,52 @@
-import { OverviewFilterChipTypeEnum } from "../filter-chips/overview-filter-chip.model";
+import { OverviewFilterChipTypeEnum } from '../filter-chips/overview-filter-chip.model';
 
 export interface EmployeeOverviewSearchUi {
-
-  username: string
-  firstName: string
-  lastName: string
-  dobFrom: string
-  dobUntil: string
-  hiredOnFrom: string
-  hiredOnUntil: string
-  terminatedOnFrom: string
-  terminatedOnUntil: string
-  email: string
-  street: string
-  city: string
-  state: string[]
-  zip: string
-  roles: string[]
-  department: string[]
-  gender:string[]
-
+  username: string;
+  firstName: string;
+  lastName: string;
+  dobFrom: string;
+  dobUntil: string;
+  hiredOnFrom: string;
+  hiredOnUntil: string;
+  terminatedOnFrom: string;
+  terminatedOnUntil: string;
+  email: string;
+  street: string;
+  city: string;
+  state: string[];
+  zip: string;
+  roles: string[];
+  department: string[];
+  gender: string[];
 }
 
-export const STATE_CONTROL_KEY = 'state'
-export const ROLES_CONTROL_KEY = 'roles'
-export const DEPARTMENT_CONTROL_KEY = 'department'
-export const GENDER_CONTROL_KEY = 'gender'
+export const STATE_CONTROL_KEY = 'state';
+export const ROLES_CONTROL_KEY = 'roles';
+export const DEPARTMENT_CONTROL_KEY = 'department';
+export const GENDER_CONTROL_KEY = 'gender';
 
 export const FILTER_KEY_TRANSLATION: Map<string, string> = new Map<
-string,
-string
+  string,
+  string
 >([
+  ['username', 'Username: '],
+  ['firstName', 'FirstName: '],
+  ['lastName', 'LastName: '],
+  ['dobFrom', 'Date of birth from: '],
+  ['dobUntil', 'Date of birth until: '],
+  ['hiredOnFrom', 'Hired from: '],
+  ['hiredOnUntil', 'Hired until: '],
+  ['terminatedOnFrom', 'Terminated from: '],
+  ['terminatedOnUntil', 'Terminated until: '],
+  ['email', 'Email: '],
+  ['street', 'Street: '],
+  ['city', 'City: '],
+  ['state', 'State: '],
+  ['zip', 'Zip: '],
+  ['roles', 'Roles: '],
+  ['department', 'Department: '],
+  ['gender', 'Gender: '],
+  /*
   ['username', 'employees.overview.filter-chip.label.username'],
   ['firstName', 'employees.overview.filter-chip.label.firstName'],
   ['lastName', 'employees.overview.filter-chip.label.lastName'],
@@ -47,8 +63,8 @@ string
   ['zip','employees.overview.filter-chip.label.zip'],
   ['roles','employees.overview.filter-chip.label.roles'],
   ['department','employees.overview.filter-chip.label.department'],
-  ['gender','employees.overview.filter-chip.label.gender'],
-])
+  ['gender','employees.overview.filter-chip.label.gender'],*/
+]);
 
 export const FILTER_KEY_VALUE_TYPE: Map<string, OverviewFilterChipTypeEnum> =
   new Map<string, OverviewFilterChipTypeEnum>([
@@ -68,12 +84,12 @@ export const FILTER_KEY_VALUE_TYPE: Map<string, OverviewFilterChipTypeEnum> =
     ['hiredOnFrom', OverviewFilterChipTypeEnum.date],
     ['hiredOnUntil', OverviewFilterChipTypeEnum.date],
     ['terminatedOnFrom', OverviewFilterChipTypeEnum.date],
-    ['terminatedOnUntil', OverviewFilterChipTypeEnum.date]
-  ])
+    ['terminatedOnUntil', OverviewFilterChipTypeEnum.date],
+  ]);
 
 export const FILTER_KEY_REMOVABLE: Map<string, boolean> = new Map<
-string,
-boolean
+  string,
+  boolean
 >([
   ['username', true],
   ['firstName', true],
@@ -91,7 +107,5 @@ boolean
   ['hiredOnFrom', true],
   ['hiredOnUntil', true],
   ['terminatedOnFrom', true],
-  ['terminatedOnUntil', true]
-
-])
-
+  ['terminatedOnUntil', true],
+]);

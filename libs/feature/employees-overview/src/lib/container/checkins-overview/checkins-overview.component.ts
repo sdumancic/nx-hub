@@ -9,7 +9,7 @@ import { takeUntil } from 'rxjs/operators';
 import { endWith, Observable } from 'rxjs';
 import { materialModules } from '@hub/shared/ui/material';
 import { MatDialog } from '@angular/material/dialog';
-import { EmployeeOverviewQuickFilter } from '../../presentation/employees-overview/quick-filter/employee-overview-quick-filter/employee-overview-quick-filter.component';
+import { EmployeeOverviewQuickFilter } from '../../presentation/employees-overview/quick-filter/employee-overview-quick-filter/employee-overview-quick-filter-form.service';
 
 @Component({
   selector: 'hub-checkins-overview',

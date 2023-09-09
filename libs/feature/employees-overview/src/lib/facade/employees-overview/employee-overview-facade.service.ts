@@ -192,4 +192,8 @@ export class EmployeeOverviewFacade implements OnDestroy {
   extractSearchMetaFromQueryParams(queryParams: Params) {
     return EmployeeOverviewMapper.queryParamsToSearchMeta(queryParams);
   }
+
+  extractQuickFilterPart(searchValues: EmployeeOverviewSearchUi) {
+    return EmployeeOverviewMapper.fromSearchUiToQuickFilterUi(searchValues);
+  }
 }

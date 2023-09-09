@@ -1,17 +1,15 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { materialModules } from '@hub/shared/ui/material';
 import { EmployeeOverviewFilterCounterComponent } from '../../filter-counter/employee-overview-filter-counter/employee-overview-filter-counter.component';
 import { Observable, Subject } from 'rxjs';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { Tabs } from '../../../../facade/tabs.enum';
-
-export interface EmployeeOverviewQuickFilter {
-  username: string;
-  firstName: string;
-  lastName: string;
-}
+import {
+  EmployeeOverviewQuickFilter,
+  EmployeeOverviewQuickFilterForm,
+} from './employee-overview-quick-filter-form.service';
 
 @Component({
   selector: 'hub-employee-overview-quick-filter',
@@ -25,17 +23,19 @@ export interface EmployeeOverviewQuickFilter {
   styleUrls: ['./employee-overview-quick-filter.component.scss'],
 })
 export class EmployeeOverviewQuickFilterComponent {
+  formService = inject(EmployeeOverviewQuickFilterForm);
+
   @Input() activeFiltersCount$: Observable<number>;
   @Input() activeTab: Tabs;
   @Output() openSidebarFilters = new EventEmitter<Tabs>();
   @Output() searchEmitter = new EventEmitter<EmployeeOverviewQuickFilter>();
   @Output() resetEmitter = new EventEmitter<Tabs>();
-  formGroup: FormGroup = new FormGroup({
-    username: new FormControl('', { updateOn: 'blur' }),
-    firstName: new FormControl('', { updateOn: 'blur' }),
-    lastName: new FormControl('', { updateOn: 'blur' }),
-  });
+  formGroup: FormGroup;
   private readonly unsubscribe$ = new Subject<void>();
+
+  constructor() {
+    this.formGroup = this.formService.formGroup;
+  }
 
   ngOnInit(): void {
     this.listenQuickFilterValueChanges();
