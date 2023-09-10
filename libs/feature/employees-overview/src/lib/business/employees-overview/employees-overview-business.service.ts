@@ -36,7 +36,7 @@ export class EmployeesOverviewBusiness {
     );
   }
 
-  refreshMetadata$() {
-    return this.daoService.refreshMetadata$();
+  fetchMetadata$() {
+    return this.daoService.fetchMetadata$();
   }
 }

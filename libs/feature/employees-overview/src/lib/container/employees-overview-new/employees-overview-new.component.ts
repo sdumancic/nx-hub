@@ -32,7 +32,7 @@ import {
   EMPLOYEE_OVERVIEW_SIDEBAR_FILTERS_DIALOG,
   EmployeeOverviewSidebarFilterComponent,
 } from '../../presentation/employees-overview/sidebar-filter/employee-overview-sidebar-filter/employee-overview-sidebar-filter.component';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import { Sort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { EmployeeOverviewSearchResultUi } from '../../presentation/employees-overview/table/employee-overview-table/employee-overview-search-result.ui.model';
@@ -44,6 +44,7 @@ import {
   EmployeeOverviewQuickFilterForm,
 } from '../../presentation/employees-overview/quick-filter/employee-overview-quick-filter/employee-overview-quick-filter-form.service';
 import { SearchMeta } from '@hub/shared/workplace-reservation-data-access';
+import { EmployeesOverviewStoreService } from '../../store/employees-overview-store.service';
 
 @Component({
   selector: 'hub-employees-overview-new',
@@ -70,6 +71,7 @@ import { SearchMeta } from '@hub/shared/workplace-reservation-data-access';
     EmployeeOverviewFiltersService,
     OverviewUrlParamsService,
     EmployeeOverviewQuickFilterForm,
+    EmployeesOverviewStoreService,
   ],
 })
 export class EmployeesOverviewNewComponent implements OnInit, OnDestroy {
@@ -90,7 +92,8 @@ export class EmployeesOverviewNewComponent implements OnInit, OnDestroy {
     private employeeOverviewFacade: EmployeeOverviewFacade,
     private filtersService: EmployeeOverviewFiltersService,
     private readonly cdRef: ChangeDetectorRef,
-    private readonly quickFilterForm: EmployeeOverviewQuickFilterForm
+    private readonly quickFilterForm: EmployeeOverviewQuickFilterForm,
+    private store: EmployeesOverviewStoreService
   ) {
     this.searchCount$ = this.employeeOverviewFacade.searchCount$;
     this.searchMeta$ = this.employeeOverviewFacade.searchMeta$;
@@ -102,10 +105,13 @@ export class EmployeesOverviewNewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.employeeOverviewFacade
-      .refreshMetadata$()
-      .pipe(take(1))
-      .subscribe(() => {
+    this.store.fetchMetadata();
+    this.store.metadataVm$
+      .pipe(
+        filter((val) => val.loaded === true),
+        take(1)
+      )
+      .subscribe((val) => {
         this.setActiveTab(Tabs.EMPLOYEE_OVERVIEW);
         this.subscribeToQueryParamChanges();
         this.setInitialQueryParams(this.route.snapshot.queryParams);
@@ -186,7 +192,8 @@ export class EmployeesOverviewNewComponent implements OnInit, OnDestroy {
   }
 
   onCreateNewEmployee() {
-    this.employeeOverviewFacade.refreshMetadata$().pipe(take(1)).subscribe();
+    //this.employeeOverviewFacade.refreshMetadata$().pipe(take(1)).subscribe();
+    this.store.fetchMetadata();
   }
 
   private subscribeToQueryParamChanges(): void {

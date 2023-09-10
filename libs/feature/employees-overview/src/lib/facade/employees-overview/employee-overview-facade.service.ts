@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { BehaviorSubject, Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { catchError, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { Observable, of, ReplaySubject, Subject } from 'rxjs';
+import { catchError, map, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { OverviewUrlParamsService } from './url-params/overview-url-params.service';
 import { EmployeesOverviewBusiness } from '../../business/employees-overview/employees-overview-business.service';
 import { EmployeeOverviewSearchUi } from '../../presentation/employees-overview/form/employee-overview-search.ui.model';
@@ -8,7 +8,7 @@ import { EmployeeOverviewSearchResultUi } from '../../presentation/employees-ove
 import { EMPTY_RESPONSE } from './state/employee-overview-state.model';
 import { EmployeeOverviewStateService } from './state/employee-overview-state.service';
 import { EmployeeOverviewMapper } from './employee-overview.mapper';
-import { mapStringToLov$ } from '../../util/map-string-to-lov';
+import { mapStringToLov } from '../../util/map-string-to-lov';
 import { Params } from '@angular/router';
 import { EmployeeOverviewUrlQueryParams } from './url-params/employee-overview-url-params.model';
 import {
@@ -16,6 +16,7 @@ import {
   LovItem,
   SearchMeta,
 } from '@hub/shared/workplace-reservation-data-access';
+import { EmployeesOverviewStoreService } from '../../store/employees-overview-store.service';
 
 @Injectable()
 export class EmployeeOverviewFacade implements OnDestroy {
@@ -24,18 +25,10 @@ export class EmployeeOverviewFacade implements OnDestroy {
   private readonly searchError$ = new Subject<void>();
   private readonly unsubscribe$ = new Subject<void>();
 
-  gendersLov$: Observable<LovItem[]> = mapStringToLov$(this.state.genders$);
-
-  departmentsLov$: Observable<LovItem[]> = mapStringToLov$(
-    this.state.departments$
-  );
-
-  rolesLov$: Observable<LovItem[]> = mapStringToLov$(this.state.rolesLov$);
-
-  statesLov$: Observable<LovItem[]> = mapStringToLov$(this.state.statesLov$);
-
-  private readonly executeSearchAtQueryParamsChange$ =
-    new BehaviorSubject<boolean>(false);
+  gendersLov$: Observable<LovItem[]>;
+  departmentsLov$: Observable<LovItem[]>;
+  rolesLov$: Observable<LovItem[]>;
+  statesLov$: Observable<LovItem[]>;
 
   private activeTabInd: number;
 
@@ -67,9 +60,26 @@ export class EmployeeOverviewFacade implements OnDestroy {
     private readonly employeesOverviewBusiness: EmployeesOverviewBusiness,
     private readonly state: EmployeeOverviewStateService,
     private readonly urlParamsService: OverviewUrlParamsService,
-    private readonly urlService: OverviewUrlParamsService
+    private readonly urlService: OverviewUrlParamsService,
+    private readonly store: EmployeesOverviewStoreService
   ) {
     this.subscribeToSearch();
+    this.gendersLov$ = this.store.metadataVm$.pipe(
+      takeUntil(this.unsubscribe$),
+      map((metadata) => mapStringToLov(metadata.gendersLov))
+    );
+    this.departmentsLov$ = this.store.metadataVm$.pipe(
+      takeUntil(this.unsubscribe$),
+      map((metadata) => mapStringToLov(metadata.departmentsLov))
+    );
+    this.rolesLov$ = this.store.metadataVm$.pipe(
+      takeUntil(this.unsubscribe$),
+      map((metadata) => mapStringToLov(metadata.rolesLov))
+    );
+    this.statesLov$ = this.store.metadataVm$.pipe(
+      takeUntil(this.unsubscribe$),
+      map((metadata) => mapStringToLov(metadata.statesLov))
+    );
   }
 
   ngOnDestroy(): void {
@@ -157,14 +167,6 @@ export class EmployeeOverviewFacade implements OnDestroy {
 
   get activeTabIndex(): number {
     return this.activeTabInd;
-  }
-
-  refreshMetadata$() {
-    return this.employeesOverviewBusiness.refreshMetadata$().pipe(
-      tap((metadata) => {
-        this.state.set({ metadata: metadata });
-      })
-    );
   }
 
   public updateStateFromSearchUiAndSearchMeta(
