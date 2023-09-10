@@ -1,18 +1,16 @@
+import { EmployeeOverviewSearchResultUi } from '../../../presentation/employees-overview/table/employee-overview-table/employee-overview-search-result.ui.model';
+import { EmployeeOverviewSearchUi } from '../../../presentation/employees-overview/form/employee-overview-search.ui.model';
 import {
-  EmployeeOverviewSearchResultUi
-} from "../../../presentation/employees-overview/table/employee-overview-table/employee-overview-search-result.ui.model";
-import {
-  EmployeeOverviewSearchUi
-} from "../../../presentation/employees-overview/form/employee-overview-search.ui.model";
-import { SearchMeta } from "../../../data-access/standard.model";
-import { EmployeeOverviewMetadata } from "../../../data-access/employees-overview/employee-overview.model";
+  EmployeeOverviewMetadata,
+  SearchMeta,
+} from '@hub/shared/workplace-reservation-data-access';
 
 export interface EmployeeOverviewState {
-  searchResult: EmployeeOverviewSearchResultUi[]
-  searchValues: EmployeeOverviewSearchUi
-  searchMeta: SearchMeta
-  searchCount: number
-  metadata: EmployeeOverviewMetadata
+  searchResult: EmployeeOverviewSearchResultUi[];
+  searchValues: EmployeeOverviewSearchUi;
+  searchMeta: SearchMeta;
+  searchCount: number;
+  metadata: EmployeeOverviewMetadata;
 }
 
 export const SEARCH_VALUES_DEFAULT: EmployeeOverviewSearchUi = {
@@ -32,20 +30,20 @@ export const SEARCH_VALUES_DEFAULT: EmployeeOverviewSearchUi = {
   zip: null,
   roles: null,
   department: null,
-  gender:null,
-}
+  gender: null,
+};
 
 export const ZERO_PAGE_INDEX = 1;
 export const SEARCH_META_DEFAULT: SearchMeta = {
   pagination: { index: 1, size: 10 },
-  sorting: { attribute: 'orderNumber', order: 'asc' }
-}
+  sorting: { attribute: 'orderNumber', order: 'asc' },
+};
 export const METADATA_DEFAULT: EmployeeOverviewMetadata = {
   roles: [],
   departments: [],
   genders: [],
-  states: []
-}
+  states: [],
+};
 
 export const EMPLOYEE_OVERVIEW_INITIAL_STATE: EmployeeOverviewState = {
   searchResult: [],
@@ -56,16 +54,15 @@ export const EMPLOYEE_OVERVIEW_INITIAL_STATE: EmployeeOverviewState = {
     roles: [],
     departments: [],
     genders: [],
-    states: []
-  }
-
-}
+    states: [],
+  },
+};
 
 export const EMPTY_RESPONSE = {
   data: [],
   metadata: {
     page: 0,
     size: 10,
-    totalResources: 0
-  }
-}
+    totalResources: 0,
+  },
+};

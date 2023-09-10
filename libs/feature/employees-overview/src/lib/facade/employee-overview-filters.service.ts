@@ -2,7 +2,6 @@ import { Injectable, OnDestroy } from '@angular/core';
 import * as moment from 'moment';
 import { merge, Observable, Subject, zip } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
-import { LovItem } from '../data-access/standard.model';
 import {
   DEPARTMENT_CONTROL_KEY,
   EmployeeOverviewSearchUi,
@@ -17,6 +16,7 @@ import {
 import { EmployeeOverviewFacade } from './employees-overview/employee-overview-facade.service';
 import { EmployeeOverviewForm } from '../presentation/employees-overview/form/employee-overview-form.service';
 import { EmployeeOverviewMapper } from './employees-overview/employee-overview.mapper';
+import { LovItem } from '@hub/shared/workplace-reservation-data-access';
 
 @Injectable()
 export class EmployeeOverviewFiltersService implements OnDestroy {

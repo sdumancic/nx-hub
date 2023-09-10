@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { EmployeesOverviewDataAccess } from '../../data-access/employees-overview/employees-overview-data-access.service';
 import { EmployeeOverviewSearch } from './employees-overview-search.model';
-import { SearchMeta } from '../../data-access/standard.model';
-import { EmployeeResourceCollection } from '../../data-access/employees-overview/employee-overview.model';
 import { OverviewQuery } from './overview.query';
+import {
+  EmployeeResourceCollection,
+  EmployeesOverviewDataAccess,
+  SearchMeta,
+} from '@hub/shared/workplace-reservation-data-access';
 
 @Injectable()
 export class EmployeesOverviewBusiness {

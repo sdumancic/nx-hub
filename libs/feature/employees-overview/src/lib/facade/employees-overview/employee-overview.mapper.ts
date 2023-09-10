@@ -15,7 +15,8 @@ import {
   EMPLOYEE_TERMINATED_ON,
   EMPLOYEE_USERNAME,
   EmployeeResourceCollection,
-} from '../../data-access/employees-overview/employee-overview.model';
+  SearchMeta,
+} from '@hub/shared/workplace-reservation-data-access';
 import { EmployeeOverviewSearchResultUi } from '../../presentation/employees-overview/table/employee-overview-table/employee-overview-search-result.ui.model';
 import {
   EmployeeOverviewSearchUi,
@@ -24,7 +25,6 @@ import {
   FILTER_KEY_VALUE_TYPE,
 } from '../../presentation/employees-overview/form/employee-overview-search.ui.model';
 import { EmployeeOverviewSearch } from '../../business/employees-overview/employees-overview-search.model';
-import { SearchMeta } from '../../data-access/standard.model';
 import { EmployeeOverviewUrlQueryParams } from './url-params/employee-overview-url-params.model';
 import { OverviewFilterChipTypeEnum } from '../../presentation/employees-overview/filter-chips/overview-filter-chip.model';
 import { Params } from '@angular/router';

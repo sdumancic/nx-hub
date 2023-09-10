@@ -22,7 +22,6 @@ import { EmployeeOverviewFiltersService } from '../../facade/employee-overview-f
 import { OverviewUrlParamsService } from '../../facade/employees-overview/url-params/overview-url-params.service';
 import { endWith, Observable, Subject, take } from 'rxjs';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { SearchMeta } from '../../data-access/standard.model';
 import {
   ActivatedRoute,
   Params,
@@ -44,6 +43,7 @@ import {
   EmployeeOverviewQuickFilter,
   EmployeeOverviewQuickFilterForm,
 } from '../../presentation/employees-overview/quick-filter/employee-overview-quick-filter/employee-overview-quick-filter-form.service';
+import { SearchMeta } from '@hub/shared/workplace-reservation-data-access';
 
 @Component({
   selector: 'hub-employees-overview-new',

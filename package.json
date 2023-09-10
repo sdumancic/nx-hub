@@ -101,6 +101,7 @@
     "eslint-plugin-cypress": "^2.10.3",
     "jasmine-core": "~4.2.0",
     "jasmine-spec-reporter": "~7.0.0",
+    "jest-environment-jsdom": "^29.4.1",
     "jest-environment-node": "^29.4.1",
     "jest-preset-angular": "13.1.1",
     "json-server": "^0.17.3",

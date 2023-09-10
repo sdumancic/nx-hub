@@ -3,16 +3,19 @@ import { BehaviorSubject, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { catchError, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { OverviewUrlParamsService } from './url-params/overview-url-params.service';
 import { EmployeesOverviewBusiness } from '../../business/employees-overview/employees-overview-business.service';
-import { LovItem, SearchMeta } from '../../data-access/standard.model';
 import { EmployeeOverviewSearchUi } from '../../presentation/employees-overview/form/employee-overview-search.ui.model';
 import { EmployeeOverviewSearchResultUi } from '../../presentation/employees-overview/table/employee-overview-table/employee-overview-search-result.ui.model';
-import { EmployeeResourceCollection } from '../../data-access/employees-overview/employee-overview.model';
 import { EMPTY_RESPONSE } from './state/employee-overview-state.model';
 import { EmployeeOverviewStateService } from './state/employee-overview-state.service';
 import { EmployeeOverviewMapper } from './employee-overview.mapper';
 import { mapStringToLov$ } from '../../util/map-string-to-lov';
 import { Params } from '@angular/router';
 import { EmployeeOverviewUrlQueryParams } from './url-params/employee-overview-url-params.model';
+import {
+  EmployeeResourceCollection,
+  LovItem,
+  SearchMeta,
+} from '@hub/shared/workplace-reservation-data-access';
 
 @Injectable()
 export class EmployeeOverviewFacade implements OnDestroy {

@@ -10,9 +10,11 @@ import {
   ZERO_PAGE_INDEX,
 } from './employee-overview-state.model';
 import { EmployeeOverviewSearchUi } from '../../../presentation/employees-overview/form/employee-overview-search.ui.model';
-import { SearchMeta } from '../../../data-access/standard.model';
 import { EmployeeOverviewSearchResultUi } from '../../../presentation/employees-overview/table/employee-overview-table/employee-overview-search-result.ui.model';
-import { EmployeeOverviewMetadata } from '../../../data-access/employees-overview/employee-overview.model';
+import {
+  EmployeeOverviewMetadata,
+  SearchMeta,
+} from '@hub/shared/workplace-reservation-data-access';
 
 @Injectable()
 export class EmployeeOverviewStateService {
@@ -47,6 +49,7 @@ export class EmployeeOverviewStateService {
   get statesLov$(): Observable<string[]> {
     return this.state.pipe(map((state) => state?.metadata?.states));
   }
+
   get rolesLov$(): Observable<string[]> {
     return this.state.pipe(map((state) => state?.metadata?.roles));
   }
