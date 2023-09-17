@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import {
   EmployeeOverviewNgRxState,
+  EmployeeOverviewState,
   EMPTY_EMPLOYEES_OVERVIEW_STORE,
   getError,
   LoadingState,
+  ZERO_PAGE_INDEX,
 } from './employees-overview-store.model';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { concatMap, EMPTY, Observable } from 'rxjs';
@@ -13,25 +15,30 @@ import {
   EmployeeOverviewMetadata,
   SearchMeta,
 } from '@hub/shared/workplace-reservation-data-access';
-import {
-  EmployeeOverviewState,
-  ZERO_PAGE_INDEX,
-} from '../facade/employees-overview/state/employee-overview-state.model';
 import { EmployeesOverviewBusiness } from '../business/employees-overview/employees-overview-business.service';
 import { catchError } from 'rxjs/operators';
+import { linkToGlobalState } from './ngrx';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class EmployeesOverviewStoreService extends ComponentStore<EmployeeOverviewNgRxState> {
-  constructor(private employeeOverviewBussiness: EmployeesOverviewBusiness) {
+  constructor(
+    private globalStore: Store,
+    private employeeOverviewBusiness: EmployeesOverviewBusiness
+  ) {
     super({
       ...EMPTY_EMPLOYEES_OVERVIEW_STORE,
     });
     console.log('ngrx constructor');
+    linkToGlobalState(this.state$, 'EmployeeOverviewStore', this.globalStore);
   }
 
   // SELECTORS FOR EMPLOYEE OVERVIEW
   private readonly employeesOverviewLoading$: Observable<boolean> = this.select(
     (state) => state.employeesOverview.callState === LoadingState.LOADING
+  );
+  private readonly employeesOverviewLoaded$: Observable<boolean> = this.select(
+    (state) => state.employeesOverview.callState === LoadingState.LOADED
   );
   private readonly employeesOverviewError$: Observable<string> = this.select(
     (state) => getError(state.employeesOverview.callState)
@@ -119,19 +126,29 @@ export class EmployeesOverviewStoreService extends ComponentStore<EmployeeOvervi
     this.employeesOverviewSearchMeta$,
     this.employeesOverviewSearchCount$,
     this.employeesOverviewLoading$,
+    this.employeesOverviewLoaded$,
     this.employeesOverviewError$,
-    (searchValues, searchResult, searchMeta, searchCount, loading, error) => ({
+    (
       searchValues,
       searchResult,
       searchMeta,
       searchCount,
       loading,
+      loaded,
+      error
+    ) => ({
+      searchValues,
+      searchResult,
+      searchMeta,
+      searchCount,
+      loading,
+      loaded,
       error,
     })
   );
 
   // UPDATERS FOR EMPLOYEE OVERVIEW
-  readonly updateEmployeeOverviewError = this.updater(
+  readonly setEmployeeOverviewError = this.updater(
     (state: EmployeeOverviewNgRxState, error: string) => {
       return {
         ...state,
@@ -230,6 +247,25 @@ export class EmployeesOverviewStoreService extends ComponentStore<EmployeeOvervi
     }
   );
 
+  readonly setEmployeeOverviewSearchResultAndCount = this.updater(
+    (
+      state: EmployeeOverviewNgRxState,
+      val: {
+        searchResult: EmployeeOverviewSearchResultUi[];
+        searchCount: number;
+      }
+    ) => {
+      return {
+        ...state,
+        employeesOverview: {
+          ...state.employeesOverview,
+          searchResult: val.searchResult,
+          searchCount: val.searchCount,
+        },
+      };
+    }
+  );
+
   readonly resetEmployeeOverviewSearchValuesAndMeta = this.updater(
     (
       state: EmployeeOverviewNgRxState,
@@ -242,9 +278,7 @@ export class EmployeesOverviewStoreService extends ComponentStore<EmployeeOvervi
           searchResult: [],
           searchCount: 0,
           searchMeta: part.searchMeta,
-          callState: {
-            errorMsg: null,
-          },
+          callState: LoadingState.INIT,
         },
       };
     }
@@ -265,9 +299,6 @@ export class EmployeesOverviewStoreService extends ComponentStore<EmployeeOvervi
             pagination: {
               ...newPagination,
             },
-          },
-          callState: {
-            errorMsg: null,
           },
         },
       };
@@ -290,9 +321,6 @@ export class EmployeesOverviewStoreService extends ComponentStore<EmployeeOvervi
               attribute: newSorting.attribute ?? null,
               order: newSorting.order ?? null,
             },
-          },
-          callState: {
-            errorMsg: null,
           },
         },
       };
@@ -340,7 +368,7 @@ export class EmployeesOverviewStoreService extends ComponentStore<EmployeeOvervi
     return trigger$.pipe(
       concatMap(() => {
         this.setMetadataLoading();
-        return this.employeeOverviewBussiness.fetchMetadata$().pipe(
+        return this.employeeOverviewBusiness.fetchMetadata$().pipe(
           tapResponse(
             (metadata) => {
               this.updateMetadata(metadata);

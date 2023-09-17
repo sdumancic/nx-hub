@@ -17,7 +17,6 @@ import { EmployeesOverviewQuery } from '../../business/employees-overview/employ
 import { EmployeesOverviewBusiness } from '../../business/employees-overview/employees-overview-business.service';
 import { EmployeeOverviewForm } from '../../presentation/employees-overview/form/employee-overview-form.service';
 import { EmployeeOverviewFacade } from '../../facade/employees-overview/employee-overview-facade.service';
-import { EmployeeOverviewStateService } from '../../facade/employees-overview/state/employee-overview-state.service';
 import { EmployeeOverviewFiltersService } from '../../facade/employee-overview-filters.service';
 import { OverviewUrlParamsService } from '../../facade/employees-overview/url-params/overview-url-params.service';
 import { endWith, Observable, Subject, take } from 'rxjs';
@@ -67,7 +66,6 @@ import { EmployeesOverviewStoreService } from '../../store/employees-overview-st
     EmployeesOverviewBusiness,
     EmployeeOverviewForm,
     EmployeeOverviewFacade,
-    EmployeeOverviewStateService,
     EmployeeOverviewFiltersService,
     OverviewUrlParamsService,
     EmployeeOverviewQuickFilterForm,

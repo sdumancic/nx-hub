@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { environment } from '../environments/environment';
 import { provideHttpClient, withJsonpSupport } from '@angular/common/http';
 import {
@@ -6,10 +6,16 @@ import {
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
 import { APP_ROUTES } from './app.routes';
-import { importProvidersFrom } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GOOGLE_MAPS_API_KEY, WORKPLACE_RESERVATION_API_BACKEND_URL } from "@hub/shared/util/app-config";
-import { LoggerModule, NgxLoggerLevel } from "ngx-logger";
+import {
+  GOOGLE_MAPS_API_KEY,
+  WORKPLACE_RESERVATION_API_BACKEND_URL,
+} from '@hub/shared/util/app-config';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { employeeOverviewComponentStateReducer } from '@hub/feature/employees-overview';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     {
@@ -23,8 +29,18 @@ export const appConfig: ApplicationConfig = {
       withEnabledBlockingInitialNavigation() /*, withDebugTracing()*/
     ),
     provideHttpClient(withJsonpSupport()),
-    importProvidersFrom(BrowserAnimationsModule, LoggerModule.forRoot({
-      level: NgxLoggerLevel.TRACE,
-    }),),
+    importProvidersFrom(
+      BrowserAnimationsModule,
+      LoggerModule.forRoot({
+        level: NgxLoggerLevel.TRACE,
+      }),
+      StoreModule.forRoot({
+        componentState: employeeOverviewComponentStateReducer,
+      }),
+      StoreDevtoolsModule.instrument({
+        maxAge: 25, // Retains last 25 states
+        logOnly: true, // Restrict extension to log-only mode
+      })
+    ),
   ],
 };

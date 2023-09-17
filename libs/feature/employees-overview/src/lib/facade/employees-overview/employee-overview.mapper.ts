@@ -28,8 +28,8 @@ import { EmployeeOverviewSearch } from '../../business/employees-overview/employ
 import { EmployeeOverviewUrlQueryParams } from './url-params/employee-overview-url-params.model';
 import { OverviewFilterChipTypeEnum } from '../../presentation/employees-overview/filter-chips/overview-filter-chip.model';
 import { Params } from '@angular/router';
-import { ZERO_PAGE_INDEX } from './state/employee-overview-state.model';
 import { EmployeeOverviewQuickFilter } from '../../presentation/employees-overview/quick-filter/employee-overview-quick-filter/employee-overview-quick-filter-form.service';
+import { ZERO_PAGE_INDEX } from '../../store/employees-overview-store.model';
 
 enum SortDirection {
   ASC = 'asc',

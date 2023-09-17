@@ -5,8 +5,6 @@ import { OverviewUrlParamsService } from './url-params/overview-url-params.servi
 import { EmployeesOverviewBusiness } from '../../business/employees-overview/employees-overview-business.service';
 import { EmployeeOverviewSearchUi } from '../../presentation/employees-overview/form/employee-overview-search.ui.model';
 import { EmployeeOverviewSearchResultUi } from '../../presentation/employees-overview/table/employee-overview-table/employee-overview-search-result.ui.model';
-import { EMPTY_RESPONSE } from './state/employee-overview-state.model';
-import { EmployeeOverviewStateService } from './state/employee-overview-state.service';
 import { EmployeeOverviewMapper } from './employee-overview.mapper';
 import { mapStringToLov } from '../../util/map-string-to-lov';
 import { Params } from '@angular/router';
@@ -17,6 +15,7 @@ import {
   SearchMeta,
 } from '@hub/shared/workplace-reservation-data-access';
 import { EmployeesOverviewStoreService } from '../../store/employees-overview-store.service';
+import { EMPTY_RESPONSE } from '../../store/employees-overview-store.model';
 
 @Injectable()
 export class EmployeeOverviewFacade implements OnDestroy {
@@ -32,33 +31,39 @@ export class EmployeeOverviewFacade implements OnDestroy {
 
   private activeTabInd: number;
 
+  private _searchValues: EmployeeOverviewSearchUi;
+  private _searchMeta: SearchMeta;
+
   get loading$(): Observable<boolean> {
     return this.loadInProgress$.asObservable();
   }
 
   get searchValues(): EmployeeOverviewSearchUi {
-    return this.state.snapshot.searchValues;
+    return this._searchValues;
+  }
+
+  get searchMeta(): SearchMeta {
+    return this._searchMeta;
   }
 
   get searchValues$(): Observable<EmployeeOverviewSearchUi> {
-    return this.state.searchValues$;
+    return this.store.employeeOverviewVm$.pipe(map((val) => val.searchValues));
   }
 
   get searchResult$(): Observable<EmployeeOverviewSearchResultUi[]> {
-    return this.state.searchResult$;
+    return this.store.employeeOverviewVm$.pipe(map((val) => val.searchResult));
   }
 
   get searchMeta$(): Observable<SearchMeta> {
-    return this.state.searchMeta$;
+    return this.store.employeeOverviewVm$.pipe(map((val) => val.searchMeta));
   }
 
   get searchCount$(): Observable<number> {
-    return this.state.searchCount$;
+    return this.store.employeeOverviewVm$.pipe(map((val) => val.searchCount));
   }
 
   constructor(
     private readonly employeesOverviewBusiness: EmployeesOverviewBusiness,
-    private readonly state: EmployeeOverviewStateService,
     private readonly urlParamsService: OverviewUrlParamsService,
     private readonly urlService: OverviewUrlParamsService,
     private readonly store: EmployeesOverviewStoreService
@@ -80,6 +85,12 @@ export class EmployeeOverviewFacade implements OnDestroy {
       takeUntil(this.unsubscribe$),
       map((metadata) => mapStringToLov(metadata.statesLov))
     );
+    this.store.employeeOverviewVm$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((val) => {
+        this._searchValues = val.searchValues;
+        this._searchMeta = val.searchMeta;
+      });
   }
 
   ngOnDestroy(): void {
@@ -99,17 +110,21 @@ export class EmployeeOverviewFacade implements OnDestroy {
     retainPagination = false
   ): void {
     //const searchValues: EmployeeOverviewSearchUi = this.state.snapshot.searchValues
-    this.state.resetSearchValues(searchValues, retainPagination);
+    if (retainPagination) {
+      this.store.resetEmployeeOverviewSearchValues(searchValues);
+    } else {
+      this.store.resetEmployeeOverviewSearchValuesAndPagination(searchValues);
+    }
     this.updateQueryParamsFromState();
     this.search$.next();
   }
 
   paginate(index: number, size: number): void {
-    this.state.updatePagination(index + 1, size);
+    this.store.setEmployeeOverviewPagination({ index: index + 1, size });
   }
 
   sort(attribute: string, order: string): void {
-    this.state.updateSorting(attribute, order);
+    this.store.setEmployeeOverviewSorting({ attribute, order });
   }
 
   public subscribeToSearch(): void {
@@ -134,7 +149,7 @@ export class EmployeeOverviewFacade implements OnDestroy {
   private readonly afterSearch = (
     response: EmployeeResourceCollection
   ): void => {
-    this.state.set({
+    this.store.setEmployeeOverviewSearchResultAndCount({
       searchResult:
         EmployeeOverviewMapper.fromResourceCollectionToSearchResultUi(response),
       searchCount: response?.metadata?.totalResources
@@ -148,7 +163,7 @@ export class EmployeeOverviewFacade implements OnDestroy {
       this.activeTabIndex,
       EmployeeOverviewMapper.searchUiToQueryParams(
         this.searchValues,
-        this.state.snapshot.searchMeta
+        this.searchMeta
       )
     );
   }
@@ -157,7 +172,7 @@ export class EmployeeOverviewFacade implements OnDestroy {
     (): Observable<EmployeeResourceCollection> =>
       this.employeesOverviewBusiness.searchEmployees$(
         EmployeeOverviewMapper.fromEmployeeOverviewSearchUi(this.searchValues),
-        this.state.snapshot.searchMeta
+        this.searchMeta
       );
 
   private readonly onSearchError = (): void => {
@@ -173,7 +188,10 @@ export class EmployeeOverviewFacade implements OnDestroy {
     searchValues: EmployeeOverviewSearchUi,
     searchMeta: SearchMeta
   ): void {
-    this.state.resetSearchValuesAndMeta(searchValues, searchMeta);
+    this.store.resetEmployeeOverviewSearchValuesAndMeta({
+      searchValues,
+      searchMeta,
+    });
   }
 
   mergeSetUrl(queryParams: Params) {
