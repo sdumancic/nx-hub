@@ -23,6 +23,7 @@ import { EmployeeOverviewQuickFilter } from '../quick-filter/employee-overview-q
 export class EmployeeOverviewNavigatorComponent {
   @Input() activeFiltersCount$: Observable<number>;
   @Input() activeTab: Tabs;
+  @Input() metadataLoading$: Observable<boolean>;
   @Output() openSideBarFilters = new EventEmitter<Tabs>();
   @Output() resetFilter = new EventEmitter<Tabs>();
   @Output() search = new EventEmitter<EmployeeOverviewQuickFilter>();

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { EmployeeOverviewSearch } from './employees-overview-search.model';
 import { OverviewQuery } from './overview.query';
@@ -23,6 +23,7 @@ export class EmployeesOverviewBusiness {
   ): Observable<EmployeeResourceCollection> {
     const queryParamsText = this.overviewQuery.build(searchValues, searchMeta);
     return this.daoService.fetchEmployees$(queryParamsText).pipe(
+      delay(2000),
       map((res) => {
         return {
           data: res.data,

@@ -4,6 +4,7 @@
 >
   <div class="overview__content">
     <hub-employee-overview-navigator
+      [metadataLoading$]="metadataLoading$"
       [activeTab]="activeTab"
       [activeFiltersCount$]="activeFiltersCount$"
       (openSideBarFilters)="onOpenSidebarFilters($event)"
@@ -21,5 +22,17 @@
       timeFormat="HH:mm"
       currency="EUR"
     ></hub-employee-overview-table>
+  </div>
+  <div
+    *ngIf="(employeeDataLoading$ | async) === true"
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: white;
+    "
+  >
+    <mat-progress-spinner color="primary" mode="indeterminate">
+    </mat-progress-spinner>
   </div>
 </div>

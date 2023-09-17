@@ -1,6 +1,6 @@
-import { Injectable, OnDestroy } from '@angular/core';
-import { Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { catchError, map, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { inject, Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { OverviewUrlParamsService } from './url-params/overview-url-params.service';
 import { EmployeesOverviewBusiness } from '../../business/employees-overview/employees-overview-business.service';
 import { EmployeeOverviewSearchUi } from '../../presentation/employees-overview/form/employee-overview-search.ui.model';
@@ -16,13 +16,18 @@ import {
 } from '@hub/shared/workplace-reservation-data-access';
 import { EmployeesOverviewStoreService } from '../../store/employees-overview-store.service';
 import { EMPTY_RESPONSE } from '../../store/employees-overview-store.model';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable()
-export class EmployeeOverviewFacade implements OnDestroy {
+export class EmployeeOverviewFacade {
+  private readonly employeesOverviewBusiness = inject(
+    EmployeesOverviewBusiness
+  );
+  private readonly urlParamsService = inject(OverviewUrlParamsService);
+  private readonly urlService = inject(OverviewUrlParamsService);
+  private readonly store = inject(EmployeesOverviewStoreService);
   private search$ = new Subject<void>();
-  private readonly loadInProgress$ = new ReplaySubject<boolean>(1); // replay because datatable is late on first emitted item (initial search)
   private readonly searchError$ = new Subject<void>();
-  private readonly unsubscribe$ = new Subject<void>();
 
   gendersLov$: Observable<LovItem[]>;
   departmentsLov$: Observable<LovItem[]>;
@@ -31,19 +36,23 @@ export class EmployeeOverviewFacade implements OnDestroy {
 
   private activeTabInd: number;
 
-  private _searchValues: EmployeeOverviewSearchUi;
-  private _searchMeta: SearchMeta;
+  private _searchValues = new BehaviorSubject<EmployeeOverviewSearchUi>(null);
+  private _searchMeta = new BehaviorSubject<SearchMeta>(null);
 
   get loading$(): Observable<boolean> {
-    return this.loadInProgress$.asObservable();
+    return this.store.employeeOverviewVm$.pipe(map((val) => val.loading));
+  }
+
+  get metadataLoading$(): Observable<boolean> {
+    return this.store.metadataVm$.pipe(map((val) => val.loading));
   }
 
   get searchValues(): EmployeeOverviewSearchUi {
-    return this._searchValues;
+    return this._searchValues.value;
   }
 
   get searchMeta(): SearchMeta {
-    return this._searchMeta;
+    return this._searchMeta.value;
   }
 
   get searchValues$(): Observable<EmployeeOverviewSearchUi> {
@@ -62,40 +71,30 @@ export class EmployeeOverviewFacade implements OnDestroy {
     return this.store.employeeOverviewVm$.pipe(map((val) => val.searchCount));
   }
 
-  constructor(
-    private readonly employeesOverviewBusiness: EmployeesOverviewBusiness,
-    private readonly urlParamsService: OverviewUrlParamsService,
-    private readonly urlService: OverviewUrlParamsService,
-    private readonly store: EmployeesOverviewStoreService
-  ) {
+  constructor() {
     this.subscribeToSearch();
     this.gendersLov$ = this.store.metadataVm$.pipe(
-      takeUntil(this.unsubscribe$),
+      takeUntilDestroyed(),
       map((metadata) => mapStringToLov(metadata.gendersLov))
     );
     this.departmentsLov$ = this.store.metadataVm$.pipe(
-      takeUntil(this.unsubscribe$),
+      takeUntilDestroyed(),
       map((metadata) => mapStringToLov(metadata.departmentsLov))
     );
     this.rolesLov$ = this.store.metadataVm$.pipe(
-      takeUntil(this.unsubscribe$),
+      takeUntilDestroyed(),
       map((metadata) => mapStringToLov(metadata.rolesLov))
     );
     this.statesLov$ = this.store.metadataVm$.pipe(
-      takeUntil(this.unsubscribe$),
+      takeUntilDestroyed(),
       map((metadata) => mapStringToLov(metadata.statesLov))
     );
     this.store.employeeOverviewVm$
-      .pipe(takeUntil(this.unsubscribe$))
+      .pipe(takeUntilDestroyed())
       .subscribe((val) => {
-        this._searchValues = val.searchValues;
-        this._searchMeta = val.searchMeta;
+        this._searchValues.next(val.searchValues);
+        this._searchMeta.next(val.searchMeta);
       });
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
   }
 
   /**
@@ -109,7 +108,6 @@ export class EmployeeOverviewFacade implements OnDestroy {
     searchValues: EmployeeOverviewSearchUi,
     retainPagination = false
   ): void {
-    //const searchValues: EmployeeOverviewSearchUi = this.state.snapshot.searchValues
     if (retainPagination) {
       this.store.resetEmployeeOverviewSearchValues(searchValues);
     } else {
@@ -130,18 +128,18 @@ export class EmployeeOverviewFacade implements OnDestroy {
   public subscribeToSearch(): void {
     this.search$
       .pipe(
-        tap(() => this.loadInProgress$.next(true)),
+        tap(() => this.store.setEmployeeOverviewLoading()),
         switchMap(this.searchOperation$),
-        catchError(() => {
-          this.loadInProgress$.next(false);
+        catchError((err) => {
+          this.store.setEmployeeOverviewError(err);
           this.onSearchError();
           this.searchError$.next();
           return of(EMPTY_RESPONSE);
         }),
-        takeUntil(this.unsubscribe$)
+        takeUntilDestroyed()
       )
       .subscribe((searchResult: EmployeeResourceCollection) => {
-        this.loadInProgress$.next(false);
+        this.store.setEmployeeOverviewLoaded();
         this.afterSearch(searchResult);
       });
   }

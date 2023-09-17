@@ -75,6 +75,7 @@
     <button
       type="button"
       (click)="openSidebarFilter()"
+      [disabled]="(metadataLoading$ | async) === true"
       [ngClass]="{
         'quick-filters__sidebar-filter-button--active': filters.activeCount
       }"

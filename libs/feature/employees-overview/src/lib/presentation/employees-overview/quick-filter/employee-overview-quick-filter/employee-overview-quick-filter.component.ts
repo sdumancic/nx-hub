@@ -27,6 +27,7 @@ export class EmployeeOverviewQuickFilterComponent {
 
   @Input() activeFiltersCount$: Observable<number>;
   @Input() activeTab: Tabs;
+  @Input() metadataLoading$: Observable<boolean>;
   @Output() openSidebarFilters = new EventEmitter<Tabs>();
   @Output() searchEmitter = new EventEmitter<EmployeeOverviewQuickFilter>();
   @Output() resetEmitter = new EventEmitter<Tabs>();

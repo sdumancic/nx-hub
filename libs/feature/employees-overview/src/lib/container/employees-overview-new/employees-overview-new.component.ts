@@ -2,7 +2,6 @@ import {
   ChangeDetectorRef,
   Component,
   HostListener,
-  OnDestroy,
   OnInit,
   ViewContainerRef,
 } from '@angular/core';
@@ -72,7 +71,9 @@ import { EmployeesOverviewStoreService } from '../../store/employees-overview-st
     EmployeesOverviewStoreService,
   ],
 })
-export class EmployeesOverviewNewComponent implements OnInit, OnDestroy {
+export class EmployeesOverviewNewComponent implements OnInit {
+  employeeDataLoading$: Observable<boolean>;
+  metadataLoading$: Observable<boolean>;
   sidebarPinned$: Observable<boolean>;
   activeTab: Tabs = Tabs.EMPLOYEE_OVERVIEW;
   sidebarDialogRef: MatDialogRef<any>;
@@ -80,7 +81,6 @@ export class EmployeesOverviewNewComponent implements OnInit, OnDestroy {
   searchMeta$: Observable<SearchMeta>;
   activeFiltersCount$: Observable<number>;
   unsubscribeFromQueryParamChanges$ = new Subject<void>();
-  private readonly unsubscribe$ = new Subject<void>();
 
   constructor(
     private readonly matDialog: MatDialog,
@@ -96,6 +96,8 @@ export class EmployeesOverviewNewComponent implements OnInit, OnDestroy {
     this.searchCount$ = this.employeeOverviewFacade.searchCount$;
     this.searchMeta$ = this.employeeOverviewFacade.searchMeta$;
     this.activeFiltersCount$ = this.filtersService.activeFiltersCount$;
+    this.employeeDataLoading$ = this.employeeOverviewFacade.loading$;
+    this.metadataLoading$ = this.employeeOverviewFacade.metadataLoading$;
   }
 
   @HostListener('click') onContainerClick(): void {
@@ -115,11 +117,6 @@ export class EmployeesOverviewNewComponent implements OnInit, OnDestroy {
         this.setInitialQueryParams(this.route.snapshot.queryParams);
         this.setSearchUiFromQueryParams(this.route.snapshot.queryParams);
       });
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
   }
 
   onOpenSidebarFilters(tab: Tabs) {
@@ -189,11 +186,6 @@ export class EmployeesOverviewNewComponent implements OnInit, OnDestroy {
     this.cdRef.detectChanges();
   }
 
-  onCreateNewEmployee() {
-    //this.employeeOverviewFacade.refreshMetadata$().pipe(take(1)).subscribe();
-    this.store.fetchMetadata();
-  }
-
   private subscribeToQueryParamChanges(): void {
     this.employeeOverviewFacade
       .urlChanged$()
@@ -210,12 +202,6 @@ export class EmployeesOverviewNewComponent implements OnInit, OnDestroy {
     this.quickFilterForm.setFormValue(
       this.employeeOverviewFacade.extractQuickFilterPart(searchValues)
     );
-  }
-
-  private async initDefaultStateAndSearch(): Promise<void> {
-    if (this.sidebarDialogRef !== undefined) {
-      this.sidebarDialogRef.close();
-    }
   }
 
   private setActiveTab(tab: Tabs): void {
