@@ -70,17 +70,28 @@ export class EmployeeOverviewFiltersService implements OnDestroy {
       this.facade.rolesLov$,
       this.facade.departmentsLov$,
       this.facade.gendersLov$,
-      this.facade.statesLov$
+      this.facade.statesLov$,
+      this.facade.searchValues$
     )
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((data: [LovItem[], LovItem[], LovItem[], LovItem[]]) => {
-        const [roles, departments, genders, statuses] = data;
-        this.rolesLov = roles;
-        this.departmentsLov = departments;
-        this.genderLov = genders;
-        this.statesLov = statuses;
-        this.filterChipsRefresh$.next(this.facade.searchValues);
-      });
+      .subscribe(
+        (
+          data: [
+            LovItem[],
+            LovItem[],
+            LovItem[],
+            LovItem[],
+            EmployeeOverviewSearchUi
+          ]
+        ) => {
+          const [roles, departments, genders, statuses, searchValues] = data;
+          this.rolesLov = roles;
+          this.departmentsLov = departments;
+          this.genderLov = genders;
+          this.statesLov = statuses;
+          this.filterChipsRefresh$.next(searchValues);
+        }
+      );
   }
 
   private readonly isActiveFilter = (value: any): boolean => {

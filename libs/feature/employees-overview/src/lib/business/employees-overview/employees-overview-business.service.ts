@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { delay, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { combineLatest, delay, Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { EmployeeOverviewSearch } from './employees-overview-search.model';
 import { OverviewQuery } from './overview.query';
 import {
@@ -18,21 +18,28 @@ export class EmployeesOverviewBusiness {
   ) {}
 
   searchEmployees$(
-    searchValues: Partial<EmployeeOverviewSearch>,
-    searchMeta: SearchMeta
+    searchValues$: Observable<Partial<EmployeeOverviewSearch>>,
+    searchMeta$: Observable<SearchMeta>
   ): Observable<EmployeeResourceCollection> {
-    const queryParamsText = this.overviewQuery.build(searchValues, searchMeta);
-    return this.daoService.fetchEmployees$(queryParamsText).pipe(
-      delay(2000),
-      map((res) => {
-        return {
-          data: res.data,
-          metadata: {
-            page: searchMeta.pagination.index,
-            size: searchMeta.pagination.size,
-            totalResources: res.totalCount ? Number(res.totalCount) : 0,
-          },
-        };
+    return combineLatest([searchValues$, searchMeta$]).pipe(
+      switchMap(([searchValues, searchMeta]) => {
+        const queryParamsText = this.overviewQuery.build(
+          searchValues,
+          searchMeta
+        );
+        return this.daoService.fetchEmployees$(queryParamsText).pipe(
+          delay(2000),
+          map((res) => {
+            return {
+              data: res.data,
+              metadata: {
+                page: searchMeta.pagination.index,
+                size: searchMeta.pagination.size,
+                totalResources: res.totalCount ? Number(res.totalCount) : 0,
+              },
+            };
+          })
+        );
       })
     );
   }

@@ -30,6 +30,8 @@ import { OverviewFilterChipTypeEnum } from '../../presentation/employees-overvie
 import { Params } from '@angular/router';
 import { EmployeeOverviewQuickFilter } from '../../presentation/employees-overview/quick-filter/employee-overview-quick-filter/employee-overview-quick-filter-form.service';
 import { ZERO_PAGE_INDEX } from '../../store/employees-overview-store.model';
+import { combineLatest, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 enum SortDirection {
   ASC = 'asc',
@@ -101,93 +103,105 @@ export class EmployeeOverviewMapper {
   }
 
   static fromEmployeeOverviewSearchUi(
-    searchValues: EmployeeOverviewSearchUi
-  ): EmployeeOverviewSearch {
-    return {
-      username: searchValues.username,
-      firstName: searchValues.firstName,
-      lastName: searchValues.lastName,
-      ssn: null,
-      dobFrom: moment(searchValues.dobFrom)
-        .utc(true)
-        .startOf('day')
-        .toISOString(),
-      dobUntil: moment(searchValues.dobUntil)
-        .utc(true)
-        .startOf('day')
-        .toISOString(),
-      hiredOnFrom: moment(searchValues.hiredOnFrom)
-        .utc(true)
-        .startOf('day')
-        .toISOString(),
-      hiredOnUntil: moment(searchValues.hiredOnUntil)
-        .utc(true)
-        .endOf('day')
-        .toISOString(),
-      terminatedOnFrom: moment(searchValues.terminatedOnFrom)
-        .utc(true)
-        .startOf('day')
-        .toISOString(),
-      terminatedOnUntil: moment(searchValues.terminatedOnUntil)
-        .utc(true)
-        .endOf('day')
-        .toISOString(),
-      email: searchValues.email,
-      street: searchValues.street,
-      city: searchValues.city,
-      state: searchValues.state,
-      zip: searchValues.zip,
-      roles: searchValues.roles,
-      department: searchValues.department,
-      gender: searchValues.gender,
-    } as EmployeeOverviewSearch;
+    searchValues: Observable<EmployeeOverviewSearchUi>
+  ): Observable<EmployeeOverviewSearch> {
+    return searchValues.pipe(
+      map((searchValues) => {
+        return {
+          username: searchValues.username,
+          firstName: searchValues.firstName,
+          lastName: searchValues.lastName,
+          ssn: null,
+          dobFrom: moment(searchValues.dobFrom)
+            .utc(true)
+            .startOf('day')
+            .toISOString(),
+          dobUntil: moment(searchValues.dobUntil)
+            .utc(true)
+            .startOf('day')
+            .toISOString(),
+          hiredOnFrom: moment(searchValues.hiredOnFrom)
+            .utc(true)
+            .startOf('day')
+            .toISOString(),
+          hiredOnUntil: moment(searchValues.hiredOnUntil)
+            .utc(true)
+            .endOf('day')
+            .toISOString(),
+          terminatedOnFrom: moment(searchValues.terminatedOnFrom)
+            .utc(true)
+            .startOf('day')
+            .toISOString(),
+          terminatedOnUntil: moment(searchValues.terminatedOnUntil)
+            .utc(true)
+            .endOf('day')
+            .toISOString(),
+          email: searchValues.email,
+          street: searchValues.street,
+          city: searchValues.city,
+          state: searchValues.state,
+          zip: searchValues.zip,
+          roles: searchValues.roles,
+          department: searchValues.department,
+          gender: searchValues.gender,
+        } as EmployeeOverviewSearch;
+      })
+    );
   }
 
   static searchUiToQueryParams(
-    searchValues: EmployeeOverviewSearchUi,
-    searchMeta: SearchMeta
-  ): Partial<EmployeeOverviewUrlQueryParams> {
-    return {
-      username: searchValues.username,
-      firstName: searchValues.firstName,
-      lastName: searchValues.lastName,
-      dobFrom: moment(searchValues.dobFrom).isValid()
-        ? moment(searchValues.dobFrom).format('DD-MM-YYYY')
-        : null,
-      dobUntil: moment(searchValues.dobUntil).isValid()
-        ? moment(searchValues.dobUntil).format('DD-MM-YYYY')
-        : null,
-      hiredOnFrom: moment(searchValues.hiredOnFrom).isValid()
-        ? moment(searchValues.hiredOnFrom).format('DD-MM-YYYY')
-        : null,
-      hiredOnUntil: moment(searchValues.hiredOnUntil).isValid()
-        ? moment(searchValues.hiredOnUntil).format('DD-MM-YYYY')
-        : null,
-      terminatedOnFrom: moment(searchValues.terminatedOnFrom).isValid()
-        ? moment(searchValues.terminatedOnFrom).format('DD-MM-YYYY')
-        : null,
-      terminatedOnUntil: moment(searchValues.terminatedOnUntil).isValid()
-        ? moment(searchValues.terminatedOnUntil).format('DD-MM-YYYY')
-        : null,
-      email: searchValues.email,
-      street: searchValues.street,
-      city: searchValues.city,
-      state: searchValues.state?.length ? searchValues.state.join(',') : null,
-      zip: searchValues.zip,
-      roles: searchValues.roles?.length ? searchValues.roles.join(',') : null,
-      department: searchValues.department?.length
-        ? searchValues.department.join(',')
-        : null,
-      gender: searchValues.gender?.length
-        ? searchValues.gender.join(',')
-        : null,
-      currentPage: searchMeta.pagination.index.toString(10),
-      pageSize: searchMeta.pagination.size.toString(10),
-      sortColumn: searchMeta.sorting.attribute || null,
-      sortDirection: searchMeta.sorting.attribute
-        ? searchMeta.sorting.order || null
-        : null,
-    };
+    searchValues$: Observable<EmployeeOverviewSearchUi>,
+    searchMeta$: Observable<SearchMeta>
+  ): Observable<Partial<EmployeeOverviewUrlQueryParams>> {
+    return combineLatest([searchValues$, searchMeta$]).pipe(
+      map(([searchValues, searchMeta]) => {
+        return {
+          username: searchValues.username,
+          firstName: searchValues.firstName,
+          lastName: searchValues.lastName,
+          dobFrom: moment(searchValues.dobFrom).isValid()
+            ? moment(searchValues.dobFrom).format('DD-MM-YYYY')
+            : null,
+          dobUntil: moment(searchValues.dobUntil).isValid()
+            ? moment(searchValues.dobUntil).format('DD-MM-YYYY')
+            : null,
+          hiredOnFrom: moment(searchValues.hiredOnFrom).isValid()
+            ? moment(searchValues.hiredOnFrom).format('DD-MM-YYYY')
+            : null,
+          hiredOnUntil: moment(searchValues.hiredOnUntil).isValid()
+            ? moment(searchValues.hiredOnUntil).format('DD-MM-YYYY')
+            : null,
+          terminatedOnFrom: moment(searchValues.terminatedOnFrom).isValid()
+            ? moment(searchValues.terminatedOnFrom).format('DD-MM-YYYY')
+            : null,
+          terminatedOnUntil: moment(searchValues.terminatedOnUntil).isValid()
+            ? moment(searchValues.terminatedOnUntil).format('DD-MM-YYYY')
+            : null,
+          email: searchValues.email,
+          street: searchValues.street,
+          city: searchValues.city,
+          state: searchValues.state?.length
+            ? searchValues.state.join(',')
+            : null,
+          zip: searchValues.zip,
+          roles: searchValues.roles?.length
+            ? searchValues.roles.join(',')
+            : null,
+          department: searchValues.department?.length
+            ? searchValues.department.join(',')
+            : null,
+          gender: searchValues.gender?.length
+            ? searchValues.gender.join(',')
+            : null,
+          currentPage: searchMeta.pagination.index.toString(10),
+          pageSize: searchMeta.pagination.size.toString(10),
+          sortColumn: searchMeta.sorting.attribute || null,
+          sortDirection: searchMeta.sorting.attribute
+            ? searchMeta.sorting.order || null
+            : null,
+        };
+      })
+    );
   }
 
   static queryParamsToSearchUi(

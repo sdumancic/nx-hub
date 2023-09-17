@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { OverviewUrlParamsService } from './url-params/overview-url-params.service';
 import { EmployeesOverviewBusiness } from '../../business/employees-overview/employees-overview-business.service';
@@ -36,23 +36,12 @@ export class EmployeeOverviewFacade {
 
   private activeTabInd: number;
 
-  private _searchValues = new BehaviorSubject<EmployeeOverviewSearchUi>(null);
-  private _searchMeta = new BehaviorSubject<SearchMeta>(null);
-
   get loading$(): Observable<boolean> {
     return this.store.employeeOverviewVm$.pipe(map((val) => val.loading));
   }
 
   get metadataLoading$(): Observable<boolean> {
     return this.store.metadataVm$.pipe(map((val) => val.loading));
-  }
-
-  get searchValues(): EmployeeOverviewSearchUi {
-    return this._searchValues.value;
-  }
-
-  get searchMeta(): SearchMeta {
-    return this._searchMeta.value;
   }
 
   get searchValues$(): Observable<EmployeeOverviewSearchUi> {
@@ -89,12 +78,6 @@ export class EmployeeOverviewFacade {
       takeUntilDestroyed(),
       map((metadata) => mapStringToLov(metadata.statesLov))
     );
-    this.store.employeeOverviewVm$
-      .pipe(takeUntilDestroyed())
-      .subscribe((val) => {
-        this._searchValues.next(val.searchValues);
-        this._searchMeta.next(val.searchMeta);
-      });
   }
 
   /**
@@ -160,8 +143,8 @@ export class EmployeeOverviewFacade {
     this.urlParamsService.setUrlMergeQueryParams(
       this.activeTabIndex,
       EmployeeOverviewMapper.searchUiToQueryParams(
-        this.searchValues,
-        this.searchMeta
+        this.searchValues$,
+        this.searchMeta$
       )
     );
   }
@@ -169,8 +152,8 @@ export class EmployeeOverviewFacade {
   private readonly searchOperation$ =
     (): Observable<EmployeeResourceCollection> =>
       this.employeesOverviewBusiness.searchEmployees$(
-        EmployeeOverviewMapper.fromEmployeeOverviewSearchUi(this.searchValues),
-        this.searchMeta
+        EmployeeOverviewMapper.fromEmployeeOverviewSearchUi(this.searchValues$),
+        this.searchMeta$
       );
 
   private readonly onSearchError = (): void => {
