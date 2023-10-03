@@ -191,6 +191,7 @@ export class EmployeesOverviewNewComponent implements OnInit {
       .urlChanged$()
       .pipe(takeUntil(this.unsubscribeFromQueryParamChanges$))
       .subscribe((queryParams: Params) => {
+        console.log('subscribeToQueryParamChanges', queryParams);
         this.setSearchUiFromQueryParams(queryParams);
       });
   }
@@ -209,6 +210,7 @@ export class EmployeesOverviewNewComponent implements OnInit {
   }
 
   private setInitialQueryParams(queryParams: Params) {
+    console.log('set initial query params', queryParams);
     this.employeeOverviewFacade.mergeSetUrl(queryParams);
   }
 

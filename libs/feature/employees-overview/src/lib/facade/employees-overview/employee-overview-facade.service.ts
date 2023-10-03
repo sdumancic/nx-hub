@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of, Subject, take } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { OverviewUrlParamsService } from './url-params/overview-url-params.service';
 import { EmployeesOverviewBusiness } from '../../business/employees-overview/employees-overview-business.service';
@@ -140,13 +140,14 @@ export class EmployeeOverviewFacade {
   };
 
   public updateQueryParamsFromState(): void {
-    this.urlParamsService.setUrlMergeQueryParams(
-      this.activeTabIndex,
-      EmployeeOverviewMapper.searchUiToQueryParams(
-        this.searchValues$,
-        this.searchMeta$
-      )
-    );
+    EmployeeOverviewMapper.searchUiToQueryParams(
+      this.searchValues$,
+      this.searchMeta$
+    )
+      .pipe(take(1))
+      .subscribe((val) => {
+        this.urlParamsService.setUrlMergeQueryParams(this.activeTabIndex, val);
+      });
   }
 
   private readonly searchOperation$ =
